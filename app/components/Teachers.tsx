@@ -70,26 +70,26 @@ export default function Teachers({
             </div>
 
             {filtered.length > 4 && (
-              <button
-                onClick={() => scrollBy(1)}
-                aria-label="다음 강사"
-                className="absolute -right-3 top-1/2 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-line bg-white text-gray-500 shadow-md transition hover:text-brand lg:flex"
-              >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M9 6l6 6-6 6" />
-                </svg>
-              </button>
-            )}
-            {filtered.length > 4 && (
-              <button
-                onClick={() => scrollBy(-1)}
-                aria-label="이전 강사"
-                className="absolute -left-3 top-1/2 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-line bg-white text-gray-500 shadow-md transition hover:text-brand lg:flex"
-              >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M15 6l-6 6 6 6" />
-                </svg>
-              </button>
+              <>
+                <button
+                  onClick={() => scrollBy(1)}
+                  aria-label="다음 강사"
+                  className="absolute -right-3 top-1/2 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-line bg-white text-gray-500 shadow-md transition hover:text-brand lg:flex"
+                >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M9 6l6 6-6 6" />
+                  </svg>
+                </button>
+                <button
+                  onClick={() => scrollBy(-1)}
+                  aria-label="이전 강사"
+                  className="absolute -left-3 top-1/2 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-line bg-white text-gray-500 shadow-md transition hover:text-brand lg:flex"
+                >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M15 6l-6 6 6 6" />
+                  </svg>
+                </button>
+              </>
             )}
           </>
         )}
@@ -102,24 +102,29 @@ function TeacherCard({ teacher }: { teacher: Teacher }) {
   return (
     <Link
       href="/teachers"
-      className="group relative h-[210px] w-[262px] shrink-0 overflow-hidden rounded-2xl border border-line bg-white p-5 shadow-sm transition hover:shadow-md"
+      className="group relative h-[330px] w-[270px] shrink-0 overflow-hidden rounded-2xl border border-line bg-white shadow-sm transition hover:shadow-md"
     >
-      <div className="flex gap-1.5">
-        {teacher.tags.map((tag) => (
-          <span
-            key={tag}
-            className="rounded border border-line bg-gray-50 px-1.5 py-0.5 text-[11px] font-semibold text-gray-500"
-          >
-            {tag}
-          </span>
-        ))}
+      {/* 텍스트 (위) */}
+      <div className="relative z-10 p-6">
+        <div className="flex gap-1.5">
+          {teacher.tags.map((tag) => (
+            <span
+              key={tag}
+              className="rounded border border-line bg-gray-50 px-1.5 py-0.5 text-[11px] font-semibold text-gray-500"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+        <p className="mt-5 text-[14px] font-semibold text-brand">{teacher.subject}</p>
+        <p className="text-[26px] font-extrabold leading-tight text-ink">{teacher.name}</p>
       </div>
-      <p className="mt-4 text-[13px] font-semibold text-brand">{teacher.subject}</p>
-      <p className="text-2xl font-extrabold text-ink">{teacher.name}</p>
+
+      {/* 사진 (오른쪽 아래를 크게 채움) */}
       <img
         src={teacher.photo}
         alt={`${teacher.name} 선생님`}
-        className="pointer-events-none absolute -bottom-1 right-0 h-[150px] w-[150px] object-contain object-bottom transition group-hover:scale-105"
+        className="pointer-events-none absolute bottom-0 right-0 h-[80%] w-auto max-w-[80%] object-contain object-bottom transition duration-300 group-hover:scale-105"
       />
     </Link>
   );
