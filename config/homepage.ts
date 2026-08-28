@@ -33,7 +33,7 @@ export const BANNER: Promo = { image: "/banner.png", href: "#", alt: "2027 윈�
 
 /* ── 영상 섹션 우측 하단: 홍보 사각배너 ───────────────────────────────────── */
 export const PROMO: Promo = {
-  image: "/placeholders/promo.svg",
+  image: "/promo.png",
   href: "#",
   alt: "2024 연간 학습 프로그램",
 };
