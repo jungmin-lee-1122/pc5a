@@ -27,7 +27,7 @@ export default function Videos({
 
   return (
     <section className="mx-auto max-w-7xl px-5 pt-16 lg:px-8">
-      <h2 className="mb-6 text-center text-2xl font-extrabold text-ink">
+      <h2 className="mb-6 text-2xl font-extrabold text-ink">
         <span className="text-accent-2">✨</span> {title} <span className="text-accent-2">✨</span>
       </h2>
 
@@ -92,14 +92,14 @@ export default function Videos({
           )}
         </div>
 
-        {/* 홍보 사각배너 */}
+        {/* 홍보 사각배너 — 왼쪽 영상 컬럼과 세로 끝선 맞춤 */}
         <div className="lg:col-span-4">
           <a
             href={promo?.href || "#"}
-            className="block h-full min-h-[180px] overflow-hidden rounded-2xl border border-line bg-white shadow-sm"
+            className="relative block h-44 overflow-hidden rounded-2xl border border-line bg-white shadow-sm lg:h-full"
           >
             {promo ? (
-              <img src={promo.image} alt={promo.alt} className="h-full w-full object-cover" />
+              <img src={promo.image} alt={promo.alt} className="absolute inset-0 h-full w-full object-cover" />
             ) : (
               <div className="flex h-full items-center justify-center text-muted">홍보 배너</div>
             )}
