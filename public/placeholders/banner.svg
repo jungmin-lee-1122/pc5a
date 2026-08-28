@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="120" viewBox="0 0 1400 120" role="img" aria-label="합격실적 배너">
+  <defs><linearGradient id="gb" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#6a45c4"/><stop offset="1" stop-color="#8a5cf0"/></linearGradient></defs>
+  <rect width="1400" height="120" rx="16" fill="url(#gb)"/>
+  <text x="48" y="55" font-family="Arial" font-size="17" fill="#e7ddff">러셀 평촌</text>
+  <text x="48" y="84" font-family="Arial" font-size="26" font-weight="800" fill="#ffffff">대입 합격 결과</text>
+  <text x="770" y="58" font-family="Arial" font-size="15" fill="#e7ddff">메이저 의예</text>
+  <text x="770" y="88" font-family="Arial" font-size="24" font-weight="800" fill="#fff">5명</text>
+  <text x="940" y="58" font-family="Arial" font-size="15" fill="#e7ddff">전국 의약치대</text>
+  <text x="940" y="88" font-family="Arial" font-size="24" font-weight="800" fill="#fff">61명</text>
+  <text x="1130" y="58" font-family="Arial" font-size="15" fill="#e7ddff">서울대</text>
+  <text x="1130" y="88" font-family="Arial" font-size="24" font-weight="800" fill="#fff">16명</text>
+  <text x="1250" y="58" font-family="Arial" font-size="15" fill="#e7ddff">연세대·고려대</text>
+  <text x="1250" y="88" font-family="Arial" font-size="24" font-weight="800" fill="#fff">56명</text>
+</svg>

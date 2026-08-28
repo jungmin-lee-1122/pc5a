@@ -1,8 +1,8 @@
 // ============================================================================
 //  홈페이지 코드 설정 — 관리자 페이지가 아니라 "여기서 직접" 수정하는 항목들
 //
-//  · 롤링 슬라이드(SLIDES)   · 포스터(POSTER)   · 홍보 배너(PROMO)
-//  · 합격실적(STATS)         · 사이트 정보(SITE, 헤더/푸터/과목탭/소셜)
+//  · 롤링 슬라이드(SLIDES)   · 포스터(POSTER)   · 배너 박스(BANNER)
+//  · 홍보 배너(PROMO)        · 사이트 정보(SITE, 헤더/푸터/과목탭/소셜)
 //
 //  이미지는 public/ 폴더에 넣고 "/파일명" 경로로 적으면 됩니다.
 //  (예: public/slide-a.jpg  ->  image: "/slide-a.jpg")
@@ -10,7 +10,7 @@
 //  ※ 선생님 · 공지사항 · 입시설명회 · 영상은 관리자 페이지(/admin)에서 관리합니다.
 // ============================================================================
 
-import type { Slide, Poster, Stats, Promo, SiteSettings } from "@/lib/types";
+import type { Slide, Poster, Promo, SiteSettings } from "@/lib/types";
 
 /* ── 히어로 왼쪽: 롤링 슬라이드 (위에서부터 순서대로 재생) ────────────────── */
 export const SLIDES: Slide[] = [
@@ -29,17 +29,11 @@ export const POSTER: Poster = {
   active: true,
 };
 
-/* ── 합격실적 배너 (보라색) ───────────────────────────────────────────────── */
-export const STATS: Stats = {
-  brand: "러셀 평촌",
-  title: "대입 합격 결과",
-  note: "데이터 산출 기준",
-  items: [
-    { id: "st1", label: "메이저 의예", value: "5명", order: 1 },
-    { id: "st2", label: "전국 의약치대", value: "61명", order: 2 },
-    { id: "st3", label: "서울대", value: "16명", order: 3 },
-    { id: "st4", label: "연세대·고려대", value: "56명", order: 4 },
-  ],
+/* ── 롤링창·포스터 바로 밑: 배너 박스 (이미지 하나로 교체) ─────────────────── */
+export const BANNER: Promo = {
+  image: "/placeholders/banner.svg",
+  href: "#",
+  alt: "러셀 평촌 대입 합격 결과",
 };
 
 /* ── 영상 섹션 우측 하단: 홍보 사각배너 ───────────────────────────────────── */
