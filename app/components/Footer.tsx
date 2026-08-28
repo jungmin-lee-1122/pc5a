@@ -4,7 +4,6 @@ import type { SiteSettings } from "@/lib/types";
 export default function Footer({ site }: { site: SiteSettings }) {
   const { footer, social } = site;
   const info = [
-    footer.company,
     `주소 : ${footer.address}`,
     `사업자등록번호 : ${footer.bizNo}`,
     `TEL : ${footer.tel}`,
@@ -32,12 +31,11 @@ export default function Footer({ site }: { site: SiteSettings }) {
         </div>
       </div>
 
-      {/* 하단: 학원 정보 */}
+      {/* 하단: 로고 + 학원 정보 */}
       <div className="border-t border-line bg-gray-50">
         <div className="mx-auto flex max-w-7xl flex-col gap-5 px-5 py-8 sm:flex-row sm:items-center lg:px-8">
-          <div className="flex shrink-0 items-center gap-3">
-            <Seal />
-            <span className="text-lg font-extrabold tracking-tight text-gray-600">{footer.brand}</span>
+          <div className="flex shrink-0 items-center">
+            <img src="/logo.png" alt={footer.brand} className="h-9 w-auto" />
           </div>
           <div className="text-[13px] leading-6 text-gray-500">
             <p className="flex flex-wrap items-center gap-x-3 gap-y-1">
@@ -67,17 +65,6 @@ function Social({ href, label, children }: { href: string; label: string; childr
     >
       {children}
     </a>
-  );
-}
-
-function Seal() {
-  return (
-    <svg width="46" height="46" viewBox="0 0 46 46" fill="none" aria-hidden="true">
-      <circle cx="23" cy="23" r="21" stroke="#9ca3af" strokeWidth="1.5" />
-      <circle cx="23" cy="23" r="16" stroke="#9ca3af" strokeWidth="1" />
-      <text x="23" y="20" textAnchor="middle" fontSize="7" fontWeight="700" fill="#6b7280" fontFamily="Arial">JONGRO</text>
-      <text x="23" y="30" textAnchor="middle" fontSize="7" fontWeight="700" fill="#6b7280" fontFamily="Arial">ACADEMY</text>
-    </svg>
   );
 }
 
