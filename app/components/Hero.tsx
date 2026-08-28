@@ -114,7 +114,7 @@ export default function Hero({ slides, poster }: { slides: Slide[]; poster: Post
         <div className="lg:col-span-1">
           <a
             href={poster?.href || "#"}
-            className="block h-[360px] overflow-hidden rounded-2xl border border-line bg-white shadow-sm sm:h-[420px]"
+            className="block aspect-[79/84] w-full overflow-hidden rounded-2xl border border-line bg-white shadow-sm"
           >
             {poster ? (
               <img src={poster.image} alt={poster.alt} className="h-full w-full object-cover" />
