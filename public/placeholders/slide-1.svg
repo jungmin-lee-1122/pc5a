@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="600" viewBox="0 0 1120 600" role="img" aria-label="슬라이드 1">
+  <defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6f8bd8"/><stop offset="1" stop-color="#3b56b0"/>
+    </linearGradient>
+  </defs>
+  <rect width="1120" height="600" fill="url(#g1)"/>
+  <text x="80" y="300" font-family="Arial" font-size="320" font-weight="800" fill="#ffffff" opacity="0.12">5A</text>
+  <text x="80" y="330" font-family="Arial" font-size="34" fill="#dfe7ff">2028 대입 개편, 준비는 이번 겨울부터</text>
+  <text x="80" y="410" font-family="Arial" font-size="86" font-weight="800" fill="#ffffff">2027 윈터스쿨</text>
+  <text x="82" y="470" font-family="Arial" font-size="26" fill="#e7edff">대상: 예비 고1 · 고2 · 고3</text>
+</svg>

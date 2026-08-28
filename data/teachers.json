@@ -1,0 +1,14 @@
+[
+  { "id": "t1", "name": "김연호", "subject": "국어", "tags": ["고3", "N수"], "photo": "/placeholders/teacher.svg", "order": 1, "active": true },
+  { "id": "t2", "name": "박찬결", "subject": "국어", "tags": ["고3", "N수"], "photo": "/placeholders/teacher.svg", "order": 2, "active": true },
+  { "id": "t3", "name": "신용선", "subject": "국어", "tags": ["고3", "N수"], "photo": "/placeholders/teacher.svg", "order": 3, "active": true },
+  { "id": "t4", "name": "이보라", "subject": "국어", "tags": ["고3", "N수"], "photo": "/placeholders/teacher.svg", "order": 4, "active": true },
+  { "id": "t5", "name": "정민석", "subject": "수학", "tags": ["고3", "N수"], "photo": "/placeholders/teacher.svg", "order": 5, "active": true },
+  { "id": "t6", "name": "한서윤", "subject": "수학", "tags": ["고1", "고2"], "photo": "/placeholders/teacher.svg", "order": 6, "active": true },
+  { "id": "t7", "name": "오지훈", "subject": "영어", "tags": ["고3", "N수"], "photo": "/placeholders/teacher.svg", "order": 7, "active": true },
+  { "id": "t8", "name": "배수아", "subject": "영어", "tags": ["고1", "고2"], "photo": "/placeholders/teacher.svg", "order": 8, "active": true },
+  { "id": "t9", "name": "문가영", "subject": "한국사", "tags": ["고3", "N수"], "photo": "/placeholders/teacher.svg", "order": 9, "active": true },
+  { "id": "t10", "name": "조현우", "subject": "사회탐구", "tags": ["고3", "N수"], "photo": "/placeholders/teacher.svg", "order": 10, "active": true },
+  { "id": "t11", "name": "임재현", "subject": "과학탐구", "tags": ["고3", "N수"], "photo": "/placeholders/teacher.svg", "order": 11, "active": true },
+  { "id": "t12", "name": "윤소정", "subject": "논술", "tags": ["고3", "N수"], "photo": "/placeholders/teacher.svg", "order": 12, "active": true }
+]

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="600" viewBox="0 0 480 600" role="img" aria-label="포스터">
+  
+  <rect width="480" height="600" fill="#1a2350"/>
+  <rect x="24" y="24" width="432" height="552" rx="14" fill="#20306e"/>
+  <text x="240" y="150" text-anchor="middle" font-family="Arial" font-size="40" font-weight="800" fill="#ffd54a">2027</text>
+  <text x="240" y="240" text-anchor="middle" font-family="Arial" font-size="66" font-weight="800" fill="#ffffff">윈터스쿨</text>
+  <text x="240" y="300" text-anchor="middle" font-family="Arial" font-size="22" fill="#cdd7ff">겨울 학습 전략 세팅</text>
+  <text x="240" y="520" text-anchor="middle" font-family="Arial" font-size="20" fill="#aab6f0">지금 준비하는 겨울이,</text>
+  <text x="240" y="548" text-anchor="middle" font-family="Arial" font-size="20" fill="#aab6f0">다음 학년의 격차를 만듭니다.</text>
+</svg>

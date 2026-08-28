@@ -1,0 +1,5 @@
+[
+  { "id": "s1", "image": "/placeholders/slide-1.svg", "href": "#", "alt": "2027 윈터스쿨", "order": 1, "active": true },
+  { "id": "s2", "image": "/placeholders/slide-2.svg", "href": "#", "alt": "9월 정규 단과 모집", "order": 2, "active": true },
+  { "id": "s3", "image": "/placeholders/slide-3.svg", "href": "#", "alt": "대학별 논술 파이널 특강", "order": 3, "active": true }
+]

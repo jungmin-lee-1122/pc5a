@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="600" viewBox="0 0 1120 600" role="img" aria-label="슬라이드 3">
+  <defs><linearGradient id="g3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7b83c9"/><stop offset="1" stop-color="#3a3f86"/></linearGradient></defs>
+  <rect width="1120" height="600" fill="url(#g3)"/>
+  <text x="80" y="330" font-family="Arial" font-size="34" fill="#e7e9ff">대학별 맞춤 대비</text>
+  <text x="80" y="410" font-family="Arial" font-size="80" font-weight="800" fill="#ffffff">대학별 논술 파이널 특강</text>
+</svg>

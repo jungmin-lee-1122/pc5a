@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="600" viewBox="0 0 1120 600" role="img" aria-label="슬라이드 2">
+  <defs><linearGradient id="g2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4f6bd0"/><stop offset="1" stop-color="#26307a"/></linearGradient></defs>
+  <rect width="1120" height="600" fill="url(#g2)"/>
+  <text x="80" y="330" font-family="Arial" font-size="34" fill="#dfe7ff">지금 시작하는 9월</text>
+  <text x="80" y="410" font-family="Arial" font-size="86" font-weight="800" fill="#ffffff">9월 정규 단과 모집</text>
+</svg>

@@ -1,0 +1,11 @@
+{
+  "brand": "러셀 평촌",
+  "title": "대입 합격 결과",
+  "note": "데이터 산출 기준",
+  "items": [
+    { "id": "st1", "label": "메이저 의예", "value": "5명", "order": 1 },
+    { "id": "st2", "label": "전국 의약치대", "value": "61명", "order": 2 },
+    { "id": "st3", "label": "서울대", "value": "16명", "order": 3 },
+    { "id": "st4", "label": "연세대·고려대", "value": "56명", "order": 4 }
+  ]
+}

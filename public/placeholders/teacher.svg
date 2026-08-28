@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="360" viewBox="0 0 320 360" role="img" aria-label="강사 사진">
+  <rect width="320" height="360" fill="#eef1f6"/>
+  <circle cx="160" cy="140" r="66" fill="#c8d0dd"/>
+  <path d="M40 360 C40 268 120 232 160 232 C200 232 280 268 280 360 Z" fill="#c8d0dd"/>
+</svg>
