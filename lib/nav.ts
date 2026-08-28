@@ -100,10 +100,13 @@ export const NAV_MENUS: NavMenu[] = [
         heading: "설명회 신청",
         href: "/events",
         items: [
-          { label: "전체 설명회", href: "/events" },
-          { label: "입시설명회", href: "/events" },
-          { label: "입시교실", href: "/events" },
+          { label: "입시설명회 신청", href: "/events" },
         ],
+      },
+      {
+        heading: "설명회 현장",
+        href: "#",
+        items: [],
       },
     ],
   },
