@@ -67,41 +67,55 @@ export default function Hero({ slides, poster }: { slides: Slide[]; poster: Post
             )}
           </div>
 
-          {/* 내비게이션 바 (독립 카드) */}
-          <div className="flex h-14 shrink-0 items-center gap-4 rounded-2xl border border-line bg-white px-5 shadow-sm">
-            <div className="relative h-1 flex-1 overflow-hidden rounded-full bg-gray-200">
+          {/* 내비게이션 바 (박스 없이) */}
+          <div className="flex h-12 shrink-0 items-center gap-5">
+            {/* 진행바 */}
+            <div className="relative h-[3px] flex-1 overflow-hidden rounded-full bg-gray-200">
               <div
-                className="absolute inset-y-0 left-0 rounded-full bg-brand transition-all duration-500 ease-out"
+                className="absolute inset-y-0 left-0 rounded-full bg-ink transition-all duration-500 ease-out"
                 style={{ width: `${progress}%` }}
               />
             </div>
-            <div className="flex items-center gap-1 text-gray-500">
-              <CtrlButton label="이전 슬라이드" onClick={() => go(index - 1)}>
-                <path d="M15 6l-6 6 6 6" />
-              </CtrlButton>
-              <CtrlButton label="다음 슬라이드" onClick={() => go(index + 1)}>
-                <path d="M9 6l6 6-6 6" />
-              </CtrlButton>
-              <CtrlButton label={playing ? "일시정지" : "재생"} onClick={() => setPlaying((p) => !p)}>
-                {playing ? (
-                  <>
-                    <line x1="9" y1="6" x2="9" y2="18" />
-                    <line x1="15" y1="6" x2="15" y2="18" />
-                  </>
-                ) : (
-                  <path d="M8 5v14l11-7z" fill="currentColor" stroke="none" />
-                )}
-              </CtrlButton>
-              <CtrlButton label="전체 슬라이드 보기" onClick={() => setShowThumbs((v) => !v)}>
-                <rect x="5" y="5" width="6" height="6" rx="1" />
-                <rect x="13" y="5" width="6" height="6" rx="1" />
-                <rect x="5" y="13" width="6" height="6" rx="1" />
-                <rect x="13" y="13" width="6" height="6" rx="1" />
-              </CtrlButton>
-              <span className="ml-1 text-xs tabular-nums text-gray-400">
-                {count ? String(index + 1).padStart(2, "0") : "00"} / {String(count).padStart(2, "0")}
-              </span>
+
+            {/* 이전/다음 (원형 캡슐) */}
+            <div className="flex items-center rounded-full border border-line text-gray-500">
+              <button
+                type="button"
+                aria-label="이전 슬라이드"
+                onClick={() => go(index - 1)}
+                className="flex h-10 w-10 items-center justify-center rounded-l-full transition-colors hover:text-brand"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 6l-6 6 6 6" /></svg>
+              </button>
+              <button
+                type="button"
+                aria-label="다음 슬라이드"
+                onClick={() => go(index + 1)}
+                className="flex h-10 w-10 items-center justify-center rounded-r-full border-l border-line transition-colors hover:text-brand"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 6l6 6-6 6" /></svg>
+              </button>
             </div>
+
+            {/* 재생/일시정지 (원형) */}
+            <CircleBtn label={playing ? "일시정지" : "재생"} onClick={() => setPlaying((v) => !v)}>
+              {playing ? (
+                <>
+                  <line x1="9" y1="6" x2="9" y2="18" />
+                  <line x1="15" y1="6" x2="15" y2="18" />
+                </>
+              ) : (
+                <path d="M8 5v14l11-7z" fill="currentColor" stroke="none" />
+              )}
+            </CircleBtn>
+
+            {/* 전체 보기 (원형) */}
+            <CircleBtn label="전체 슬라이드 보기" onClick={() => setShowThumbs((v) => !v)}>
+              <rect x="5" y="5" width="6" height="6" rx="1" />
+              <rect x="13" y="5" width="6" height="6" rx="1" />
+              <rect x="5" y="13" width="6" height="6" rx="1" />
+              <rect x="13" y="13" width="6" height="6" rx="1" />
+            </CircleBtn>
           </div>
         </div>
 
@@ -125,7 +139,7 @@ export default function Hero({ slides, poster }: { slides: Slide[]; poster: Post
   );
 }
 
-function CtrlButton({
+function CircleBtn({
   label,
   onClick,
   children,
@@ -139,9 +153,9 @@ function CtrlButton({
       type="button"
       aria-label={label}
       onClick={onClick}
-      className="flex h-8 w-8 items-center justify-center rounded-md transition-colors hover:bg-brand-light hover:text-brand"
+      className="flex h-10 w-10 items-center justify-center rounded-full border border-line text-gray-500 transition-colors hover:text-brand"
     >
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         {children}
       </svg>
     </button>
