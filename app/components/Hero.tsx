@@ -14,7 +14,6 @@ export default function Hero({ slides, poster }: { slides: Slide[]; poster: Post
   const count = slides.length;
   const go = useCallback((next: number) => setIndex((c) => (count ? (next + count) % count : 0)), [count]);
 
-  // 자동 재생
   useEffect(() => {
     if (!playing || count <= 1) return;
     timer.current = setTimeout(() => go(index + 1), DURATION);
@@ -23,94 +22,90 @@ export default function Hero({ slides, poster }: { slides: Slide[]; poster: Post
     };
   }, [index, playing, count, go]);
 
+  // 진행바 채움: (현재 슬라이드 번호) / (전체) — 슬라이드 개수에 비례
+  const progress = count ? ((index + 1) / count) * 100 : 0;
+
   return (
     <section className="mx-auto max-w-7xl px-5 pt-6 lg:px-8">
       <div className="grid gap-4 lg:grid-cols-3">
-        {/* 왼쪽: 롤링 슬라이더 */}
-        <div className="lg:col-span-2">
-          <div className="flex h-[360px] flex-col overflow-hidden rounded-2xl border border-line bg-white shadow-sm sm:h-[420px]">
-            {/* 슬라이드 이미지 영역 */}
-            <div className="relative flex-1 overflow-hidden bg-brand-light">
-              {count === 0 && (
-                <div className="flex h-full items-center justify-center text-muted">
-                  등록된 슬라이드가 없습니다
-                </div>
-              )}
-              {slides.map((slide, i) => (
-                <a
-                  key={slide.id}
-                  href={slide.href || "#"}
-                  className="absolute inset-0 transition-opacity duration-700"
-                  style={{ opacity: i === index ? 1 : 0, pointerEvents: i === index ? "auto" : "none" }}
-                  aria-hidden={i !== index}
-                >
-                  <img src={slide.image} alt={slide.alt} className="h-full w-full object-cover" />
-                </a>
-              ))}
+        {/* 왼쪽: 롤링창(위) + 내비게이션 바(아래) — 서로 분리, 높이는 포스터에 맞춤 */}
+        <div className="flex h-[340px] flex-col gap-3 sm:h-[400px] lg:col-span-2 lg:h-auto">
+          {/* 롤링 슬라이드 (독립 카드) */}
+          <div className="relative min-h-0 flex-1 overflow-hidden rounded-2xl border border-line bg-brand-light shadow-sm">
+            {count === 0 && (
+              <div className="flex h-full items-center justify-center text-muted">
+                등록된 슬라이드가 없습니다
+              </div>
+            )}
+            {slides.map((slide, i) => (
+              <a
+                key={slide.id}
+                href={slide.href || "#"}
+                className="absolute inset-0 transition-opacity duration-700"
+                style={{ opacity: i === index ? 1 : 0, pointerEvents: i === index ? "auto" : "none" }}
+                aria-hidden={i !== index}
+              >
+                <img src={slide.image} alt={slide.alt} className="h-full w-full object-cover" />
+              </a>
+            ))}
 
-              {/* 썸네일 빠른 이동 (전체보기 버튼으로 토글) */}
-              {showThumbs && count > 0 && (
-                <div className="absolute inset-x-0 bottom-0 flex flex-wrap gap-2 bg-black/40 p-3 backdrop-blur-sm">
-                  {slides.map((slide, i) => (
-                    <button
-                      key={slide.id}
-                      onClick={() => go(i)}
-                      className={`h-9 w-14 overflow-hidden rounded border-2 ${
-                        i === index ? "border-white" : "border-transparent opacity-70"
-                      }`}
-                      aria-label={`${i + 1}번 슬라이드`}
-                    >
-                      <img src={slide.image} alt="" className="h-full w-full object-cover" />
-                    </button>
-                  ))}
-                </div>
-              )}
+            {showThumbs && count > 0 && (
+              <div className="absolute inset-x-0 bottom-0 flex flex-wrap gap-2 bg-black/40 p-3 backdrop-blur-sm">
+                {slides.map((slide, i) => (
+                  <button
+                    key={slide.id}
+                    onClick={() => go(i)}
+                    className={`h-9 w-14 overflow-hidden rounded border-2 ${
+                      i === index ? "border-white" : "border-transparent opacity-70"
+                    }`}
+                    aria-label={`${i + 1}번 슬라이드`}
+                  >
+                    <img src={slide.image} alt="" className="h-full w-full object-cover" />
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* 내비게이션 바 (독립 카드) */}
+          <div className="flex h-14 shrink-0 items-center gap-4 rounded-2xl border border-line bg-white px-5 shadow-sm">
+            <div className="relative h-1 flex-1 overflow-hidden rounded-full bg-gray-200">
+              <div
+                className="absolute inset-y-0 left-0 rounded-full bg-brand transition-all duration-500 ease-out"
+                style={{ width: `${progress}%` }}
+              />
             </div>
-
-            {/* 컨트롤 바 (진행바 + 이전/다음/재생/전체보기) */}
-            <div className="flex h-12 items-center gap-4 px-4">
-              <div className="relative h-[3px] flex-1 overflow-hidden rounded-full bg-gray-200">
-                <div
-                  key={`${index}-${playing}`}
-                  className="absolute inset-y-0 left-0 bg-brand"
-                  style={{
-                    animation: playing && count > 1 ? `progressFill ${DURATION}ms linear forwards` : "none",
-                    width: playing && count > 1 ? undefined : "100%",
-                  }}
-                />
-              </div>
-              <div className="flex items-center gap-1 text-gray-500">
-                <CtrlButton label="이전 슬라이드" onClick={() => go(index - 1)}>
-                  <path d="M15 6l-6 6 6 6" />
-                </CtrlButton>
-                <CtrlButton label="다음 슬라이드" onClick={() => go(index + 1)}>
-                  <path d="M9 6l6 6-6 6" />
-                </CtrlButton>
-                <CtrlButton label={playing ? "일시정지" : "재생"} onClick={() => setPlaying((p) => !p)}>
-                  {playing ? (
-                    <>
-                      <line x1="9" y1="6" x2="9" y2="18" />
-                      <line x1="15" y1="6" x2="15" y2="18" />
-                    </>
-                  ) : (
-                    <path d="M8 5v14l11-7z" fill="currentColor" stroke="none" />
-                  )}
-                </CtrlButton>
-                <CtrlButton label="전체 슬라이드 보기" onClick={() => setShowThumbs((v) => !v)}>
-                  <rect x="5" y="5" width="6" height="6" rx="1" />
-                  <rect x="13" y="5" width="6" height="6" rx="1" />
-                  <rect x="5" y="13" width="6" height="6" rx="1" />
-                  <rect x="13" y="13" width="6" height="6" rx="1" />
-                </CtrlButton>
-                <span className="ml-1 text-xs tabular-nums text-gray-400">
-                  {count ? String(index + 1).padStart(2, "0") : "00"} / {String(count).padStart(2, "0")}
-                </span>
-              </div>
+            <div className="flex items-center gap-1 text-gray-500">
+              <CtrlButton label="이전 슬라이드" onClick={() => go(index - 1)}>
+                <path d="M15 6l-6 6 6 6" />
+              </CtrlButton>
+              <CtrlButton label="다음 슬라이드" onClick={() => go(index + 1)}>
+                <path d="M9 6l6 6-6 6" />
+              </CtrlButton>
+              <CtrlButton label={playing ? "일시정지" : "재생"} onClick={() => setPlaying((p) => !p)}>
+                {playing ? (
+                  <>
+                    <line x1="9" y1="6" x2="9" y2="18" />
+                    <line x1="15" y1="6" x2="15" y2="18" />
+                  </>
+                ) : (
+                  <path d="M8 5v14l11-7z" fill="currentColor" stroke="none" />
+                )}
+              </CtrlButton>
+              <CtrlButton label="전체 슬라이드 보기" onClick={() => setShowThumbs((v) => !v)}>
+                <rect x="5" y="5" width="6" height="6" rx="1" />
+                <rect x="13" y="5" width="6" height="6" rx="1" />
+                <rect x="5" y="13" width="6" height="6" rx="1" />
+                <rect x="13" y="13" width="6" height="6" rx="1" />
+              </CtrlButton>
+              <span className="ml-1 text-xs tabular-nums text-gray-400">
+                {count ? String(index + 1).padStart(2, "0") : "00"} / {String(count).padStart(2, "0")}
+              </span>
             </div>
           </div>
         </div>
 
-        {/* 오른쪽: 포스터 */}
+        {/* 오른쪽: 포스터 (기준 높이) */}
         <div className="lg:col-span-1">
           <a
             href={poster?.href || "#"}

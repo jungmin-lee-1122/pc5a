@@ -102,7 +102,7 @@ function TeacherCard({ teacher }: { teacher: Teacher }) {
   return (
     <Link
       href="/teachers"
-      className="group relative h-[330px] w-[270px] shrink-0 overflow-hidden rounded-2xl border border-line bg-white shadow-sm transition hover:shadow-md"
+      className="group relative h-[276px] w-[266px] shrink-0 overflow-hidden rounded-2xl border border-line bg-white shadow-sm transition hover:shadow-md"
     >
       {/* 텍스트 (위) */}
       <div className="relative z-10 p-6">
