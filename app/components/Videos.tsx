@@ -30,7 +30,7 @@ export default function Videos({
       <div className="grid gap-5 lg:grid-cols-12">
         {/* 영상 섹션 (박스) */}
         <div className="lg:col-span-8">
-          <div className="h-full rounded-2xl border border-line bg-white p-6 shadow-sm sm:p-7">
+          <div className="h-full rounded-2xl border border-line bg-white p-6 sm:p-7">
             <h2 className="mb-5 text-xl font-extrabold text-ink">{title}</h2>
 
             <div className="relative">
@@ -77,14 +77,14 @@ export default function Videos({
                   <button
                     onClick={() => scrollBy(-1)}
                     aria-label="이전 영상"
-                    className="absolute -left-1 top-[26%] flex h-9 w-9 items-center justify-center rounded-full border border-line bg-white text-gray-500 shadow-md hover:text-brand"
+                    className="absolute -left-1 top-[26%] flex h-9 w-9 items-center justify-center rounded-full border border-line bg-white text-gray-500 hover:text-brand"
                   >
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 6l-6 6 6 6" /></svg>
                   </button>
                   <button
                     onClick={() => scrollBy(1)}
                     aria-label="다음 영상"
-                    className="absolute -right-1 top-[26%] flex h-9 w-9 items-center justify-center rounded-full border border-line bg-white text-gray-500 shadow-md hover:text-brand"
+                    className="absolute -right-1 top-[26%] flex h-9 w-9 items-center justify-center rounded-full border border-line bg-white text-gray-500 hover:text-brand"
                   >
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 6l6 6-6 6" /></svg>
                   </button>
@@ -98,7 +98,7 @@ export default function Videos({
         <div className="lg:col-span-4">
           <a
             href={promo?.href || "#"}
-            className="relative block h-44 overflow-hidden rounded-2xl border border-line bg-white shadow-sm lg:h-full"
+            className="relative block h-44 overflow-hidden rounded-2xl border border-line bg-white lg:h-full"
           >
             {promo ? (
               <img src={promo.image} alt={promo.alt} className="absolute inset-0 h-full w-full object-cover" />

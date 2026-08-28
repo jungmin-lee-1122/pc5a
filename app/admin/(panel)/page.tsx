@@ -19,7 +19,7 @@ export default function Dashboard() {
           <Link
             key={c.href}
             href={c.href}
-            className="rounded-2xl border border-line bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-brand hover:shadow-md"
+            className="rounded-2xl border border-line bg-white p-5 transition hover:-translate-y-0.5 hover:border-brand"
           >
             <p className="text-base font-bold text-ink">{c.label}</p>
             <p className="mt-1 text-sm text-muted">{c.desc}</p>

@@ -41,7 +41,7 @@ export default function NoticeEvents({
 }
 
 function Panel({ children }: { children: React.ReactNode }) {
-  return <div className="rounded-2xl border border-line bg-white p-6 shadow-sm sm:p-7">{children}</div>;
+  return <div className="rounded-2xl border border-line bg-white p-6 sm:p-7">{children}</div>;
 }
 
 function PanelHeader({ title, moreHref }: { title: string; moreHref: string }) {

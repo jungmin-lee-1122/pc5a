@@ -30,7 +30,7 @@ export default function LoginPage() {
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-gray-50 px-5">
-      <form onSubmit={submit} className="w-full max-w-sm rounded-2xl border border-line bg-white p-8 shadow-sm">
+      <form onSubmit={submit} className="w-full max-w-sm rounded-2xl border border-line bg-white p-8">
         <h1 className="text-xl font-extrabold text-ink">5A 관리자 로그인</h1>
         <p className="mt-1 text-sm text-muted">관리자 비밀번호를 입력하세요.</p>
         <div className="mt-6">

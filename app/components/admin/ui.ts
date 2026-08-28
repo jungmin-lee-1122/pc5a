@@ -10,4 +10,4 @@ export const btnGhost =
 export const btnDanger =
   "inline-flex items-center gap-1 rounded-md border border-red-200 bg-white px-2.5 py-1 text-xs font-medium text-red-600 transition hover:bg-red-50";
 export const label = "mb-1 block text-sm font-medium text-gray-700";
-export const card = "rounded-2xl border border-line bg-white p-6 shadow-sm";
+export const card = "rounded-2xl border border-line bg-white p-6";

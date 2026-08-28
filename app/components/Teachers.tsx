@@ -74,7 +74,7 @@ export default function Teachers({
                 <button
                   onClick={() => scrollBy(1)}
                   aria-label="다음 강사"
-                  className="absolute -right-3 top-1/2 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-line bg-white text-gray-500 shadow-md transition hover:text-brand lg:flex"
+                  className="absolute -right-3 top-1/2 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-line bg-white text-gray-500 transition hover:text-brand lg:flex"
                 >
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M9 6l6 6-6 6" />
@@ -83,7 +83,7 @@ export default function Teachers({
                 <button
                   onClick={() => scrollBy(-1)}
                   aria-label="이전 강사"
-                  className="absolute -left-3 top-1/2 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-line bg-white text-gray-500 shadow-md transition hover:text-brand lg:flex"
+                  className="absolute -left-3 top-1/2 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-line bg-white text-gray-500 transition hover:text-brand lg:flex"
                 >
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M15 6l-6 6 6 6" />
@@ -102,7 +102,7 @@ function TeacherCard({ teacher }: { teacher: Teacher }) {
   return (
     <Link
       href="/teachers"
-      className="group relative h-[276px] w-[266px] shrink-0 overflow-hidden rounded-2xl border border-line bg-white shadow-sm transition hover:shadow-md"
+      className="group relative h-[276px] w-[266px] shrink-0 overflow-hidden rounded-2xl border border-line bg-white transition"
     >
       {/* 텍스트 (위) */}
       <div className="relative z-10 p-6">

@@ -7,7 +7,7 @@ export default function Banner({ banner }: { banner: Promo }) {
     <section className="mx-auto max-w-7xl px-5 pt-5 lg:px-8">
       <a
         href={banner.href || "#"}
-        className="relative block aspect-[1080/320] w-full overflow-hidden rounded-2xl border border-line shadow-sm lg:aspect-auto"
+        className="relative block aspect-[1080/320] w-full overflow-hidden rounded-2xl border border-line lg:aspect-auto"
       >
         <picture>
           <source media="(min-width: 1024px)" srcSet={banner.image} />

@@ -30,7 +30,7 @@ export default function Hero({ slides, poster }: { slides: Slide[]; poster: Post
         {/* 왼쪽: 롤링창(위) + 내비게이션 바(아래) */}
         <div className="flex flex-col gap-3 lg:col-span-2">
           {/* 롤링 슬라이드 (모바일 정사각형 / 데스크톱은 포스터 높이에 맞춤) */}
-          <div className="relative aspect-square min-h-0 w-full overflow-hidden rounded-2xl border border-line bg-brand-light shadow-sm lg:aspect-auto lg:flex-1">
+          <div className="relative aspect-square min-h-0 w-full overflow-hidden rounded-2xl border border-line bg-brand-light lg:aspect-auto lg:flex-1">
             {count === 0 && (
               <div className="flex h-full items-center justify-center text-muted">
                 등록된 슬라이드가 없습니다
@@ -125,7 +125,7 @@ export default function Hero({ slides, poster }: { slides: Slide[]; poster: Post
         <div className="hidden lg:col-span-1 lg:block">
           <a
             href={poster?.href || "#"}
-            className="block aspect-[79/84] w-full overflow-hidden rounded-2xl border border-line bg-white shadow-sm"
+            className="block aspect-[79/84] w-full overflow-hidden rounded-2xl border border-line bg-white"
           >
             {poster ? (
               <img src={poster.image} alt={poster.alt} className="h-full w-full object-cover" />
