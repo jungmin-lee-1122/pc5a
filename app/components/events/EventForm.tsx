@@ -4,9 +4,8 @@ import { useState } from "react";
 import type { EventItem } from "@/lib/types";
 import { targetLabel } from "@/lib/types";
 
-const GRADE = ["예비 고1", "고1", "고2", "고3", "N수(재수)", "기타"];
-const TRACK = ["인문", "자연", "예체능", "미정"];
-const COMPANIONS = ["본인만", "1명", "2명", "3명 이상"];
+const GRADE = ["중3", "고1", "고2", "고3", "N수"];
+const COMPANIONS = ["1명", "2명", "3명", "4명"];
 const SOURCE = ["지인 추천", "학원 안내 문자", "인터넷 검색", "SNS", "현수막/전단", "기타"];
 const PHONE = "031-347-5151";
 
@@ -68,7 +67,6 @@ export default function EventForm({ event }: { event: EventItem }) {
     phone: "",
     school: "",
     grade: "",
-    track: "",
     companions: "",
     source: "",
   });
@@ -89,11 +87,10 @@ export default function EventForm({ event }: { event: EventItem }) {
   async function submit(e: React.FormEvent) {
     e.preventDefault();
     setError("");
-    if (!f.name.trim()) return setError("이름을 입력해 주세요.");
+    if (!f.name.trim()) return setError("학생 이름을 입력해 주세요.");
     if (f.phone.replace(/\D/g, "").length < 10) return setError("휴대전화번호를 정확히 입력해 주세요.");
     if (!f.school.trim()) return setError("학교명을 입력해 주세요.");
     if (!f.grade) return setError("학년을 선택해 주세요.");
-    if (!f.track) return setError("계열을 선택해 주세요.");
     if (!f.companions) return setError("동반인을 선택해 주세요.");
     if (!f.source) return setError("유입경로를 선택해 주세요.");
     if (!agreeRequired) return setError("개인정보 수집 및 이용에 동의해 주세요.");
@@ -214,11 +211,11 @@ export default function EventForm({ event }: { event: EventItem }) {
           </div>
 
           <div className="mb-4">
-            <Label required>이름</Label>
+            <Label required>학생이름</Label>
             <input
               value={f.name}
               onChange={(e) => set("name", e.target.value)}
-              placeholder="이름을 입력해 주세요"
+              placeholder="학생 이름을 입력해 주세요"
               className={fieldCls}
             />
           </div>
@@ -247,11 +244,6 @@ export default function EventForm({ event }: { event: EventItem }) {
           <div className="mb-4">
             <Label required>학년</Label>
             <Select value={f.grade} onChange={(v) => set("grade", v)} options={GRADE} />
-          </div>
-
-          <div className="mb-4">
-            <Label required>계열</Label>
-            <Select value={f.track} onChange={(v) => set("track", v)} options={TRACK} />
           </div>
 
           <div className="mb-4">
