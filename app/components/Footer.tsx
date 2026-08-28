@@ -14,7 +14,7 @@ export default function Footer({ site }: { site: SiteSettings }) {
   return (
     <footer className="mt-20 border-t border-line">
       {/* 상단: 정책 링크 + 소셜 */}
-      <div className="mx-auto flex max-w-7xl flex-col items-center gap-4 px-5 py-5 text-[13px] text-gray-400 sm:flex-row sm:justify-between lg:px-8">
+      <div className="mx-auto flex max-w-6xl flex-col items-center gap-4 px-5 py-5 text-[13px] text-gray-400 sm:flex-row sm:justify-between lg:px-8">
         <nav className="flex items-center gap-3">
           <Link href="/policy/terms" className="hover:text-ink">이용약관</Link>
           <span className="text-line">|</span>
@@ -33,7 +33,7 @@ export default function Footer({ site }: { site: SiteSettings }) {
 
       {/* 하단: 로고 + 학원 정보 */}
       <div className="border-t border-line bg-gray-50">
-        <div className="mx-auto flex max-w-7xl flex-col gap-5 px-5 py-8 sm:flex-row sm:items-center lg:px-8">
+        <div className="mx-auto flex max-w-6xl flex-col gap-5 px-5 py-8 sm:flex-row sm:items-center lg:px-8">
           <div className="flex shrink-0 items-center">
             <img src="/logo.png" alt={footer.brand} className="h-9 w-auto" />
           </div>

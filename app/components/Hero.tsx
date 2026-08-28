@@ -25,7 +25,7 @@ export default function Hero({ slides, poster }: { slides: Slide[]; poster: Post
   const progress = count ? ((index + 1) / count) * 100 : 0;
 
   return (
-    <section className="mx-auto max-w-7xl px-5 pt-6 lg:px-8">
+    <section className="mx-auto max-w-6xl px-5 pt-6 lg:px-8">
       <div className="grid gap-4 lg:grid-cols-3">
         {/* 왼쪽: 롤링창(위) + 내비게이션 바(아래) */}
         <div className="flex flex-col gap-3 lg:col-span-2">

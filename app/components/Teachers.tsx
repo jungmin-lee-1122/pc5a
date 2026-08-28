@@ -24,7 +24,7 @@ export default function Teachers({
   };
 
   return (
-    <section className="mx-auto max-w-7xl px-5 pt-14 lg:px-8">
+    <section className="mx-auto max-w-6xl px-5 pt-14 lg:px-8">
       {/* 헤더: 라벨 + 과목 탭 */}
       <div className="flex flex-wrap items-center gap-x-6 gap-y-3 border-b border-line pb-4">
         <h2 className="text-2xl font-extrabold text-ink">선생님</h2>

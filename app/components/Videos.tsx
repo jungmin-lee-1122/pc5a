@@ -26,7 +26,7 @@ export default function Videos({
   const scrollBy = (dir: number) => scroller.current?.scrollBy({ left: dir * 260, behavior: "smooth" });
 
   return (
-    <section className="mx-auto max-w-7xl px-5 pt-16 lg:px-8">
+    <section className="mx-auto max-w-6xl px-5 pt-16 lg:px-8">
       <div className="grid gap-5 lg:grid-cols-12">
         {/* 영상 섹션 (박스) */}
         <div className="lg:col-span-8">

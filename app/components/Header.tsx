@@ -26,7 +26,7 @@ export default function Header({ brand, phone }: { brand: string; phone: string 
 
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-line">
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 lg:px-8">
+      <div className="mx-auto flex h-20 max-w-6xl items-center justify-between px-5 lg:px-8">
         {/* 로고 + 수능 D-day */}
         <div className="flex items-center gap-3" onMouseEnter={() => setHovered(null)}>
           <Link href="/" className="flex items-center text-ink">
@@ -145,7 +145,7 @@ function MegaMenu({ onClose }: { onClose: () => void }) {
       {/* 바깥 클릭 시 닫힘 */}
       <div className="fixed inset-0 top-20 z-40 bg-black/20" onClick={onClose} aria-hidden="true" />
       <div className="absolute inset-x-0 top-full z-50 border-t-2 border-brand-dark bg-white shadow-xl">
-        <div className="mx-auto max-w-7xl px-5 py-8 lg:px-8">
+        <div className="mx-auto max-w-6xl px-5 py-8 lg:px-8">
           <div className="grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-3 lg:grid-cols-6">
             {NAV_MENUS.map((menu) => (
               <div key={menu.label}>

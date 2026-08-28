@@ -4,7 +4,7 @@ import type { Promo } from "@/lib/types";
 export default function Banner({ banner }: { banner: Promo }) {
   if (!banner?.image) return null;
   return (
-    <section className="mx-auto max-w-7xl px-5 pt-5 lg:px-8">
+    <section className="mx-auto max-w-6xl px-5 pt-5 lg:px-8">
       <a
         href={banner.href || "#"}
         className="relative block aspect-[1080/320] w-full overflow-hidden rounded-2xl border border-line lg:aspect-auto"

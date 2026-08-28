@@ -12,7 +12,7 @@ export default function NoticeEvents({
   const sortedEvents = [...events].sort((a, b) => a.order - b.order);
 
   return (
-    <section className="mx-auto max-w-7xl px-5 pt-14 lg:px-8">
+    <section className="mx-auto max-w-6xl px-5 pt-14 lg:px-8">
       <div className="grid gap-5 lg:grid-cols-2">
         {/* 공지사항 */}
         <Panel>
