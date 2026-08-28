@@ -20,11 +20,13 @@ export default function ImageInput({
       const fd = new FormData();
       fd.append("file", file);
       const res = await fetch("/api/upload", { method: "POST", body: fd });
-      if (!res.ok) throw new Error();
-      const data = (await res.json()) as { url: string };
+      const data = (await res.json().catch(() => ({}))) as { url?: string; error?: string };
+      if (!res.ok || !data.url) {
+        throw new Error(data.error || `업로드 실패 (${res.status})`);
+      }
       onChange(data.url);
-    } catch {
-      setErr("업로드에 실패했습니다.");
+    } catch (e) {
+      setErr(e instanceof Error ? e.message : "업로드에 실패했습니다.");
     } finally {
       setBusy(false);
     }
