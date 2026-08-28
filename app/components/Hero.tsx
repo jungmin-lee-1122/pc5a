@@ -83,17 +83,17 @@ export default function Hero({ slides, poster }: { slides: Slide[]; poster: Post
                 type="button"
                 aria-label="이전 슬라이드"
                 onClick={() => go(index - 1)}
-                className="flex h-10 w-10 items-center justify-center rounded-l-full transition-colors hover:text-brand"
+                className="flex h-8 w-8 items-center justify-center rounded-l-full transition-colors hover:text-brand"
               >
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 6l-6 6 6 6" /></svg>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 6l-6 6 6 6" /></svg>
               </button>
               <button
                 type="button"
                 aria-label="다음 슬라이드"
                 onClick={() => go(index + 1)}
-                className="flex h-10 w-10 items-center justify-center rounded-r-full border-l border-line transition-colors hover:text-brand"
+                className="flex h-8 w-8 items-center justify-center rounded-r-full border-l border-line transition-colors hover:text-brand"
               >
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 6l6 6-6 6" /></svg>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 6l6 6-6 6" /></svg>
               </button>
             </div>
 
@@ -153,9 +153,9 @@ function CircleBtn({
       type="button"
       aria-label={label}
       onClick={onClick}
-      className="flex h-10 w-10 items-center justify-center rounded-full border border-line text-gray-500 transition-colors hover:text-brand"
+      className="flex h-8 w-8 items-center justify-center rounded-full border border-line text-gray-500 transition-colors hover:text-brand"
     >
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         {children}
       </svg>
     </button>

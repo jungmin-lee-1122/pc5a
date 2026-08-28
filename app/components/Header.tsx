@@ -88,21 +88,30 @@ export default function Header({ brand }: { brand: string }) {
 function SingleDropdown({ menu, onNavigate }: { menu: NavMenu; onNavigate: () => void }) {
   return (
     <div className="absolute left-1/2 top-full z-50 -translate-x-1/2 pt-1">
-      <div className="w-56 overflow-hidden rounded-b-lg border border-line bg-white shadow-xl shadow-black/5">
+      <div className="w-60 overflow-hidden border border-line bg-white shadow-xl shadow-black/5">
         <div className="h-1.5 w-full bg-brand-dark" />
         <ul className="py-2">
           {menu.groups.map((group, gi) => (
             <li key={gi}>
-              {group.heading && (
-                <p className="px-5 pb-1 pt-3 text-[13px] font-bold text-ink">{group.heading}</p>
-              )}
+              {group.heading &&
+                (group.href ? (
+                  <Link
+                    href={group.href}
+                    onClick={onNavigate}
+                    className="mx-5 mb-1 mt-2.5 block border-b border-line pb-2 text-[15px] font-extrabold text-ink transition-colors hover:text-brand"
+                  >
+                    {group.heading}
+                  </Link>
+                ) : (
+                  <p className="mx-5 mb-1 mt-2.5 border-b border-line pb-2 text-[15px] font-extrabold text-ink">{group.heading}</p>
+                ))}
               {group.items.map((item) => (
                 <Link
                   key={item.href + item.label}
                   href={item.href}
                   onClick={onNavigate}
                   className={`block px-5 py-2 text-[14px] transition-colors hover:bg-brand-light hover:text-brand ${
-                    item.strong ? "font-bold text-brand" : "text-gray-600"
+                    item.strong ? "font-bold text-brand" : "font-semibold text-gray-800"
                   }`}
                 >
                   {item.label}
@@ -139,9 +148,18 @@ function MegaMenu({ onClose }: { onClose: () => void }) {
                 <div className="space-y-3">
                   {menu.groups.map((group, gi) => (
                     <div key={gi}>
-                      {group.heading && (
-                        <p className="pb-1 text-[14px] font-semibold text-ink">{group.heading}</p>
-                      )}
+                      {group.heading &&
+                        (group.href ? (
+                          <Link
+                            href={group.href}
+                            onClick={onClose}
+                            className="mb-1.5 block border-b border-line pb-1.5 text-[15px] font-extrabold text-ink transition-colors hover:text-brand"
+                          >
+                            {group.heading}
+                          </Link>
+                        ) : (
+                          <p className="mb-1.5 border-b border-line pb-1.5 text-[15px] font-extrabold text-ink">{group.heading}</p>
+                        ))}
                       <ul className="space-y-1.5">
                         {group.items.map((item) => (
                           <li key={item.href + item.label}>
@@ -149,7 +167,7 @@ function MegaMenu({ onClose }: { onClose: () => void }) {
                               href={item.href}
                               onClick={onClose}
                               className={`text-[14px] transition-colors hover:text-brand ${
-                                item.strong ? "font-bold text-brand" : "text-gray-500"
+                                item.strong ? "font-bold text-brand" : "font-medium text-gray-700"
                               }`}
                             >
                               {group.heading ? `· ${item.label}` : item.label}

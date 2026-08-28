@@ -9,6 +9,7 @@ export interface NavItem {
 
 export interface NavGroup {
   heading?: string;
+  href?: string; // 대제목 자체가 링크일 때
   items: NavItem[];
 }
 
@@ -38,7 +39,7 @@ export const NAV_MENUS: NavMenu[] = [
     label: "모집안내",
     href: "/admission",
     groups: [
-      { heading: "2027 윈터스쿨", items: [{ label: "2027 윈터스쿨", href: "/admission/winter" }] },
+      { heading: "2027 윈터스쿨", href: "/admission/winter", items: [] },
       {
         heading: "2027 고등단과",
         items: [
