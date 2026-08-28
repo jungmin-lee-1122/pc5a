@@ -97,6 +97,16 @@ export interface VideoItem {
   active: boolean;
 }
 
+/** 주간식단표 항목 (사진 첨부) */
+export interface MealMenu {
+  id: ID;
+  title: string;      // 예: "8월 4주차 식단표"
+  date: string;       // 예: "2026.08.18 ~ 08.22"
+  image: string;      // 식단표 사진
+  order: number;
+  active?: boolean;   // 노출 여부 (기본 노출)
+}
+
 /** 우측 하단 홍보 사각배너 (단일 설정) */
 export interface Promo {
   image: string;

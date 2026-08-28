@@ -113,7 +113,7 @@ export const NAV_MENUS: NavMenu[] = [
     groups: [
       {
         items: [
-          { label: "주간식단표", href: "/life/menu" },
+          { label: "주간식단표", href: "/menu" },
           { label: "학사일정", href: "/life/calendar" },
           { label: "재원생 후기", href: "/life/review" },
           { label: "온라인 상담", href: "/life/counsel" },

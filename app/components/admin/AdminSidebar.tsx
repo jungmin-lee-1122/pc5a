@@ -9,6 +9,7 @@ const LINKS = [
   { href: "/admin/notices", label: "공지사항" },
   { href: "/admin/events", label: "입시설명회" },
   { href: "/admin/videos", label: "영상" },
+  { href: "/admin/menus", label: "주간식단표" },
 ];
 
 export default function AdminSidebar() {
