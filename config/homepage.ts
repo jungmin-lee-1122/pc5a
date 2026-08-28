@@ -14,8 +14,8 @@ import type { Slide, Poster, Promo, SiteSettings } from "@/lib/types";
 
 /* ── 히어로 왼쪽: 롤링 슬라이드 (위에서부터 순서대로 재생) ────────────────── */
 export const SLIDES: Slide[] = [
-  { id: "s1", image: "/hero-1.png", href: "#", alt: "2027 윈터스쿨 & 입시설명회", order: 1, active: true },
-  { id: "s2", image: "/hero-2.png", href: "#", alt: "2027 윈터스쿨", order: 2, active: true },
+  { id: "s1", image: "/hero-2.png", href: "#", alt: "2027 윈터스쿨", order: 1, active: true },
+  { id: "s2", image: "/hero-1.png", href: "#", alt: "2027 윈터스쿨 & 입시설명회", order: 2, active: true },
 ];
 
 /* ── 히어로 오른쪽: 포스터 (하나) ─────────────────────────────────────────── */
