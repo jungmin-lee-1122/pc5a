@@ -36,13 +36,6 @@ export default function Page() {
           placeholder: "인사말, 제도 변화 총정리, 질의응답 (쉼표로 구분)",
         },
         {
-          key: "applyUrl",
-          label: "예약 신청서 링크 (구글폼)",
-          type: "text",
-          placeholder: "https://docs.google.com/forms/…/viewform",
-          help: "예약하기 버튼을 누르면 이 구글폼이 팝업으로 열립니다. 비워두면 전화 예약 안내가 표시됩니다.",
-        },
-        {
           key: "href",
           label: "외부 링크(선택)",
           type: "text",
@@ -63,7 +56,6 @@ export default function Page() {
         host: "",
         intro: "",
         agenda: [],
-        applyUrl: "",
         href: "",
       }}
       summary={(item) => (

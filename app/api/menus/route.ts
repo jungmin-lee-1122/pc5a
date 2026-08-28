@@ -1,5 +1,0 @@
-import { collectionRoutes } from "@/lib/api";
-import type { MealMenu } from "@/lib/types";
-
-export const dynamic = "force-dynamic";
-export const { GET, POST } = collectionRoutes<MealMenu>("menus");
