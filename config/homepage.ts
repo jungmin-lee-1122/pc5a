@@ -29,7 +29,7 @@ export const POSTER: Poster = {
 };
 
 /* ── 롤링창·포스터 바로 밑: 배너 박스 (이미지 하나로 교체) ─────────────────── */
-export const BANNER: Promo = { image: "/banner.png", href: "#", alt: "2027 윈터스쿨 & 입시설명회 예약하기" };
+export const BANNER: Promo = { image: "/banner.png", href: "/events", alt: "2027 윈터스쿨 & 입시설명회 예약하기" };
 
 /* ── 영상 섹션 우측 하단: 홍보 사각배너 ───────────────────────────────────── */
 export const PROMO: Promo = {

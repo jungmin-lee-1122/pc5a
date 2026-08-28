@@ -30,7 +30,7 @@ export default function NoticeEvents({
           <PanelHeader title="입시설명회" moreHref="/events" />
           <ul>
             {sortedEvents.map((e) => (
-              <Row key={e.id} href={e.href} title={e.title} date={e.date} />
+              <Row key={e.id} href={e.href && e.href !== "#" ? e.href : `/events/${e.id}`} title={e.title} date={e.date} />
             ))}
             {sortedEvents.length === 0 && <Empty>등록된 입시설명회가 없습니다</Empty>}
           </ul>

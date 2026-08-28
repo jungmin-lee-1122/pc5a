@@ -98,7 +98,12 @@ export const NAV_MENUS: NavMenu[] = [
     groups: [
       {
         heading: "설명회 신청",
-        items: [{ label: "2027 윈터스쿨 설명회", href: "/events/winter" }],
+        href: "/events",
+        items: [
+          { label: "전체 설명회", href: "/events" },
+          { label: "입시설명회", href: "/events" },
+          { label: "입시교실", href: "/events" },
+        ],
       },
     ],
   },

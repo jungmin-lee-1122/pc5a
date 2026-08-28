@@ -60,14 +60,30 @@ export interface Notice {
   order: number;
 }
 
+/** 설명회 참석 신청 상태 */
+export type EventStatus = "접수중" | "접수예정" | "마감";
+
 /** 입시설명회 / 입시교실 항목 */
 export interface EventItem {
   id: ID;
   title: string;
-  date: string;
-  href: string;
-  category: string;   // "입시설명회" | "입시교실"
+  date: string;        // 목록 표시용 날짜 (YYYY.MM.DD)
+  href: string;        // 외부 링크(선택). 비우거나 "#"이면 사이트 내 상세페이지로 연결됩니다.
+  category: string;    // "입시설명회" | "입시교실" | "공개특강" 등
   order: number;
+
+  // ── 상세 페이지용 (모두 선택 항목) ────────────────────────────────
+  summary?: string;    // 목록/상단에 보이는 한 줄 요약
+  eventDate?: string;  // 실제 일시 (예: "2026.09.20(일) 14:00~16:00")
+  location?: string;   // 장소 (예: "평촌 롯데백화점 문화홀")
+  capacity?: string;   // 정원 (예: "선착순 300석")
+  targets?: string[];  // 대상 (예: ["학부모","고3","N수"])
+  status?: EventStatus; // 접수중 / 접수예정 / 마감
+  intro?: string;      // 소개 문단 (줄바꿈으로 여러 문단)
+  agenda?: string[];   // 프로그램 순서
+  host?: string;       // 주최/주관
+  applyUrl?: string;   // 예약하기 모달에 띄울 구글폼 링크 (비우면 전화 안내)
+  thumbnail?: string;  // 목록 썸네일 (선택)
 }
 
 /** 영상 (유튜브) 항목 */
