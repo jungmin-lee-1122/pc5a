@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { EventItem } from "@/lib/types";
+import { targetLabel } from "@/lib/types";
 
 const GRADE = ["예비 고1", "고1", "고2", "고3", "N수(재수)", "기타"];
 const TRACK = ["인문", "자연", "예체능", "미정"];
@@ -160,10 +161,10 @@ export default function EventForm({ event }: { event: EventItem }) {
               <dd>{event.eventDate || event.date}</dd>
             </div>
           )}
-          {(event.targets ?? []).length > 0 && (
+          {targetLabel(event.targets) && (
             <div className="flex gap-2">
               <dt className="w-10 shrink-0 text-gray-400">대상</dt>
-              <dd>{(event.targets ?? []).join(", ")}</dd>
+              <dd>{targetLabel(event.targets)}</dd>
             </div>
           )}
           {event.location && (

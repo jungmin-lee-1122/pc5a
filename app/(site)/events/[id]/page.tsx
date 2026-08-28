@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getEvents } from "@/lib/content";
+import { targetLabel } from "@/lib/types";
 import StatusBadge from "@/app/components/events/StatusBadge";
 import EventForm from "@/app/components/events/EventForm";
 
@@ -56,11 +57,11 @@ export default async function EventDetailPage({
           <div className="mt-4 flex flex-wrap items-center gap-2">
             <StatusBadge status={event.status} />
             <span className="rounded bg-brand px-2 py-0.5 text-xs font-bold text-white">{event.category}</span>
-            {(event.targets ?? []).map((t) => (
-              <span key={t} className="rounded bg-white px-2 py-0.5 text-xs font-medium text-gray-500 ring-1 ring-line">
-                {t}
+            {targetLabel(event.targets) && (
+              <span className="rounded bg-white px-2 py-0.5 text-xs font-medium text-gray-500 ring-1 ring-line">
+                {targetLabel(event.targets)}
               </span>
-            ))}
+            )}
           </div>
 
           <h1 className="mt-3 text-2xl font-extrabold leading-snug text-ink sm:text-[28px]">
@@ -79,8 +80,7 @@ export default async function EventDetailPage({
               <dl className="divide-y divide-line">
                 <InfoRow label="일시" value={event.eventDate || event.date} />
                 <InfoRow label="장소" value={event.location} />
-                <InfoRow label="정원" value={event.capacity} />
-                <InfoRow label="대상" value={(event.targets ?? []).join(", ") || undefined} />
+                <InfoRow label="대상" value={targetLabel(event.targets) || undefined} />
                 <InfoRow label="주최" value={event.host} />
               </dl>
             </div>
@@ -96,19 +96,15 @@ export default async function EventDetailPage({
               </section>
             )}
 
-            {event.agenda && event.agenda.length > 0 && (
+            {event.poster && (
               <section className="mt-9">
-                <h2 className="mb-3 text-lg font-extrabold text-ink">프로그램 순서</h2>
-                <ol className="overflow-hidden rounded-2xl border border-line">
-                  {event.agenda.map((step, i) => (
-                    <li key={i} className="flex items-start gap-3 border-b border-line px-5 py-4 last:border-0">
-                      <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-light text-xs font-bold text-brand">
-                        {i + 1}
-                      </span>
-                      <span className="text-[15px] text-gray-700">{step}</span>
-                    </li>
-                  ))}
-                </ol>
+                <h2 className="mb-3 text-lg font-extrabold text-ink">설명회 안내</h2>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={event.poster}
+                  alt={`${event.title} 안내 포스터`}
+                  className="mx-auto w-full max-w-2xl rounded-2xl border border-line"
+                />
               </section>
             )}
           </div>

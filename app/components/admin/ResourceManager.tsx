@@ -10,6 +10,7 @@ export type Field = {
   type?: "text" | "textarea" | "number" | "image" | "tags" | "checkbox";
   placeholder?: string;
   help?: string;
+  maxLength?: number;
 };
 
 type Item = Record<string, unknown> & { id: string; order?: number };
@@ -249,6 +250,7 @@ function renderField(f: Field, draft: Draft, set: (k: string, v: unknown) => voi
           value={str(value)}
           onChange={(e) => set(f.key, e.target.value)}
           placeholder={f.placeholder}
+          maxLength={f.maxLength}
           className={input}
         />
       );

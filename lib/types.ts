@@ -78,11 +78,10 @@ export interface EventItem {
   summary?: string;    // 목록/상단에 보이는 한 줄 요약
   eventDate?: string;  // 실제 일시 (예: "2026.09.20(일) 14:00~16:00")
   location?: string;   // 장소 (예: "평촌 롯데백화점 문화홀")
-  capacity?: string;   // 정원 (예: "선착순 300석")
-  targets?: string[];  // 대상 (예: ["학부모","고3","N수"])
+  targets?: string;    // 대상 (자유 입력, 최대 50자. 예: "현 고1, 현 고2") — 구버전 배열 데이터도 허용
   status?: EventStatus; // 접수중 / 접수예정 / 마감
   intro?: string;      // 소개 문단 (줄바꿈으로 여러 문단)
-  agenda?: string[];   // 프로그램 순서
+  poster?: string;     // 안내 포스터 이미지 (A4 형태) — 프로그램 순서 대신 표시
   host?: string;       // 주최/주관
   applyUrl?: string;   // 예약하기 모달에 띄울 구글폼 링크 (비우면 전화 안내)
   thumbnail?: string;  // 목록 썸네일 (선택)
@@ -138,4 +137,10 @@ export interface SiteSettings {
     kakao: string;
     phone: string;
   };
+}
+
+/** 대상 표시용 — 문자열은 그대로, 구버전 배열 데이터는 쉼표로 합칩니다. */
+export function targetLabel(t?: string | string[]): string {
+  if (Array.isArray(t)) return t.join(", ");
+  return (t ?? "").trim();
 }

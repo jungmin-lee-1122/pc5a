@@ -15,12 +15,12 @@ export default function Page() {
         { key: "summary", label: "한 줄 요약", type: "text", placeholder: "목록·상단에 보이는 짧은 설명" },
         { key: "eventDate", label: "일시", type: "text", placeholder: "2026.09.20(일) 14:00~16:00" },
         { key: "location", label: "장소", type: "text", placeholder: "평촌 롯데백화점 식품관 2층 문화홀" },
-        { key: "capacity", label: "정원", type: "text", placeholder: "선착순 300석" },
         {
           key: "targets",
           label: "대상",
-          type: "tags",
-          placeholder: "학부모, 고3, N수 (쉼표로 구분)",
+          type: "text",
+          maxLength: 50,
+          placeholder: "예) 현 고1, 현 고2  ·  고1, 고2, 고3, 중3 (최대 50자)",
         },
         { key: "host", label: "주최/주관", type: "text", placeholder: "5A 아카데미 입시전략연구소" },
         {
@@ -30,10 +30,10 @@ export default function Page() {
           placeholder: "소개 문단. 줄바꿈(엔터)으로 문단을 나눌 수 있습니다.",
         },
         {
-          key: "agenda",
-          label: "프로그램 순서",
-          type: "tags",
-          placeholder: "인사말, 제도 변화 총정리, 질의응답 (쉼표로 구분)",
+          key: "poster",
+          label: "안내 포스터 (A4 이미지)",
+          type: "image",
+          help: "프로그램 순서 대신 상세 페이지에 표시됩니다. A4 비율(세로형) 이미지를 권장합니다.",
         },
         {
           key: "href",
@@ -51,11 +51,10 @@ export default function Page() {
         summary: "",
         eventDate: "",
         location: "",
-        capacity: "",
-        targets: [],
+        targets: "",
         host: "",
         intro: "",
-        agenda: [],
+        poster: "",
         href: "",
       }}
       summary={(item) => (
