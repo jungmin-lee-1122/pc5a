@@ -14,15 +14,14 @@ import type { Slide, Poster, Promo, SiteSettings } from "@/lib/types";
 
 /* ── 히어로 왼쪽: 롤링 슬라이드 (위에서부터 순서대로 재생) ────────────────── */
 export const SLIDES: Slide[] = [
-  { id: "s1", image: "/placeholders/slide-1.svg", href: "#", alt: "2027 윈터스쿨", order: 1, active: true },
-  { id: "s2", image: "/placeholders/slide-2.svg", href: "#", alt: "9월 정규 단과 모집", order: 2, active: true },
-  { id: "s3", image: "/placeholders/slide-3.svg", href: "#", alt: "대학별 논술 파이널 특강", order: 3, active: true },
+  { id: "s1", image: "/hero-1.png", href: "#", alt: "2027 윈터스쿨 & 입시설명회", order: 1, active: true },
+  { id: "s2", image: "/hero-2.png", href: "#", alt: "2027 윈터스쿨", order: 2, active: true },
 ];
 
 /* ── 히어로 오른쪽: 포스터 (하나) ─────────────────────────────────────────── */
 export const POSTER: Poster = {
   id: "p1",
-  image: "/placeholders/poster.svg",
+  image: "/poster.png",
   href: "#",
   alt: "2027 윈터스쿨 포스터",
   order: 1,
@@ -30,11 +29,7 @@ export const POSTER: Poster = {
 };
 
 /* ── 롤링창·포스터 바로 밑: 배너 박스 (이미지 하나로 교체) ─────────────────── */
-export const BANNER: Promo = {
-  image: "/placeholders/banner.svg",
-  href: "#",
-  alt: "러셀 평촌 대입 합격 결과",
-};
+export const BANNER: Promo = { image: "/banner.png", href: "#", alt: "2027 윈터스쿨 & 입시설명회 예약하기" };
 
 /* ── 영상 섹션 우측 하단: 홍보 사각배너 ───────────────────────────────────── */
 export const PROMO: Promo = {
