@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Logo from "./Logo";
+import Dday from "./Dday";
 import { NAV_MENUS, type NavMenu } from "@/lib/nav";
 
 export default function Header({ brand }: { brand: string }) {
@@ -22,10 +23,13 @@ export default function Header({ brand }: { brand: string }) {
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-line">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 lg:px-8">
-        {/* 로고 */}
-        <Link href="/" className="flex items-center text-ink" onMouseEnter={() => setHovered(null)}>
-          <Logo brand={brand} />
-        </Link>
+        {/* 로고 + 수능 D-day */}
+        <div className="flex items-center gap-3" onMouseEnter={() => setHovered(null)}>
+          <Link href="/" className="flex items-center text-ink">
+            <Logo brand={brand} />
+          </Link>
+          <Dday />
+        </div>
 
         {/* 데스크톱 네비게이션 */}
         <nav
