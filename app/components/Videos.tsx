@@ -29,12 +29,12 @@ export default function Videos({
     <section className="mx-auto max-w-6xl px-5 pt-16 lg:px-8">
       <div className="grid gap-5 lg:grid-cols-12">
         {/* 영상 섹션 (박스) */}
-        <div className="lg:col-span-8">
+        <div className="min-w-0 lg:col-span-8">
           <div className="h-full rounded-2xl border border-line bg-white p-6 sm:p-7">
             <h2 className="mb-5 text-xl font-extrabold text-ink">{title}</h2>
 
             <div className="relative">
-              <div ref={scroller} className="no-scrollbar flex gap-4 overflow-x-auto scroll-smooth">
+              <div ref={scroller} className="no-scrollbar grid grid-cols-2 gap-4 lg:flex lg:overflow-x-auto lg:scroll-smooth">
                 {active.map((video) => {
                   const id = youtubeId(video.youtube);
                   return (
@@ -43,7 +43,7 @@ export default function Videos({
                       href={`https://www.youtube.com/watch?v=${id}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group w-[calc((100%-2rem)/3)] min-w-[190px] shrink-0"
+                      className="group min-w-0 lg:w-[calc((100%-2rem)/3)] lg:min-w-[190px] lg:shrink-0"
                     >
                       <div className="relative aspect-video overflow-hidden rounded-xl border border-line bg-gray-100">
                         <img
@@ -66,7 +66,7 @@ export default function Videos({
                   );
                 })}
                 {active.length === 0 && (
-                  <div className="flex h-40 w-full items-center justify-center text-muted">
+                  <div className="col-span-2 flex h-40 w-full items-center justify-center text-muted">
                     등록된 영상이 없습니다
                   </div>
                 )}
@@ -77,14 +77,14 @@ export default function Videos({
                   <button
                     onClick={() => scrollBy(-1)}
                     aria-label="이전 영상"
-                    className="absolute -left-1 top-[26%] flex h-9 w-9 items-center justify-center rounded-full border border-line bg-white text-gray-500 hover:text-brand"
+                    className="absolute -left-1 top-[26%] hidden h-9 w-9 items-center justify-center rounded-full border border-line bg-white text-gray-500 hover:text-brand lg:flex"
                   >
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 6l-6 6 6 6" /></svg>
                   </button>
                   <button
                     onClick={() => scrollBy(1)}
                     aria-label="다음 영상"
-                    className="absolute -right-1 top-[26%] flex h-9 w-9 items-center justify-center rounded-full border border-line bg-white text-gray-500 hover:text-brand"
+                    className="absolute -right-1 top-[26%] hidden h-9 w-9 items-center justify-center rounded-full border border-line bg-white text-gray-500 hover:text-brand lg:flex"
                   >
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 6l6 6-6 6" /></svg>
                   </button>
@@ -95,7 +95,7 @@ export default function Videos({
         </div>
 
         {/* 홍보 사각배너 — 영상 박스와 세로 끝선 맞춤 */}
-        <div className="lg:col-span-4">
+        <div className="min-w-0 lg:col-span-4">
           <a
             href={promo?.href || "#"}
             className="relative block h-44 overflow-hidden rounded-2xl border border-line bg-white lg:h-full"

@@ -49,3 +49,11 @@ body {
   from { width: 0%; }
   to { width: 100%; }
 }
+
+/* 모바일 가로 오버플로우 방지 — 어떤 화면에서도 페이지가 옆으로 밀리지 않도록.
+   clip 은 스크롤 컨테이너를 만들지 않아 sticky 헤더에 영향을 주지 않습니다. */
+html,
+body {
+  overflow-x: clip;
+  max-width: 100%;
+}
