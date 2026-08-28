@@ -41,7 +41,7 @@ export const PROMO: Promo = {
 /* ── 사이트 전역 정보: 헤더 브랜드 / 강사 과목 탭 / 푸터 / 소셜 ──────────────── */
 export const SITE: SiteSettings = {
   brandName: "아카데미",
-  sectionTitle: "영상으로 만나는 평촌청솔학원",
+  sectionTitle: "5A아카데미 선생님 클립영상",
   subjects: ["국어", "수학", "영어", "한국사", "사회탐구", "과학탐구", "논술"],
   footer: {
     company: "",
