@@ -5,15 +5,10 @@ import { usePathname, useRouter } from "next/navigation";
 
 const LINKS = [
   { href: "/admin", label: "대시보드" },
-  { href: "/admin/slides", label: "히어로 슬라이드" },
-  { href: "/admin/posters", label: "포스터" },
-  { href: "/admin/stats", label: "합격실적" },
   { href: "/admin/teachers", label: "강사진" },
   { href: "/admin/notices", label: "공지사항" },
   { href: "/admin/events", label: "입시설명회" },
   { href: "/admin/videos", label: "영상" },
-  { href: "/admin/promo", label: "홍보 배너" },
-  { href: "/admin/site", label: "사이트 정보" },
 ];
 
 export default function AdminSidebar() {
