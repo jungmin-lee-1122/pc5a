@@ -55,9 +55,11 @@ export interface Notice {
   id: ID;
   title: string;
   date: string;       // YYYY.MM.DD
-  href: string;
-  badge?: string;     // 선택: 강조 뱃지 텍스트
+  href: string;       // 외부 링크(선택). 비우거나 "#"이면 사이트 내 상세페이지로 연결됩니다.
+  badge?: string;     // 선택: 강조 뱃지 텍스트 (예: NEW)
   order: number;
+  category?: string;  // 선택: 분류 (예: 공지사항 / 모집 / 학사)
+  content?: string;   // 선택: 상세 페이지 본문 (줄바꿈으로 문단 구분)
 }
 
 /** 설명회 참석 신청 상태 */

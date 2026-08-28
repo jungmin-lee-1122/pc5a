@@ -16,10 +16,10 @@ export default function NoticeEvents({
       <div className="grid gap-5 lg:grid-cols-2">
         {/* 공지사항 */}
         <Panel>
-          <PanelHeader title="공지사항" moreHref="/about/notice" />
+          <PanelHeader title="공지사항" moreHref="/notices" />
           <ul>
             {sortedNotices.map((n) => (
-              <Row key={n.id} href={n.href} title={n.title} date={n.date} badge={n.badge} />
+              <Row key={n.id} href={n.href && n.href !== "#" ? n.href : `/notices/${n.id}`} title={n.title} date={n.date} badge={n.badge} />
             ))}
             {sortedNotices.length === 0 && <Empty>등록된 공지사항이 없습니다</Empty>}
           </ul>

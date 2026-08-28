@@ -30,7 +30,7 @@ export const NAV_MENUS: NavMenu[] = [
           { label: "운영시스템", href: "/about/system" },
           { label: "시설안내", href: "/about/facility" },
           { label: "오시는 길", href: "/about/location" },
-          { label: "공지사항", href: "/about/notice" },
+          { label: "공지사항", href: "/notices" },
         ],
       },
     ],
