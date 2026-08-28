@@ -23,7 +23,7 @@ export default async function Home() {
 
   return (
     <>
-      <Header brand={SITE.brandName} />
+      <Header brand={SITE.brandName} phone={SITE.social.phone} />
 
       <main className="flex-1 pb-4">
         <Hero slides={SLIDES.filter((s) => s.active)} poster={POSTER} />

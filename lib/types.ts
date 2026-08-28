@@ -6,6 +6,7 @@ export type ID = string;
 export interface Slide {
   id: ID;
   image: string;
+  mobileImage?: string; // 모바일 전용 이미지 (없으면 image 사용)
   href: string;
   alt: string;
   order: number;
@@ -81,6 +82,7 @@ export interface VideoItem {
 /** 우측 하단 홍보 사각배너 (단일 설정) */
 export interface Promo {
   image: string;
+  mobileImage?: string; // 모바일 전용 이미지 (없으면 image 사용)
   href: string;
   alt: string;
 }

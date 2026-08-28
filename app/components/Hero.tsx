@@ -22,16 +22,15 @@ export default function Hero({ slides, poster }: { slides: Slide[]; poster: Post
     };
   }, [index, playing, count, go]);
 
-  // 진행바 채움: (현재 슬라이드 번호) / (전체) — 슬라이드 개수에 비례
   const progress = count ? ((index + 1) / count) * 100 : 0;
 
   return (
     <section className="mx-auto max-w-7xl px-5 pt-6 lg:px-8">
       <div className="grid gap-4 lg:grid-cols-3">
-        {/* 왼쪽: 롤링창(위) + 내비게이션 바(아래) — 서로 분리, 높이는 포스터에 맞춤 */}
-        <div className="flex h-[340px] flex-col gap-3 sm:h-[400px] lg:col-span-2 lg:h-auto">
-          {/* 롤링 슬라이드 (독립 카드) */}
-          <div className="relative min-h-0 flex-1 overflow-hidden rounded-2xl border border-line bg-brand-light shadow-sm">
+        {/* 왼쪽: 롤링창(위) + 내비게이션 바(아래) */}
+        <div className="flex flex-col gap-3 lg:col-span-2">
+          {/* 롤링 슬라이드 (모바일 정사각형 / 데스크톱은 포스터 높이에 맞춤) */}
+          <div className="relative aspect-square min-h-0 w-full overflow-hidden rounded-2xl border border-line bg-brand-light shadow-sm lg:aspect-auto lg:flex-1">
             {count === 0 && (
               <div className="flex h-full items-center justify-center text-muted">
                 등록된 슬라이드가 없습니다
@@ -45,7 +44,14 @@ export default function Hero({ slides, poster }: { slides: Slide[]; poster: Post
                 style={{ opacity: i === index ? 1 : 0, pointerEvents: i === index ? "auto" : "none" }}
                 aria-hidden={i !== index}
               >
-                <img src={slide.image} alt={slide.alt} className="h-full w-full object-cover" />
+                <picture>
+                  <source media="(min-width: 1024px)" srcSet={slide.image} />
+                  <img
+                    src={slide.mobileImage || slide.image}
+                    alt={slide.alt}
+                    className="h-full w-full object-cover"
+                  />
+                </picture>
               </a>
             ))}
 
@@ -60,7 +66,7 @@ export default function Hero({ slides, poster }: { slides: Slide[]; poster: Post
                     }`}
                     aria-label={`${i + 1}번 슬라이드`}
                   >
-                    <img src={slide.image} alt="" className="h-full w-full object-cover" />
+                    <img src={slide.mobileImage || slide.image} alt="" className="h-full w-full object-cover" />
                   </button>
                 ))}
               </div>
@@ -69,7 +75,6 @@ export default function Hero({ slides, poster }: { slides: Slide[]; poster: Post
 
           {/* 내비게이션 바 (박스 없이) */}
           <div className="flex h-12 shrink-0 items-center gap-5">
-            {/* 진행바 */}
             <div className="relative h-[3px] flex-1 overflow-hidden rounded-full bg-gray-200">
               <div
                 className="absolute inset-y-0 left-0 rounded-full bg-ink transition-all duration-500 ease-out"
@@ -77,7 +82,6 @@ export default function Hero({ slides, poster }: { slides: Slide[]; poster: Post
               />
             </div>
 
-            {/* 이전/다음 (원형 캡슐) */}
             <div className="flex items-center rounded-full border border-line text-gray-500">
               <button
                 type="button"
@@ -97,7 +101,6 @@ export default function Hero({ slides, poster }: { slides: Slide[]; poster: Post
               </button>
             </div>
 
-            {/* 재생/일시정지 (원형) */}
             <CircleBtn label={playing ? "일시정지" : "재생"} onClick={() => setPlaying((v) => !v)}>
               {playing ? (
                 <>
@@ -109,7 +112,6 @@ export default function Hero({ slides, poster }: { slides: Slide[]; poster: Post
               )}
             </CircleBtn>
 
-            {/* 전체 보기 (원형) */}
             <CircleBtn label="전체 슬라이드 보기" onClick={() => setShowThumbs((v) => !v)}>
               <rect x="5" y="5" width="6" height="6" rx="1" />
               <rect x="13" y="5" width="6" height="6" rx="1" />
@@ -119,8 +121,8 @@ export default function Hero({ slides, poster }: { slides: Slide[]; poster: Post
           </div>
         </div>
 
-        {/* 오른쪽: 포스터 (기준 높이) */}
-        <div className="lg:col-span-1">
+        {/* 오른쪽: 포스터 (모바일에서는 숨김) */}
+        <div className="hidden lg:col-span-1 lg:block">
           <a
             href={poster?.href || "#"}
             className="block aspect-[79/84] w-full overflow-hidden rounded-2xl border border-line bg-white shadow-sm"

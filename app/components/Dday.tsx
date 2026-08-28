@@ -22,7 +22,7 @@ export default function Dday() {
   const label = days === 0 ? "D-DAY" : `D-${days}`;
 
   return (
-    <span className="hidden items-center gap-1.5 rounded-full border border-line px-3.5 py-1.5 text-[13px] font-medium text-gray-600 sm:inline-flex">
+    <span className="inline-flex items-center gap-1.5 rounded-full border border-line px-3 py-1.5 text-[12px] font-medium text-gray-600 sm:px-3.5 sm:text-[13px]">
       수능일까지
       <span className="font-bold text-brand">{label}</span>
     </span>
