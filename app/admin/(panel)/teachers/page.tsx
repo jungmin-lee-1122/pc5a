@@ -35,12 +35,6 @@ export default function Page() {
           type: "image",
           help: "하단 '강사 소개' 탭에 표시됩니다. A4 비율(세로형) 이미지를 권장합니다. (선택)",
         },
-        {
-          key: "courses",
-          label: "개설 강좌",
-          type: "courses",
-          help: "강좌를 추가하고 항목별로 입력하세요. 하단 '개설 강좌' 탭 표에 표시됩니다. (선택)",
-        },
         { key: "active", label: "노출 여부", type: "checkbox" },
       ]}
       defaults={{
@@ -52,7 +46,6 @@ export default function Page() {
         career: "",
         videoUrl: "",
         introPoster: "",
-        courses: [],
         active: true,
       }}
       summary={(item) => (

@@ -39,15 +39,6 @@ export interface Stats {
   items: StatItem[];
 }
 
-/** 개설 강좌 (강사 상세 '개설 강좌' 탭) */
-export interface TeacherCourse {
-  title: string;      // 강좌명
-  startDate?: string; // 개강일
-  period?: string;    // 수업기간
-  time?: string;      // 수업시간
-  tags?: string[];    // 과목·대상 태그
-}
-
 /** 강사 카드 */
 export interface Teacher {
   id: ID;
@@ -63,7 +54,6 @@ export interface Teacher {
   career?: string;    // 이력 (줄바꿈으로 구분, 한 줄에 하나씩)
   videoUrl?: string;  // 선생님 소개 영상 링크 (유튜브 등, 선택)
   introPoster?: string; // 강사 소개 A4 포스터 이미지 (하단 '강사 소개' 탭)
-  courses?: TeacherCourse[]; // 개설 강좌 목록
 }
 
 /** 공지사항 항목 */
@@ -145,6 +135,33 @@ export interface ReviewItem {
   content?: string;    // 본문 (줄바꿈으로 문단 구분)
   order: number;
   active?: boolean;    // 노출 여부 (기본 노출)
+}
+
+/** 단과시간표 분류(탭) */
+export const COURSE_CATEGORIES = [
+  "N수 · 고3 단과",
+  "고2 단과",
+  "고1 단과",
+  "중3 단과",
+  "특강",
+] as const;
+
+/** 단과 강좌 */
+export interface Course {
+  id: ID;
+  category: string;    // COURSE_CATEGORIES 중 하나
+  title: string;       // 강좌명
+  teacher: string;     // 선생님 이름 (강사진 이름과 동일하게)
+  tags: string[];      // 과목·대상 태그
+  target?: string;     // 추천대상
+  startDate?: string;  // 개강일
+  period?: string;     // 수업기간
+  time?: string;       // 수업시간
+  price?: string;      // 수강료
+  material?: string;   // 교재
+  syllabus?: string;   // 강의계획서 (A4 이미지)
+  order: number;
+  active?: boolean;
 }
 
 /** 우측 하단 홍보 사각배너 (단일 설정) */

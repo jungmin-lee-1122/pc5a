@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="595" height="842" viewBox="0 0 595 842">
+  <rect width="595" height="842" fill="#f6f8ff"/>
+  <rect x="70" y="90" width="455" height="662" rx="10" fill="#ffffff" stroke="#dfe4f5" stroke-width="2"/>
+  <rect x="110" y="150" width="230" height="26" rx="6" fill="#2f47b8" opacity="0.75"/>
+  <g fill="#c9d2ef">
+    <rect x="110" y="210" width="375" height="12" rx="6"/>
+    <rect x="110" y="238" width="330" height="12" rx="6"/>
+    <rect x="110" y="266" width="360" height="12" rx="6"/>
+    <rect x="110" y="320" width="375" height="12" rx="6"/>
+    <rect x="110" y="348" width="300" height="12" rx="6"/>
+  </g>
+  <text x="297" y="470" text-anchor="middle" font-family="sans-serif" font-size="30" font-weight="700" fill="#2f47b8" opacity="0.6">강의계획서</text>
+</svg>

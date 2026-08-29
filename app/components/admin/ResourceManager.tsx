@@ -7,10 +7,11 @@ import { input, label, btn, btnSecondary, btnGhost, btnDanger, card } from "./ui
 export type Field = {
   key: string;
   label: string;
-  type?: "text" | "textarea" | "number" | "image" | "tags" | "checkbox" | "courses";
+  type?: "text" | "textarea" | "number" | "image" | "tags" | "checkbox" | "courses" | "select";
   placeholder?: string;
   help?: string;
   maxLength?: number;
+  options?: string[];
 };
 
 type Item = Record<string, unknown> & { id: string; order?: number };
@@ -277,6 +278,21 @@ function renderField(f: Field, draft: Draft, set: (k: string, v: unknown) => voi
       );
     case "courses":
       return <CourseRowsEditor value={value} onChange={(v) => set(f.key, v)} />;
+    case "select":
+      return (
+        <select
+          value={str(value)}
+          onChange={(e) => set(f.key, e.target.value)}
+          className={input}
+        >
+          <option value="">선택해 주세요</option>
+          {(f.options ?? []).map((o) => (
+            <option key={o} value={o}>
+              {o}
+            </option>
+          ))}
+        </select>
+      );
     default:
       return (
         <input

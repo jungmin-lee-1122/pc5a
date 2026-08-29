@@ -56,23 +56,13 @@ export const NAV_MENUS: NavMenu[] = [
     href: "/schedule",
     groups: [
       {
-        heading: "N수 · 고3",
         items: [
-          { label: "9월 정규 단과", href: "/schedule/n-regular" },
-          { label: "약술형 논술 대비반", href: "/schedule/n-essay" },
-          { label: "대학별 논술 파이널 특강", href: "/schedule/n-final" },
+          { label: "N수 · 고3 단과", href: "/schedule?category=N수 · 고3 단과" },
+          { label: "고2 단과", href: "/schedule?category=고2 단과" },
+          { label: "고1 단과", href: "/schedule?category=고1 단과" },
+          { label: "중3 단과", href: "/schedule?category=중3 단과" },
+          { label: "특강", href: "/schedule?category=특강" },
         ],
-      },
-      {
-        heading: "고1 · 고2",
-        items: [
-          { label: "8,9월 내신대비반", href: "/schedule/h-naesin" },
-          { label: "고2 정규 수능대비반", href: "/schedule/h2-suneung" },
-        ],
-      },
-      {
-        heading: "N수 · 고3 · 고1 · 고2",
-        items: [{ label: "추석특강", href: "/schedule/chuseok", strong: true }],
       },
     ],
   },
@@ -82,7 +72,6 @@ export const NAV_MENUS: NavMenu[] = [
     groups: [
       {
         items: [
-          { label: "선생님별 커리큘럼", href: "/teachers" },
           { label: "전체", href: "/teachers" },
           { label: "국어", href: "/teachers?subject=국어" },
           { label: "수학", href: "/teachers?subject=수학" },
@@ -119,7 +108,6 @@ export const NAV_MENUS: NavMenu[] = [
       {
         items: [
           { label: "주간식단표", href: "/menu" },
-          { label: "학사일정", href: "/life/calendar" },
           { label: "재원생 후기", href: "/life/review" },
           { label: "온라인 상담", href: "/life/counsel" },
           { label: "2026 모의고사 일정", href: "/life/mock" },
