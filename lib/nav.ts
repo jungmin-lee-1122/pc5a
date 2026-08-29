@@ -107,7 +107,7 @@ export const NAV_MENUS: NavMenu[] = [
       },
       {
         heading: "설명회 현장",
-        href: "#",
+        href: "/gallery",
         items: [],
       },
     ],

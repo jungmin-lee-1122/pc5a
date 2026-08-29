@@ -112,6 +112,18 @@ export interface MealMenu {
   active?: boolean;   // 노출 여부 (기본 노출)
 }
 
+/** 설명회 현장 갤러리 항목 (현장 사진) */
+export interface GalleryItem {
+  id: ID;
+  title: string;      // 예: "2027 윈터스쿨 설명회 현장"
+  date: string;       // 예: "2026.09.06"
+  image: string;      // 현장 사진
+  location?: string;  // 장소 (선택)
+  caption?: string;   // 한 줄 설명 (선택)
+  order: number;
+  active?: boolean;   // 노출 여부 (기본 노출)
+}
+
 /** 우측 하단 홍보 사각배너 (단일 설정) */
 export interface Promo {
   image: string;

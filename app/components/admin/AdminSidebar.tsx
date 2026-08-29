@@ -8,6 +8,7 @@ const LINKS = [
   { href: "/admin/teachers", label: "강사진" },
   { href: "/admin/notices", label: "공지사항" },
   { href: "/admin/events", label: "입시설명회" },
+  { href: "/admin/gallery", label: "설명회 현장" },
   { href: "/admin/videos", label: "영상" },
   { href: "/admin/menus", label: "주간식단표" },
 ];

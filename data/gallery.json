@@ -1,0 +1,32 @@
+[
+  {
+    "id": "g1",
+    "title": "2027 윈터스쿨 설명회 현장",
+    "date": "2026.08.24",
+    "location": "평촌 롯데백화점 식품관 2층 문화홀",
+    "image": "/placeholders/scene.svg",
+    "caption": "많은 학부모님과 학생들이 참석해 겨울 학습 로드맵을 함께 확인했습니다.",
+    "order": 1,
+    "active": true
+  },
+  {
+    "id": "g2",
+    "title": "학부모 입시교실 현장",
+    "date": "2026.07.19",
+    "location": "5A 아카데미 본관 대강의실",
+    "image": "/placeholders/scene.svg",
+    "caption": "2028 대입 제도 변화에 대한 뜨거운 관심 속에 진행되었습니다.",
+    "order": 2,
+    "active": true
+  },
+  {
+    "id": "g3",
+    "title": "논술 파이널 설명회 현장",
+    "date": "2026.06.28",
+    "location": "5A 아카데미 본관",
+    "image": "/placeholders/scene.svg",
+    "caption": "대학별 논술 유형과 파이널 전략을 공유했습니다.",
+    "order": 3,
+    "active": true
+  }
+]

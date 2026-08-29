@@ -4,6 +4,7 @@ const CARDS = [
   { href: "/admin/teachers", label: "강사진", desc: "과목별 선생님 카드" },
   { href: "/admin/notices", label: "공지사항", desc: "공지사항 리스트" },
   { href: "/admin/events", label: "입시설명회", desc: "설명회/입시교실 리스트" },
+  { href: "/admin/gallery", label: "설명회 현장", desc: "현장 사진 갤러리" },
   { href: "/admin/videos", label: "영상", desc: "유튜브 영상" },
   { href: "/admin/menus", label: "주간식단표", desc: "식단표 사진" },
 ];

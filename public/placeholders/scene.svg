@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <rect width="800" height="600" fill="#eef2ff"/>
+  <g fill="none" stroke="#2f47b8" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" opacity="0.5">
+    <rect x="250" y="235" width="300" height="195" rx="16"/>
+    <circle cx="400" cy="335" r="52"/>
+    <path d="M322 235l24-42h108l24 42"/>
+  </g>
+  <text x="400" y="512" text-anchor="middle" font-family="sans-serif" font-size="34" font-weight="700" fill="#2f47b8" opacity="0.6">설명회 현장</text>
+</svg>

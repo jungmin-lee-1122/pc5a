@@ -5,5 +5,6 @@ import notices from "@/data/notices.json";
 import events from "@/data/events.json";
 import videos from "@/data/videos.json";
 import menus from "@/data/menus.json";
+import gallery from "@/data/gallery.json";
 
-export const SEEDS: Record<string, unknown[]> = { teachers, notices, events, videos, menus };
+export const SEEDS: Record<string, unknown[]> = { teachers, notices, events, videos, menus, gallery };
