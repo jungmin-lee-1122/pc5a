@@ -83,6 +83,7 @@ export const NAV_MENUS: NavMenu[] = [
       {
         items: [
           { label: "선생님별 커리큘럼", href: "/teachers" },
+          { label: "전체", href: "/teachers" },
           { label: "국어", href: "/teachers?subject=국어" },
           { label: "수학", href: "/teachers?subject=수학" },
           { label: "영어", href: "/teachers?subject=영어" },
