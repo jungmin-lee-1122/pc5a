@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { getCourses } from "@/lib/content";
-import { COURSE_CATEGORIES } from "@/lib/types";
+import { getAllCourses } from "@/lib/content";
+import { SCHEDULE_TABS } from "@/lib/types";
 import CategoryTabs from "@/app/components/schedule/CategoryTabs";
 
 export const dynamic = "force-dynamic";
@@ -18,13 +18,10 @@ export default async function SchedulePage({
 }) {
   const { category } = await searchParams;
   const active =
-    category && (COURSE_CATEGORIES as readonly string[]).includes(category)
-      ? category
-      : COURSE_CATEGORIES[0];
+    category && SCHEDULE_TABS.some((t) => t.label === category) ? category : SCHEDULE_TABS[0].label;
+  const tab = SCHEDULE_TABS.find((t) => t.label === active)!;
 
-  const list = (await getCourses())
-    .filter((c) => c.active !== false && c.category === active)
-    .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+  const list = (await getAllCourses()).filter((c) => tab.targets.includes(c.target));
 
   return (
     <main className="flex-1 pb-16">
@@ -37,9 +34,9 @@ export default async function SchedulePage({
           className="pointer-events-none absolute right-0 top-1/2 -z-10 h-[190%] -translate-y-1/2 select-none opacity-[0.7] sm:right-6"
         />
         <div className="mx-auto max-w-6xl px-5 py-10 lg:px-8">
-          <p className="text-sm font-bold text-brand">모집안내</p>
+          <p className="text-sm font-bold text-brand">단과시간표</p>
           <h1 className="mt-1.5 text-2xl font-extrabold text-ink sm:text-3xl">단과시간표</h1>
-          <p className="mt-2 text-sm text-muted">과정별 단과 강좌를 확인하세요.</p>
+          <p className="mt-2 text-sm text-muted">모집대상별 단과 강좌를 확인하세요.</p>
         </div>
       </div>
 
@@ -60,6 +57,7 @@ export default async function SchedulePage({
                     className="group block rounded-2xl border border-line bg-white p-5 transition-colors hover:border-brand/40 sm:p-6"
                   >
                     <div className="flex flex-wrap gap-1.5">
+                      <span className="rounded bg-ink px-2 py-0.5 text-xs font-bold text-white">{c.target}</span>
                       {(c.tags ?? []).map((t) => (
                         <span key={t} className="rounded bg-brand-light px-2 py-0.5 text-xs font-bold text-brand">
                           {t}
@@ -70,7 +68,7 @@ export default async function SchedulePage({
                       {c.title}
                     </h3>
                     <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-1.5 text-[13px] text-gray-500">
-                      {c.teacher && <span className="font-semibold text-gray-600">{c.teacher} 선생님</span>}
+                      <span className="font-semibold text-gray-600">{c.teacherName} 선생님</span>
                       {c.startDate && <span>개강 {c.startDate}</span>}
                       {c.time && <span>{c.time}</span>}
                       {c.price && <span className="font-semibold text-ink">{c.price}</span>}

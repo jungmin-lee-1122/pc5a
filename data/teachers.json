@@ -9,7 +9,39 @@
     ],
     "photo": "/placeholders/teacher.svg",
     "order": 1,
-    "active": true
+    "active": true,
+    "courses": [
+      {
+        "id": "k1a",
+        "target": "고3",
+        "title": "[단과] 9월-고3 국어(일,4회) 독서문학 -김연호T",
+        "tags": [
+          "국어",
+          "고3·N수"
+        ],
+        "startDate": "8월 30일(일)",
+        "period": "8월 30일(일) ~ 9월 20일(일)",
+        "time": "일 14:00 ~ 18:00",
+        "price": "280,000원",
+        "material": "자체 제작교재",
+        "syllabus": "/placeholders/syllabus.svg"
+      },
+      {
+        "id": "k1b",
+        "target": "N수",
+        "title": "[단과] 9월-N수 국어(토,4회) 실전 -김연호T",
+        "tags": [
+          "국어",
+          "N수"
+        ],
+        "startDate": "8월 30일(토)",
+        "period": "8월 30일(토) ~ 9월 20일(토)",
+        "time": "토 09:00 ~ 13:00",
+        "price": "280,000원",
+        "material": "자체 제작교재",
+        "syllabus": "/placeholders/syllabus.svg"
+      }
+    ]
   },
   {
     "id": "t2",
@@ -57,7 +89,24 @@
     ],
     "photo": "/placeholders/teacher.svg",
     "order": 5,
-    "active": true
+    "active": true,
+    "courses": [
+      {
+        "id": "j5a",
+        "target": "고3",
+        "title": "[단과] 9월-고3 수학(토,4회) 미적분 심화 -정민석T",
+        "tags": [
+          "수학",
+          "고3·N수"
+        ],
+        "startDate": "8월 30일(토)",
+        "period": "8월 30일(토) ~ 9월 20일(토)",
+        "time": "토 18:30 ~ 21:30",
+        "price": "280,000원",
+        "material": "자체 제작교재",
+        "syllabus": "/placeholders/syllabus.svg"
+      }
+    ]
   },
   {
     "id": "t6",
@@ -69,7 +118,24 @@
     ],
     "photo": "/placeholders/teacher.svg",
     "order": 6,
-    "active": true
+    "active": true,
+    "courses": [
+      {
+        "id": "h6a",
+        "target": "고1",
+        "title": "[단과] 9월-고1 수학 정규 -한서윤T",
+        "tags": [
+          "수학",
+          "고1"
+        ],
+        "startDate": "9월 2일(화)",
+        "period": "9월 2일(화) ~ 9월 30일(화)",
+        "time": "화 18:00 ~ 21:00",
+        "price": "220,000원",
+        "material": "자체 제작교재",
+        "syllabus": "/placeholders/syllabus.svg"
+      }
+    ]
   },
   {
     "id": "t7",
@@ -93,7 +159,24 @@
     ],
     "photo": "/placeholders/teacher.svg",
     "order": 8,
-    "active": true
+    "active": true,
+    "courses": [
+      {
+        "id": "b8a",
+        "target": "고2",
+        "title": "[단과] 9월-고2 영어 정규 -배수아T",
+        "tags": [
+          "영어",
+          "고2"
+        ],
+        "startDate": "9월 1일(월)",
+        "period": "9월 1일(월) ~ 9월 29일(월)",
+        "time": "월 19:00 ~ 22:00",
+        "price": "240,000원",
+        "material": "자체 제작교재",
+        "syllabus": "/placeholders/syllabus.svg"
+      }
+    ]
   },
   {
     "id": "t10",

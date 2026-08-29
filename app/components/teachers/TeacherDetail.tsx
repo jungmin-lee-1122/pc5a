@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import type { Teacher, Course } from "@/lib/types";
+import type { Teacher, TeacherCourse } from "@/lib/types";
 
 /** 유튜브 ID 추출 (아니면 null) */
 function ytId(input: string): string | null {
@@ -23,7 +23,7 @@ export default function TeacherDetail({
   current: Teacher;
   subjects: string[];
   activeSubject: string;
-  courses: Course[];
+  courses: TeacherCourse[];
 }) {
   const [tab, setTab] = useState<"intro" | "courses">("intro");
 
@@ -213,7 +213,7 @@ export default function TeacherDetail({
   );
 }
 
-function CoursesTable({ courses }: { courses: Course[] }) {
+function CoursesTable({ courses }: { courses: TeacherCourse[] }) {
   return (
     <div>
       <p className="mb-3 text-right text-sm text-muted">

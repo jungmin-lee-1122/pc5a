@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getTeachers, getCourses } from "@/lib/content";
+import { getTeachers } from "@/lib/content";
 import { SITE } from "@/config/homepage";
 import TeacherDetail from "@/app/components/teachers/TeacherDetail";
 
@@ -25,13 +25,11 @@ export default async function TeacherViewPage({
   searchParams: Promise<{ subject?: string }>;
 }) {
   const [{ id }, { subject }] = await Promise.all([params, searchParams]);
-  const [teachers, allCourses] = await Promise.all([getTeachers(), getCourses()]);
+  const teachers = await getTeachers();
   const current = teachers.find((t) => t.id === id);
   if (!current) notFound();
 
-  const courses = allCourses
-    .filter((c) => c.active !== false && c.teacher === current.name)
-    .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+  const courses = current.courses ?? [];
 
   const activeSubject =
     subject && (subject === "전체" || SITE.subjects.includes(subject)) ? subject : current.subject;

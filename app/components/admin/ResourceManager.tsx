@@ -3,6 +3,7 @@
 import { useEffect, useState, type ReactNode } from "react";
 import ImageInput from "./ImageInput";
 import { input, label, btn, btnSecondary, btnGhost, btnDanger, card } from "./ui";
+import { COURSE_TARGETS } from "@/lib/types";
 
 export type Field = {
   key: string;
@@ -307,12 +308,21 @@ function renderField(f: Field, draft: Draft, set: (k: string, v: unknown) => voi
 }
 
 type CourseDraft = {
+  id?: string;
+  target?: string;
   title?: string;
+  tags?: string[];
   startDate?: string;
   period?: string;
   time?: string;
-  tags?: string[];
+  price?: string;
+  material?: string;
+  syllabus?: string;
 };
+
+function newCourseId() {
+  return Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+}
 
 function CourseRowsEditor({
   value,
@@ -325,63 +335,70 @@ function CourseRowsEditor({
   const setRow = (i: number, patch: Partial<CourseDraft>) =>
     onChange(rows.map((r, idx) => (idx === i ? { ...r, ...patch } : r)));
   const add = () =>
-    onChange([...rows, { title: "", startDate: "", period: "", time: "", tags: [] }]);
+    onChange([
+      ...rows,
+      { id: newCourseId(), target: "", title: "", tags: [], startDate: "", period: "", time: "", price: "", material: "자체 제작교재", syllabus: "" },
+    ]);
   const remove = (i: number) => onChange(rows.filter((_, idx) => idx !== i));
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-4">
       {rows.length === 0 && (
         <p className="rounded-lg border border-dashed border-line px-3 py-4 text-center text-xs text-muted">
           등록된 강좌가 없습니다. 아래 버튼으로 추가하세요.
         </p>
       )}
       {rows.map((r, i) => (
-        <div key={i} className="rounded-xl border border-line bg-gray-50/50 p-3">
+        <div key={r.id ?? i} className="rounded-xl border border-line bg-gray-50/50 p-3">
           <div className="mb-2 flex items-center justify-between">
             <span className="text-xs font-bold text-gray-500">강좌 {i + 1}</span>
-            <button
-              type="button"
-              onClick={() => remove(i)}
-              className="text-xs font-medium text-red-500 hover:underline"
-            >
+            <button type="button" onClick={() => remove(i)} className="text-xs font-medium text-red-500 hover:underline">
               삭제
             </button>
           </div>
+
           <input
             value={r.title ?? ""}
             onChange={(e) => setRow(i, { title: e.target.value })}
-            placeholder="강좌명 (예: [단과] 9월-고3 국어 문학독서)"
+            placeholder="강좌명 (예: [단과] 9월-고3 국어 독서문학 -김연호T)"
             className={input}
           />
+
           <div className="mt-2 grid gap-2 sm:grid-cols-2">
-            <input
-              value={r.startDate ?? ""}
-              onChange={(e) => setRow(i, { startDate: e.target.value })}
-              placeholder="개강일 (예: 8월 30일)"
-              className={input}
-            />
-            <input
-              value={r.time ?? ""}
-              onChange={(e) => setRow(i, { time: e.target.value })}
-              placeholder="수업시간 (예: 일 14:00~18:00)"
-              className={input}
-            />
-            <input
-              value={r.period ?? ""}
-              onChange={(e) => setRow(i, { period: e.target.value })}
-              placeholder="수업기간 (예: 8/30(일)~9/20(일))"
-              className={input}
-            />
-            <input
-              value={Array.isArray(r.tags) ? r.tags.join(", ") : ""}
-              onChange={(e) =>
-                setRow(i, {
-                  tags: e.target.value.split(",").map((s) => s.trim()).filter(Boolean),
-                })
-              }
-              placeholder="과목·대상 태그 (예: 국어, 고3·N수)"
-              className={input}
-            />
+            <div>
+              <span className="mb-1 block text-[11px] font-semibold text-gray-500">모집대상 (단과시간표 탭)</span>
+              <select
+                value={r.target ?? ""}
+                onChange={(e) => setRow(i, { target: e.target.value })}
+                className={input}
+              >
+                <option value="">모집대상 선택</option>
+                {COURSE_TARGETS.map((t) => (
+                  <option key={t} value={t}>
+                    {t}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <span className="mb-1 block text-[11px] font-semibold text-gray-500">태그 (쉼표로 구분)</span>
+              <input
+                value={Array.isArray(r.tags) ? r.tags.join(", ") : ""}
+                onChange={(e) => setRow(i, { tags: e.target.value.split(",").map((s) => s.trim()).filter(Boolean) })}
+                placeholder="국어, 고3·N수"
+                className={input}
+              />
+            </div>
+            <input value={r.startDate ?? ""} onChange={(e) => setRow(i, { startDate: e.target.value })} placeholder="개강일 (예: 8월 30일(일))" className={input} />
+            <input value={r.time ?? ""} onChange={(e) => setRow(i, { time: e.target.value })} placeholder="수업시간 (예: 일 14:00 ~ 18:00)" className={input} />
+            <input value={r.period ?? ""} onChange={(e) => setRow(i, { period: e.target.value })} placeholder="수업기간 (예: 8/30(일) ~ 9/20(일))" className={input} />
+            <input value={r.price ?? ""} onChange={(e) => setRow(i, { price: e.target.value })} placeholder="수강료 (예: 280,000원)" className={input} />
+            <input value={r.material ?? ""} onChange={(e) => setRow(i, { material: e.target.value })} placeholder="교재 (예: 자체 제작교재)" className={input} />
+          </div>
+
+          <div className="mt-2">
+            <span className="mb-1 block text-[11px] font-semibold text-gray-500">강의계획서 (A4 이미지)</span>
+            <ImageInput value={r.syllabus ?? ""} onChange={(v) => setRow(i, { syllabus: v })} />
           </div>
         </div>
       ))}

@@ -6,7 +6,6 @@ import { usePathname, useRouter } from "next/navigation";
 const LINKS = [
   { href: "/admin", label: "대시보드" },
   { href: "/admin/teachers", label: "강사진" },
-  { href: "/admin/courses", label: "단과 강좌" },
   { href: "/admin/notices", label: "공지사항" },
   { href: "/admin/events", label: "입시설명회" },
   { href: "/admin/gallery", label: "설명회 현장" },

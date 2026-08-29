@@ -2,7 +2,7 @@
 // (슬라이드/포스터/배너/사이트정보는 config/homepage.ts 에서 직접 수정)
 import { listCollection } from "./store";
 import { SEEDS } from "./seeds";
-import type { Teacher, Notice, EventItem, VideoItem, MealMenu, GalleryItem, ReviewItem, Course } from "./types";
+import type { Teacher, Notice, EventItem, VideoItem, MealMenu, GalleryItem, ReviewItem, TeacherCourse } from "./types";
 
 export const getTeachers = () => listCollection<Teacher>("teachers", SEEDS.teachers as Teacher[]);
 export const getNotices = () => listCollection<Notice>("notices", SEEDS.notices as Notice[]);
@@ -11,4 +11,26 @@ export const getVideos = () => listCollection<VideoItem>("videos", SEEDS.videos 
 export const getMenus = () => listCollection<MealMenu>("menus", SEEDS.menus as MealMenu[]);
 export const getGallery = () => listCollection<GalleryItem>("gallery", SEEDS.gallery as GalleryItem[]);
 export const getReviews = () => listCollection<ReviewItem>("reviews", SEEDS.reviews as ReviewItem[]);
-export const getCourses = () => listCollection<Course>("courses", SEEDS.courses as Course[]);
+/** 강좌 + 소속 선생님 정보 (단과시간표/강좌 상세용) */
+export interface CourseWithTeacher extends TeacherCourse {
+  teacherId: string;
+  teacherName: string;
+  teacherPhoto: string;
+  subject: string;
+}
+
+/** 모든 선생님의 개설 강좌를 평탄화해 반환 */
+export async function getAllCourses(): Promise<CourseWithTeacher[]> {
+  const teachers = await getTeachers();
+  return teachers
+    .filter((t) => t.active)
+    .flatMap((t) =>
+      (t.courses ?? []).map((c) => ({
+        ...c,
+        teacherId: t.id,
+        teacherName: t.name,
+        teacherPhoto: t.photo,
+        subject: t.subject,
+      })),
+    );
+}

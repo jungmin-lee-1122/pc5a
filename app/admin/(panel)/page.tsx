@@ -2,7 +2,6 @@ import Link from "next/link";
 
 const CARDS = [
   { href: "/admin/teachers", label: "강사진", desc: "과목별 선생님 카드" },
-  { href: "/admin/courses", label: "단과 강좌", desc: "단과시간표 강좌·강의계획서" },
   { href: "/admin/notices", label: "공지사항", desc: "공지사항 리스트" },
   { href: "/admin/events", label: "입시설명회", desc: "설명회/입시교실 리스트" },
   { href: "/admin/gallery", label: "설명회 현장", desc: "현장 사진 갤러리" },

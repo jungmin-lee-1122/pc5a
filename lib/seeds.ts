@@ -7,6 +7,5 @@ import videos from "@/data/videos.json";
 import menus from "@/data/menus.json";
 import gallery from "@/data/gallery.json";
 import reviews from "@/data/reviews.json";
-import courses from "@/data/courses.json";
 
-export const SEEDS: Record<string, unknown[]> = { teachers, notices, events, videos, menus, gallery, reviews, courses };
+export const SEEDS: Record<string, unknown[]> = { teachers, notices, events, videos, menus, gallery, reviews };
