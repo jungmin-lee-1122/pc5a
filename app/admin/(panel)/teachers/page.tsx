@@ -38,9 +38,8 @@ export default function Page() {
         {
           key: "courses",
           label: "개설 강좌",
-          type: "textarea",
-          placeholder: "[단과] 9월-고3 국어 문학독서 | 8월30일 | 8월 30일(일) ~ 9월 20일(일) | 일14:00 ~ 18:00 | 국어,고3·N수",
-          help: "한 줄에 한 강좌씩. 항목은 | (막대) 로 구분: 강좌명 | 개강일 | 수업기간 | 수업시간 | 태그(쉼표). 하단 '개설 강좌' 탭 표에 표시됩니다. (선택)",
+          type: "courses",
+          help: "강좌를 추가하고 항목별로 입력하세요. 하단 '개설 강좌' 탭 표에 표시됩니다. (선택)",
         },
         { key: "active", label: "노출 여부", type: "checkbox" },
       ]}
@@ -53,7 +52,7 @@ export default function Page() {
         career: "",
         videoUrl: "",
         introPoster: "",
-        courses: "",
+        courses: [],
         active: true,
       }}
       summary={(item) => (

@@ -36,7 +36,7 @@ export default async function TeacherViewPage({
     <main className="flex-1 pb-16">
       {/* 헤더 */}
       <div className="border-b border-line bg-brand-light/50">
-        <div className="mx-auto max-w-6xl px-5 py-9 lg:px-8">
+        <div className="mx-auto max-w-5xl px-5 py-9 lg:px-8">
           <Link
             href={`/teachers?subject=${encodeURIComponent(activeSubject)}`}
             className="inline-flex items-center gap-1 text-sm text-muted hover:text-brand"
@@ -51,7 +51,7 @@ export default async function TeacherViewPage({
         </div>
       </div>
 
-      <div className="mx-auto max-w-6xl px-5 py-8 lg:px-8">
+      <div className="mx-auto max-w-5xl px-5 py-8 lg:px-8">
         <TeacherDetail
           teachers={teachers}
           current={current}

@@ -39,6 +39,15 @@ export interface Stats {
   items: StatItem[];
 }
 
+/** 개설 강좌 (강사 상세 '개설 강좌' 탭) */
+export interface TeacherCourse {
+  title: string;      // 강좌명
+  startDate?: string; // 개강일
+  period?: string;    // 수업기간
+  time?: string;      // 수업시간
+  tags?: string[];    // 과목·대상 태그
+}
+
 /** 강사 카드 */
 export interface Teacher {
   id: ID;
@@ -54,7 +63,7 @@ export interface Teacher {
   career?: string;    // 이력 (줄바꿈으로 구분, 한 줄에 하나씩)
   videoUrl?: string;  // 선생님 소개 영상 링크 (유튜브 등, 선택)
   introPoster?: string; // 강사 소개 A4 포스터 이미지 (하단 '강사 소개' 탭)
-  courses?: string;   // 개설 강좌 — 한 줄에 하나: "강좌명 | 개강일 | 수업기간 | 수업시간 | 태그(쉼표)"
+  courses?: TeacherCourse[]; // 개설 강좌 목록
 }
 
 /** 공지사항 항목 */

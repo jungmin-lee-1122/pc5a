@@ -2,15 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import type { Teacher } from "@/lib/types";
-
-type Course = {
-  title: string;
-  startDate: string;
-  period: string;
-  time: string;
-  tags: string[];
-};
+import type { Teacher, TeacherCourse } from "@/lib/types";
 
 /** 유튜브 ID 추출 (아니면 null) */
 function ytId(input: string): string | null {
@@ -18,21 +10,6 @@ function ytId(input: string): string | null {
   if (/^[\w-]{11}$/.test(s)) return s;
   const m = s.match(/(?:v=|youtu\.be\/|embed\/|shorts\/)([\w-]{11})/);
   return m ? m[1] : null;
-}
-
-/** "강좌명 | 개강일 | 수업기간 | 수업시간 | 태그(쉼표)" 형식을 파싱 */
-function parseCourses(raw?: string): Course[] {
-  return (raw ?? "")
-    .split("\n")
-    .map((l) => l.trim())
-    .filter(Boolean)
-    .map((line) => {
-      const parts = line.split("|").map((s) => s.trim());
-      const [title = "", startDate = "", period = "", time = "", tagStr = ""] = parts;
-      const tags = tagStr ? tagStr.split(",").map((s) => s.trim()).filter(Boolean) : [];
-      return { title, startDate, period, time, tags };
-    })
-    .filter((c) => c.title);
 }
 
 export default function TeacherDetail({
@@ -57,7 +34,7 @@ export default function TeacherDetail({
   const firstOf = (subj: string) => (subj === "전체" ? active[0] : active.find((t) => t.subject === subj));
 
   const careerLines = (current.career ?? "").split("\n").map((s) => s.trim()).filter(Boolean);
-  const courses = parseCourses(current.courses);
+  const courses = (current.courses ?? []).filter((c) => c.title);
   const hasBelow = Boolean(current.videoUrl) || careerLines.length > 0;
   const vid = current.videoUrl ? ytId(current.videoUrl) : null;
 
@@ -234,8 +211,8 @@ export default function TeacherDetail({
   );
 }
 
-function CoursesTable({ teacher, courses }: { teacher: Teacher; courses: Course[] }) {
-  const chips = (c: Course) => (c.tags.length ? c.tags : [teacher.subject]);
+function CoursesTable({ teacher, courses }: { teacher: Teacher; courses: TeacherCourse[] }) {
+  const chips = (c: TeacherCourse) => (c.tags && c.tags.length ? c.tags : [teacher.subject]);
   return (
     <div>
       <p className="mb-3 text-right text-sm text-muted">

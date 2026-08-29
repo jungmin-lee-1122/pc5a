@@ -7,7 +7,7 @@ import { input, label, btn, btnSecondary, btnGhost, btnDanger, card } from "./ui
 export type Field = {
   key: string;
   label: string;
-  type?: "text" | "textarea" | "number" | "image" | "tags" | "checkbox";
+  type?: "text" | "textarea" | "number" | "image" | "tags" | "checkbox" | "courses";
   placeholder?: string;
   help?: string;
   maxLength?: number;
@@ -137,7 +137,7 @@ export default function ResourceManager({
           </h2>
           <div className="grid gap-4 sm:grid-cols-2">
             {fields.map((f) => (
-              <div key={f.key} className={f.type === "textarea" || f.type === "image" ? "sm:col-span-2" : ""}>
+              <div key={f.key} className={f.type === "textarea" || f.type === "image" || f.type === "courses" ? "sm:col-span-2" : ""}>
                 <label className={label}>{f.label}</label>
                 {renderField(f, draft, set)}
                 {f.help && <p className="mt-1 text-xs text-muted">{f.help}</p>}
@@ -275,6 +275,8 @@ function renderField(f: Field, draft: Draft, set: (k: string, v: unknown) => voi
           className={input}
         />
       );
+    case "courses":
+      return <CourseRowsEditor value={value} onChange={(v) => set(f.key, v)} />;
     default:
       return (
         <input
@@ -286,4 +288,94 @@ function renderField(f: Field, draft: Draft, set: (k: string, v: unknown) => voi
         />
       );
   }
+}
+
+type CourseDraft = {
+  title?: string;
+  startDate?: string;
+  period?: string;
+  time?: string;
+  tags?: string[];
+};
+
+function CourseRowsEditor({
+  value,
+  onChange,
+}: {
+  value: unknown;
+  onChange: (v: unknown) => void;
+}) {
+  const rows: CourseDraft[] = Array.isArray(value) ? (value as CourseDraft[]) : [];
+  const setRow = (i: number, patch: Partial<CourseDraft>) =>
+    onChange(rows.map((r, idx) => (idx === i ? { ...r, ...patch } : r)));
+  const add = () =>
+    onChange([...rows, { title: "", startDate: "", period: "", time: "", tags: [] }]);
+  const remove = (i: number) => onChange(rows.filter((_, idx) => idx !== i));
+
+  return (
+    <div className="space-y-3">
+      {rows.length === 0 && (
+        <p className="rounded-lg border border-dashed border-line px-3 py-4 text-center text-xs text-muted">
+          등록된 강좌가 없습니다. 아래 버튼으로 추가하세요.
+        </p>
+      )}
+      {rows.map((r, i) => (
+        <div key={i} className="rounded-xl border border-line bg-gray-50/50 p-3">
+          <div className="mb-2 flex items-center justify-between">
+            <span className="text-xs font-bold text-gray-500">강좌 {i + 1}</span>
+            <button
+              type="button"
+              onClick={() => remove(i)}
+              className="text-xs font-medium text-red-500 hover:underline"
+            >
+              삭제
+            </button>
+          </div>
+          <input
+            value={r.title ?? ""}
+            onChange={(e) => setRow(i, { title: e.target.value })}
+            placeholder="강좌명 (예: [단과] 9월-고3 국어 문학독서)"
+            className={input}
+          />
+          <div className="mt-2 grid gap-2 sm:grid-cols-2">
+            <input
+              value={r.startDate ?? ""}
+              onChange={(e) => setRow(i, { startDate: e.target.value })}
+              placeholder="개강일 (예: 8월 30일)"
+              className={input}
+            />
+            <input
+              value={r.time ?? ""}
+              onChange={(e) => setRow(i, { time: e.target.value })}
+              placeholder="수업시간 (예: 일 14:00~18:00)"
+              className={input}
+            />
+            <input
+              value={r.period ?? ""}
+              onChange={(e) => setRow(i, { period: e.target.value })}
+              placeholder="수업기간 (예: 8/30(일)~9/20(일))"
+              className={input}
+            />
+            <input
+              value={Array.isArray(r.tags) ? r.tags.join(", ") : ""}
+              onChange={(e) =>
+                setRow(i, {
+                  tags: e.target.value.split(",").map((s) => s.trim()).filter(Boolean),
+                })
+              }
+              placeholder="과목·대상 태그 (예: 국어, 고3·N수)"
+              className={input}
+            />
+          </div>
+        </div>
+      ))}
+      <button
+        type="button"
+        onClick={add}
+        className="w-full rounded-lg border border-dashed border-brand/40 py-2.5 text-sm font-semibold text-brand transition hover:bg-brand-light/40"
+      >
+        + 강좌 추가
+      </button>
+    </div>
+  );
 }
