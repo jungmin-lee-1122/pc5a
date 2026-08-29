@@ -55,3 +55,17 @@ export const SITE: SiteSettings = {
   },
   social: { naver: "#", instagram: "#", facebook: "#", youtube: "#", kakao: "#", phone: "031-347-5151" },
 };
+
+/* ── 오시는 길: 학원 위치 / 네이버 지도 ─────────────────────────────────────
+   naverClientId 를 채우면 실제 네이버 지도가 표시됩니다.
+   (네이버 클라우드 플랫폼 → Maps → Application 등록 후 Client ID 발급,
+    Web 서비스 URL 에 배포 도메인/localhost 를 등록해야 합니다.)
+   좌표(lat/lng)는 실제 위치에 맞게 조정하세요. */
+export const LOCATION = {
+  name: "5A 아카데미 평촌점",
+  address: "경기도 안양시 평촌대로 112",
+  lat: 37.3899,   // 대략 범계역 먹자골목 인근 — 실제 좌표로 조정
+  lng: 126.9513,
+  naverClientId: "", // 예: "abcd1234" (비우면 안내 카드로 표시)
+  mapQuery: "5A아카데미 평촌점", // 네이버 지도 검색어(바로가기 버튼)
+};
