@@ -11,13 +11,13 @@ export default function CounselPage() {
   const tel = SITE.footer.tel;
   return (
     <main className="flex-1 pb-16">
-      <div className="relative isolate overflow-hidden border-b border-line bg-brand-light/50">
+      <div className="relative isolate overflow-hidden border-b border-line bg-brand-light">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/logo-white.png"
           alt=""
           aria-hidden="true"
-          className="pointer-events-none absolute right-0 top-1/2 -z-10 h-[170%] -translate-y-1/2 select-none opacity-[0.15] sm:right-6"
+          className="pointer-events-none absolute right-0 top-1/2 -z-10 h-[190%] -translate-y-1/2 select-none opacity-[0.7] sm:right-6"
         />
         <div className="mx-auto max-w-3xl px-5 py-10 lg:px-8">
           <p className="text-sm font-bold text-brand">학원생활</p>
