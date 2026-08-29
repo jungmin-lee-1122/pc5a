@@ -134,6 +134,19 @@ export interface GalleryItem {
   active?: boolean;   // 노출 여부 (기본 노출)
 }
 
+/** 재원생 후기 게시글 */
+export interface ReviewItem {
+  id: ID;
+  title: string;       // 후기 제목
+  author: string;      // 재원생 이름 (예: "김OO")
+  university?: string; // 합격/재원 정보 (예: "서울대학교 26학번")
+  date: string;        // YYYY.MM.DD
+  image: string;       // 대표 이미지
+  content?: string;    // 본문 (줄바꿈으로 문단 구분)
+  order: number;
+  active?: boolean;    // 노출 여부 (기본 노출)
+}
+
 /** 우측 하단 홍보 사각배너 (단일 설정) */
 export interface Promo {
   image: string;

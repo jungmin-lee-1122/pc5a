@@ -11,6 +11,7 @@ const LINKS = [
   { href: "/admin/gallery", label: "설명회 현장" },
   { href: "/admin/videos", label: "영상" },
   { href: "/admin/menus", label: "주간식단표" },
+  { href: "/admin/reviews", label: "재원생 후기" },
 ];
 
 export default function AdminSidebar() {
