@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { LOCATION, SITE } from "@/config/homepage";
-import NaverMap from "@/app/components/about/NaverMap";
+import LocationMap from "@/app/components/about/NaverMap";
 
 export const metadata: Metadata = {
   title: "오시는 길 | 5A 아카데미",
@@ -13,6 +13,7 @@ const VILLAGE_BUS = ["03", "5-5", "7", "10-2", "11"];
 export default function LocationPage() {
   const tel = SITE.footer.tel;
   const naverUrl = `https://map.naver.com/p/search/${encodeURIComponent(LOCATION.mapQuery)}`;
+  const googleUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(LOCATION.address)}`;
 
   return (
     <main className="flex-1 pb-16">
@@ -28,13 +29,11 @@ export default function LocationPage() {
       <div className="mx-auto max-w-5xl space-y-8 px-5 py-8 lg:px-8">
         {/* 지도 */}
         <div className="overflow-hidden rounded-2xl border border-line">
-          <NaverMap
-            clientId={LOCATION.naverClientId}
-            lat={LOCATION.lat}
-            lng={LOCATION.lng}
+          <LocationMap
             name={LOCATION.name}
             address={LOCATION.address}
-            mapQuery={LOCATION.mapQuery}
+            lat={LOCATION.lat}
+            lng={LOCATION.lng}
           />
         </div>
 
@@ -46,10 +45,18 @@ export default function LocationPage() {
           </div>
           <div className="mt-4 flex flex-wrap gap-2 sm:mt-0 sm:shrink-0">
             <a
-              href={naverUrl}
+              href={googleUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 rounded-xl bg-brand px-5 py-2.5 text-sm font-bold text-white transition hover:bg-brand-dark"
+            >
+              구글 지도
+            </a>
+            <a
+              href={naverUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-xl border border-line px-5 py-2.5 text-sm font-bold text-ink transition hover:border-brand hover:text-brand"
             >
               네이버 지도
             </a>
