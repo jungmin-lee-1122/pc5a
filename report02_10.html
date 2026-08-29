@@ -1,0 +1,768 @@
+
+
+<!DOCTYPE>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Pragma" content="no-cache">
+
+<link href="/include/css/bootstrap.css?123" rel="stylesheet" type="text/css"/>
+<link href="/jongro/css/sul.css?123" rel="stylesheet" type="text/css"/>
+<script src="/include/jquery-1.8.3.min.js"></script>
+<script src="/include/bootstrap.min.js"></script>
+
+<script>
+	
+	$(document).ready(function(){
+		
+	});
+	
+	function onKeyUp(){
+		if(window.event.keyCode == "13"){
+			List();
+		}
+	}
+
+	function GoUrl(obj){
+		if(obj == "01"){
+			location.href = "report01.asp";
+		}
+		else if(obj == "02"){
+			location.href = "report02.asp";
+		}
+		else if(obj == "03"){
+			location.href = "report03.asp";
+		}
+	}
+
+	window.pagingForm = function(formname, movepage){
+	
+		var f = document.forms[formname];
+		f.target = '';
+		f.action = '/jongro/sul/report02.asp';
+		f.page.value = movepage;
+		f.submit();
+			
+	}
+
+	function List(){
+		
+		frmSearch.submit();
+	}
+
+</script>
+
+<style>
+	
+</style>
+
+</head>
+<body>
+
+<div class="wrap">
+	<div class="header">
+		<div class="top_btn">
+			<button class="btn" style="width:100px; height:30px;" value="01" onclick="javasript:GoUrl(this.value);">집계표</button>
+			<button class="btn-info" style="width:100px; height:30px;" value="02" onclick="javasript:GoUrl(this.value);">신청현황</button>
+			<button class="btn" style="width:100px; height:30px;" value="03" onclick="javasript:GoUrl(this.value);">참석자등록</button>
+			<span style="padding-left:20px;"><b style="color:blue;">※현재 진행중인 설명회 리스트만 확인 가능합니다.</b></span>
+		</div>
+	</div>
+	<form id="frmSearch" name="frmSearch" type="post" action="report02.asp">
+	<input type=hidden name="page" value="10"/>
+	<input type=hidden name="pagesize" value="30"/>
+	<div class="body">
+		<div class="sec01">
+			<select id="JSCODE" name="JSCODE" style="width:80%;" onChange="javascript:List();">
+				
+				<option value="7024028"  selected >[7024028_202412] [종로학원] 2025 수능 실채점 결과 토대, 정시 합격가능선 예측 및 지원 전략(20241208)</option>
+				
+				<option value="7024025" >[7024025_202411] [평촌종로학원] 2026 평촌종로 N수 2월 시작반 성공전략 (20250118)</option>
+				
+				<option value="7024024" >[7024024_202411] [종로학원] 2025 정시 합격점수예측 및 전략 (20241115)</option>
+				
+				<option value="7024018" >[7024018_202410] [평촌종로학원] 2026 수시/정시 고3 대입단과,올케어반,입시성공 전략 설명회(20250222)</option>
+				
+				<option value="7024019" >[7024019_202409] [종로학원] 2025 수시 최종선택 전략 설명회 (20240906)</option>
+				
+				<option value="7024016" >[7024016_202408] [종로학원] YTN-종로학원 공동기획 2025 전국 지역별 의대 입시 특집 설명회(20240807~0812)</option>
+				
+				<option value="7024015" >[7024015_202407] [종로학원] 2025 대입 수시, 정시 지원전략 특집 설명회(20240721)</option>
+				
+				<option value="7024013" >[7024013_202406] [종로학원] 2025 대입 반수 특집 설명회(20240622)</option>
+				
+				<option value="7024011" >[7024011_202406] [종로학원] 2025대입 큰 폭 변화, 입시예상 및 합격선 전망(20240606)</option>
+				
+				<option value="7024008" >[7024008_202402] [종로학원] 2025 대입 재수생, 고3 입시 성공전략 설명회(20240228)</option>
+				
+				<option value="7024007" >[7024007_202402] [종로학원] 정시 합격점수 긴급분석, 2025 대입재수 및 입시전략-2025대입 특별기획①(20240223)</option>
+				
+				<option value="7024006" >[7024006_202402] [종로학원] 정시 1차 합격자 학과별 미등록상황 긴급분석!! 추합,추가모집예상 및 2025 대입,재수전략(20240214)</option>
+				
+				<option value="7024005" >[7024005_202402] [종로학원] 의치한약,서연고,상위권대 합격선 변화 긴급분석, 2025 고3/재수생 입시전략(20240207)</option>
+				
+				<option value="7024004" >[7024004_202401] [종로학원] 고3/재수생 수능 1,2등급 변화 긴급분석 및 2025 대입재수 전망(20240127)</option>
+				
+				<option value="7024003" >[7024003_202401] [종로학원] 정시 추가합격 전망 및 2025 대입재수 변수(20240120)</option>
+				
+				<option value="7024001" >[7024001_202401] [종로학원] 2025 대입변수 매우 커진 상황, 대입/재수 전략(20240110)</option>
+				
+				<option value="7023031" >[7023031_202312] [종로학원] 2025 의대 메디컬 학과 최상위권 입시전망 및 의대 재수생 판도, 전략(20231228)</option>
+				
+				<option value="7023030" >[7023030_202312] [종로학원] 2024 정시 변수 상황 분석 및 대입재수 유불리 전망(20231223)</option>
+				
+				<option value="7023029" >[7023029_202312] [종로학원] 예비고1,2,3 겨울방학 2024 윈터스쿨 설명회(20231220)</option>
+				
+				<option value="7023027" >[7023027_202312] [일산종로학원] 성공을 위한 첫걸음 2025 재수선행반 성공전략 설명회(20231218)</option>
+				
+				<option value="7023024" >[7023024_202312] [종로학원] 2024 정시지원 변화 및 합격선 예측, 합격전략(20231210)</option>
+				
+				<option value="7023023" >[7023023_202312] [평촌종로학원] 2025 재수선행반 설명회</option>
+				
+				<option value="7023021" >[7023021_202311] [종로학원] 2025 대입재수 전망 및 선행반 설명회 1차(20231129)</option>
+				
+				<option value="7023020" >[7023020_202311] [종로학원] 예비고1,2,3 겨울방학 2024 윈터스쿨 설명회(20231122)</option>
+				
+				<option value="7023019" >[7023019_202311] [종로학원] 2024수능 가채점 결과토대 2024수능 결과 및  정시 합격점수 예측 (20231117)</option>
+				
+				<option value="7023018" >[7023018_202311] [종로학원] 예비고3(현, 고2) 대상 11월 16일 수능당일 실전수능체험(국,수,영) 학생모집(20231116)</option>
+				
+				<option value="7023017" >[7023017_202310] [종로학원] 예비 고123 대입 전망 및 겨울방학 학습전략(20231021)</option>
+				
+				<option value="7023016" >[7023016_202309] [종로학원] 9월모평 토대 정시 합격 예측, 수시 최종 선택 전략 설명회(20230908)</option>
+				
+				<option value="7023015" >[7023015_202309] [평촌종로학원] 2024 윈터스쿨 설명회</option>
+				
+				<option value="7023014" >[7023014_202306] [종로학원] 2024 수시, 정시 합격 예상 점수 공개 및 수험생 지원전략 설명회(20230723)</option>
+				
+				<option value="7023013" >[7023013_202306] [종로학원] 6월 시작 대입 반수전략 설명회(20230614)</option>
+				
+				<option value="7023012" >[7023012_202306] [종로학원] 6월 모평 가채점 토대 2024 주요대 및 의학계열 수시, 정시 합격선 전망(20230604)</option>
+				
+				<option value="7023011" >[7023011_202305] [종로학원] 대입반수 변화점 분석 및 반수성공 전략 설명회 (20230512)</option>
+				
+				<option value="7023009" >[7023009_202304] [종로학원] 통합수능 3년차 수험생 학력상태 변화점, 선택과목 점수차에 따른 대입전략(20230422)</option>
+				
+				<option value="7023008" >[7023008_202303] [종로학원] 3월 학력평가 분석 토대, 2024 통합수능 3년차 입시전망 및 전략(20230325)</option>
+				
+				<option value="7023007" >[7023007_202302] [종로학원] 2023 입시 대이변 발생, 2024 대입재수, 고3 성공전략(20230225)</option>
+				
+				<option value="7023006" >[7023006_202302] [종로학원] 2024 통합수능 3년차 본격 시작!! 2024 재수생,고3 서연고,주요대 입시전망 및 전략(20230216)</option>
+				
+				<option value="7023005" >[7023005_202302] [종로학원] 2024 대입재수 상,중,하 수준대별 재수성공 전략변화 설명회(20230211)</option>
+				
+				<option value="7023004" >[7023004_202302] [종로학원] 2023 SKY 정시 결과 긴급분석, 2024 재수생 수준대 전망 및 2월 재수정규반 설명회(20230204)</option>
+				
+				<option value="7023003" >[7023003_202301] [종로학원] 2024 논술, 수능 학습비중 조정 불가피, 대입재수 전략변화 설명회(20230119)</option>
+				
+				<option value="7023002" >[7023002_202301] [종로학원] 주요 10개대 정시 점수변화 예상 및 2024 대입 전망, 재수 판도 예측 설명회(20230113)</option>
+				
+				<option value="7023001" >[7023001_202301] [종로학원] 수능고득점 판도가 바뀌는 구도, 2024 대입 긴급전망 및 2월 재수정규반 설명회(20230106)</option>
+				
+				<option value="7022041" >[7022041_202212] [종로학원] 2023 정시 최종선택 결정 및 재수고려 정시지원/재수선행반전략(20221228)</option>
+				
+				<option value="7022039" >[7022039_202212] [성북종로학원] 예비고1,2,3 겨울방학 입시 전략 2023 윈터스쿨 설명회(20221228)</option>
+				
+				<option value="7022038" >[7022038_202212] [종로학원] 의치한수/약대 대입재수 특집전략 설명회-최상위권 특별기획①(20221224)</option>
+				
+				<option value="7022037" >[7022037_202212] [종로학원] 수능 실채점 긴급분석!! 예비 고1,2,3 겨울방학 윈터스쿨 수정 입시 전략(20221215)</option>
+				
+				<option value="7022036" >[7022036_202212] [종로학원] 2024 대입 재수 유불리 분석 및 재수 전략 설명회(20221217)</option>
+				
+				<option value="7022034" >[7022034_202212] [종로학원] 실채점 결과 토대 2023 정시지원 변화 및 합격선 예측, 합격전략(20221211)</option>
+				
+				<option value="7022028" >[7022028_202211] [종로학원] 2023수능 가채점 결과토대 2023대입정시 합격선 예측 및 대입변수 전망(20221118)</option>
+				
+				<option value="7021029" >[7021029_202112] [종로학원] 실채점 결과 토대 2022정시합격선 예측 및 특별 전략(20211212)</option>
+				
+				<option value="7021025" >[7021025_202111] [종로학원] 통합수능 가채점결과 토대 2022 정시지원점수 예측 및 전략 설명회(20111119)</option>
+				
+				<option value="7020006" >[7020006_202002] [종로학원] 평촌종로 가천대 약술논술(적성형) 설명회</option>
+				
+				<option value="7018032" >[7018032_201812] [종로학원] 2020학년도 대입재수 성공전략 설명회(181215~1229)</option>
+				
+				<option value="7017018" >[7017018_201712] [종로학원] 서초종로예체능전문관 예체능 대학입시설명회(20171219)</option>
+				
+			</select>
+		</div>
+		
+		<div style="border:solid 0px red; position:relative; width:100%; height:30px;">
+			<select id="INGUBN" name="INGUBN" style="width:250px;" onChange="javascript:List();">
+				<option value="">* 설명회 장소 *</option>
+				
+					<option value="001" >성균관대 600주년 기념관 새천년홀 (2726명)</option>
+				
+					<option value="002" >온라인 설명회 참석 (9962명)</option>
+				
+			</select>
+			<select id="STEPCD" name="STEPCD" style="width:150px;" onChange="javascript:List();">
+				<option value="">* 학년 *</option>
+				
+				<option value="31" >고1 (1005명)</option>
+				
+				<option value="32" >고2 (1154명)</option>
+				
+				<option value="33" >고3 (5516명)</option>
+				
+				<option value="41" >N수생 (5011명)</option>
+				
+				<option value="" > (2명)</option>
+				
+			</select>
+			<select id="keyfield" name="keyfield" style="width:100px; margin-left:320px;">
+				<option value="MEMBNM" >이름</option>
+				<option value="JSSEQU" >접수번호</option>
+			</select>
+			<input type="text" size="8" id="keyword" name="keyword" value="" style="width:200px; height:30px;">
+			<button class="btn" style="width:80px; height:30px; margin-top:-10px;" onclick="javascript:List();" onKeyUp="javascript:onKeyUp();">검색</button>
+			<!--button class="btn" style="width:80px; height:30px; margin-top:-10px;" value="02" onclick="javasript:GoUrl(this.value);">초기화</button-->
+		</div>
+		<div class="sec02">
+			<span style="float:left;"><b>총접수현황 : 12688건</b></span>
+			<span style="float:right;"><b>페이지:10/423</b></span>
+			<table cellspacing=0 cellpadding=0 style="width:100%;" class="tb01">
+				<tr height="30">
+					<th width="*"><nobr>접수번호</nobr></th>
+					<th width="*"><nobr>코드</nobr></th>
+					<th width="*"><nobr>이름</nobr></th>
+					<th width="*"><nobr>장소</nobr></th>
+					<th width="*"><nobr>학교코드</nobr></th>
+					<th width="*"><nobr>희망학교명</nobr></th>
+					<th width="*"><nobr>학년</nobr></th>
+					<th width="*"><nobr>POST</nobr></th>
+					<th width="*"><nobr>주소1</nobr></th>
+					<!--th width="*"><nobr>주소2</nobr></th-->
+					<th width="*"><nobr>휴대폰</nobr></th>
+					<th width="*"><nobr>수신</nobr></th>
+					<th width="*"><nobr>등록일</nobr></th>
+					<th width="*"><nobr>메일</nobr></th>
+				</tr>
+				
+				<tr height="25" class="bg00">
+					<td><nobr>013386</nobr></td>
+					<td><nobr>7024028</nobr></td>
+					<td><nobr>박준영</nobr></td>
+					<td><nobr>002</nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr>N수생</nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr>경기도 파주시</nobr></td>
+					<!--td><nobr></nobr></td-->
+					<td><nobr>010-7706-2723</nobr></td>
+					<td><nobr>Y</nobr></td>
+					<td><nobr>20241208</nobr></td>
+					<td><nobr>@</nobr></td>
+				</tr>
+				
+				<tr height="25" class="bg02">
+					<td><nobr>013385</nobr></td>
+					<td><nobr>7024028</nobr></td>
+					<td><nobr>신미정</nobr></td>
+					<td><nobr>002</nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr>N수생</nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr>대구광역시 달서구</nobr></td>
+					<!--td><nobr></nobr></td-->
+					<td><nobr>010-3829-1478</nobr></td>
+					<td><nobr>Y</nobr></td>
+					<td><nobr>20241208</nobr></td>
+					<td><nobr>@</nobr></td>
+				</tr>
+				
+				<tr height="25" class="bg00">
+					<td><nobr>013384</nobr></td>
+					<td><nobr>7024028</nobr></td>
+					<td><nobr>방현정</nobr></td>
+					<td><nobr>002</nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr>N수생</nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr>경기도 용인시 기흥구</nobr></td>
+					<!--td><nobr></nobr></td-->
+					<td><nobr>010-4760-8698</nobr></td>
+					<td><nobr>Y</nobr></td>
+					<td><nobr>20241208</nobr></td>
+					<td><nobr>@</nobr></td>
+				</tr>
+				
+				<tr height="25" class="bg02">
+					<td><nobr>013383</nobr></td>
+					<td><nobr>7024028</nobr></td>
+					<td><nobr>김민정</nobr></td>
+					<td><nobr>002</nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr>고3</nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr>서울특별시 마포구</nobr></td>
+					<!--td><nobr></nobr></td-->
+					<td><nobr>010-5218-1516</nobr></td>
+					<td><nobr>Y</nobr></td>
+					<td><nobr>20241208</nobr></td>
+					<td><nobr>@</nobr></td>
+				</tr>
+				
+				<tr height="25" class="bg00">
+					<td><nobr>013382</nobr></td>
+					<td><nobr>7024028</nobr></td>
+					<td><nobr>정성희</nobr></td>
+					<td><nobr>002</nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr>고1</nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr>세종특별자치시  </nobr></td>
+					<!--td><nobr></nobr></td-->
+					<td><nobr>010-5450-3390</nobr></td>
+					<td><nobr>Y</nobr></td>
+					<td><nobr>20241208</nobr></td>
+					<td><nobr>@</nobr></td>
+				</tr>
+				
+				<tr height="25" class="bg02">
+					<td><nobr>013381</nobr></td>
+					<td><nobr>7024028</nobr></td>
+					<td><nobr>우미라</nobr></td>
+					<td><nobr>002</nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr>고2</nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr>서울특별시 서초구</nobr></td>
+					<!--td><nobr></nobr></td-->
+					<td><nobr>010-2823-7210</nobr></td>
+					<td><nobr>Y</nobr></td>
+					<td><nobr>20241208</nobr></td>
+					<td><nobr>@</nobr></td>
+				</tr>
+				
+				<tr height="25" class="bg00">
+					<td><nobr>013380</nobr></td>
+					<td><nobr>7024028</nobr></td>
+					<td><nobr>김현주</nobr></td>
+					<td><nobr>002</nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr>고3</nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr>서울특별시 강남구</nobr></td>
+					<!--td><nobr></nobr></td-->
+					<td><nobr>010-5590-7684</nobr></td>
+					<td><nobr>Y</nobr></td>
+					<td><nobr>20241208</nobr></td>
+					<td><nobr>@</nobr></td>
+				</tr>
+				
+				<tr height="25" class="bg02">
+					<td><nobr>013379</nobr></td>
+					<td><nobr>7024028</nobr></td>
+					<td><nobr>노지해</nobr></td>
+					<td><nobr>002</nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr>고3</nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr>서울특별시 강남구</nobr></td>
+					<!--td><nobr></nobr></td-->
+					<td><nobr>010-6436-1189</nobr></td>
+					<td><nobr>Y</nobr></td>
+					<td><nobr>20241208</nobr></td>
+					<td><nobr>@</nobr></td>
+				</tr>
+				
+				<tr height="25" class="bg00">
+					<td><nobr>013378</nobr></td>
+					<td><nobr>7024028</nobr></td>
+					<td><nobr>이미현</nobr></td>
+					<td><nobr>002</nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr>고3</nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr>경기도 광명시</nobr></td>
+					<!--td><nobr></nobr></td-->
+					<td><nobr>010-4201-7605</nobr></td>
+					<td><nobr>Y</nobr></td>
+					<td><nobr>20241208</nobr></td>
+					<td><nobr>@</nobr></td>
+				</tr>
+				
+				<tr height="25" class="bg02">
+					<td><nobr>013377</nobr></td>
+					<td><nobr>7024028</nobr></td>
+					<td><nobr>이준혁</nobr></td>
+					<td><nobr>002</nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr>고2</nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr>충청북도 청주시 흥덕구</nobr></td>
+					<!--td><nobr></nobr></td-->
+					<td><nobr>010-3075-2270</nobr></td>
+					<td><nobr>Y</nobr></td>
+					<td><nobr>20241208</nobr></td>
+					<td><nobr>@</nobr></td>
+				</tr>
+				
+				<tr height="25" class="bg00">
+					<td><nobr>013376</nobr></td>
+					<td><nobr>7024028</nobr></td>
+					<td><nobr>진귀은</nobr></td>
+					<td><nobr>002</nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr>N수생</nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr>서울특별시 강남구</nobr></td>
+					<!--td><nobr></nobr></td-->
+					<td><nobr>010-6327-8213</nobr></td>
+					<td><nobr>Y</nobr></td>
+					<td><nobr>20241208</nobr></td>
+					<td><nobr>@</nobr></td>
+				</tr>
+				
+				<tr height="25" class="bg02">
+					<td><nobr>013375</nobr></td>
+					<td><nobr>7024028</nobr></td>
+					<td><nobr>최욱</nobr></td>
+					<td><nobr>002</nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr>고1</nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr>경기도 안양시 동안구</nobr></td>
+					<!--td><nobr></nobr></td-->
+					<td><nobr>010-6259-5562</nobr></td>
+					<td><nobr>Y</nobr></td>
+					<td><nobr>20241208</nobr></td>
+					<td><nobr>@</nobr></td>
+				</tr>
+				
+				<tr height="25" class="bg00">
+					<td><nobr>013374</nobr></td>
+					<td><nobr>7024028</nobr></td>
+					<td><nobr>김미라</nobr></td>
+					<td><nobr>002</nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr>N수생</nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr>서울특별시 중구</nobr></td>
+					<!--td><nobr></nobr></td-->
+					<td><nobr>010-8895-9248</nobr></td>
+					<td><nobr>Y</nobr></td>
+					<td><nobr>20241208</nobr></td>
+					<td><nobr>@</nobr></td>
+				</tr>
+				
+				<tr height="25" class="bg02">
+					<td><nobr>013373</nobr></td>
+					<td><nobr>7024028</nobr></td>
+					<td><nobr>오경미</nobr></td>
+					<td><nobr>002</nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr>N수생</nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr>서울특별시 송파구</nobr></td>
+					<!--td><nobr></nobr></td-->
+					<td><nobr>010-5694-4209</nobr></td>
+					<td><nobr>Y</nobr></td>
+					<td><nobr>20241208</nobr></td>
+					<td><nobr>@</nobr></td>
+				</tr>
+				
+				<tr height="25" class="bg00">
+					<td><nobr>013372</nobr></td>
+					<td><nobr>7024028</nobr></td>
+					<td><nobr>서지혜</nobr></td>
+					<td><nobr>002</nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr>고3</nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr>경기도 성남시 분당구</nobr></td>
+					<!--td><nobr></nobr></td-->
+					<td><nobr>010-3233-3587</nobr></td>
+					<td><nobr>Y</nobr></td>
+					<td><nobr>20241208</nobr></td>
+					<td><nobr>@</nobr></td>
+				</tr>
+				
+				<tr height="25" class="bg02">
+					<td><nobr>013371</nobr></td>
+					<td><nobr>7024028</nobr></td>
+					<td><nobr>문창모</nobr></td>
+					<td><nobr>002</nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr>고3</nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr>서울특별시 서초구</nobr></td>
+					<!--td><nobr></nobr></td-->
+					<td><nobr>010-2617-1785</nobr></td>
+					<td><nobr>Y</nobr></td>
+					<td><nobr>20241208</nobr></td>
+					<td><nobr>@</nobr></td>
+				</tr>
+				
+				<tr height="25" class="bg00">
+					<td><nobr>013370</nobr></td>
+					<td><nobr>7024028</nobr></td>
+					<td><nobr>원애순</nobr></td>
+					<td><nobr>001</nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr>고3</nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr>서울특별시 강남구</nobr></td>
+					<!--td><nobr></nobr></td-->
+					<td><nobr>010-8208-0892</nobr></td>
+					<td><nobr>Y</nobr></td>
+					<td><nobr>20241208</nobr></td>
+					<td><nobr>@</nobr></td>
+				</tr>
+				
+				<tr height="25" class="bg02">
+					<td><nobr>013369</nobr></td>
+					<td><nobr>7024028</nobr></td>
+					<td><nobr>이충환</nobr></td>
+					<td><nobr>002</nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr>N수생</nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr>경기도 남양주시</nobr></td>
+					<!--td><nobr></nobr></td-->
+					<td><nobr>010-4333-0567</nobr></td>
+					<td><nobr>Y</nobr></td>
+					<td><nobr>20241208</nobr></td>
+					<td><nobr>@</nobr></td>
+				</tr>
+				
+				<tr height="25" class="bg00">
+					<td><nobr>013368</nobr></td>
+					<td><nobr>7024028</nobr></td>
+					<td><nobr>정소진</nobr></td>
+					<td><nobr>002</nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr>고1</nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr>경기도 고양시 일산동구</nobr></td>
+					<!--td><nobr></nobr></td-->
+					<td><nobr>010-9137-2264</nobr></td>
+					<td><nobr>Y</nobr></td>
+					<td><nobr>20241208</nobr></td>
+					<td><nobr>@</nobr></td>
+				</tr>
+				
+				<tr height="25" class="bg02">
+					<td><nobr>013367</nobr></td>
+					<td><nobr>7024028</nobr></td>
+					<td><nobr>박은미</nobr></td>
+					<td><nobr>002</nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr>고3</nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr>경기도 성남시 수정구</nobr></td>
+					<!--td><nobr></nobr></td-->
+					<td><nobr>010-8989-4503</nobr></td>
+					<td><nobr>Y</nobr></td>
+					<td><nobr>20241208</nobr></td>
+					<td><nobr>@</nobr></td>
+				</tr>
+				
+				<tr height="25" class="bg00">
+					<td><nobr>013366</nobr></td>
+					<td><nobr>7024028</nobr></td>
+					<td><nobr>엄선영</nobr></td>
+					<td><nobr>002</nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr>고2</nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr>서울특별시 강남구</nobr></td>
+					<!--td><nobr></nobr></td-->
+					<td><nobr>010-3488-6443</nobr></td>
+					<td><nobr>Y</nobr></td>
+					<td><nobr>20241208</nobr></td>
+					<td><nobr>@</nobr></td>
+				</tr>
+				
+				<tr height="25" class="bg02">
+					<td><nobr>013365</nobr></td>
+					<td><nobr>7024028</nobr></td>
+					<td><nobr>이주연</nobr></td>
+					<td><nobr>002</nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr>고3</nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr>경기도 성남시 분당구</nobr></td>
+					<!--td><nobr></nobr></td-->
+					<td><nobr>010-3797-4407</nobr></td>
+					<td><nobr>Y</nobr></td>
+					<td><nobr>20241208</nobr></td>
+					<td><nobr>@</nobr></td>
+				</tr>
+				
+				<tr height="25" class="bg00">
+					<td><nobr>013364</nobr></td>
+					<td><nobr>7024028</nobr></td>
+					<td><nobr>백지원</nobr></td>
+					<td><nobr>002</nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr>N수생</nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr>서울특별시 서초구</nobr></td>
+					<!--td><nobr></nobr></td-->
+					<td><nobr>010-4237-7965</nobr></td>
+					<td><nobr>Y</nobr></td>
+					<td><nobr>20241208</nobr></td>
+					<td><nobr>@</nobr></td>
+				</tr>
+				
+				<tr height="25" class="bg02">
+					<td><nobr>013363</nobr></td>
+					<td><nobr>7024028</nobr></td>
+					<td><nobr>한경아</nobr></td>
+					<td><nobr>002</nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr>N수생</nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr>인천광역시 연수구</nobr></td>
+					<!--td><nobr></nobr></td-->
+					<td><nobr>010-5025-7265</nobr></td>
+					<td><nobr>Y</nobr></td>
+					<td><nobr>20241208</nobr></td>
+					<td><nobr>@</nobr></td>
+				</tr>
+				
+				<tr height="25" class="bg00">
+					<td><nobr>013362</nobr></td>
+					<td><nobr>7024028</nobr></td>
+					<td><nobr>심재청</nobr></td>
+					<td><nobr>002</nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr>N수생</nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr>전라북도 전주시 완산구</nobr></td>
+					<!--td><nobr></nobr></td-->
+					<td><nobr>010-8426-5577</nobr></td>
+					<td><nobr>Y</nobr></td>
+					<td><nobr>20241208</nobr></td>
+					<td><nobr>@</nobr></td>
+				</tr>
+				
+				<tr height="25" class="bg02">
+					<td><nobr>013361</nobr></td>
+					<td><nobr>7024028</nobr></td>
+					<td><nobr>이수현</nobr></td>
+					<td><nobr>002</nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr>고2</nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr>서울특별시 강남구</nobr></td>
+					<!--td><nobr></nobr></td-->
+					<td><nobr>010-6373-9060</nobr></td>
+					<td><nobr>Y</nobr></td>
+					<td><nobr>20241208</nobr></td>
+					<td><nobr>@</nobr></td>
+				</tr>
+				
+				<tr height="25" class="bg00">
+					<td><nobr>013360</nobr></td>
+					<td><nobr>7024028</nobr></td>
+					<td><nobr>김상윤</nobr></td>
+					<td><nobr>002</nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr>고3</nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr>서울특별시 강남구</nobr></td>
+					<!--td><nobr></nobr></td-->
+					<td><nobr>010-6809-3088</nobr></td>
+					<td><nobr>Y</nobr></td>
+					<td><nobr>20241208</nobr></td>
+					<td><nobr>@</nobr></td>
+				</tr>
+				
+				<tr height="25" class="bg02">
+					<td><nobr>013359</nobr></td>
+					<td><nobr>7024028</nobr></td>
+					<td><nobr>박선영</nobr></td>
+					<td><nobr>002</nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr>고1</nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr>경기도 성남시 분당구</nobr></td>
+					<!--td><nobr></nobr></td-->
+					<td><nobr>010-2656-7595</nobr></td>
+					<td><nobr>Y</nobr></td>
+					<td><nobr>20241208</nobr></td>
+					<td><nobr>@</nobr></td>
+				</tr>
+				
+				<tr height="25" class="bg00">
+					<td><nobr>013358</nobr></td>
+					<td><nobr>7024028</nobr></td>
+					<td><nobr>김성옥</nobr></td>
+					<td><nobr>002</nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr>고1</nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr>경기도 수원시 영통구</nobr></td>
+					<!--td><nobr></nobr></td-->
+					<td><nobr>010-8737-2049</nobr></td>
+					<td><nobr>Y</nobr></td>
+					<td><nobr>20241208</nobr></td>
+					<td><nobr>@</nobr></td>
+				</tr>
+				
+				<tr height="25" class="bg02">
+					<td><nobr>013357</nobr></td>
+					<td><nobr>7024028</nobr></td>
+					<td><nobr>이정아</nobr></td>
+					<td><nobr>002</nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr>고3</nobr></td>
+					<td><nobr></nobr></td>
+					<td><nobr>서울특별시 강남구</nobr></td>
+					<!--td><nobr></nobr></td-->
+					<td><nobr>010-3010-1913</nobr></td>
+					<td><nobr>Y</nobr></td>
+					<td><nobr>20241208</nobr></td>
+					<td><nobr>@</nobr></td>
+				</tr>
+				
+			</table>
+		</div>
+		
+		<div style="border:solid 0px red; position:relative; width:100%; height:30px; text-align:center;">
+			<table cellspacing=0 cellpadding=0 style="width:300px;" border=0 align="center">
+				<tr height="25">
+					<td width=20><img src='/jongro/images/media/btn_P.gif' border=0 align=absmiddle></td><td width=23 align=center><a href="javascript:pagingForm('frmSearch',1);" class='pg_a' >1</a></td><td width=23 align=center><a href="javascript:pagingForm('frmSearch',2);" class='pg_a' >2</a></td><td width=23 align=center><a href="javascript:pagingForm('frmSearch',3);" class='pg_a' >3</a></td><td width=23 align=center><a href="javascript:pagingForm('frmSearch',4);" class='pg_a' >4</a></td><td width=23 align=center><a href="javascript:pagingForm('frmSearch',5);" class='pg_a' >5</a></td><td width=23 align=center><a href="javascript:pagingForm('frmSearch',6);" class='pg_a' >6</a></td><td width=23 align=center><a href="javascript:pagingForm('frmSearch',7);" class='pg_a' >7</a></td><td width=23 align=center><a href="javascript:pagingForm('frmSearch',8);" class='pg_a' >8</a></td><td width=23 align=center><a href="javascript:pagingForm('frmSearch',9);" class='pg_a' >9</a></td><td width=23 align=center><a href="javascript:pagingForm('frmSearch',10);" class='pg_as' >10</a></td><td width=20><a href="javascript:pagingForm('frmSearch',11);" ><img src='/jongro/images/media/btn_N.gif' border=0 align=absmiddle></a> </td>
+				</tr>
+			</table>
+		</div>
+		
+	</div>
+	</form>
+</div>
+
+</body>
+</html>

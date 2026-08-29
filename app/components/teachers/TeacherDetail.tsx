@@ -4,6 +4,37 @@ import { useState } from "react";
 import Link from "next/link";
 import type { Teacher } from "@/lib/types";
 
+type Course = {
+  title: string;
+  startDate: string;
+  period: string;
+  time: string;
+  tags: string[];
+};
+
+/** 유튜브 ID 추출 (아니면 null) */
+function ytId(input: string): string | null {
+  const s = input.trim();
+  if (/^[\w-]{11}$/.test(s)) return s;
+  const m = s.match(/(?:v=|youtu\.be\/|embed\/|shorts\/)([\w-]{11})/);
+  return m ? m[1] : null;
+}
+
+/** "강좌명 | 개강일 | 수업기간 | 수업시간 | 태그(쉼표)" 형식을 파싱 */
+function parseCourses(raw?: string): Course[] {
+  return (raw ?? "")
+    .split("\n")
+    .map((l) => l.trim())
+    .filter(Boolean)
+    .map((line) => {
+      const parts = line.split("|").map((s) => s.trim());
+      const [title = "", startDate = "", period = "", time = "", tagStr = ""] = parts;
+      const tags = tagStr ? tagStr.split(",").map((s) => s.trim()).filter(Boolean) : [];
+      return { title, startDate, period, time, tags };
+    })
+    .filter((c) => c.title);
+}
+
 export default function TeacherDetail({
   teachers,
   current,
@@ -26,7 +57,9 @@ export default function TeacherDetail({
   const firstOf = (subj: string) => (subj === "전체" ? active[0] : active.find((t) => t.subject === subj));
 
   const careerLines = (current.career ?? "").split("\n").map((s) => s.trim()).filter(Boolean);
-  const introParas = (current.intro ?? "").split("\n").map((s) => s.trim()).filter(Boolean);
+  const courses = parseCourses(current.courses);
+  const hasBelow = Boolean(current.videoUrl) || careerLines.length > 0;
+  const vid = current.videoUrl ? ytId(current.videoUrl) : null;
 
   return (
     <div>
@@ -83,70 +116,90 @@ export default function TeacherDetail({
         </div>
       )}
 
-      {/* 선택된 강사 프로필 */}
-      <div className="mt-8 grid gap-8 lg:grid-cols-5">
-        <div className="lg:col-span-2">
-          <div className="relative aspect-[3/4] overflow-hidden rounded-2xl border border-line bg-brand-light/30">
+      {/* 프로필 블록 */}
+      <div className="mt-8 overflow-hidden rounded-2xl border border-line">
+        <div className="grid lg:grid-cols-2">
+          {/* 사진 (모바일 위 / 데스크톱 오른쪽) */}
+          <div className="relative order-1 min-h-[240px] bg-gradient-to-br from-brand-light/70 to-brand-light/20 lg:order-2 lg:min-h-[380px]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={current.photo}
               alt={`${current.name} 선생님`}
-              className="absolute inset-0 h-full w-full object-cover object-top"
+              className="absolute inset-0 h-full w-full object-contain object-bottom"
             />
           </div>
-        </div>
 
-        <div className="min-w-0 lg:col-span-3">
-          {current.slogan && (
-            <p className="text-lg font-extrabold leading-snug text-brand sm:text-xl">{current.slogan}</p>
-          )}
-          <div className="mt-3 flex flex-wrap items-center gap-1.5">
-            <span className="rounded bg-brand-light px-2 py-0.5 text-xs font-bold text-brand">{current.subject}</span>
-            {current.tags.map((tag) => (
-              <span key={tag} className="rounded border border-line bg-gray-50 px-1.5 py-0.5 text-[11px] font-semibold text-gray-500">
-                {tag}
-              </span>
-            ))}
-          </div>
-          <h2 className="mt-2 text-3xl font-extrabold text-ink">
-            {current.name} <span className="text-xl font-bold text-gray-400">선생님</span>
-          </h2>
-
-          {current.videoUrl && (
-            <a
-              href={current.videoUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="mt-4 inline-flex items-center gap-2 rounded-full border border-line px-4 py-2 text-sm font-semibold text-ink hover:border-brand hover:text-brand"
-            >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
-              선생님 소개 영상 보기
-            </a>
-          )}
-
-          {careerLines.length > 0 && (
-            <ul className="mt-6 space-y-1.5">
-              {careerLines.map((line, i) => (
-                <li key={i} className="flex gap-2 text-[15px] text-gray-700">
-                  <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-brand" />
-                  {line}
-                </li>
+          {/* 정보 */}
+          <div className="order-2 bg-white p-6 lg:order-1 lg:p-8">
+            <div className="flex flex-wrap gap-1.5">
+              {current.tags.map((tag) => (
+                <span key={tag} className="rounded border border-line bg-gray-50 px-2 py-0.5 text-[11px] font-semibold text-gray-500">
+                  {tag}
+                </span>
               ))}
-            </ul>
-          )}
+            </div>
+
+            <p className="mt-4 text-[15px] font-semibold text-brand">{current.subject}</p>
+            <h2 className="mt-0.5 text-3xl font-extrabold text-ink">
+              {current.name} <span className="text-xl font-bold text-gray-400">선생님</span>
+            </h2>
+
+            {current.slogan && (
+              <p className="mt-3 text-lg font-bold leading-snug text-brand sm:text-xl">{current.slogan}</p>
+            )}
+
+            {hasBelow && (
+              <>
+                <hr className="my-5 border-line" />
+                <div className="flex flex-col gap-5 sm:flex-row sm:items-start">
+                  {current.videoUrl && (
+                    <a
+                      href={current.videoUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="group relative block aspect-video w-full shrink-0 overflow-hidden rounded-xl border border-line bg-gray-100 sm:w-52"
+                    >
+                      {vid ? (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img src={`https://img.youtube.com/vi/${vid}/hqdefault.jpg`} alt="소개 영상" className="h-full w-full object-cover" />
+                      ) : (
+                        <span className="flex h-full w-full items-center justify-center text-xs text-muted">소개 영상</span>
+                      )}
+                      <span className="absolute inset-0 flex items-center justify-center">
+                        <span className="flex h-10 w-10 items-center justify-center rounded-full bg-black/55 text-white transition group-hover:bg-brand">
+                          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+                        </span>
+                      </span>
+                    </a>
+                  )}
+
+                  {careerLines.length > 0 && (
+                    <ul className="min-w-0 space-y-1.5">
+                      {careerLines.map((line, i) => (
+                        <li key={i} className="flex gap-2 text-[14px] text-gray-600">
+                          <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-brand" />
+                          <span className="min-w-0">{line}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              </>
+            )}
+          </div>
         </div>
       </div>
 
-      {/* 하위 탭: 강사 소개 / 개설 강좌 */}
-      <div className="mt-10 border-t border-line">
-        <div className="-mb-px flex gap-6">
+      {/* 하단 탭: 강사 소개 / 개설 강좌 */}
+      <div className="mt-10">
+        <div className="grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-line bg-line">
           {([["intro", "강사 소개"], ["courses", "개설 강좌"]] as const).map(([key, label]) => (
             <button
               key={key}
               onClick={() => setTab(key)}
               className={
-                "border-b-2 px-1 py-4 text-[15px] font-bold transition-colors " +
-                (tab === key ? "border-brand text-brand" : "border-transparent text-gray-400 hover:text-ink")
+                "py-4 text-[15px] font-bold transition-colors " +
+                (tab === key ? "bg-ink text-white" : "bg-gray-50 text-gray-500 hover:text-ink")
               }
             >
               {label}
@@ -154,22 +207,113 @@ export default function TeacherDetail({
           ))}
         </div>
 
-        <div className="pt-6">
+        <div className="mt-6">
           {tab === "intro" ? (
-            introParas.length > 0 ? (
-              <div className="space-y-3 text-[15px] leading-relaxed text-gray-700">
-                {introParas.map((p, i) => (
-                  <p key={i}>{p}</p>
-                ))}
-              </div>
+            current.introPoster ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={current.introPoster}
+                alt={`${current.name} 강사 소개`}
+                className="mx-auto w-full max-w-2xl rounded-2xl border border-line"
+              />
             ) : (
-              <p className="py-8 text-center text-sm text-muted">강사 소개가 준비 중입니다.</p>
+              <p className="rounded-2xl border border-line py-16 text-center text-sm text-muted">
+                강사 소개가 준비 중입니다.
+              </p>
             )
+          ) : courses.length > 0 ? (
+            <CoursesTable teacher={current} courses={courses} />
           ) : (
-            <p className="py-8 text-center text-sm text-muted">개설 강좌 정보가 준비 중입니다.</p>
+            <p className="rounded-2xl border border-line py-16 text-center text-sm text-muted">
+              개설 강좌 정보가 준비 중입니다.
+            </p>
           )}
         </div>
       </div>
+    </div>
+  );
+}
+
+function CoursesTable({ teacher, courses }: { teacher: Teacher; courses: Course[] }) {
+  const chips = (c: Course) => (c.tags.length ? c.tags : [teacher.subject]);
+  return (
+    <div>
+      <p className="mb-3 text-right text-sm text-muted">
+        총 <span className="font-bold text-ink">{courses.length}</span> 건
+      </p>
+
+      {/* 데스크톱 표 */}
+      <div className="hidden overflow-hidden rounded-2xl border border-line lg:block">
+        <table className="w-full text-sm">
+          <thead>
+            <tr className="border-b border-line bg-gray-50 text-gray-500">
+              <th className="px-4 py-3 text-center font-semibold">강사</th>
+              <th className="px-4 py-3 text-left font-semibold">강좌명</th>
+              <th className="px-4 py-3 text-center font-semibold">개강일</th>
+              <th className="px-4 py-3 text-center font-semibold">수업기간</th>
+              <th className="px-4 py-3 text-center font-semibold">수업시간</th>
+            </tr>
+          </thead>
+          <tbody>
+            {courses.map((c, i) => (
+              <tr key={i} className="border-b border-line last:border-0">
+                <td className="px-4 py-4">
+                  <div className="flex flex-col items-center gap-1.5">
+                    <span className="h-11 w-11 overflow-hidden rounded-lg border border-line bg-gray-50">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={teacher.photo} alt={teacher.name} className="h-full w-full object-cover object-top" />
+                    </span>
+                    <span className="text-[13px] text-gray-600">{teacher.name}</span>
+                  </div>
+                </td>
+                <td className="px-4 py-4">
+                  <div className="flex flex-wrap gap-1.5">
+                    {chips(c).map((t) => (
+                      <span key={t} className="rounded bg-brand-light px-1.5 py-0.5 text-[11px] font-semibold text-brand">{t}</span>
+                    ))}
+                  </div>
+                  <p className="mt-1.5 font-semibold text-ink">{c.title}</p>
+                </td>
+                <td className="px-4 py-4 text-center text-gray-600">{c.startDate || "-"}</td>
+                <td className="px-4 py-4 text-center text-gray-600">{c.period || "-"}</td>
+                <td className="px-4 py-4 text-center text-gray-600">{c.time || "-"}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      {/* 모바일 카드 */}
+      <ul className="space-y-3 lg:hidden">
+        {courses.map((c, i) => (
+          <li key={i} className="rounded-2xl border border-line p-4">
+            <div className="flex items-center gap-2">
+              <span className="h-9 w-9 shrink-0 overflow-hidden rounded-lg border border-line bg-gray-50">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={teacher.photo} alt={teacher.name} className="h-full w-full object-cover object-top" />
+              </span>
+              <span className="text-[13px] text-gray-600">{teacher.name}</span>
+              <div className="ml-auto flex flex-wrap justify-end gap-1">
+                {chips(c).map((t) => (
+                  <span key={t} className="rounded bg-brand-light px-1.5 py-0.5 text-[11px] font-semibold text-brand">{t}</span>
+                ))}
+              </div>
+            </div>
+            <p className="mt-2 font-semibold text-ink">{c.title}</p>
+            <dl className="mt-2 space-y-1 text-[13px] text-gray-500">
+              {c.startDate && (
+                <div className="flex gap-2"><dt className="w-14 shrink-0 text-gray-400">개강일</dt><dd>{c.startDate}</dd></div>
+              )}
+              {c.period && (
+                <div className="flex gap-2"><dt className="w-14 shrink-0 text-gray-400">수업기간</dt><dd>{c.period}</dd></div>
+              )}
+              {c.time && (
+                <div className="flex gap-2"><dt className="w-14 shrink-0 text-gray-400">수업시간</dt><dd>{c.time}</dd></div>
+              )}
+            </dl>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

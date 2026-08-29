@@ -53,7 +53,8 @@ export interface Teacher {
   slogan?: string;    // 한 줄 캐치프레이즈 (예: "국어의 신세계를 맛보다!!")
   career?: string;    // 이력 (줄바꿈으로 구분, 한 줄에 하나씩)
   videoUrl?: string;  // 선생님 소개 영상 링크 (유튜브 등, 선택)
-  intro?: string;     // 강사 소개 본문 (줄바꿈으로 문단 구분)
+  introPoster?: string; // 강사 소개 A4 포스터 이미지 (하단 '강사 소개' 탭)
+  courses?: string;   // 개설 강좌 — 한 줄에 하나: "강좌명 | 개강일 | 수업기간 | 수업시간 | 태그(쉼표)"
 }
 
 /** 공지사항 항목 */

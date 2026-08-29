@@ -30,10 +30,17 @@ export default function Page() {
         },
         { key: "videoUrl", label: "소개 영상 링크", type: "text", placeholder: "유튜브 주소 (선택)" },
         {
-          key: "intro",
-          label: "강사 소개",
+          key: "introPoster",
+          label: "강사 소개 포스터 (A4)",
+          type: "image",
+          help: "하단 '강사 소개' 탭에 표시됩니다. A4 비율(세로형) 이미지를 권장합니다. (선택)",
+        },
+        {
+          key: "courses",
+          label: "개설 강좌",
           type: "textarea",
-          placeholder: "강사 소개 본문. 줄바꿈으로 문단을 나눕니다. (선택)",
+          placeholder: "[단과] 9월-고3 국어 문학독서 | 8월30일 | 8월 30일(일) ~ 9월 20일(일) | 일14:00 ~ 18:00 | 국어,고3·N수",
+          help: "한 줄에 한 강좌씩. 항목은 | (막대) 로 구분: 강좌명 | 개강일 | 수업기간 | 수업시간 | 태그(쉼표). 하단 '개설 강좌' 탭 표에 표시됩니다. (선택)",
         },
         { key: "active", label: "노출 여부", type: "checkbox" },
       ]}
@@ -45,7 +52,8 @@ export default function Page() {
         slogan: "",
         career: "",
         videoUrl: "",
-        intro: "",
+        introPoster: "",
+        courses: "",
         active: true,
       }}
       summary={(item) => (
