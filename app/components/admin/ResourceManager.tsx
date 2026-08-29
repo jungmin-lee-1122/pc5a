@@ -90,17 +90,29 @@ export default function ResourceManager({
     await load();
   }
 
+  // 번호(위치)로 직접 이동 — 순서를 1..n 으로 정규화해 저장합니다. (빈 번호/중복 자동 정리)
+  async function reorderTo(item: Item, newPos: number) {
+    const arr = [...sorted];
+    const from = arr.findIndex((x) => x.id === item.id);
+    if (from < 0) return;
+    const to = Math.max(1, Math.min(arr.length, newPos)) - 1;
+    if (to === from) return;
+    const [moved] = arr.splice(from, 1);
+    arr.splice(to, 0, moved);
+    const updates = arr
+      .map((x, idx) => ({ id: x.id, order: idx + 1, changed: (x.order ?? 0) !== idx + 1 }))
+      .filter((u) => u.changed);
+    await Promise.all(
+      updates.map((u) =>
+        fetch(`${endpoint}/${u.id}`, { method: "PUT", headers: jsonHeaders, body: JSON.stringify({ order: u.order }) }),
+      ),
+    );
+    await load();
+  }
+
   async function move(item: Item, dir: number) {
     const i = sorted.findIndex((x) => x.id === item.id);
-    const j = i + dir;
-    if (j < 0 || j >= sorted.length) return;
-    const a = sorted[i];
-    const b = sorted[j];
-    await Promise.all([
-      fetch(`${endpoint}/${a.id}`, { method: "PUT", headers: jsonHeaders, body: JSON.stringify({ order: b.order ?? j }) }),
-      fetch(`${endpoint}/${b.id}`, { method: "PUT", headers: jsonHeaders, body: JSON.stringify({ order: a.order ?? i }) }),
-    ]);
-    await load();
+    await reorderTo(item, i + 1 + dir);
   }
 
   return (
@@ -163,6 +175,25 @@ export default function ResourceManager({
                 )}
                 <div className="min-w-0 flex-1 text-sm text-ink">{summary(item)}</div>
                 <div className="flex items-center gap-1">
+                  <input
+                    type="number"
+                    min={1}
+                    max={sorted.length}
+                    defaultValue={i + 1}
+                    key={`pos-${item.id}-${item.order ?? i}`}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") e.currentTarget.blur();
+                    }}
+                    onBlur={(e) => {
+                      const el = e.currentTarget;
+                      const v = parseInt(el.value, 10);
+                      if (!Number.isNaN(v) && v !== i + 1) reorderTo(item, v);
+                      else el.value = String(i + 1);
+                    }}
+                    aria-label="순서 번호"
+                    title="번호를 입력하고 Enter — 해당 위치로 이동합니다"
+                    className="mr-1 w-14 rounded-lg border border-line px-2 py-1 text-center text-sm text-ink outline-none focus:border-brand"
+                  />
                   <button className={btnGhost} onClick={() => move(item, -1)} disabled={i === 0} aria-label="위로">
                     ↑
                   </button>
