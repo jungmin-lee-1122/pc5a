@@ -12,8 +12,6 @@ const VILLAGE_BUS = ["03", "5-5", "7", "10-2", "11"];
 
 export default function LocationPage() {
   const tel = SITE.footer.tel;
-  const naverUrl = `https://map.naver.com/p/search/${encodeURIComponent(LOCATION.mapQuery)}`;
-  const googleUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(LOCATION.address)}`;
 
   return (
     <main className="flex-1 pb-16">
@@ -35,38 +33,6 @@ export default function LocationPage() {
             lat={LOCATION.lat}
             lng={LOCATION.lng}
           />
-        </div>
-
-        {/* 주소 + 액션 */}
-        <div className="rounded-2xl border border-line p-6 sm:flex sm:items-center sm:justify-between sm:gap-4">
-          <div>
-            <p className="text-lg font-extrabold text-ink">{LOCATION.name}</p>
-            <p className="mt-1 text-sm text-muted">{LOCATION.address}</p>
-          </div>
-          <div className="mt-4 flex flex-wrap gap-2 sm:mt-0 sm:shrink-0">
-            <a
-              href={googleUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-xl bg-brand px-5 py-2.5 text-sm font-bold text-white transition hover:bg-brand-dark"
-            >
-              구글 지도
-            </a>
-            <a
-              href={naverUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-xl border border-line px-5 py-2.5 text-sm font-bold text-ink transition hover:border-brand hover:text-brand"
-            >
-              네이버 지도
-            </a>
-            <a
-              href={`tel:${tel}`}
-              className="inline-flex items-center gap-1.5 rounded-xl border border-line px-5 py-2.5 text-sm font-bold text-ink transition hover:border-brand hover:text-brand"
-            >
-              전화 {tel}
-            </a>
-          </div>
         </div>
 
         {/* 교통편 */}
@@ -138,6 +104,20 @@ export default function LocationPage() {
               ))}
             </ol>
           </section>
+        </div>
+
+        {/* 주소 + 전화 (컴팩트) */}
+        <div className="rounded-2xl border border-line px-6 py-4 sm:flex sm:items-center sm:justify-between sm:gap-4">
+          <div>
+            <p className="text-base font-bold text-ink">{LOCATION.name}</p>
+            <p className="mt-0.5 text-[13px] text-muted">{LOCATION.address}</p>
+          </div>
+          <a
+            href={`tel:${tel}`}
+            className="mt-3 inline-flex items-center gap-1.5 rounded-xl border border-line px-5 py-2.5 text-sm font-bold text-ink transition hover:border-brand hover:text-brand sm:mt-0 sm:shrink-0"
+          >
+            전화 {tel}
+          </a>
         </div>
       </div>
     </main>
