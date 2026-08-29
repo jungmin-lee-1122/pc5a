@@ -94,10 +94,10 @@ export default function TeacherDetail({
       )}
 
       {/* 프로필 블록 */}
-      <div className="mt-8 overflow-hidden rounded-2xl border border-line">
+      <div className="mt-8 overflow-hidden rounded-2xl border border-line bg-gradient-to-br from-brand-light/70 to-brand-light/15">
         <div className="grid lg:grid-cols-2">
           {/* 사진 (모바일 위 / 데스크톱 오른쪽) */}
-          <div className="relative order-1 min-h-[240px] bg-gradient-to-br from-brand-light/70 to-brand-light/20 lg:order-2 lg:min-h-[380px]">
+          <div className="relative order-1 min-h-[240px] lg:order-2 lg:min-h-[380px]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={current.photo}
@@ -107,7 +107,7 @@ export default function TeacherDetail({
           </div>
 
           {/* 정보 */}
-          <div className="order-2 bg-white p-6 lg:order-1 lg:p-8">
+          <div className="order-2 p-6 lg:order-1 lg:p-8">
             <div className="flex flex-wrap gap-1.5">
               {current.tags.map((tag) => (
                 <span key={tag} className="rounded border border-line bg-gray-50 px-2 py-0.5 text-[11px] font-semibold text-gray-500">
@@ -116,10 +116,11 @@ export default function TeacherDetail({
               ))}
             </div>
 
-            <p className="mt-4 text-[15px] font-semibold text-brand">{current.subject}</p>
-            <h2 className="mt-0.5 text-3xl font-extrabold text-ink">
-              {current.name} <span className="text-xl font-bold text-gray-400">선생님</span>
-            </h2>
+            <p className="mt-4 text-2xl leading-tight text-ink sm:text-[26px]">
+              <span className="font-semibold text-brand">{current.subject}</span>{" "}
+              <span className="font-extrabold">{current.name}</span>{" "}
+              <span className="text-lg font-bold text-gray-400">선생님</span>
+            </p>
 
             {current.slogan && (
               <p className="mt-3 text-lg font-bold leading-snug text-brand sm:text-xl">{current.slogan}</p>
