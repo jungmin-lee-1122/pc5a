@@ -39,16 +39,13 @@ export const NAV_MENUS: NavMenu[] = [
     label: "모집안내",
     href: "/admission",
     groups: [
-      { heading: "2027 윈터스쿨", href: "/admission/winter", items: [] },
       {
-        heading: "2027 고등단과",
         items: [
-          { label: "고1 9월 단과", href: "/admission/h1" },
-          { label: "고2 9월 단과", href: "/admission/h2" },
-          { label: "고3 9월 단과", href: "/admission/h3" },
+          { label: "2027 윈터스쿨", href: "/admission/winter" },
+          { label: "고등 올케어반", href: "/admission/allcare" },
+          { label: "2027 고등단과", href: "/schedule" },
         ],
       },
-      { items: [{ label: "접수 및 확인", href: "/admission/apply" }] },
     ],
   },
   {

@@ -2,26 +2,32 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { getAllCourses } from "@/lib/content";
 import { SCHEDULE_TABS } from "@/lib/types";
+import { SITE } from "@/config/homepage";
 import CategoryTabs from "@/app/components/schedule/CategoryTabs";
+import CourseTable from "@/app/components/schedule/CourseTable";
 
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "단과시간표 | 5A 아카데미",
-  description: "5A 아카데미 단과 강좌 시간표",
+  description: "5A 아카데미 단과 강좌 시간표 — 모집대상·과목별 안내",
 };
 
 export default async function SchedulePage({
   searchParams,
 }: {
-  searchParams: Promise<{ category?: string }>;
+  searchParams: Promise<{ category?: string; subject?: string }>;
 }) {
-  const { category } = await searchParams;
+  const { category, subject } = await searchParams;
   const active =
     category && SCHEDULE_TABS.some((t) => t.label === category) ? category : SCHEDULE_TABS[0].label;
   const tab = SCHEDULE_TABS.find((t) => t.label === active)!;
 
-  const list = (await getAllCourses()).filter((c) => (c.target ?? []).some((t) => tab.targets.includes(t)));
+  const SUBJECTS = ["전체", ...SITE.subjects];
+  const activeSubject = subject && SITE.subjects.includes(subject) ? subject : "전체";
+
+  let list = (await getAllCourses()).filter((c) => (c.target ?? []).some((t) => tab.targets.includes(t)));
+  if (activeSubject !== "전체") list = list.filter((c) => c.subject === activeSubject);
 
   return (
     <main className="flex-1 pb-16">
@@ -36,50 +42,41 @@ export default async function SchedulePage({
         <div className="mx-auto max-w-6xl px-5 py-10 lg:px-8">
           <p className="text-sm font-bold text-brand">단과시간표</p>
           <h1 className="mt-1.5 text-2xl font-extrabold text-ink sm:text-3xl">단과시간표</h1>
-          <p className="mt-2 text-sm text-muted">모집대상별 단과 강좌를 확인하세요.</p>
+          <p className="mt-2 text-sm text-muted">모집대상과 과목으로 원하는 강좌를 찾아보세요.</p>
         </div>
       </div>
 
       <div className="mx-auto max-w-6xl px-5 py-8 lg:px-8">
+        {/* 모집대상 탭 */}
         <CategoryTabs active={active} />
 
+        {/* 과목 필터 */}
+        <div className="mt-5 flex flex-wrap items-center gap-2">
+          <span className="mr-1 text-sm font-semibold text-gray-400">과목</span>
+          {SUBJECTS.map((sub) => {
+            const on = sub === activeSubject;
+            const href =
+              sub === "전체"
+                ? `/schedule?category=${encodeURIComponent(active)}`
+                : `/schedule?category=${encodeURIComponent(active)}&subject=${encodeURIComponent(sub)}`;
+            return (
+              <Link
+                key={sub}
+                href={href}
+                className={
+                  on
+                    ? "rounded-full bg-brand px-3.5 py-1.5 text-sm font-bold text-white"
+                    : "rounded-full border border-line bg-white px-3.5 py-1.5 text-sm font-medium text-gray-600 hover:border-gray-300"
+                }
+              >
+                {sub}
+              </Link>
+            );
+          })}
+        </div>
+
         <div className="mt-7">
-          {list.length === 0 ? (
-            <div className="rounded-2xl border border-line py-20 text-center text-sm text-muted">
-              등록된 강좌가 없습니다.
-            </div>
-          ) : (
-            <ul className="space-y-4">
-              {list.map((c) => (
-                <li key={c.id}>
-                  <Link
-                    href={`/schedule/${c.id}`}
-                    className="group block rounded-2xl border border-line bg-white p-5 transition-colors hover:border-brand/40 sm:p-6"
-                  >
-                    <div className="flex flex-wrap gap-1.5">
-                      {(c.target ?? []).map((t) => (
-                        <span key={t} className="rounded bg-ink px-2 py-0.5 text-xs font-bold text-white">{t}</span>
-                      ))}
-                      {(c.tags ?? []).map((t) => (
-                        <span key={t} className="rounded bg-brand-light px-2 py-0.5 text-xs font-bold text-brand">
-                          {t}
-                        </span>
-                      ))}
-                    </div>
-                    <h3 className="mt-2 text-lg font-bold text-ink transition-colors group-hover:text-brand">
-                      {c.title}
-                    </h3>
-                    <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-1.5 text-[13px] text-gray-500">
-                      <span className="font-semibold text-gray-600">{c.teacherName} 선생님</span>
-                      {c.startDate && <span>개강 {c.startDate}</span>}
-                      {c.time && <span>{c.time}</span>}
-                      {c.price && <span className="font-semibold text-ink">{c.price}</span>}
-                    </div>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          )}
+          <CourseTable courses={list} />
         </div>
       </div>
     </main>
