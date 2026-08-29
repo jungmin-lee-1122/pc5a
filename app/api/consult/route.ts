@@ -11,9 +11,10 @@ const COLUMNS = [
   "createdAt",
   "name",
   "phone",
+  "gender",
+  "school",
   "grade",
   "field",
-  "time",
   "message",
 ] as const;
 
@@ -38,9 +39,10 @@ export async function POST(req: Request) {
     createdAt: new Date().toISOString(),
     name: str(body.name),
     phone: str(body.phone),
+    gender: str(body.gender),
+    school: str(body.school),
     grade: str(body.grade),
     field: str(body.field),
-    time: str(body.time),
     message: str(body.message),
   };
 

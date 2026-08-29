@@ -3,8 +3,7 @@
 import { useState } from "react";
 
 const GRADE = ["중3", "고1", "고2", "고3", "N수", "기타"];
-const FIELD = ["국어", "수학", "영어", "사회탐구", "과학탐구", "논술", "종합 상담"];
-const TIME = ["평일 오전", "평일 오후", "평일 저녁", "주말"];
+const FIELD = ["윈터스쿨", "고등종합(올케어)", "국어단과", "수학단과", "영어단과", "탐구[고3만 해당]"];
 const PHONE = "031-347-5151";
 
 const fieldCls =
@@ -58,7 +57,7 @@ function formatPhone(v: string) {
 }
 
 export default function ConsultForm() {
-  const [f, setF] = useState({ name: "", phone: "", grade: "", field: "", time: "", message: "" });
+  const [f, setF] = useState({ name: "", phone: "", gender: "", school: "", grade: "", field: "", message: "" });
   const [agree, setAgree] = useState(false);
   const [error, setError] = useState("");
   const [submitting, setSubmitting] = useState(false);
@@ -68,7 +67,7 @@ export default function ConsultForm() {
   async function submit(e: React.FormEvent) {
     e.preventDefault();
     setError("");
-    if (!f.name.trim()) return setError("이름을 입력해 주세요.");
+    if (!f.name.trim()) return setError("학생 이름을 입력해 주세요.");
     if (f.phone.replace(/\D/g, "").length < 10) return setError("연락처를 정확히 입력해 주세요.");
     if (!agree) return setError("개인정보 수집 및 이용에 동의해 주세요.");
 
@@ -110,16 +109,16 @@ export default function ConsultForm() {
     <div className="overflow-hidden rounded-2xl border border-line bg-white">
       <div className="border-b border-line bg-brand-light/40 px-6 py-5">
         <h3 className="text-base font-extrabold text-ink">상담 신청서</h3>
-        <p className="mt-1 text-[13px] text-muted">아래 정보를 남겨주시면 담당 선생님이 연락드립니다.</p>
+        <p className="mt-1 text-[13px] text-muted">아래 정보를 남겨주시면 순차적으로 연락을 드리겠습니다.</p>
       </div>
 
       <form onSubmit={submit} className="px-6 py-5">
         <div className="mb-4">
-          <Label required>이름</Label>
+          <Label required>학생이름</Label>
           <input
             value={f.name}
             onChange={(e) => set("name", e.target.value)}
-            placeholder="학생 또는 학부모님 성함"
+            placeholder="학생 이름을 입력해 주세요"
             className={fieldCls}
           />
         </div>
@@ -135,6 +134,36 @@ export default function ConsultForm() {
           />
         </div>
 
+        <div className="mb-4">
+          <Label>성별</Label>
+          <div className="grid grid-cols-2 gap-2">
+            {["남", "여"].map((g) => (
+              <button
+                key={g}
+                type="button"
+                onClick={() => set("gender", g)}
+                className={`rounded-xl border py-3 text-sm font-semibold transition-colors ${
+                  f.gender === g
+                    ? "border-brand bg-brand-light/60 text-brand"
+                    : "border-line bg-white text-gray-500 hover:border-gray-300"
+                }`}
+              >
+                {g}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="mb-4">
+          <Label>학교명</Label>
+          <input
+            value={f.school}
+            onChange={(e) => set("school", e.target.value)}
+            placeholder="예) 평촌고등학교"
+            className={fieldCls}
+          />
+        </div>
+
         <div className="mb-4 grid gap-4 sm:grid-cols-2">
           <div>
             <Label>학년</Label>
@@ -144,11 +173,6 @@ export default function ConsultForm() {
             <Label>상담 분야</Label>
             <Select value={f.field} onChange={(v) => set("field", v)} options={FIELD} />
           </div>
-        </div>
-
-        <div className="mb-4">
-          <Label>상담 희망 시간</Label>
-          <Select value={f.time} onChange={(v) => set("time", v)} options={TIME} placeholder="희망 시간대 (선택)" />
         </div>
 
         <div className="mb-5">
