@@ -32,7 +32,14 @@ export default async function NoticeDetailPage({
   return (
     <main className="flex-1 pb-16">
       {/* 상단 헤더 */}
-      <div className="border-b border-line bg-brand-light/50">
+      <div className="relative isolate overflow-hidden border-b border-line bg-brand-light/50">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/logo-white.png"
+          alt=""
+          aria-hidden="true"
+          className="pointer-events-none absolute right-0 top-1/2 -z-10 h-[170%] -translate-y-1/2 select-none opacity-[0.15] sm:right-6"
+        />
         <div className="mx-auto max-w-3xl px-5 py-9 lg:px-8">
           <Link href="/notices" className="inline-flex items-center gap-1 text-sm text-muted hover:text-brand">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
