@@ -15,10 +15,9 @@ export default function FloatingButtons({ phone, kakao }: { phone: string; kakao
   return (
     <div className="fixed bottom-6 right-4 z-40 flex flex-col items-center gap-2.5 sm:right-6">
       <a
-        href={kakao || "#"}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="flex h-12 w-12 flex-col items-center justify-center rounded-full bg-brand text-[10px] font-bold text-white shadow-lg transition hover:brightness-110"
+        href="/life/counsel"
+        className="flex h-12 w-12 flex-col items-center justify-center rounded-full bg-accent text-[10px] font-bold text-white shadow-lg transition hover:brightness-110"
+        aria-label="온라인 상담"
       >
         <ChatIcon />
         상담
