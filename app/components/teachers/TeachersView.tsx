@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Link from "next/link";
 import type { Teacher } from "@/lib/types";
 
 export default function TeachersView({
@@ -55,7 +56,7 @@ export default function TeachersView({
         <ul className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
           {list.map((t) => (
             <li key={t.id} className="min-w-0">
-              <TeacherCard teacher={t} />
+              <TeacherCard teacher={t} active={active} />
             </li>
           ))}
         </ul>
@@ -64,9 +65,12 @@ export default function TeachersView({
   );
 }
 
-function TeacherCard({ teacher }: { teacher: Teacher }) {
+function TeacherCard({ teacher, active }: { teacher: Teacher; active: string }) {
   return (
-    <div className="group relative aspect-[266/288] overflow-hidden rounded-2xl border border-line bg-white transition hover:border-brand/40">
+    <Link
+      href={`/teachers/${teacher.id}?subject=${encodeURIComponent(active)}`}
+      className="group relative block aspect-[266/288] overflow-hidden rounded-2xl border border-line bg-white transition hover:border-brand/40"
+    >
       <div className="relative z-10 p-5">
         <div className="flex flex-wrap gap-1.5">
           {teacher.tags.map((tag) => (
@@ -87,6 +91,6 @@ function TeacherCard({ teacher }: { teacher: Teacher }) {
         alt={`${teacher.name} 선생님`}
         className="pointer-events-none absolute bottom-0 right-0 h-[78%] w-auto max-w-[85%] object-contain object-bottom transition duration-300 group-hover:scale-105"
       />
-    </div>
+    </Link>
   );
 }

@@ -48,6 +48,12 @@ export interface Teacher {
   photo: string;
   order: number;
   active: boolean;
+
+  // ── 상세 페이지용 (모두 선택 항목) ──────────────────────────
+  slogan?: string;    // 한 줄 캐치프레이즈 (예: "국어의 신세계를 맛보다!!")
+  career?: string;    // 이력 (줄바꿈으로 구분, 한 줄에 하나씩)
+  videoUrl?: string;  // 선생님 소개 영상 링크 (유튜브 등, 선택)
+  intro?: string;     // 강사 소개 본문 (줄바꿈으로 문단 구분)
 }
 
 /** 공지사항 항목 */

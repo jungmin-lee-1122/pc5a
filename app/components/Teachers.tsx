@@ -101,7 +101,7 @@ export default function Teachers({
 function TeacherCard({ teacher }: { teacher: Teacher }) {
   return (
     <Link
-      href={`/teachers?subject=${encodeURIComponent(teacher.subject)}`}
+      href={`/teachers/${teacher.id}?subject=${encodeURIComponent(teacher.subject)}`}
       className="group relative h-[276px] w-[266px] shrink-0 overflow-hidden rounded-2xl border border-line bg-white transition"
     >
       {/* 텍스트 (위) */}
