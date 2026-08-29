@@ -309,7 +309,7 @@ function renderField(f: Field, draft: Draft, set: (k: string, v: unknown) => voi
 
 type CourseDraft = {
   id?: string;
-  target?: string;
+  target?: string[];
   title?: string;
   tags?: string[];
   startDate?: string;
@@ -324,20 +324,14 @@ function newCourseId() {
   return Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
 }
 
-function CourseRowsEditor({
-  value,
-  onChange,
-}: {
-  value: unknown;
-  onChange: (v: unknown) => void;
-}) {
+function CourseRowsEditor({ value, onChange }: { value: unknown; onChange: (v: unknown) => void }) {
   const rows: CourseDraft[] = Array.isArray(value) ? (value as CourseDraft[]) : [];
   const setRow = (i: number, patch: Partial<CourseDraft>) =>
     onChange(rows.map((r, idx) => (idx === i ? { ...r, ...patch } : r)));
   const add = () =>
     onChange([
       ...rows,
-      { id: newCourseId(), target: "", title: "", tags: [], startDate: "", period: "", time: "", price: "", material: "자체 제작교재", syllabus: "" },
+      { id: newCourseId(), target: [], title: "", tags: [], startDate: "", period: "", time: "", price: "", material: "자체 제작교재", syllabus: "" },
     ]);
   const remove = (i: number) => onChange(rows.filter((_, idx) => idx !== i));
 
@@ -348,60 +342,62 @@ function CourseRowsEditor({
           등록된 강좌가 없습니다. 아래 버튼으로 추가하세요.
         </p>
       )}
-      {rows.map((r, i) => (
-        <div key={r.id ?? i} className="rounded-xl border border-line bg-gray-50/50 p-3">
-          <div className="mb-2 flex items-center justify-between">
-            <span className="text-xs font-bold text-gray-500">강좌 {i + 1}</span>
-            <button type="button" onClick={() => remove(i)} className="text-xs font-medium text-red-500 hover:underline">
-              삭제
-            </button>
-          </div>
-
-          <input
-            value={r.title ?? ""}
-            onChange={(e) => setRow(i, { title: e.target.value })}
-            placeholder="강좌명 (예: [단과] 9월-고3 국어 독서문학 -김연호T)"
-            className={input}
-          />
-
-          <div className="mt-2 grid gap-2 sm:grid-cols-2">
-            <div>
-              <span className="mb-1 block text-[11px] font-semibold text-gray-500">모집대상 (단과시간표 탭)</span>
-              <select
-                value={r.target ?? ""}
-                onChange={(e) => setRow(i, { target: e.target.value })}
-                className={input}
-              >
-                <option value="">모집대상 선택</option>
-                {COURSE_TARGETS.map((t) => (
-                  <option key={t} value={t}>
-                    {t}
-                  </option>
-                ))}
-              </select>
+      {rows.map((r, i) => {
+        const targets = Array.isArray(r.target) ? r.target : [];
+        return (
+          <div key={r.id ?? i} className="rounded-xl border border-line bg-gray-50/50 p-3">
+            <div className="mb-2 flex items-center justify-between">
+              <span className="text-xs font-bold text-gray-500">강좌 {i + 1}</span>
+              <button type="button" onClick={() => remove(i)} className="text-xs font-medium text-red-500 hover:underline">
+                삭제
+              </button>
             </div>
-            <div>
-              <span className="mb-1 block text-[11px] font-semibold text-gray-500">태그 (쉼표로 구분)</span>
-              <input
-                value={Array.isArray(r.tags) ? r.tags.join(", ") : ""}
-                onChange={(e) => setRow(i, { tags: e.target.value.split(",").map((s) => s.trim()).filter(Boolean) })}
-                placeholder="국어, 고3·N수"
-                className={input}
-              />
-            </div>
-            <input value={r.startDate ?? ""} onChange={(e) => setRow(i, { startDate: e.target.value })} placeholder="개강일 (예: 8월 30일(일))" className={input} />
-            <input value={r.time ?? ""} onChange={(e) => setRow(i, { time: e.target.value })} placeholder="수업시간 (예: 일 14:00 ~ 18:00)" className={input} />
-            <input value={r.period ?? ""} onChange={(e) => setRow(i, { period: e.target.value })} placeholder="수업기간 (예: 8/30(일) ~ 9/20(일))" className={input} />
-            <input value={r.price ?? ""} onChange={(e) => setRow(i, { price: e.target.value })} placeholder="수강료 (예: 280,000원)" className={input} />
-            <input value={r.material ?? ""} onChange={(e) => setRow(i, { material: e.target.value })} placeholder="교재 (예: 자체 제작교재)" className={input} />
-          </div>
 
-          <div className="mt-2">
-            <span className="mb-1 block text-[11px] font-semibold text-gray-500">강의계획서 (A4 이미지)</span>
-            <ImageInput value={r.syllabus ?? ""} onChange={(v) => setRow(i, { syllabus: v })} />
+            <input
+              value={r.title ?? ""}
+              onChange={(e) => setRow(i, { title: e.target.value })}
+              placeholder="강좌명 (예: [단과] 9월-고3 수학(토,4회) 확률과통계 -남상보T)"
+              className={input}
+            />
+
+            <div className="mt-2">
+              <span className="mb-1 block text-[11px] font-semibold text-gray-500">모집대상 (복수 선택 · 단과시간표 탭)</span>
+              <div className="flex flex-wrap gap-1.5">
+                {COURSE_TARGETS.map((t) => {
+                  const on = targets.includes(t);
+                  return (
+                    <button
+                      key={t}
+                      type="button"
+                      onClick={() => setRow(i, { target: on ? targets.filter((x) => x !== t) : [...targets, t] })}
+                      className={
+                        "rounded-lg border px-2.5 py-1.5 text-xs font-semibold transition-colors " +
+                        (on ? "border-brand bg-brand-light/60 text-brand" : "border-line bg-white text-gray-500 hover:border-gray-300")
+                      }
+                    >
+                      {t}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className="mt-2 grid gap-2 sm:grid-cols-2">
+              <input value={Array.isArray(r.tags) ? r.tags.join(", ") : ""} onChange={(e) => setRow(i, { tags: e.target.value.split(",").map((s) => s.trim()).filter(Boolean) })} placeholder="태그 (예: 수학, 고3·N수)" className={input} />
+              <input value={r.startDate ?? ""} onChange={(e) => setRow(i, { startDate: e.target.value })} placeholder="개강일 (예: 8월 29일(토))" className={input} />
+              <input value={r.time ?? ""} onChange={(e) => setRow(i, { time: e.target.value })} placeholder="수업시간 (예: 토 09:00 ~ 12:00)" className={input} />
+              <input value={r.period ?? ""} onChange={(e) => setRow(i, { period: e.target.value })} placeholder="수업기간 (예: 8/29(토) ~ 9/19(토))" className={input} />
+              <input value={r.price ?? ""} onChange={(e) => setRow(i, { price: e.target.value })} placeholder="수강료 (예: 280,000원)" className={input} />
+              <input value={r.material ?? ""} onChange={(e) => setRow(i, { material: e.target.value })} placeholder="교재 (예: 자체 제작교재)" className={input} />
+            </div>
+
+            <div className="mt-2">
+              <span className="mb-1 block text-[11px] font-semibold text-gray-500">강의계획서 (A4 이미지)</span>
+              <ImageInput value={r.syllabus ?? ""} onChange={(v) => setRow(i, { syllabus: v })} />
+            </div>
           </div>
-        </div>
-      ))}
+        );
+      })}
       <button
         type="button"
         onClick={add}

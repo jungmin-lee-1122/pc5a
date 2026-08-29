@@ -42,7 +42,8 @@ export default async function CourseDetailPage({
   if (!course) notFound();
 
   const activeTab =
-    SCHEDULE_TABS.find((t) => t.targets.includes(course.target))?.label ?? SCHEDULE_TABS[0].label;
+    SCHEDULE_TABS.find((t) => (course.target ?? []).some((x) => t.targets.includes(x)))?.label ??
+    SCHEDULE_TABS[0].label;
 
   return (
     <main className="flex-1 pb-16">
@@ -71,7 +72,9 @@ export default async function CourseDetailPage({
 
           <div className="min-w-0">
             <div className="flex flex-wrap gap-1.5">
-              <span className="rounded bg-ink px-2 py-0.5 text-xs font-bold text-white">{course.target}</span>
+              {(course.target ?? []).map((t) => (
+                <span key={t} className="rounded bg-ink px-2 py-0.5 text-xs font-bold text-white">{t}</span>
+              ))}
               {(course.tags ?? []).map((t) => (
                 <span key={t} className="rounded bg-brand-light px-2 py-0.5 text-xs font-bold text-brand">
                   {t}
@@ -93,7 +96,7 @@ export default async function CourseDetailPage({
                   </Link>
                 </dd>
               </div>
-              <Row label="모집대상" value={course.target} />
+              <Row label="모집대상" value={(course.target ?? []).join(", ")} />
               <Row label="개강일" value={course.startDate} />
               <Row label="수업기간" value={course.period} />
               <Row label="수업시간" value={course.time} />

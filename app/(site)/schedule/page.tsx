@@ -21,7 +21,7 @@ export default async function SchedulePage({
     category && SCHEDULE_TABS.some((t) => t.label === category) ? category : SCHEDULE_TABS[0].label;
   const tab = SCHEDULE_TABS.find((t) => t.label === active)!;
 
-  const list = (await getAllCourses()).filter((c) => tab.targets.includes(c.target));
+  const list = (await getAllCourses()).filter((c) => (c.target ?? []).some((t) => tab.targets.includes(t)));
 
   return (
     <main className="flex-1 pb-16">
@@ -57,7 +57,9 @@ export default async function SchedulePage({
                     className="group block rounded-2xl border border-line bg-white p-5 transition-colors hover:border-brand/40 sm:p-6"
                   >
                     <div className="flex flex-wrap gap-1.5">
-                      <span className="rounded bg-ink px-2 py-0.5 text-xs font-bold text-white">{c.target}</span>
+                      {(c.target ?? []).map((t) => (
+                        <span key={t} className="rounded bg-ink px-2 py-0.5 text-xs font-bold text-white">{t}</span>
+                      ))}
                       {(c.tags ?? []).map((t) => (
                         <span key={t} className="rounded bg-brand-light px-2 py-0.5 text-xs font-bold text-brand">
                           {t}

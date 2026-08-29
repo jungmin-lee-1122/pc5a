@@ -153,7 +153,7 @@ export const SCHEDULE_TABS: { label: string; targets: string[] }[] = [
 /** 개설 강좌 (선생님별로 입력 — 단과시간표에 모집대상 기준으로 노출) */
 export interface TeacherCourse {
   id: string;
-  target: string;      // 모집대상 (COURSE_TARGETS 중 하나) — 단과시간표 탭 매칭 기준
+  target: string[];    // 모집대상(복수 선택, COURSE_TARGETS) — 단과시간표 탭 매칭 기준
   title: string;       // 강좌명
   tags?: string[];     // 과목·대상 태그
   startDate?: string;  // 개강일
