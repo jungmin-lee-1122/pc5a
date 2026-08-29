@@ -25,9 +25,8 @@ export default function Footer({ site }: { site: SiteSettings }) {
           <Link href="/about/location" className="hover:text-ink">찾아오시는 길</Link>
         </nav>
         <div className="flex items-center gap-2.5">
-          <Social href={social.naver} label="네이버 블로그">N</Social>
+          <Social href={social.naver} label="네이버 블로그"><NaverBlogIcon /></Social>
           <Social href={social.instagram} label="인스타그램"><InstagramIcon /></Social>
-          <Social href={social.facebook} label="페이스북"><FacebookIcon /></Social>
         </div>
       </div>
 
@@ -35,6 +34,7 @@ export default function Footer({ site }: { site: SiteSettings }) {
       <div className="border-t border-line bg-gray-50">
         <div className="mx-auto flex max-w-6xl flex-col gap-5 px-5 py-8 sm:flex-row sm:items-center lg:px-8">
           <div className="flex shrink-0 items-center">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/logo.png" alt={footer.brand} className="h-9 w-auto" />
           </div>
           <div className="text-[13px] leading-6 text-gray-500">
@@ -61,27 +61,51 @@ function Social({ href, label, children }: { href: string; label: string; childr
       aria-label={label}
       target="_blank"
       rel="noopener noreferrer"
-      className="flex h-8 w-8 items-center justify-center rounded-full text-gray-400 transition-colors hover:bg-brand-light hover:text-brand"
+      className="inline-flex transition-opacity hover:opacity-80"
     >
       {children}
     </a>
   );
 }
 
-function InstagramIcon() {
+/** 네이버 블로그 — 그린 배지 + 흰 blog 워드마크 */
+function NaverBlogIcon() {
   return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
-      <rect x="3" y="3" width="18" height="18" rx="5" />
-      <circle cx="12" cy="12" r="4" />
-      <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+    <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true">
+      <rect width="30" height="30" rx="8" fill="#03C75A" />
+      <text
+        x="15"
+        y="19.5"
+        textAnchor="middle"
+        fontFamily="'Helvetica Neue', Arial, sans-serif"
+        fontSize="9.5"
+        fontWeight="800"
+        fill="#ffffff"
+      >
+        blog
+      </text>
     </svg>
   );
 }
 
-function FacebookIcon() {
+/** 인스타그램 — 정품 그라데이션 배지 */
+function InstagramIcon() {
   return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M14 9h3V5h-3c-2.2 0-4 1.8-4 4v2H7v4h3v6h4v-6h3l1-4h-4V9c0-.6.4-1 1-1z" />
+    <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true">
+      <defs>
+        <linearGradient id="igGrad" x1="0" y1="1" x2="1" y2="0">
+          <stop offset="0" stopColor="#FEDA75" />
+          <stop offset="0.35" stopColor="#FA7E1E" />
+          <stop offset="0.6" stopColor="#D62976" />
+          <stop offset="1" stopColor="#4F5BD5" />
+        </linearGradient>
+      </defs>
+      <rect width="30" height="30" rx="8" fill="url(#igGrad)" />
+      <g fill="none" stroke="#ffffff" strokeWidth="2">
+        <rect x="8" y="8" width="14" height="14" rx="4.5" />
+        <circle cx="15" cy="15" r="3.6" />
+      </g>
+      <circle cx="21.3" cy="8.7" r="1.2" fill="#ffffff" />
     </svg>
   );
 }
