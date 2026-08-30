@@ -82,7 +82,7 @@ export default function WinterPage() {
           aria-hidden="true"
           className="pointer-events-none absolute right-0 top-1/2 -z-10 h-[190%] -translate-y-1/2 select-none opacity-[0.7] sm:right-6"
         />
-        <div className="mx-auto max-w-6xl px-5 py-10 lg:px-8">
+        <div className="px-5 py-10 sm:px-8 lg:px-10">
           <p className="text-sm font-bold text-brand">모집안내</p>
           <h1 className="mt-1.5 text-2xl font-extrabold text-ink sm:text-3xl">2027 윈터스쿨</h1>
           <p className="mt-2 text-sm text-muted">2028 대입 개편, 준비는 이번 겨울부터.</p>
@@ -91,7 +91,7 @@ export default function WinterPage() {
 
       {/* 섹션 이동 탭 */}
       <div className="sticky top-20 z-30 border-b border-line bg-white/95 backdrop-blur">
-        <div className="mx-auto max-w-6xl px-5 lg:px-8">
+        <div className="px-5 sm:px-8 lg:px-10">
           <div className="no-scrollbar flex items-center gap-1 overflow-x-auto sm:gap-2">
             {TABS.map((t) => (
               <button
@@ -106,8 +106,8 @@ export default function WinterPage() {
         </div>
       </div>
 
-      {/* 윈터스쿨 콘텐츠 (Shadow DOM 격리) — 헤더/탭과 동일한 가운데 컬럼 */}
-      <div ref={hostRef} className="mx-auto w-full max-w-6xl" />
+      {/* 윈터스쿨 콘텐츠 (Shadow DOM 격리) — 전체 폭 꽉 채움 */}
+      <div ref={hostRef} className="w-full" />
     </main>
   );
 }
