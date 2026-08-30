@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { WINTER_CSS, WINTER_HTML, WINTER_JS } from "./winterData";
+import AdmissionTabs from "@/app/components/admission/AdmissionTabs";
 
 // 페이지 내 섹션으로 스크롤 이동하는 탭
 const TABS: { label: string; target: string }[] = [
@@ -88,6 +89,9 @@ export default function WinterPage() {
           <p className="mt-2 text-sm text-muted">2028 대입 개편, 준비는 이번 겨울부터.</p>
         </div>
       </div>
+
+      {/* 모집안내 대탭 */}
+      <AdmissionTabs />
 
       {/* 섹션 이동 탭 */}
       <div className="sticky top-20 z-30 border-b border-line bg-white/95 backdrop-blur">
