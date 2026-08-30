@@ -60,7 +60,7 @@ export default function WinterPage() {
   };
 
   return (
-    <main className="flex-1 pb-16">
+    <main className="flex-1">
       {/* 폰트 (원본과 동일) */}
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
@@ -106,8 +106,8 @@ export default function WinterPage() {
         </div>
       </div>
 
-      {/* 윈터스쿨 콘텐츠 (Shadow DOM 격리) */}
-      <div ref={hostRef} />
+      {/* 윈터스쿨 콘텐츠 (Shadow DOM 격리) — 헤더/탭과 동일한 가운데 컬럼 */}
+      <div ref={hostRef} className="mx-auto w-full max-w-6xl" />
     </main>
   );
 }

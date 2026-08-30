@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import type { Teacher } from "@/lib/types";
 
@@ -12,16 +12,74 @@ export default function Teachers({
   subjects: string[];
 }) {
   const [active, setActive] = useState(subjects[0] ?? "");
+  const [canScroll, setCanScroll] = useState(false);
   const scroller = useRef<HTMLDivElement>(null);
+  const pausedRef = useRef(false);
+  const resumeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const filtered = useMemo(
     () => teachers.filter((t) => t.active && t.subject === active).sort((a, b) => a.order - b.order),
     [teachers, active],
   );
 
-  const scrollBy = (dir: number) => {
-    scroller.current?.scrollBy({ left: dir * 300, behavior: "smooth" });
-  };
+  // 카드 한 장 + 간격 만큼 이동 (첫 카드 실측, 폴백 282px)
+  const step = useCallback(() => {
+    const el = scroller.current;
+    const first = el?.firstElementChild as HTMLElement | null;
+    return first ? first.offsetWidth + 16 : 282;
+  }, []);
+
+  const scrollByDir = useCallback(
+    (dir: number) => {
+      scroller.current?.scrollBy({ left: dir * step(), behavior: "smooth" });
+    },
+    [step],
+  );
+
+  // 실제로 넘칠 때만 버튼/자동재생 활성화 (모바일·데스크탑 공통)
+  useEffect(() => {
+    const el = scroller.current;
+    if (!el) return;
+    const check = () => setCanScroll(el.scrollWidth > el.clientWidth + 4);
+    check();
+    const ro = new ResizeObserver(check);
+    ro.observe(el);
+    window.addEventListener("resize", check);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("resize", check);
+    };
+  }, [filtered]);
+
+  // 과목 탭 바뀌면 맨 앞으로
+  useEffect(() => {
+    scroller.current?.scrollTo({ left: 0 });
+  }, [active]);
+
+  // 자동 순환
+  useEffect(() => {
+    const el = scroller.current;
+    if (!el || !canScroll) return;
+    if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) return;
+    const id = setInterval(() => {
+      if (pausedRef.current) return;
+      const atEnd = el.scrollLeft + el.clientWidth >= el.scrollWidth - 8;
+      if (atEnd) el.scrollTo({ left: 0, behavior: "smooth" });
+      else el.scrollBy({ left: step(), behavior: "smooth" });
+    }, 3500);
+    return () => clearInterval(id);
+  }, [canScroll, filtered, active, step]);
+
+  const pause = useCallback(() => {
+    pausedRef.current = true;
+    if (resumeTimer.current) clearTimeout(resumeTimer.current);
+  }, []);
+  const scheduleResume = useCallback(() => {
+    if (resumeTimer.current) clearTimeout(resumeTimer.current);
+    resumeTimer.current = setTimeout(() => {
+      pausedRef.current = false;
+    }, 4000);
+  }, []);
 
   return (
     <section className="mx-auto max-w-6xl px-5 pt-14 lg:px-8">
@@ -63,27 +121,34 @@ export default function Teachers({
           </div>
         ) : (
           <>
-            <div ref={scroller} className="no-scrollbar flex gap-4 overflow-x-auto scroll-smooth pb-2">
+            <div
+              ref={scroller}
+              onMouseEnter={pause}
+              onMouseLeave={scheduleResume}
+              onPointerDown={pause}
+              onTouchEnd={scheduleResume}
+              className="no-scrollbar flex gap-4 overflow-x-auto scroll-smooth pb-2"
+            >
               {filtered.map((teacher) => (
                 <TeacherCard key={teacher.id} teacher={teacher} />
               ))}
             </div>
 
-            {filtered.length > 4 && (
+            {canScroll && (
               <>
                 <button
-                  onClick={() => scrollBy(1)}
+                  onClick={() => scrollByDir(1)}
                   aria-label="다음 강사"
-                  className="absolute -right-3 top-1/2 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-line bg-white text-gray-500 transition hover:text-brand lg:flex"
+                  className="absolute -right-2 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-line bg-white/95 text-gray-600 shadow-md backdrop-blur transition hover:text-brand lg:-right-3"
                 >
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M9 6l6 6-6 6" />
                   </svg>
                 </button>
                 <button
-                  onClick={() => scrollBy(-1)}
+                  onClick={() => scrollByDir(-1)}
                   aria-label="이전 강사"
-                  className="absolute -left-3 top-1/2 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-line bg-white text-gray-500 transition hover:text-brand lg:flex"
+                  className="absolute -left-2 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-line bg-white/95 text-gray-600 shadow-md backdrop-blur transition hover:text-brand lg:-left-3"
                 >
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M15 6l-6 6 6 6" />

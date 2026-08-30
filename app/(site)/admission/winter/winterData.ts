@@ -984,7 +984,7 @@ strong{font-weight:800}
 }
 
 /* 페이지를 헤더/탭과 동일한 폭의 가운데 컬럼으로 고정 → 확대/축소 시 함께 스케일 */
-:host{display:block;max-width:1152px;margin-left:auto;margin-right:auto;container-type:inline-size}
+:host{display:block;width:100%;container-type:inline-size}
 `;
 
 export const WINTER_HTML = `<!-- ================= HERO (배너 이미지) ================= -->
