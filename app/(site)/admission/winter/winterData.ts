@@ -997,17 +997,32 @@ export const WINTER_HTML = `<!-- ================= HERO (배너 이미지) =====
            alt="속보 - 2028 대입 개편, 입시 판 전면 재편. 내신 5등급제·통합형 수능 도입 예고, 학생·학부모 조기 대비 필요">
     </picture>
     <picture class="news-5a-foot">
-      <source media="(max-width:768px)" srcset="/winter/news-5a-foot-mo.webp">
-      <img src="/winter/news-foot.webp?v=2" alt="" aria-hidden="true">
+      <source media="(max-width:768px)" srcset="/winter/change-mo.webp">
+      <img src="/winter/change.webp" alt="" aria-hidden="true">
     </picture>
   </section>
 
   <!-- ================= 무엇이 달라지나요 ================= -->
   <section class="change">
-    <picture>
-      <source media="(max-width:768px)" srcset="/winter/change-mo.webp">
-      <img src="/winter/change.webp" alt="2028 대입, 무엇이 달라지나요? — 내신 5등급제 전면 적용 · 통합형 수능 체제 · 고교학점제 및 대학별 반영과목" style="display:block;width:100%;height:auto">
-    </picture>
+    <div class="inner">
+      <div class="ch-cards">
+        <article class="ch-card">
+          <div class="ch-badge">01</div>
+          <h3>내신 5등급제 전면 적용</h3>
+          <p>기존 9등급제 대비 1등급 범위 확대<br>상위 10%가 1등급!</p>
+        </article>
+        <article class="ch-card">
+          <div class="ch-badge">02</div>
+          <h3>통합형 수능 체제</h3>
+          <p>국어·수학 선택과목 폐지<br>사회·과학은 통합사회, 통합과학 모두 응시!</p>
+        </article>
+        <article class="ch-card">
+          <div class="ch-badge">03</div>
+          <h3>고교학점제 &amp; 대학별 반영과목</h3>
+          <p>과목 선택이 곧 입시 전략!<br>미리 준비하는 학생만이 유리합니다.</p>
+        </article>
+      </div>
+    </div>
   </section>
 
   <!-- ================= 오해 말풍선 ================= -->
