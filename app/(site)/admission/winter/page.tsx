@@ -4,11 +4,11 @@ import { useEffect, useRef } from "react";
 import { WINTER_CSS, WINTER_HTML, WINTER_JS } from "./winterData";
 
 // 페이지 내 섹션으로 스크롤 이동하는 탭
-const TABS: { label: string; target: string; cta?: boolean }[] = [
+const TABS: { label: string; target: string }[] = [
   { label: "2027 윈터스쿨", target: "top" },
   { label: "모집안내", target: "#detail" },
-  { label: "수업안내", target: ".section-white" },
-  { label: "접수하기", target: ".cta", cta: true },
+  // { label: "수업안내", target: ".section-white" }, // 임시 숨김 (추후 다른 콘텐츠 예정)
+  { label: "접수안내", target: ".cta" },
 ];
 
 export default function WinterPage() {
@@ -93,20 +93,11 @@ export default function WinterPage() {
       <div className="sticky top-20 z-30 border-b border-line bg-white/95 backdrop-blur">
         <div className="mx-auto max-w-6xl px-5 lg:px-8">
           <div className="no-scrollbar flex items-center gap-1 overflow-x-auto sm:gap-2">
-            {TABS.filter((t) => !t.cta).map((t) => (
+            {TABS.map((t) => (
               <button
                 key={t.label}
                 onClick={() => goTo(t.target)}
                 className="shrink-0 whitespace-nowrap px-3 py-4 text-sm font-semibold text-gray-500 transition-colors hover:text-brand sm:px-4"
-              >
-                {t.label}
-              </button>
-            ))}
-            {TABS.filter((t) => t.cta).map((t) => (
-              <button
-                key={t.label}
-                onClick={() => goTo(t.target)}
-                className="my-2 ml-auto shrink-0 whitespace-nowrap rounded-full bg-brand px-5 py-2 text-sm font-bold text-white transition-colors hover:bg-brand-dark"
               >
                 {t.label}
               </button>
