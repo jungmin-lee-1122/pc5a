@@ -1,22 +1,23 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import type { Teacher } from "@/lib/types";
 
 export default function TeachersView({
   teachers,
   subjects,
-  initial,
 }: {
   teachers: Teacher[];
   subjects: string[];
-  initial?: string;
 }) {
   const TABS = useMemo(() => ["전체", ...subjects], [subjects]);
-  const [active, setActive] = useState<string>(
-    initial && TABS.includes(initial) ? initial : "전체",
-  );
+
+  // 활성 과목은 URL(?subject=)에서 읽는다 → 네비 드롭다운/버튼/주소가 항상 일치
+  const sp = useSearchParams();
+  const raw = sp.get("subject");
+  const active = raw && TABS.includes(raw) ? raw : "전체";
 
   const list = useMemo(() => {
     const base = teachers
@@ -27,14 +28,18 @@ export default function TeachersView({
 
   return (
     <div>
-      {/* 과목 탭 */}
+      {/* 과목 탭 (URL을 바꾸는 링크) */}
       <div className="mb-7 flex flex-wrap gap-2">
         {TABS.map((tab) => {
           const on = active === tab;
+          const href =
+            tab === "전체" ? "/teachers" : `/teachers?subject=${encodeURIComponent(tab)}`;
           return (
-            <button
+            <Link
               key={tab}
-              onClick={() => setActive(tab)}
+              href={href}
+              scroll={false}
+              aria-current={on ? "page" : undefined}
               className={
                 on
                   ? "rounded-full bg-ink px-4 py-2 text-sm font-bold text-white"
@@ -42,7 +47,7 @@ export default function TeachersView({
               }
             >
               {tab}
-            </button>
+            </Link>
           );
         })}
       </div>

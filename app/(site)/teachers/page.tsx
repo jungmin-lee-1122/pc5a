@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
 import { getTeachers } from "@/lib/content";
 import { SITE } from "@/config/homepage";
@@ -10,12 +11,8 @@ export const metadata: Metadata = {
   description: "5A 아카데미 강사진 소개 — 과목별 선생님 라인업",
 };
 
-export default async function TeachersPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ subject?: string }>;
-}) {
-  const [{ subject }, teachers] = await Promise.all([searchParams, getTeachers()]);
+export default async function TeachersPage() {
+  const teachers = await getTeachers();
 
   return (
     <main className="flex-1 pb-16">
@@ -38,7 +35,9 @@ export default async function TeachersPage({
       </div>
 
       <div className="mx-auto max-w-6xl px-5 py-8 lg:px-8">
-        <TeachersView teachers={teachers} subjects={SITE.subjects} initial={subject} />
+        <Suspense fallback={null}>
+          <TeachersView teachers={teachers} subjects={SITE.subjects} />
+        </Suspense>
       </div>
     </main>
   );
