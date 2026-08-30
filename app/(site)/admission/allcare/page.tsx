@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import RecruitTabs from "@/app/components/admission/RecruitTabs";
+import AdmissionTabs from "@/app/components/admission/AdmissionTabs";
 
 export const metadata: Metadata = {
   title: "고등 올케어반 | 5A 아카데미",
@@ -24,9 +24,7 @@ export default function AllcarePage() {
         </div>
       </div>
 
-      <div className="mx-auto max-w-6xl px-5 pt-6 lg:px-8">
-        <RecruitTabs active="/admission/allcare" />
-      </div>
+      <AdmissionTabs contained />
 
       <div className="mx-auto max-w-6xl px-5 lg:px-8">
         <div className="my-12 rounded-2xl border border-line py-24 text-center">

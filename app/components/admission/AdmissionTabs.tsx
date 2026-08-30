@@ -6,13 +6,13 @@ import { NAV_MENUS } from "@/lib/nav";
 
 // 모집안내 대탭 (2027 윈터스쿨 · 고등 올케어반 · 2027 고등단과)
 // 현재 페이지는 브랜드색 + 밑줄로 강조. 2027 고등단과는 단과시간표(/schedule)로 이동.
-export default function AdmissionTabs() {
+export default function AdmissionTabs({ contained = false }: { contained?: boolean }) {
   const pathname = usePathname();
   const items = NAV_MENUS.find((m) => m.label === "모집안내")?.groups[0]?.items ?? [];
 
   return (
     <div className="border-b border-line bg-white">
-      <div className="px-5 sm:px-8 lg:px-10">
+      <div className={contained ? "mx-auto max-w-6xl px-5 lg:px-8" : "px-5 sm:px-8 lg:px-10"}>
         <nav className="no-scrollbar flex items-center gap-6 overflow-x-auto sm:gap-9">
           {items.map((it) => {
             const active = pathname === it.href;

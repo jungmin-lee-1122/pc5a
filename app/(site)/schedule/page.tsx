@@ -5,6 +5,7 @@ import { SCHEDULE_TABS } from "@/lib/types";
 import { SITE } from "@/config/homepage";
 import CategoryTabs from "@/app/components/schedule/CategoryTabs";
 import CourseTable from "@/app/components/schedule/CourseTable";
+import AdmissionTabs from "@/app/components/admission/AdmissionTabs";
 
 export const dynamic = "force-dynamic";
 
@@ -45,6 +46,8 @@ export default async function SchedulePage({
           <p className="mt-2 text-sm text-muted">모집대상과 과목으로 원하는 강좌를 찾아보세요.</p>
         </div>
       </div>
+
+      <AdmissionTabs contained />
 
       <div className="mx-auto max-w-6xl px-5 py-8 lg:px-8">
         {/* 모집대상 탭 */}
