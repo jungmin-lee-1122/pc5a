@@ -61,9 +61,53 @@ export default async function CourseDetailPage({
       </div>
 
       <div className="mx-auto max-w-5xl px-5 py-8 lg:px-8">
-        {/* 상단: 사진(왼쪽) + 제목 블록(오른쪽) — 모바일에서도 나란히 */}
-        <div className="flex items-start gap-4 sm:gap-6">
-          <div className="relative aspect-[3/4] w-32 shrink-0 overflow-hidden rounded-2xl border border-line bg-brand-light/30 sm:w-[200px]">
+        {/* ===== 모바일: 사진(왼쪽) + 제목(오른쪽) → 정보 아래 ===== */}
+        <div className="sm:hidden">
+          <div className="flex items-start gap-4">
+            <div className="relative aspect-[3/4] w-32 shrink-0 overflow-hidden rounded-2xl border border-line bg-brand-light/30">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={course.teacherPhoto || "/placeholders/teacher.svg"}
+                alt={`${course.teacherName} 선생님`}
+                className="absolute inset-0 h-full w-full object-cover object-top"
+              />
+            </div>
+            <div className="min-w-0 flex-1">
+              <div className="flex flex-wrap gap-1.5">
+                {(course.target ?? []).map((t) => (
+                  <span key={t} className="rounded bg-ink px-2 py-0.5 text-xs font-bold text-white">{t}</span>
+                ))}
+                {(course.tags ?? []).map((t) => (
+                  <span key={t} className="rounded bg-brand-light px-2 py-0.5 text-xs font-bold text-brand">{t}</span>
+                ))}
+              </div>
+              <h1 className="mt-2.5 text-xl font-extrabold leading-snug text-ink">{course.title}</h1>
+              <Link
+                href={`/teachers/${course.teacherId}`}
+                className="mt-4 inline-flex items-center gap-1.5 rounded-lg border border-line px-3 py-2 text-xs font-semibold text-gray-500 transition hover:border-brand hover:text-brand"
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="3" y="4" width="18" height="16" rx="2" />
+                  <path d="M8 4v16M3 10h5" />
+                </svg>
+                개설강좌 전체보기
+              </Link>
+            </div>
+          </div>
+          <dl className="mt-7 grid gap-x-8">
+            <Row label="선생님" value={course.teacherName} />
+            <Row label="모집대상" value={(course.target ?? []).join(", ")} />
+            <Row label="개강일" value={course.startDate} />
+            <Row label="수업기간" value={course.period} />
+            <Row label="수업시간" value={course.time} />
+            <Row label="수강료" value={course.price} />
+            <Row label="교재" value={course.material} />
+          </dl>
+        </div>
+
+        {/* ===== PC: 원래 레이아웃 (사진 좌 / 우측 태그·제목·정보) ===== */}
+        <div className="hidden gap-7 sm:grid sm:grid-cols-[220px_1fr]">
+          <div className="relative aspect-[3/4] overflow-hidden rounded-2xl border border-line bg-brand-light/30">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={course.teacherPhoto || "/placeholders/teacher.svg"}
@@ -72,7 +116,7 @@ export default async function CourseDetailPage({
             />
           </div>
 
-          <div className="min-w-0 flex-1">
+          <div className="min-w-0">
             <div className="flex flex-wrap gap-1.5">
               {(course.target ?? []).map((t) => (
                 <span key={t} className="rounded bg-ink px-2 py-0.5 text-xs font-bold text-white">{t}</span>
@@ -81,30 +125,30 @@ export default async function CourseDetailPage({
                 <span key={t} className="rounded bg-brand-light px-2 py-0.5 text-xs font-bold text-brand">{t}</span>
               ))}
             </div>
-            <h1 className="mt-2.5 text-xl font-extrabold leading-snug text-ink sm:text-2xl">{course.title}</h1>
-            <Link
-              href={`/teachers/${course.teacherId}`}
-              className="mt-4 inline-flex items-center gap-1.5 rounded-lg border border-line px-3 py-2 text-xs font-semibold text-gray-500 transition hover:border-brand hover:text-brand sm:text-sm"
-            >
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="3" y="4" width="18" height="16" rx="2" />
-                <path d="M8 4v16M3 10h5" />
-              </svg>
-              개설강좌 전체보기
-            </Link>
+            <h1 className="mt-2.5 text-2xl font-extrabold leading-snug text-ink">{course.title}</h1>
+
+            <dl className="mt-5 grid gap-x-8 sm:grid-cols-2">
+              <div className="flex items-center gap-3 border-b border-line py-3.5">
+                <dt className="w-20 shrink-0 text-sm font-semibold text-gray-400">선생님</dt>
+                <dd className="flex flex-wrap items-center gap-2 text-sm font-medium text-ink">
+                  {course.teacherName}
+                  <Link
+                    href={`/teachers/${course.teacherId}`}
+                    className="rounded-lg border border-line px-2.5 py-1 text-xs font-semibold text-gray-500 transition hover:border-brand hover:text-brand"
+                  >
+                    개설강좌 전체보기
+                  </Link>
+                </dd>
+              </div>
+              <Row label="모집대상" value={(course.target ?? []).join(", ")} />
+              <Row label="개강일" value={course.startDate} />
+              <Row label="수업기간" value={course.period} />
+              <Row label="수업시간" value={course.time} />
+              <Row label="수강료" value={course.price} />
+              <Row label="교재" value={course.material} />
+            </dl>
           </div>
         </div>
-
-        {/* 하단: 강좌 정보 (전체폭) */}
-        <dl className="mt-7 grid gap-x-8 sm:grid-cols-2">
-          <Row label="선생님" value={course.teacherName} />
-          <Row label="모집대상" value={(course.target ?? []).join(", ")} />
-          <Row label="개강일" value={course.startDate} />
-          <Row label="수업기간" value={course.period} />
-          <Row label="수업시간" value={course.time} />
-          <Row label="수강료" value={course.price} />
-          <Row label="교재" value={course.material} />
-        </dl>
 
         <section className="mt-10">
           <h2 className="mb-4 text-lg font-extrabold text-ink">강의 계획서</h2>
