@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { getAllCourses } from "@/lib/content";
 import { SCHEDULE_TABS } from "@/lib/types";
 import CategoryTabs from "@/app/components/schedule/CategoryTabs";
+import ZoomableImage from "@/app/components/schedule/ZoomableImage";
 
 export const dynamic = "force-dynamic";
 
@@ -109,12 +110,7 @@ export default async function CourseDetailPage({
         <section className="mt-10">
           <h2 className="mb-4 text-lg font-extrabold text-ink">강의 계획서</h2>
           {course.syllabus ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src={course.syllabus}
-              alt={`${course.title} 강의계획서`}
-              className="mx-auto w-full max-w-2xl rounded-2xl border border-line"
-            />
+            <ZoomableImage src={course.syllabus} alt={`${course.title} 강의계획서`} label="강의 계획서" />
           ) : (
             <p className="rounded-2xl border border-line py-16 text-center text-sm text-muted">
               강의 계획서가 준비 중입니다.

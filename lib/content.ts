@@ -4,7 +4,14 @@ import { listCollection } from "./store";
 import { SEEDS } from "./seeds";
 import type { Teacher, Notice, EventItem, VideoItem, MealMenu, GalleryItem, ReviewItem, TeacherCourse } from "./types";
 
-export const getTeachers = () => listCollection<Teacher>("teachers", SEEDS.teachers as Teacher[]);
+export async function getTeachers(): Promise<Teacher[]> {
+  const teachers = await listCollection<Teacher>("teachers", SEEDS.teachers as Teacher[]);
+  // 강좌 id 보정 — 예전에 저장돼 id가 없는 강좌도 항상 클릭 가능하도록 안정적 id 부여
+  return teachers.map((t) => ({
+    ...t,
+    courses: (t.courses ?? []).map((c, i) => (c.id ? c : { ...c, id: `${t.id}-c${i}` })),
+  }));
+}
 export const getNotices = () => listCollection<Notice>("notices", SEEDS.notices as Notice[]);
 export const getEvents = () => listCollection<EventItem>("events", SEEDS.events as EventItem[]);
 export const getVideos = () => listCollection<VideoItem>("videos", SEEDS.videos as VideoItem[]);
