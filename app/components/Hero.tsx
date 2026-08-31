@@ -25,10 +25,10 @@ export default function Hero({ slides, poster }: { slides: Slide[]; poster: Post
   const progress = count ? ((index + 1) / count) * 100 : 0;
 
   return (
-    <section className="mx-auto max-w-7xl px-5 pt-6 lg:px-8">
-      <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_360px]">
+    <section className="mx-auto max-w-6xl px-5 pt-6 lg:px-8">
+      <div className="grid gap-4 lg:grid-cols-3">
         {/* 왼쪽: 롤링창(위) + 내비게이션 바(아래) */}
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-3 lg:col-span-2">
           {/* 롤링 슬라이드 (모바일 정사각형 / 데스크톱은 포스터 높이에 맞춤) */}
           <div className="relative aspect-square w-full overflow-hidden rounded-2xl border border-line bg-brand-light lg:aspect-[1466/740]">
             {count === 0 && (
@@ -122,7 +122,7 @@ export default function Hero({ slides, poster }: { slides: Slide[]; poster: Post
         </div>
 
         {/* 오른쪽: 포스터 (모바일에서는 숨김) */}
-        <div className="hidden lg:block">
+        <div className="hidden lg:col-span-1 lg:block">
           <a
             href={poster?.href || "#"}
             className="block h-full min-h-full w-full overflow-hidden rounded-2xl border border-line bg-white"
