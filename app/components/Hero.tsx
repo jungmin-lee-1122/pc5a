@@ -7,29 +7,27 @@ const DURATION = 5000; // 슬라이드 전환 간격(ms)
 
 export default function Hero({ slides, poster }: { slides: Slide[]; poster: Poster | null }) {
   const [index, setIndex] = useState(0);
-  const [playing, setPlaying] = useState(true);
-  const [showThumbs, setShowThumbs] = useState(false);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const count = slides.length;
   const go = useCallback((next: number) => setIndex((c) => (count ? (next + count) % count : 0)), [count]);
 
   useEffect(() => {
-    if (!playing || count <= 1) return;
+    if (count <= 1) return;
     timer.current = setTimeout(() => go(index + 1), DURATION);
     return () => {
       if (timer.current) clearTimeout(timer.current);
     };
-  }, [index, playing, count, go]);
+  }, [index, count, go]);
 
   const progress = count ? ((index + 1) / count) * 100 : 0;
+  const pad = (n: number) => String(n).padStart(2, "0");
 
   return (
     <section className="mx-auto max-w-6xl px-5 pt-6 lg:px-8">
       <div className="grid gap-4 lg:grid-cols-3">
-        {/* 왼쪽: 롤링창(위) + 내비게이션 바(아래) */}
-        <div className="flex flex-col gap-3 lg:col-span-2">
-          {/* 롤링 슬라이드 (모바일 정사각형 / 데스크톱은 포스터 높이에 맞춤) */}
+        {/* 왼쪽: 롤링창 (컨트롤 오버레이) */}
+        <div className="lg:col-span-2">
           <div className="relative aspect-square w-full overflow-hidden rounded-2xl border border-line bg-brand-light lg:aspect-[7/4]">
             {count === 0 && (
               <div className="flex h-full items-center justify-center text-muted">
@@ -55,79 +53,49 @@ export default function Hero({ slides, poster }: { slides: Slide[]; poster: Post
               </a>
             ))}
 
-            {showThumbs && count > 0 && (
-              <div className="absolute inset-x-0 bottom-0 flex flex-wrap gap-2 bg-black/40 p-3 backdrop-blur-sm">
-                {slides.map((slide, i) => (
-                  <button
-                    key={slide.id}
-                    onClick={() => go(i)}
-                    className={`h-9 w-14 overflow-hidden rounded border-2 ${
-                      i === index ? "border-white" : "border-transparent opacity-70"
-                    }`}
-                    aria-label={`${i + 1}번 슬라이드`}
-                  >
-                    <img src={slide.mobileImage || slide.image} alt="" className="h-full w-full object-cover" />
-                  </button>
-                ))}
+            {/* dn-slider-ctrl 스타일 컨트롤 */}
+            {count > 0 && (
+              <div className="absolute bottom-4 left-4 z-10 flex items-center gap-2.5 sm:bottom-7 sm:left-9">
+                <button
+                  type="button"
+                  aria-label="이전 슬라이드"
+                  onClick={() => go(index - 1)}
+                  className="flex h-9 w-9 items-center justify-center rounded-full bg-[#10192e]/80 text-white backdrop-blur transition hover:bg-[#10192e] sm:h-10 sm:w-10"
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 6l-6 6 6 6" /></svg>
+                </button>
+                <button
+                  type="button"
+                  aria-label="다음 슬라이드"
+                  onClick={() => go(index + 1)}
+                  className="flex h-9 w-9 items-center justify-center rounded-full bg-[#10192e]/80 text-white backdrop-blur transition hover:bg-[#10192e] sm:h-10 sm:w-10"
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 6l6 6-6 6" /></svg>
+                </button>
+
+                <span className="flex items-center gap-2.5 rounded-full bg-white/90 px-3.5 py-1.5 text-[13px] font-bold text-ink/50 backdrop-blur">
+                  <b className="font-black text-brand-dark">{pad(index + 1)}</b>
+                  <span className="relative block h-[3px] w-14 overflow-hidden rounded-full bg-[#10192e]/20 sm:w-16">
+                    <i
+                      className="absolute inset-y-0 left-0 rounded-full bg-brand-dark transition-all duration-500 ease-out"
+                      style={{ width: `${progress}%` }}
+                    />
+                  </span>
+                  <span>{pad(count)}</span>
+                </span>
               </div>
             )}
           </div>
-
-          {/* 내비게이션 바 (박스 없이) */}
-          <div className="flex h-12 shrink-0 items-center gap-5">
-            <div className="relative h-[3px] flex-1 overflow-hidden rounded-full bg-gray-200">
-              <div
-                className="absolute inset-y-0 left-0 rounded-full bg-ink transition-all duration-500 ease-out"
-                style={{ width: `${progress}%` }}
-              />
-            </div>
-
-            <div className="flex items-center rounded-full border border-line text-gray-500">
-              <button
-                type="button"
-                aria-label="이전 슬라이드"
-                onClick={() => go(index - 1)}
-                className="flex h-8 w-8 items-center justify-center rounded-l-full transition-colors hover:text-brand"
-              >
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 6l-6 6 6 6" /></svg>
-              </button>
-              <button
-                type="button"
-                aria-label="다음 슬라이드"
-                onClick={() => go(index + 1)}
-                className="flex h-8 w-8 items-center justify-center rounded-r-full border-l border-line transition-colors hover:text-brand"
-              >
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 6l6 6-6 6" /></svg>
-              </button>
-            </div>
-
-            <CircleBtn label={playing ? "일시정지" : "재생"} onClick={() => setPlaying((v) => !v)}>
-              {playing ? (
-                <>
-                  <line x1="9" y1="6" x2="9" y2="18" />
-                  <line x1="15" y1="6" x2="15" y2="18" />
-                </>
-              ) : (
-                <path d="M8 5v14l11-7z" fill="currentColor" stroke="none" />
-              )}
-            </CircleBtn>
-
-            <CircleBtn label="전체 슬라이드 보기" onClick={() => setShowThumbs((v) => !v)}>
-              <rect x="5" y="5" width="6" height="6" rx="1" />
-              <rect x="13" y="5" width="6" height="6" rx="1" />
-              <rect x="5" y="13" width="6" height="6" rx="1" />
-              <rect x="13" y="13" width="6" height="6" rx="1" />
-            </CircleBtn>
-          </div>
         </div>
 
-        {/* 오른쪽: 포스터 (모바일에서는 숨김) */}
+        {/* 오른쪽: 포스터 (롤링창과 세로 끝선 정렬) */}
         <div className="hidden lg:col-span-1 lg:block">
           <a
             href={poster?.href || "#"}
-            className="block h-full min-h-full w-full overflow-hidden rounded-2xl border border-line bg-white"
+            className="block h-full w-full overflow-hidden rounded-2xl border border-line bg-white"
           >
             {poster ? (
+              // eslint-disable-next-line @next/next/no-img-element
               <img src={poster.image} alt={poster.alt} className="h-full w-full object-cover" />
             ) : (
               <div className="flex h-full items-center justify-center text-muted">
@@ -138,28 +106,5 @@ export default function Hero({ slides, poster }: { slides: Slide[]; poster: Post
         </div>
       </div>
     </section>
-  );
-}
-
-function CircleBtn({
-  label,
-  onClick,
-  children,
-}: {
-  label: string;
-  onClick: () => void;
-  children: React.ReactNode;
-}) {
-  return (
-    <button
-      type="button"
-      aria-label={label}
-      onClick={onClick}
-      className="flex h-8 w-8 items-center justify-center rounded-full border border-line text-gray-500 transition-colors hover:text-brand"
-    >
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        {children}
-      </svg>
-    </button>
   );
 }
