@@ -62,7 +62,7 @@ export default async function CourseDetailPage({
 
       <div className="mx-auto max-w-5xl px-5 py-8 lg:px-8">
         <div className="grid gap-7 sm:grid-cols-[220px_1fr]">
-          <div className="relative aspect-[3/4] overflow-hidden rounded-2xl border border-line bg-brand-light/30">
+          <div className="relative aspect-[3/4] w-36 overflow-hidden rounded-2xl border border-line bg-brand-light/30 sm:w-auto">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={course.teacherPhoto || "/placeholders/teacher.svg"}
