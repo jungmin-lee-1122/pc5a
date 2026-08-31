@@ -63,8 +63,8 @@ export default async function CourseDetailPage({
       <div className="mx-auto max-w-5xl px-5 py-8 lg:px-8">
         {/* ===== 모바일: 사진(왼쪽) + 제목(오른쪽) → 정보 아래 ===== */}
         <div className="sm:hidden">
-          <div className="flex items-start gap-4">
-            <div className="relative aspect-[3/4] w-32 shrink-0 overflow-hidden rounded-2xl border border-line bg-brand-light/30">
+          <div className="flex items-stretch gap-4">
+            <div className="relative w-32 shrink-0 overflow-hidden rounded-2xl border border-line bg-brand-light/30">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={course.teacherPhoto || "/placeholders/teacher.svg"}
