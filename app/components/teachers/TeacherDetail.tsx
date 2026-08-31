@@ -40,6 +40,63 @@ export default function TeacherDetail({
   const hasBelow = Boolean(current.videoUrl) || careerLines.length > 0;
   const vid = current.videoUrl ? ytId(current.videoUrl) : null;
 
+  // 재사용 조각 (데스크톱/모바일 공통)
+  const head = (
+    <>
+      <div className="flex flex-wrap gap-1.5">
+        {current.tags.map((tag) => (
+          <span key={tag} className="rounded border border-line bg-gray-50 px-2 py-0.5 text-[11px] font-semibold text-gray-500">
+            {tag}
+          </span>
+        ))}
+      </div>
+      <p className="mt-4 text-2xl leading-tight text-ink sm:text-[26px]">
+        <span className="font-semibold text-brand">{current.subject}</span>{" "}
+        <span className="font-extrabold">{current.name}</span>{" "}
+        <span className="text-lg font-bold text-gray-400">선생님</span>
+      </p>
+      {current.slogan && (
+        <p className="mt-3 text-lg font-bold leading-snug text-brand sm:text-xl">{current.slogan}</p>
+      )}
+    </>
+  );
+
+  const careerList =
+    careerLines.length > 0 ? (
+      <ul className="min-w-0 space-y-1.5">
+        {careerLines.map((line, i) => (
+          <li key={i} className="flex gap-2 text-[14px] text-gray-600">
+            <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-brand" />
+            <span className="min-w-0">{line}</span>
+          </li>
+        ))}
+      </ul>
+    ) : null;
+
+  const videoBlock = (sizeClass: string) =>
+    current.videoUrl ? (
+      <a
+        href={current.videoUrl}
+        target="_blank"
+        rel="noreferrer"
+        className={`group relative block aspect-video shrink-0 overflow-hidden rounded-xl border border-line bg-gray-100 ${sizeClass}`}
+      >
+        {vid ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={`https://img.youtube.com/vi/${vid}/hqdefault.jpg`} alt="소개 영상" className="h-full w-full object-cover" />
+        ) : (
+          <span className="flex h-full w-full items-center justify-center text-xs text-muted">소개 영상</span>
+        )}
+        <span className="absolute inset-0 flex items-center justify-center">
+          <span className="flex h-12 w-12 items-center justify-center rounded-full bg-black/55 text-white transition group-hover:bg-brand">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M8 5v14l11-7z" />
+            </svg>
+          </span>
+        </span>
+      </a>
+    ) : null;
+
   return (
     <div>
       {/* 과목 탭 */}
@@ -96,77 +153,56 @@ export default function TeacherDetail({
       )}
 
       {/* 프로필 블록 */}
-      <div className="mt-8 overflow-hidden rounded-2xl border border-line bg-gradient-to-br from-brand-light/70 to-brand-light/15">
-        <div className="grid lg:grid-cols-2">
-          {/* 사진 (모바일 위 / 데스크톱 오른쪽) */}
-          <div className="relative order-1 min-h-[240px] lg:order-2 lg:min-h-[380px]">
+      <div className="relative mt-8 overflow-hidden rounded-2xl border border-line bg-gradient-to-br from-brand-light/70 to-brand-light/15">
+        {/* 배경 장식 (선생님 뒤 요소) */}
+        <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+          <span className="absolute right-[14%] top-7 h-36 w-36 rounded-full bg-brand/[0.08] sm:h-52 sm:w-52 lg:right-[19%] lg:h-64 lg:w-64" />
+          <span className="absolute right-[7%] top-5 h-7 w-7 rounded-full border-2 border-brand/30 sm:h-9 sm:w-9 lg:right-[11%]" />
+          <span className="absolute bottom-12 right-[6%] hidden h-2.5 w-2.5 rounded-full bg-brand/50 lg:block" />
+          <svg className="absolute bottom-5 right-[30%] h-20 w-20 text-brand/25 sm:h-24 sm:w-24 lg:right-[35%]" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round">
+            <path d="M6 94 L44 56" />
+            <path d="M22 96 L52 66" />
+            <path d="M2 76 L26 52" />
+          </svg>
+        </div>
+
+        {/* ===== 데스크톱: 좌 정보 / 우 사진 ===== */}
+        <div className="relative hidden lg:grid lg:grid-cols-2">
+          <div className="relative order-2 min-h-[380px]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={current.photo}
               alt={`${current.name} 선생님`}
-              className="absolute inset-0 h-full w-full object-contain object-bottom"
+              className="pointer-events-none absolute inset-0 h-full w-full object-contain object-bottom"
             />
           </div>
-
-          {/* 정보 */}
-          <div className="order-2 p-6 lg:order-1 lg:p-8">
-            <div className="flex flex-wrap gap-1.5">
-              {current.tags.map((tag) => (
-                <span key={tag} className="rounded border border-line bg-gray-50 px-2 py-0.5 text-[11px] font-semibold text-gray-500">
-                  {tag}
-                </span>
-              ))}
-            </div>
-
-            <p className="mt-4 text-2xl leading-tight text-ink sm:text-[26px]">
-              <span className="font-semibold text-brand">{current.subject}</span>{" "}
-              <span className="font-extrabold">{current.name}</span>{" "}
-              <span className="text-lg font-bold text-gray-400">선생님</span>
-            </p>
-
-            {current.slogan && (
-              <p className="mt-3 text-lg font-bold leading-snug text-brand sm:text-xl">{current.slogan}</p>
-            )}
-
+          <div className="order-1 p-8">
+            {head}
             {hasBelow && (
               <>
                 <hr className="my-5 border-line" />
-                <div className="flex flex-col gap-5 sm:flex-row sm:items-start">
-                  {current.videoUrl && (
-                    <a
-                      href={current.videoUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="group relative block aspect-video w-full shrink-0 overflow-hidden rounded-xl border border-line bg-gray-100 sm:w-52"
-                    >
-                      {vid ? (
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img src={`https://img.youtube.com/vi/${vid}/hqdefault.jpg`} alt="소개 영상" className="h-full w-full object-cover" />
-                      ) : (
-                        <span className="flex h-full w-full items-center justify-center text-xs text-muted">소개 영상</span>
-                      )}
-                      <span className="absolute inset-0 flex items-center justify-center">
-                        <span className="flex h-10 w-10 items-center justify-center rounded-full bg-black/55 text-white transition group-hover:bg-brand">
-                          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
-                        </span>
-                      </span>
-                    </a>
-                  )}
-
-                  {careerLines.length > 0 && (
-                    <ul className="min-w-0 space-y-1.5">
-                      {careerLines.map((line, i) => (
-                        <li key={i} className="flex gap-2 text-[14px] text-gray-600">
-                          <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-brand" />
-                          <span className="min-w-0">{line}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
+                <div className="flex items-start gap-5">
+                  {videoBlock("w-52")}
+                  {careerList}
                 </div>
               </>
             )}
           </div>
+        </div>
+
+        {/* ===== 모바일: 정보+사진 / 약력 / 영상 ===== */}
+        <div className="relative lg:hidden">
+          <div className="relative min-h-[220px] p-6 pr-[43%]">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={current.photo}
+              alt={`${current.name} 선생님`}
+              className="pointer-events-none absolute bottom-0 right-0 top-0 w-[46%] object-contain object-bottom object-right"
+            />
+            {head}
+          </div>
+          {careerList && <div className="px-6 pb-1">{careerList}</div>}
+          {current.videoUrl && <div className="p-6 pt-4">{videoBlock("w-full")}</div>}
         </div>
       </div>
 
