@@ -30,7 +30,7 @@ export default function Hero({ slides, poster }: { slides: Slide[]; poster: Post
         {/* 왼쪽: 롤링창(위) + 내비게이션 바(아래) */}
         <div className="flex flex-col gap-3 lg:col-span-2">
           {/* 롤링 슬라이드 (모바일 정사각형 / 데스크톱은 포스터 높이에 맞춤) */}
-          <div className="relative aspect-square w-full overflow-hidden rounded-2xl border border-line bg-brand-light lg:aspect-[1466/740]">
+          <div className="relative aspect-square w-full overflow-hidden rounded-2xl border border-line bg-brand-light lg:aspect-[7/4]">
             {count === 0 && (
               <div className="flex h-full items-center justify-center text-muted">
                 등록된 슬라이드가 없습니다
