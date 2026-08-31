@@ -1,0 +1,289 @@
+"use client";
+
+import Link from "next/link";
+
+const SECTIONS = [
+  { label: "올케어반 소개", target: "ac-intro" },
+  { label: "학습 관리 시스템", target: "ac-system" },
+  { label: "맞춤 시간표", target: "ac-schedule" },
+  { label: "선정 기준", target: "ac-criteria" },
+  { label: "학생 인터뷰", target: "ac-interview" },
+];
+
+const SYSTEM = [
+  "정해진 시간까지 입실 필수",
+  "단과 이외의 시간은 필수 자습",
+  "수준별 맞춤 수업 배정",
+  "시간표에 따라 루틴대로 학습 진행",
+];
+
+const DAYS = ["", "월", "화", "수", "목", "금", "토"];
+const TIMETABLE: string[][] = [
+  ["1교시", "", "", "", "국어", "", "자습"],
+  ["2교시", "수학", "", "", "국어", "", "자습"],
+  ["3교시", "자습", "국어", "", "자습", "", "자습"],
+  ["4교시", "", "", "자습", "", "영어", "자습"],
+  ["5교시", "", "", "자습", "", "영어", "자습"],
+  ["6교시", "자습", "자습", "", "자습", "", "자습"],
+  ["7교시", "", "", "", "국어", "TEST", "자습"],
+];
+
+const CRITERIA = [
+  {
+    grade: "고1",
+    req: "수학 포함 3과목 이상 수강 필수",
+    perks: ["관리형 독서실 이용 (4주 단위)", "학습·입시 컨설팅 제공 (성적·생기부 상담)"],
+  },
+  {
+    grade: "고2",
+    req: "수학 포함 3과목 이상 수강 필수",
+    perks: ["관리형 독서실 이용 (4주 단위)", "학습·입시 컨설팅 제공 (성적·생기부 상담)"],
+  },
+  {
+    grade: "고3",
+    req: "수학 2강좌 포함 4강좌 이상 수강 필수",
+    perks: ["관리형 독서실 이용 (4주 단위)", "학습·입시 컨설팅 제공 (성적·생기부·수시/정시 원서 상담)"],
+  },
+];
+
+const INTERVIEWS = [
+  {
+    who: "고1 재원생 이○서 학부모님",
+    quote: "학원에서 출결까지 꼼꼼히 확인해줘서 안심돼요",
+    body: "무단결석이나 지각 시 바로 연락이 오니까 아이도 책임감을 갖고 다녀요. 그냥 맡기면 되는 학습 분위기가 만들어집니다.",
+  },
+  {
+    who: "고2 재원생 이○영",
+    quote: "혼자 할 땐 흐트러졌는데, 선배들이랑 공부하니 자극이 돼요",
+    body: "집에선 자꾸 무너졌는데, 올케어반에서 조용히 공부하는 선배들을 보면서 자연스럽게 집중하게 돼요. 분위기 자체가 자극이 돼서 딴짓할 틈이 없어요.",
+  },
+  {
+    who: "고3 재원생 정○은",
+    quote: "쌤들이 계속 체크해주셔서 공부 습관이 생겼어요",
+    body: "예전엔 책상에 앉아도 뭐부터 해야 할지 몰라 시간만 버릴 때가 많았는데, 여기선 쌤들이 계속 챙겨주니 저절로 루틴이 만들어졌어요. 지금은 공부하는 게 일상이 된 느낌이에요.",
+  },
+];
+
+function cellCls(v: string) {
+  if (!v) return "text-transparent";
+  if (v === "자습") return "bg-gray-100 text-gray-500";
+  if (v === "TEST") return "bg-amber-100 font-bold text-amber-700";
+  return "bg-brand-light font-bold text-brand";
+}
+
+export default function AllcareContent() {
+  const goTo = (id: string) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const y = el.getBoundingClientRect().top + window.scrollY - 140;
+    window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
+  };
+
+  return (
+    <>
+      {/* ===== HERO ===== */}
+      <section className="relative isolate overflow-hidden bg-gradient-to-br from-[#1e2a63] via-[#243377] to-brand text-white">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/logo-white.png"
+          alt=""
+          aria-hidden="true"
+          className="pointer-events-none absolute right-0 top-1/2 -z-10 h-[200%] -translate-y-1/2 select-none opacity-[0.12]"
+        />
+        <span aria-hidden className="pointer-events-none absolute -right-16 top-10 h-64 w-64 rounded-full bg-white/5" />
+        <span aria-hidden className="pointer-events-none absolute right-40 bottom-6 h-28 w-28 rounded-full border border-white/10" />
+        <div className="mx-auto max-w-6xl px-5 py-16 sm:py-20 lg:px-8">
+          <p className="text-sm font-semibold tracking-wide text-blue-200">학습부터 생활, 입시 관리까지</p>
+          <h2 className="mt-3 text-4xl font-extrabold tracking-tight sm:text-5xl">올케어반</h2>
+          <p className="mt-1 text-2xl font-bold text-blue-200 sm:text-3xl">All Care Program</p>
+          <p className="mt-6 max-w-xl text-base leading-relaxed text-blue-100/90 sm:text-lg">
+            5A 아카데미가 제시하는 가장 완성도 높은
+            <br />
+            <b className="font-bold text-white">프리미엄 통합 관리 프로그램</b>
+          </p>
+        </div>
+      </section>
+
+      {/* ===== 섹션 이동 탭 ===== */}
+      <div className="sticky top-20 z-30 border-b border-line bg-white/95 backdrop-blur">
+        <div className="mx-auto max-w-6xl px-5 lg:px-8">
+          <div className="no-scrollbar flex items-center gap-1 overflow-x-auto sm:gap-2">
+            {SECTIONS.map((s) => (
+              <button
+                key={s.target}
+                onClick={() => goTo(s.target)}
+                className="shrink-0 whitespace-nowrap px-3 py-4 text-sm font-semibold text-gray-500 transition-colors hover:text-brand sm:px-4"
+              >
+                {s.label}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="mx-auto max-w-6xl space-y-16 px-5 py-14 lg:px-8">
+        {/* ===== 올케어반 소개 ===== */}
+        <section id="ac-intro" className="scroll-mt-40">
+          <div className="flex flex-col items-center gap-8 sm:flex-row sm:items-start sm:gap-10">
+            <div className="flex h-32 w-32 flex-none flex-col items-center justify-center rounded-full bg-brand text-white shadow-lg shadow-brand/25">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 3 1 8l11 5 9-4.09V15h2V8L12 3zM5 13.18v3.5L12 20l7-3.32v-3.5L12 16l-7-2.82z" />
+              </svg>
+              <span className="mt-1 text-sm font-bold tracking-wide">ALL CARE</span>
+            </div>
+            <div className="min-w-0">
+              <h3 className="text-2xl font-extrabold text-ink sm:text-[26px]">올케어반 프로그램이란?</h3>
+              <div className="mt-2 h-1 w-14 rounded bg-brand" />
+              <p className="mt-5 leading-relaxed text-gray-600">
+                올케어반은 국어·수학·영어·탐구·논술 맞춤 단과를 수강하면서 체계적인 자기주도학습까지 함께하는{" "}
+                <b className="font-semibold text-ink">고등부 통합 관리 프로그램</b>입니다. 단순 수업 수강에 그치지 않고,
+                일일 입실 시간부터 학습 습관까지 관리하여 공부 습관 형성과 성적 향상을 함께 이끌어냅니다.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* ===== PREMIUM 배너 ===== */}
+        <div className="flex items-center justify-center gap-3 rounded-2xl bg-brand-dark px-6 py-5 text-center">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="#ffd27a" aria-hidden="true" className="shrink-0">
+            <path d="M5 16L3 6l5.5 4L12 4l3.5 6L21 6l-2 10H5zm0 2h14v2H5v-2z" />
+          </svg>
+          <p className="text-base font-bold text-white sm:text-lg">
+            학습 · 생활 · 입시 관리가 필요한 학생을 위한 <span className="text-blue-200">PREMIUM 올케어반</span>
+          </p>
+        </div>
+
+        {/* ===== 학습 관리 시스템 + 맞춤 시간표 ===== */}
+        <div className="grid gap-6 lg:grid-cols-2">
+          <div id="ac-system" className="scroll-mt-40 rounded-2xl border border-line bg-white p-6 sm:p-7">
+            <h3 className="text-xl font-extrabold text-ink">올케어반 학습 관리 시스템</h3>
+            <ul className="mt-5 space-y-3">
+              {SYSTEM.map((t) => (
+                <li key={t} className="flex items-start gap-2.5">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="mt-0.5 shrink-0 text-brand" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10" fill="currentColor" />
+                    <path d="M8 12.5l2.5 2.5 5-5.5" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                  <span className="text-[15px] font-medium text-gray-700">{t}</span>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-4 text-xs text-gray-400">※ 18:10 ~ 18:30 일일 TEST 진행 (단어·암기 클리어)</p>
+
+            <div className="mt-5 rounded-xl bg-brand-light/70 p-4">
+              <p className="text-sm font-bold text-ink">필수 자습 시간</p>
+              <div className="mt-2 flex flex-wrap gap-x-8 gap-y-1 text-sm text-gray-700">
+                <span><b className="text-brand">평일</b> 18:00 ~ 24:00</span>
+                <span><b className="text-brand">주말</b> 09:00 ~ 22:00</span>
+              </div>
+            </div>
+            <p className="mt-3 text-xs leading-relaxed text-red-500">
+              ※ 평일 자습은 24:00까지, 주말·공휴일은 22:00까지가 원칙입니다. (귀가 교통편 사정 시 담임 선생님과 상담 후 조정 가능)
+            </p>
+          </div>
+
+          <div id="ac-schedule" className="scroll-mt-40 rounded-2xl border border-line bg-white p-6 sm:p-7">
+            <h3 className="text-xl font-extrabold text-ink">나만의 맞춤 시간표</h3>
+            <div className="mt-5 overflow-x-auto">
+              <table className="w-full min-w-[440px] border-collapse text-center text-xs sm:text-sm">
+                <thead>
+                  <tr>
+                    {DAYS.map((d, i) => (
+                      <th key={i} className={"border border-line py-2 font-bold " + (i === 0 ? "bg-white" : "bg-brand-light text-brand")}>
+                        {d}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {TIMETABLE.map((row, ri) => (
+                    <tr key={ri}>
+                      {row.map((cell, ci) =>
+                        ci === 0 ? (
+                          <th key={ci} className="border border-line bg-gray-50 px-2 py-2 text-xs font-semibold text-gray-500">{cell}</th>
+                        ) : (
+                          <td key={ci} className={"border border-line px-1 py-2 " + cellCls(cell)}>{cell || "·"}</td>
+                        ),
+                      )}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="mt-4 text-xs leading-relaxed text-gray-500">
+              정해진 시간 외 등원·외출·조퇴 시 반드시 담임 선생님의 사전 허락이 필요하며, 무단 시 결석 또는 지각으로 처리됩니다.
+            </p>
+          </div>
+        </div>
+
+        {/* ===== 선정 기준 ===== */}
+        <section id="ac-criteria" className="scroll-mt-40">
+          <div className="text-center">
+            <h3 className="text-2xl font-extrabold text-ink">올케어반 선정 기준</h3>
+            <div className="mx-auto mt-2 h-1 w-14 rounded bg-brand" />
+          </div>
+          <div className="mt-8 grid gap-5 sm:grid-cols-3">
+            {CRITERIA.map((c) => (
+              <div key={c.grade} className="overflow-hidden rounded-2xl border border-line bg-white">
+                <div className="bg-brand-dark py-3 text-center text-lg font-extrabold text-white">{c.grade}</div>
+                <div className="p-5">
+                  <p className="rounded-lg bg-brand-light px-3 py-2 text-center text-sm font-bold text-brand">{c.req}</p>
+                  <ul className="mt-4 space-y-2.5">
+                    {c.perks.map((p) => (
+                      <li key={p} className="flex gap-2 text-sm text-gray-600">
+                        <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brand" />
+                        <span className="min-w-0">{p}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ===== 학생 인터뷰 ===== */}
+        <section id="ac-interview" className="scroll-mt-40 -mx-5 rounded-none bg-brand-light/50 px-5 py-12 sm:mx-0 sm:rounded-3xl sm:px-8">
+          <h3 className="text-center text-2xl font-extrabold text-ink">올케어반 학생들의 이야기</h3>
+          <p className="mt-2 text-center text-sm text-muted">생활이 바뀌니 성적이 오릅니다.</p>
+          <div className="mt-8 grid gap-5 sm:grid-cols-3">
+            {INTERVIEWS.map((v) => (
+              <div key={v.who} className="rounded-2xl border border-line bg-white p-6">
+                <div className="flex items-center gap-3">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brand-light text-brand">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                      <circle cx="12" cy="8" r="4" />
+                      <path d="M4 21c0-4 3.5-6 8-6s8 2 8 6" strokeLinecap="round" />
+                    </svg>
+                  </span>
+                  <span className="text-sm font-bold text-ink">{v.who}</span>
+                </div>
+                <p className="mt-4 font-bold leading-snug text-brand">“{v.quote}”</p>
+                <p className="mt-3 text-sm leading-relaxed text-gray-500">{v.body}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      </div>
+
+      {/* ===== CTA ===== */}
+      <section className="border-t border-line bg-white">
+        <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-6 px-5 py-12 lg:flex-row lg:items-center lg:px-8">
+          <p className="text-xl font-extrabold leading-snug text-ink sm:text-2xl">
+            지금, 5A 아카데미 올케어반에서
+            <br />
+            당신의 성적과 습관을 완성하세요.
+          </p>
+          <div className="flex flex-wrap gap-3">
+            <Link href="/life/counsel" className="rounded-xl bg-brand px-6 py-3.5 text-sm font-bold text-white transition hover:bg-brand-dark">
+              올케어반 상담 예약하기
+            </Link>
+            <Link href="/schedule" className="rounded-xl border border-brand px-6 py-3.5 text-sm font-bold text-brand transition hover:bg-brand-light">
+              올케어반 시간표 문의
+            </Link>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}

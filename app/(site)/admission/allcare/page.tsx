@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import AdmissionTabs from "@/app/components/admission/AdmissionTabs";
+import AllcareContent from "@/app/components/admission/AllcareContent";
 
 export const metadata: Metadata = {
   title: "고등 올케어반 | 5A 아카데미",
@@ -8,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function AllcarePage() {
   return (
-    <main className="flex-1 pb-16">
+    <main className="flex-1">
       <div className="relative isolate overflow-hidden border-b border-line bg-brand-light">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
@@ -26,12 +27,7 @@ export default function AllcarePage() {
 
       <AdmissionTabs contained />
 
-      <div className="mx-auto max-w-6xl px-5 lg:px-8">
-        <div className="my-12 rounded-2xl border border-line py-24 text-center">
-          <p className="text-base font-bold text-ink">준비 중입니다</p>
-          <p className="mt-2 text-sm text-muted">고등 올케어반 상세 안내를 준비하고 있습니다. 곧 공개될 예정입니다.</p>
-        </div>
-      </div>
+      <AllcareContent />
     </main>
   );
 }
