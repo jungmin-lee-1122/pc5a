@@ -30,7 +30,7 @@ export default function NoticeEvents({
           <PanelHeader title="입시설명회" moreHref="/events" />
           <ul>
             {sortedEvents.map((e) => (
-              <Row key={e.id} href={e.href && e.href !== "#" ? e.href : `/events/${e.id}`} title={e.title} date={e.date} />
+              <EventRow key={e.id} event={e} />
             ))}
             {sortedEvents.length === 0 && <Empty>등록된 입시설명회가 없습니다</Empty>}
           </ul>
@@ -81,6 +81,58 @@ function Row({
           {title}
         </span>
         <span className="shrink-0 text-[13px] text-gray-400">{date}</span>
+      </Link>
+    </li>
+  );
+}
+
+function EventRow({ event }: { event: EventItem }) {
+  const targets = (event.targets || "").split(/[,\u00b7]/).map((t) => t.trim()).filter(Boolean);
+  const status = event.status || "접수중";
+  const closed = /마감|종료/.test(status);
+  const href = event.href && event.href !== "#" ? event.href : `/events/${event.id}`;
+  const when = event.eventDate || event.date;
+  return (
+    <li className="border-b border-line last:border-0">
+      <Link href={href} className="group flex items-center gap-3 py-5 sm:gap-4">
+        <div className="min-w-0 flex-1">
+          {targets.length > 0 && (
+            <div className="flex flex-wrap gap-1.5">
+              {targets.map((t, i) => (
+                <span key={i} className="rounded-md border border-line bg-white px-2 py-0.5 text-[13px] font-medium text-gray-600">
+                  {t}
+                </span>
+              ))}
+            </div>
+          )}
+          <p className="mt-2 text-[17px] font-bold leading-snug text-ink transition-colors group-hover:text-brand">
+            {event.title}
+          </p>
+          <div className="mt-2 flex flex-wrap gap-x-6 gap-y-0.5 text-[14px] text-gray-600">
+            {when && (
+              <span>
+                <b className="mr-1.5 font-semibold text-ink">· 일시</b>
+                {when}
+              </span>
+            )}
+            {event.location && (
+              <span>
+                <b className="mr-1.5 font-semibold text-ink">· 장소</b>
+                {event.location}
+              </span>
+            )}
+          </div>
+        </div>
+        <span
+          className={
+            "flex h-14 w-14 shrink-0 flex-col items-center justify-center rounded-full border text-center text-[13px] font-semibold leading-tight transition " +
+            (closed
+              ? "border-gray-300 bg-gray-50 text-gray-400"
+              : "border-brand bg-white text-brand group-hover:bg-brand group-hover:text-white")
+          }
+        >
+          {status}
+        </span>
       </Link>
     </li>
   );
