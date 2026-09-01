@@ -20,7 +20,7 @@ export default function NoticeEvents({
           <PanelHeader title="공지사항" moreHref="/notices" />
           <Panel className="bg-[#F6F7FB] flex-1">
             <ul>
-              {sortedNotices.map((n) => (
+              {sortedNotices.slice(0, 2).map((n) => (
                 <Row key={n.id} href={n.href && n.href !== "#" ? n.href : `/notices/${n.id}`} title={n.title} date={n.date} badge={n.badge} />
               ))}
               {sortedNotices.length === 0 && <Empty>등록된 공지사항이 없습니다</Empty>}
@@ -99,21 +99,21 @@ function EventRow({ event }: { event: EventItem }) {
   const when = event.eventDate || event.date;
   return (
     <li className="border-b border-line last:border-0">
-      <Link href={href} className="group flex items-center gap-3 py-5 sm:gap-4">
+      <Link href={href} className="group flex items-center gap-3 py-6 sm:gap-4">
         <div className="min-w-0 flex-1">
           {targets.length > 0 && (
             <div className="flex flex-wrap gap-1.5">
               {targets.map((t, i) => (
-                <span key={i} className="rounded-md border border-line bg-white px-2 py-0.5 text-[13px] font-medium text-gray-600">
+                <span key={i} className="rounded-md border border-line bg-white px-2.5 py-1 text-sm font-medium text-gray-600">
                   {t}
                 </span>
               ))}
             </div>
           )}
-          <p className="mt-2.5 text-[17px] font-bold leading-snug text-ink transition-colors group-hover:text-brand">
+          <p className="mt-3 text-[19px] font-bold leading-snug text-ink transition-colors group-hover:text-brand">
             {event.title}
           </p>
-          <div className="mt-2.5 flex flex-wrap gap-x-6 gap-y-1.5 text-[14px] leading-relaxed text-gray-600">
+          <div className="mt-3 flex flex-wrap gap-x-6 gap-y-2 text-[15px] leading-relaxed text-gray-600">
             {when && (
               <span>
                 <b className="mr-1.5 font-semibold text-ink">· 일시</b>
