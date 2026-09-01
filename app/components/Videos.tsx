@@ -34,7 +34,7 @@ export default function Videos({
             <h2 className="mb-5 text-xl font-extrabold text-ink">{title}</h2>
 
             <div className="relative">
-              <div ref={scroller} className="no-scrollbar grid grid-cols-2 gap-4 lg:flex lg:overflow-x-auto lg:scroll-smooth">
+              <div ref={scroller} className="no-scrollbar flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth lg:snap-none">
                 {active.map((video) => {
                   const id = youtubeId(video.youtube);
                   return (
@@ -43,7 +43,7 @@ export default function Videos({
                       href={`https://www.youtube.com/watch?v=${id}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group min-w-0 lg:w-[calc((100%-2rem)/3)] lg:min-w-[190px] lg:shrink-0"
+                      className="group w-[calc((100%-1rem)/2)] shrink-0 snap-start min-w-0 lg:w-[calc((100%-2rem)/3)] lg:min-w-[190px]"
                     >
                       <div className="relative aspect-video overflow-hidden rounded-xl border border-line bg-gray-100">
                         <img
@@ -66,7 +66,7 @@ export default function Videos({
                   );
                 })}
                 {active.length === 0 && (
-                  <div className="col-span-2 flex h-40 w-full items-center justify-center text-muted">
+                  <div className="flex h-40 w-full items-center justify-center text-muted">
                     등록된 영상이 없습니다
                   </div>
                 )}

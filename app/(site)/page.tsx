@@ -1,4 +1,5 @@
 import Hero from "@/app/components/Hero";
+import FloatingBanners from "@/app/components/FloatingBanners";
 import Banner from "@/app/components/Banner";
 import Teachers from "@/app/components/Teachers";
 import NoticeEvents from "@/app/components/NoticeEvents";
@@ -20,6 +21,7 @@ export default async function Home() {
 
   return (
     <main className="flex-1 pb-4">
+      <FloatingBanners />
       <Hero slides={SLIDES.filter((s) => s.active)} poster={POSTER} />
       <Banner banner={BANNER} />
       <Teachers teachers={teachers} subjects={SITE.subjects} />

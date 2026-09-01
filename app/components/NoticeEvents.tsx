@@ -97,40 +97,48 @@ function EventRow({ event }: { event: EventItem }) {
   const closed = /마감|종료/.test(status);
   const href = event.href && event.href !== "#" ? event.href : `/events/${event.id}`;
   const when = event.eventDate || event.date;
+  const pill =
+    "shrink-0 rounded-full border px-3 py-1 text-[13px] font-semibold " +
+    (closed ? "border-gray-300 bg-gray-50 text-gray-400" : "border-brand bg-white text-brand");
   return (
     <li className="border-b border-line last:border-0">
-      <Link href={href} className="group flex items-center gap-3 py-3.5 sm:gap-4">
+      <Link href={href} className="group block py-3.5 sm:flex sm:items-center sm:gap-4">
         <div className="min-w-0 flex-1">
-          {targets.length > 0 && (
-            <div className="flex flex-wrap gap-1.5">
-              {targets.map((t, i) => (
-                <span key={i} className="rounded-md border border-line bg-white px-2.5 py-1 text-sm font-medium text-gray-600">
-                  {t}
-                </span>
-              ))}
-            </div>
-          )}
-          <p className="mt-2.5 text-[19px] font-bold leading-snug text-ink transition-colors group-hover:text-brand">
+          <div className="flex items-start justify-between gap-2">
+            {targets.length > 0 && (
+              <div className="flex flex-wrap gap-1.5">
+                {targets.map((t, i) => (
+                  <span key={i} className="rounded-md border border-line bg-white px-2 py-0.5 text-[13px] font-medium text-gray-600 sm:px-2.5 sm:py-1 sm:text-sm">
+                    {t}
+                  </span>
+                ))}
+              </div>
+            )}
+            {/* 모바일 전용 상태 배지 */}
+            <span className={pill + " sm:hidden"}>{status}</span>
+          </div>
+          <p className="mt-2 truncate text-[15px] font-bold leading-snug text-ink transition-colors group-hover:text-brand sm:mt-2.5 sm:whitespace-normal sm:text-[19px]">
             {event.title}
           </p>
-          <div className="mt-2.5 flex flex-wrap gap-x-6 gap-y-1 text-[15px] leading-relaxed text-gray-600">
+          <div className="mt-2 flex flex-col gap-y-1 text-[13px] leading-relaxed text-gray-600 sm:mt-2.5 sm:flex-row sm:flex-wrap sm:gap-x-6 sm:text-[15px]">
             {when && (
-              <span>
+              <span className="truncate sm:overflow-visible">
                 <b className="mr-1.5 font-semibold text-ink">· 일시</b>
                 {when}
               </span>
             )}
             {event.location && (
-              <span>
+              <span className="truncate sm:overflow-visible">
                 <b className="mr-1.5 font-semibold text-ink">· 장소</b>
                 {event.location}
               </span>
             )}
           </div>
         </div>
+        {/* 데스크톱 전용 상태 원형 */}
         <span
           className={
-            "flex h-16 w-16 shrink-0 flex-col items-center justify-center rounded-full border text-center text-sm font-semibold leading-tight transition " +
+            "hidden h-16 w-16 shrink-0 flex-col items-center justify-center rounded-full border text-center text-sm font-semibold leading-tight transition sm:flex " +
             (closed
               ? "border-gray-300 bg-gray-50 text-gray-400"
               : "border-brand bg-white text-brand group-hover:bg-brand group-hover:text-white")
