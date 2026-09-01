@@ -16,39 +16,43 @@ export default function NoticeEvents({
     <section className="mx-auto max-w-6xl px-5 pt-14 lg:px-8">
       <div className="grid gap-5 lg:grid-cols-2">
         {/* 공지사항 */}
-        <Panel>
+        <div className="min-w-0">
           <PanelHeader title="공지사항" moreHref="/notices" />
-          <ul>
-            {sortedNotices.map((n) => (
-              <Row key={n.id} href={n.href && n.href !== "#" ? n.href : `/notices/${n.id}`} title={n.title} date={n.date} badge={n.badge} />
-            ))}
-            {sortedNotices.length === 0 && <Empty>등록된 공지사항이 없습니다</Empty>}
-          </ul>
-        </Panel>
+          <Panel className="bg-[#F6F7FB]">
+            <ul>
+              {sortedNotices.map((n) => (
+                <Row key={n.id} href={n.href && n.href !== "#" ? n.href : `/notices/${n.id}`} title={n.title} date={n.date} badge={n.badge} />
+              ))}
+              {sortedNotices.length === 0 && <Empty>등록된 공지사항이 없습니다</Empty>}
+            </ul>
+          </Panel>
+        </div>
 
         {/* 입시설명회 */}
-        <Panel>
+        <div className="min-w-0">
           <PanelHeader title="입시설명회" moreHref="/events" />
-          <ul>
-            {sortedEvents.map((e) => (
-              <EventRow key={e.id} event={e} />
-            ))}
-            {sortedEvents.length === 0 && <Empty>등록된 입시설명회가 없습니다</Empty>}
-          </ul>
-        </Panel>
+          <Panel className="bg-[#bedbff33]">
+            <ul>
+              {sortedEvents.map((e) => (
+                <EventRow key={e.id} event={e} />
+              ))}
+              {sortedEvents.length === 0 && <Empty>등록된 입시설명회가 없습니다</Empty>}
+            </ul>
+          </Panel>
+        </div>
       </div>
     </section>
   );
 }
 
-function Panel({ children }: { children: React.ReactNode }) {
-  return <div className="min-w-0 rounded-2xl border border-line bg-[#bedbff33] p-6 sm:p-7">{children}</div>;
+function Panel({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  return <div className={"rounded-2xl border border-line p-6 sm:p-7 " + className}>{children}</div>;
 }
 
 function PanelHeader({ title, moreHref }: { title: string; moreHref: string }) {
   return (
     <div className="mb-3 flex items-center justify-between">
-      <h3 className="text-lg font-extrabold text-ink">{title}</h3>
+      <h3 className="text-xl font-extrabold text-ink">{title}</h3>
       <Link href={moreHref} aria-label={`${title} 더보기`} className="text-gray-400 hover:text-brand">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
           <line x1="12" y1="5" x2="12" y2="19" />
