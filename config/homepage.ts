@@ -53,7 +53,7 @@ export const SITE: SiteSettings = {
     copyright: "Copyright ⓒ 5A 아카데미 All Right Reserved.",
     brand: "5A 아카데미",
   },
-  social: { naver: "#", instagram: "#", facebook: "#", youtube: "#", kakao: "#", phone: "031-347-5151" },
+  social: { naver: "https://blog.naver.com/5aacademy", instagram: "https://www.instagram.com/5aacademy_51", facebook: "#", youtube: "#", kakao: "#", phone: "031-347-5151" },
 };
 
 /* ── 오시는 길: 학원 위치 (구글 지도 임베드) ──────────────────────────────
