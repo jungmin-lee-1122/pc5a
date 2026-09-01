@@ -11,16 +11,17 @@ export default function Teachers({
   teachers: Teacher[];
   subjects: string[];
 }) {
-  const [active, setActive] = useState(subjects[0] ?? "");
+  const TABS = useMemo(() => ["전체", ...subjects], [subjects]);
+  const [active, setActive] = useState("전체");
   const [canScroll, setCanScroll] = useState(false);
   const scroller = useRef<HTMLDivElement>(null);
   const pausedRef = useRef(false);
   const resumeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const filtered = useMemo(
-    () => teachers.filter((t) => t.active && t.subject === active).sort((a, b) => a.order - b.order),
-    [teachers, active],
-  );
+  const filtered = useMemo(() => {
+    const base = teachers.filter((t) => t.active).sort((a, b) => a.order - b.order);
+    return active === "전체" ? base : base.filter((t) => t.subject === active);
+  }, [teachers, active]);
 
   // 카드 한 장 + 간격 만큼 이동 (첫 카드 실측, 폴백 282px)
   const step = useCallback(() => {
@@ -87,7 +88,7 @@ export default function Teachers({
       <div className="flex flex-wrap items-center gap-x-6 gap-y-3 border-b border-line pb-4">
         <h2 className="text-2xl font-extrabold text-ink">선생님</h2>
         <div className="flex flex-wrap items-center gap-x-5 gap-y-1">
-          {subjects.map((subject) => (
+          {TABS.map((subject) => (
             <button
               key={subject}
               onClick={() => setActive(subject)}
@@ -117,7 +118,7 @@ export default function Teachers({
       <div className="relative mt-6">
         {filtered.length === 0 ? (
           <div className="flex h-40 items-center justify-center text-muted">
-            등록된 {active} 선생님이 없습니다
+            등록된 {active === "전체" ? "" : active + " "}선생님이 없습니다
           </div>
         ) : (
           <>

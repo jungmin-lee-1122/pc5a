@@ -53,10 +53,7 @@ export default function Hero({ slides, poster }: { slides: Slide[]; poster: Post
 
             {/* dn-slider-ctrl 스타일 컨트롤 */}
             {count > 0 && (
-              <div className="absolute bottom-4 right-4 z-10 flex items-center gap-1.5 rounded-full bg-white/20 px-2 py-1 backdrop-blur-md sm:bottom-5 sm:right-5">
-                <span className="pl-1 pr-0.5 text-xs font-bold tracking-wide text-ink/60">
-                  {index + 1}/{count}
-                </span>
+              <div className="absolute bottom-4 right-4 z-10 flex items-center gap-2 sm:bottom-5 sm:right-5">
                 <button
                   type="button"
                   aria-label="이전 슬라이드"

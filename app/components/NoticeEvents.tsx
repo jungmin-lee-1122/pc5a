@@ -110,10 +110,10 @@ function EventRow({ event }: { event: EventItem }) {
               ))}
             </div>
           )}
-          <p className="mt-2 text-[17px] font-bold leading-snug text-ink transition-colors group-hover:text-brand">
+          <p className="mt-2.5 text-[17px] font-bold leading-snug text-ink transition-colors group-hover:text-brand">
             {event.title}
           </p>
-          <div className="mt-2 flex flex-wrap gap-x-6 gap-y-0.5 text-[14px] text-gray-600">
+          <div className="mt-2.5 flex flex-wrap gap-x-6 gap-y-1.5 text-[14px] leading-relaxed text-gray-600">
             {when && (
               <span>
                 <b className="mr-1.5 font-semibold text-ink">· 일시</b>
@@ -130,7 +130,7 @@ function EventRow({ event }: { event: EventItem }) {
         </div>
         <span
           className={
-            "flex h-14 w-14 shrink-0 flex-col items-center justify-center rounded-full border text-center text-[13px] font-semibold leading-tight transition " +
+            "flex h-16 w-16 shrink-0 flex-col items-center justify-center rounded-full border text-center text-sm font-semibold leading-tight transition " +
             (closed
               ? "border-gray-300 bg-gray-50 text-gray-400"
               : "border-brand bg-white text-brand group-hover:bg-brand group-hover:text-white")
