@@ -48,11 +48,11 @@ export default function AllcareHero() {
 
           {/* ===== 말풍선: ALL-CARE 프로그램 ===== */}
           <div
-            className="absolute left-[22.9%] top-[38.4%] origin-bottom-left transition-all duration-[600ms] ease-out"
+            className="absolute left-[31%] top-[52.5%] origin-bottom-left transition-all duration-[600ms] ease-out"
             style={{ opacity: on ? 1 : 0, transform: on ? "translateY(0)" : "translateY(7%)" }}
           >
-            <div className="relative inline-block whitespace-nowrap rounded-[2.6cqw] bg-white px-[3.4cqw] py-[1.7cqw] shadow-[0_6px_20px_rgba(20,40,90,0.16)]">
-              <span className="text-[4.2cqw] font-extrabold leading-none tracking-tight text-[#111]">
+            <div className="relative inline-block whitespace-nowrap rounded-[1.9cqw] bg-white px-[2.6cqw] py-[1.25cqw] shadow-[0_6px_20px_rgba(20,40,90,0.16)]">
+              <span className="text-[3.1cqw] font-extrabold leading-none tracking-tight text-[#111]">
                 {CHARS.map((ch, i) => (
                   <span
                     key={i}
@@ -70,17 +70,17 @@ export default function AllcareHero() {
               {/* 꼬리 */}
               <span
                 aria-hidden
-                className="absolute -bottom-[1.3cqw] left-[3.2cqw] h-[2.8cqw] w-[2.8cqw] rotate-45 rounded-[0.5cqw] bg-white"
+                className="absolute -bottom-[1cqw] left-[2.4cqw] h-[2.2cqw] w-[2.2cqw] rotate-45 rounded-[0.4cqw] bg-white"
               />
             </div>
           </div>
 
           {/* ===== 서브 카피 ===== */}
           <p
-            className="absolute left-1/2 top-[52.2%] w-[72%] -translate-x-1/2 text-center text-[2.95cqw] font-bold leading-[1.5] text-white transition-all duration-[700ms] ease-out"
+            className="absolute left-1/2 top-[65%] w-[80%] -translate-x-1/2 text-center text-[2.5cqw] font-bold leading-[1.5] text-white transition-all duration-[700ms] ease-out"
             style={{
               opacity: on ? 1 : 0,
-              transform: on ? "translate(-50%, 0)" : "translate(-50%, 1.4cqw)",
+              transform: on ? "translate(-50%, 0)" : "translate(-50%, 1.2cqw)",
               transitionDelay: `${on ? subDelay : 0}ms`,
             }}
           >
