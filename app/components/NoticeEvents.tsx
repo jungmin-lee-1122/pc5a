@@ -41,12 +41,12 @@ export default function NoticeEvents({
 }
 
 function Panel({ children }: { children: React.ReactNode }) {
-  return <div className="min-w-0 rounded-2xl border border-line bg-white p-6 sm:p-7">{children}</div>;
+  return <div className="min-w-0 rounded-2xl border border-line bg-[#bedbff33] p-6 sm:p-7">{children}</div>;
 }
 
 function PanelHeader({ title, moreHref }: { title: string; moreHref: string }) {
   return (
-    <div className="mb-2 flex items-center justify-between border-b border-line pb-4">
+    <div className="mb-3 flex items-center justify-between">
       <h3 className="text-lg font-extrabold text-ink">{title}</h3>
       <Link href={moreHref} aria-label={`${title} 더보기`} className="text-gray-400 hover:text-brand">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
