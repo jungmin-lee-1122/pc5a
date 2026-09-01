@@ -23,9 +23,9 @@ export default function Hero({ slides, poster }: { slides: Slide[]; poster: Post
 
   return (
     <section className="mx-auto max-w-6xl px-5 pt-6 lg:px-8">
-      <div className="grid gap-4 lg:grid-cols-3">
+      <div className="grid gap-4 lg:grid-cols-[5fr_2fr]">
         {/* 왼쪽: 롤링창 (컨트롤 오버레이) */}
-        <div className="lg:col-span-2">
+        <div>
           <div className="relative aspect-square w-full overflow-hidden rounded-2xl border border-line bg-brand-light lg:aspect-[7/4]">
             {count === 0 && (
               <div className="flex h-full items-center justify-center text-muted">
@@ -90,7 +90,7 @@ export default function Hero({ slides, poster }: { slides: Slide[]; poster: Post
         </div>
 
         {/* 오른쪽: 포스터 (롤링창과 세로 끝선 정렬) */}
-        <div className="hidden lg:col-span-1 lg:block">
+        <div className="hidden lg:block">
           <a
             href={poster?.href || "#"}
             className="block h-full w-full overflow-hidden rounded-2xl border border-line bg-white"
