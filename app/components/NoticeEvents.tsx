@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { targetLabel } from "@/lib/types";
 import type { Notice, EventItem } from "@/lib/types";
 
 export default function NoticeEvents({
@@ -87,7 +88,7 @@ function Row({
 }
 
 function EventRow({ event }: { event: EventItem }) {
-  const targets = (event.targets || "").split(/[,\u00b7]/).map((t) => t.trim()).filter(Boolean);
+  const targets = targetLabel(event.targets).split(/[,\u00b7]/).map((t) => t.trim()).filter(Boolean);
   const status = event.status || "접수중";
   const closed = /마감|종료/.test(status);
   const href = event.href && event.href !== "#" ? event.href : `/events/${event.id}`;
