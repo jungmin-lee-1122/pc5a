@@ -118,7 +118,16 @@ function SingleDropdown({ menu, onNavigate }: { menu: NavMenu; onNavigate: () =>
           {menu.groups.map((group, gi) => (
             <li key={gi}>
               {group.heading &&
-                (group.href ? (
+                (group.items.length === 0 && group.href ? (
+                  // 하위 항목 없는 헤딩 → 일반 세부항목과 동일한 굵기 · 구분선 없음
+                  <Link
+                    href={group.href}
+                    onClick={onNavigate}
+                    className="block px-5 py-2 text-[14px] font-semibold text-gray-800 transition-colors hover:bg-brand-light hover:text-brand"
+                  >
+                    {group.heading}
+                  </Link>
+                ) : group.href ? (
                   <Link
                     href={group.href}
                     onClick={onNavigate}
