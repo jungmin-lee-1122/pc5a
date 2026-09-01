@@ -77,7 +77,7 @@ export default function AllcareHero() {
 
           {/* ===== 서브 카피 ===== */}
           <p
-            className="absolute left-[46.5%] top-[64%] w-[70%] text-center text-[2.5cqw] font-bold leading-[1.5] text-white transition-all duration-[700ms] ease-out"
+            className="absolute left-[50.4%] top-[64%] w-[80%] text-center text-[2.8cqw] font-bold leading-[1.5] text-white transition-all duration-[700ms] ease-out"
             style={{
               opacity: on ? 1 : 0,
               transform: on ? "translate(-50%, 0)" : "translate(-50%, 1.2cqw)",
