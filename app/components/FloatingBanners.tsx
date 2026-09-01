@@ -17,7 +17,7 @@ export default function FloatingBanners() {
   return (
     <aside
       aria-label="바로가기"
-      className="fixed left-4 top-24 z-40 hidden flex-col items-center gap-2.5 min-[1400px]:flex"
+      className="fixed left-10 top-24 z-40 hidden flex-col items-center gap-2.5 min-[1400px]:flex"
     >
       {ITEMS.map((it) => (
         <Link
