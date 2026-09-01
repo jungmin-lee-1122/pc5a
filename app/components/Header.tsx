@@ -188,7 +188,16 @@ function MegaMenu({ onClose }: { onClose: () => void }) {
                   {menu.groups.map((group, gi) => (
                     <div key={gi}>
                       {group.heading &&
-                        (group.href ? (
+                        (group.items.length === 0 && group.href ? (
+                          // 하위 항목 없는 헤딩 → 일반 항목과 동일한 굵기 · 구분선 없음
+                          <Link
+                            href={group.href}
+                            onClick={onClose}
+                            className="block text-[14px] font-medium text-gray-700 transition-colors hover:text-brand"
+                          >
+                            {group.heading}
+                          </Link>
+                        ) : group.href ? (
                           <Link
                             href={group.href}
                             onClick={onClose}
