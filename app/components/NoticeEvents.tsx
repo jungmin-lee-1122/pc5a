@@ -31,7 +31,7 @@ export default function NoticeEvents({
         {/* 입시설명회 */}
         <div className="min-w-0">
           <PanelHeader title="입시설명회" moreHref="/events" />
-          <Panel className="bg-[#bedbff33]">
+          <Panel className="bg-[#F6F7FB]">
             <ul>
               {sortedEvents.map((e) => (
                 <EventRow key={e.id} event={e} />
