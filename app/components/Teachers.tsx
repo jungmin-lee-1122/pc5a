@@ -4,6 +4,9 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import type { Teacher } from "@/lib/types";
 
+// 모바일에서 한 줄에 담기 위한 짧은 라벨
+const SHORT: Record<string, string> = { 사회탐구: "사탐", 과학탐구: "과탐" };
+
 export default function Teachers({
   teachers,
   subjects,
@@ -87,18 +90,19 @@ export default function Teachers({
       {/* 헤더: 라벨 + 과목 탭 */}
       <div className="flex flex-wrap items-center gap-x-6 gap-y-3 border-b border-line pb-4">
         <h2 className="text-2xl font-extrabold text-ink">선생님</h2>
-        <div className="flex flex-wrap items-center gap-x-5 gap-y-1">
+        <div className="flex items-center gap-x-3 gap-y-1 sm:flex-wrap sm:gap-x-5">
           {TABS.map((subject) => (
             <button
               key={subject}
               onClick={() => setActive(subject)}
-              className={`text-[15px] transition-colors ${
+              className={`shrink-0 whitespace-nowrap text-[15px] transition-colors ${
                 active === subject
                   ? "font-bold text-brand"
                   : "font-medium text-gray-500 hover:text-ink"
               }`}
             >
-              {subject}
+              <span className="sm:hidden">{SHORT[subject] ?? subject}</span>
+              <span className="hidden sm:inline">{subject}</span>
             </button>
           ))}
         </div>
