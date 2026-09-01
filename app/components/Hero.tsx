@@ -53,7 +53,7 @@ export default function Hero({ slides, poster }: { slides: Slide[]; poster: Post
 
             {/* dn-slider-ctrl 스타일 컨트롤 */}
             {count > 0 && (
-              <div className="absolute bottom-4 left-1/2 z-10 flex -translate-x-1/2 items-center gap-2 rounded-full bg-white/20 px-2.5 py-1.5 backdrop-blur-md">
+              <div className="absolute bottom-4 right-4 z-10 flex items-center gap-2 rounded-full bg-white/20 px-2.5 py-1.5 backdrop-blur-md sm:bottom-5 sm:right-5">
                 <span className="pl-1.5 pr-0.5 text-sm font-bold text-ink/60">
                   {index + 1}/{count}
                 </span>
