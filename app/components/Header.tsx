@@ -6,6 +6,9 @@ import Logo from "./Logo";
 import Dday from "./Dday";
 import { NAV_MENUS, type NavMenu } from "@/lib/nav";
 
+// 상단 라벨 클릭(직접 이동) 비활성 — 드롭다운/하위메뉴만 이동
+const NO_TOP_LINK = new Set<string>(["모집안내", "학원생활"]);
+
 export default function Header({ brand, phone }: { brand: string; phone: string }) {
   // 호버 중인 상위 메뉴 인덱스 (단일 드롭다운)
   const [hovered, setHovered] = useState<number | null>(null);
@@ -42,14 +45,24 @@ export default function Header({ brand, phone }: { brand: string; phone: string 
         >
           {NAV_MENUS.map((menu, i) => (
             <div key={menu.label} className="relative" onMouseEnter={() => setHovered(i)}>
-              <Link
-                href={menu.href}
-                className={`inline-block py-7 text-[15px] font-semibold transition-colors ${
-                  hovered === i ? "text-brand" : "text-ink hover:text-brand"
-                }`}
-              >
-                {menu.label}
-              </Link>
+              {NO_TOP_LINK.has(menu.label) ? (
+                <span
+                  className={`inline-block cursor-default select-none py-7 text-[15px] font-semibold transition-colors ${
+                    hovered === i ? "text-brand" : "text-ink"
+                  }`}
+                >
+                  {menu.label}
+                </span>
+              ) : (
+                <Link
+                  href={menu.href}
+                  className={`inline-block py-7 text-[15px] font-semibold transition-colors ${
+                    hovered === i ? "text-brand" : "text-ink hover:text-brand"
+                  }`}
+                >
+                  {menu.label}
+                </Link>
+              )}
 
               {/* 단일 드롭다운 — 해당 메뉴에 마우스를 올렸을 때만 그 메뉴의 리스트가 열림 */}
               {hovered === i && <SingleDropdown menu={menu} onNavigate={() => setHovered(null)} />}
@@ -149,13 +162,19 @@ function MegaMenu({ onClose }: { onClose: () => void }) {
           <div className="grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-3 lg:grid-cols-6">
             {NAV_MENUS.map((menu) => (
               <div key={menu.label}>
-                <Link
-                  href={menu.href}
-                  onClick={onClose}
-                  className="mb-3 block border-b border-line pb-3 text-[17px] font-bold text-ink transition-colors hover:text-brand"
-                >
-                  {menu.label}
-                </Link>
+                {NO_TOP_LINK.has(menu.label) ? (
+                  <p className="mb-3 block cursor-default border-b border-line pb-3 text-[17px] font-bold text-ink">
+                    {menu.label}
+                  </p>
+                ) : (
+                  <Link
+                    href={menu.href}
+                    onClick={onClose}
+                    className="mb-3 block border-b border-line pb-3 text-[17px] font-bold text-ink transition-colors hover:text-brand"
+                  >
+                    {menu.label}
+                  </Link>
+                )}
                 <div className="space-y-3">
                   {menu.groups.map((group, gi) => (
                     <div key={gi}>
