@@ -84,6 +84,19 @@ export default function AllcareContent() {
     <>
       <AllcareHero />
 
+      {/* ===== 2번째 섹션: 올케어 소개 배너 ===== */}
+      <section className="w-full" style={{ backgroundColor: "#A6D4FE" }}>
+        <div className="mx-auto max-w-6xl px-5 lg:px-8">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/allcare-section2.png"
+            alt="학습·생활·입시 관리가 필요한 학생을 위한 프리미엄 올케어 — 고등부 올케어반 소개 및 관리 방식"
+            className="block w-full select-none"
+            draggable={false}
+          />
+        </div>
+      </section>
+
       {/* ===== 섹션 이동 탭 ===== */}
       <div className="sticky top-20 z-30 border-b border-line bg-white/95 backdrop-blur">
         <div className="mx-auto max-w-6xl px-5 lg:px-8">
