@@ -11,7 +11,7 @@
   --color-accent-2: #8a5cf0;     /* 보라 그라디언트 끝색 */
   --color-ink: #1a1a1a;          /* 기본 텍스트 */
   --color-muted: #6b7280;        /* 보조 텍스트 */
-  --color-line: #edeff4;         /* 구분선 */
+  --color-line: #dde3ef;         /* 구분선 (연한 쿨그레이-블루) */
 
   --font-sans: "Pretendard", "Pretendard Variable", -apple-system,
     BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕",
