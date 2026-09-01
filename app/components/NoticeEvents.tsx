@@ -16,9 +16,9 @@ export default function NoticeEvents({
     <section className="mx-auto max-w-6xl px-5 pt-14 lg:px-8">
       <div className="grid gap-5 lg:grid-cols-2">
         {/* 공지사항 */}
-        <div className="min-w-0">
+        <div className="flex min-w-0 flex-col">
           <PanelHeader title="공지사항" moreHref="/notices" />
-          <Panel className="bg-[#F6F7FB]">
+          <Panel className="bg-[#F6F7FB] flex-1">
             <ul>
               {sortedNotices.map((n) => (
                 <Row key={n.id} href={n.href && n.href !== "#" ? n.href : `/notices/${n.id}`} title={n.title} date={n.date} badge={n.badge} />
@@ -29,11 +29,11 @@ export default function NoticeEvents({
         </div>
 
         {/* 입시설명회 */}
-        <div className="min-w-0">
+        <div className="flex min-w-0 flex-col">
           <PanelHeader title="입시설명회" moreHref="/events" />
-          <Panel className="bg-[#F6F7FB]">
+          <Panel className="bg-[#F6F7FB] flex-1">
             <ul>
-              {sortedEvents.map((e) => (
+              {sortedEvents.slice(0, 1).map((e) => (
                 <EventRow key={e.id} event={e} />
               ))}
               {sortedEvents.length === 0 && <Empty>등록된 입시설명회가 없습니다</Empty>}

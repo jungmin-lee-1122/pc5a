@@ -53,37 +53,37 @@ export default function Hero({ slides, poster }: { slides: Slide[]; poster: Post
 
             {/* dn-slider-ctrl 스타일 컨트롤 */}
             {count > 0 && (
-              <div className="absolute bottom-4 right-4 z-10 flex items-center gap-2 rounded-full bg-white/20 px-2.5 py-1.5 backdrop-blur-md sm:bottom-5 sm:right-5">
-                <span className="pl-1.5 pr-0.5 text-sm font-bold text-ink/60">
+              <div className="absolute bottom-4 right-4 z-10 flex items-center gap-1.5 rounded-full bg-white/20 px-2 py-1 backdrop-blur-md sm:bottom-5 sm:right-5">
+                <span className="pl-1 pr-0.5 text-xs font-bold tracking-wide text-ink/60">
                   {index + 1}/{count}
                 </span>
                 <button
                   type="button"
                   aria-label="이전 슬라이드"
                   onClick={() => go(index - 1)}
-                  className="flex h-8 w-8 items-center justify-center rounded-full bg-ink/25 text-white transition hover:bg-ink/40"
+                  className="flex h-7 w-7 items-center justify-center rounded-full bg-ink/25 text-white transition hover:bg-ink/40"
                 >
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M15 6l-6 6 6 6" /></svg>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M15 6l-6 6 6 6" /></svg>
                 </button>
                 <button
                   type="button"
                   aria-label={playing ? "정지" : "재생"}
                   onClick={() => setPlaying((v) => !v)}
-                  className="flex h-8 w-8 items-center justify-center rounded-full bg-ink/25 text-white transition hover:bg-ink/40"
+                  className="flex h-7 w-7 items-center justify-center rounded-full bg-ink/25 text-white transition hover:bg-ink/40"
                 >
                   {playing ? (
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1" /><rect x="14" y="5" width="4" height="14" rx="1" /></svg>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1" /><rect x="14" y="5" width="4" height="14" rx="1" /></svg>
                   ) : (
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
                   )}
                 </button>
                 <button
                   type="button"
                   aria-label="다음 슬라이드"
                   onClick={() => go(index + 1)}
-                  className="flex h-8 w-8 items-center justify-center rounded-full bg-ink/25 text-white transition hover:bg-ink/40"
+                  className="flex h-7 w-7 items-center justify-center rounded-full bg-ink/25 text-white transition hover:bg-ink/40"
                 >
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M9 6l6 6-6 6" /></svg>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M9 6l6 6-6 6" /></svg>
                 </button>
               </div>            )}
           </div>
