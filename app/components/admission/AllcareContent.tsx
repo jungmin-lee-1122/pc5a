@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import AllcareHero from "@/app/components/admission/AllcareHero";
 
 const SECTIONS = [
   { label: "올케어반 소개", target: "ac-intro" },
@@ -81,28 +82,7 @@ export default function AllcareContent() {
 
   return (
     <>
-      {/* ===== HERO ===== */}
-      <section className="relative isolate overflow-hidden bg-gradient-to-br from-[#1e2a63] via-[#243377] to-brand text-white">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/logo-white.png"
-          alt=""
-          aria-hidden="true"
-          className="pointer-events-none absolute right-0 top-1/2 -z-10 h-[200%] -translate-y-1/2 select-none opacity-[0.12]"
-        />
-        <span aria-hidden className="pointer-events-none absolute -right-16 top-10 h-64 w-64 rounded-full bg-white/5" />
-        <span aria-hidden className="pointer-events-none absolute right-40 bottom-6 h-28 w-28 rounded-full border border-white/10" />
-        <div className="mx-auto max-w-6xl px-5 py-16 sm:py-20 lg:px-8">
-          <p className="text-sm font-semibold tracking-wide text-blue-200">학습부터 생활, 입시 관리까지</p>
-          <h2 className="mt-3 text-4xl font-extrabold tracking-tight sm:text-5xl">올케어반</h2>
-          <p className="mt-1 text-2xl font-bold text-blue-200 sm:text-3xl">All Care Program</p>
-          <p className="mt-6 max-w-xl text-base leading-relaxed text-blue-100/90 sm:text-lg">
-            5A 아카데미가 제시하는 가장 완성도 높은
-            <br />
-            <b className="font-bold text-white">프리미엄 통합 관리 프로그램</b>
-          </p>
-        </div>
-      </section>
+      <AllcareHero />
 
       {/* ===== 섹션 이동 탭 ===== */}
       <div className="sticky top-20 z-30 border-b border-line bg-white/95 backdrop-blur">

@@ -17,14 +17,14 @@ export default function FloatingBanners() {
   return (
     <aside
       aria-label="바로가기"
-      className="fixed left-5 top-1/2 z-40 hidden -translate-y-1/2 flex-col items-center gap-3 min-[1400px]:flex"
+      className="fixed left-4 top-24 z-40 hidden flex-col items-center gap-2.5 min-[1400px]:flex"
     >
       {ITEMS.map((it) => (
         <Link
           key={it.href}
           href={it.href}
           aria-label={it.alt}
-          className="group block w-[120px] overflow-hidden rounded-2xl border border-line bg-white shadow-[0_6px_20px_rgba(30,42,99,0.12)] transition hover:-translate-y-0.5 hover:shadow-[0_10px_28px_rgba(30,42,99,0.2)]"
+          className="group block w-[104px] overflow-hidden rounded-xl border border-line bg-white shadow-[0_5px_16px_rgba(30,42,99,0.12)] transition hover:-translate-y-0.5 hover:shadow-[0_9px_24px_rgba(30,42,99,0.2)]"
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={it.img} alt={it.alt} width={120} height={120} className="block h-auto w-full" />
