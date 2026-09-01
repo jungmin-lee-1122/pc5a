@@ -4,7 +4,6 @@ import Link from "next/link";
 import AllcareHero from "@/app/components/admission/AllcareHero";
 
 const SECTIONS = [
-  { label: "올케어반 소개", target: "ac-intro" },
   { label: "학습 관리 시스템", target: "ac-system" },
   { label: "맞춤 시간표", target: "ac-schedule" },
   { label: "선정 기준", target: "ac-criteria" },
@@ -86,7 +85,7 @@ export default function AllcareContent() {
 
       {/* ===== 2번째 섹션: 올케어 소개 배너 ===== */}
       <section className="w-full" style={{ backgroundColor: "#A6D4FE" }}>
-        <div className="mx-auto max-w-6xl px-5 lg:px-8">
+        <div className="w-full">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/allcare-section2.png"
@@ -115,37 +114,6 @@ export default function AllcareContent() {
       </div>
 
       <div className="mx-auto max-w-6xl space-y-16 px-5 py-14 lg:px-8">
-        {/* ===== 올케어반 소개 ===== */}
-        <section id="ac-intro" className="scroll-mt-40">
-          <div className="flex flex-col items-center gap-8 sm:flex-row sm:items-start sm:gap-10">
-            <div className="flex h-32 w-32 flex-none flex-col items-center justify-center rounded-full bg-brand text-white shadow-lg shadow-brand/25">
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M12 3 1 8l11 5 9-4.09V15h2V8L12 3zM5 13.18v3.5L12 20l7-3.32v-3.5L12 16l-7-2.82z" />
-              </svg>
-              <span className="mt-1 text-sm font-bold tracking-wide">ALL CARE</span>
-            </div>
-            <div className="min-w-0">
-              <h3 className="text-2xl font-extrabold text-ink sm:text-[26px]">올케어반 프로그램이란?</h3>
-              <div className="mt-2 h-1 w-14 rounded bg-brand" />
-              <p className="mt-5 leading-relaxed text-gray-600">
-                올케어반은 국어·수학·영어·탐구·논술 맞춤 단과를 수강하면서 체계적인 자기주도학습까지 함께하는{" "}
-                <b className="font-semibold text-ink">고등부 통합 관리 프로그램</b>입니다. 단순 수업 수강에 그치지 않고,
-                일일 입실 시간부터 학습 습관까지 관리하여 공부 습관 형성과 성적 향상을 함께 이끌어냅니다.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* ===== PREMIUM 배너 ===== */}
-        <div className="flex items-center justify-center gap-3 rounded-2xl bg-brand-dark px-6 py-5 text-center">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="#ffd27a" aria-hidden="true" className="shrink-0">
-            <path d="M5 16L3 6l5.5 4L12 4l3.5 6L21 6l-2 10H5zm0 2h14v2H5v-2z" />
-          </svg>
-          <p className="text-base font-bold text-white sm:text-lg">
-            학습 · 생활 · 입시 관리가 필요한 학생을 위한 <span className="text-blue-200">PREMIUM 올케어반</span>
-          </p>
-        </div>
-
         {/* ===== 학습 관리 시스템 + 맞춤 시간표 ===== */}
         <div className="grid gap-6 lg:grid-cols-2">
           <div id="ac-system" className="scroll-mt-40 rounded-2xl border border-line bg-white p-6 sm:p-7">

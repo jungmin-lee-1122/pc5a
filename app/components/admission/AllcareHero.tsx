@@ -35,7 +35,7 @@ export default function AllcareHero() {
 
   return (
     <section ref={ref} className="w-full" style={{ backgroundColor: "#357CD1" }}>
-      <div className="mx-auto max-w-6xl px-5 lg:px-8">
+      <div className="w-full">
         {/* 이미지 폭 기준 컨테이너 쿼리 → 글자/여백이 배경과 함께 스케일 */}
         <div className="relative w-full [container-type:inline-size]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
