@@ -68,7 +68,10 @@ export async function POST(req: Request) {
   }
 
   // 2) 구글시트(Apps Script Web App)로 전송
-  const webhook = process.env.SHEET_WEBHOOK_URL;
+  //    [DB제공 동의] 이벤트는 별도 시트(SHEET_WEBHOOK_URL_DB)로 전송, 그 외는 기본 시트
+  const isDbConsent = /DB\s*제공/.test(str(body.eventTitle));
+  const webhook =
+    (isDbConsent && process.env.SHEET_WEBHOOK_URL_DB) || process.env.SHEET_WEBHOOK_URL;
   if (webhook) {
     try {
       const res = await fetch(webhook, {
