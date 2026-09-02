@@ -17,10 +17,10 @@ export default function FloatingButtons({ phone, kakao }: { phone: string; kakao
       <a
         href="/life/counsel"
         className="flex h-12 w-12 flex-col items-center justify-center rounded-full bg-accent text-[10px] font-bold text-white shadow-lg transition hover:brightness-110"
-        aria-label="온라인 상담"
+        aria-label="온라인 접수"
       >
         <ChatIcon />
-        상담
+        접수
       </a>
       <a
         href={`tel:${phone}`}

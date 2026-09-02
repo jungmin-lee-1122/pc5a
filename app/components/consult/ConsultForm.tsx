@@ -57,7 +57,7 @@ function formatPhone(v: string) {
 }
 
 export default function ConsultForm() {
-  const [f, setF] = useState({ name: "", phone: "", gender: "", school: "", grade: "", field: "", message: "" });
+  const [f, setF] = useState({ name: "", phone: "", studentPhone: "", gender: "", school: "", grade: "", field: "", message: "" });
   const [agree, setAgree] = useState(false);
   const [error, setError] = useState("");
   const [submitting, setSubmitting] = useState(false);
@@ -68,7 +68,8 @@ export default function ConsultForm() {
     e.preventDefault();
     setError("");
     if (!f.name.trim()) return setError("학생 이름을 입력해 주세요.");
-    if (f.phone.replace(/\D/g, "").length < 10) return setError("연락처를 정확히 입력해 주세요.");
+    if (f.phone.replace(/\D/g, "").length < 10) return setError("학부모 연락처를 정확히 입력해 주세요.");
+    if (f.studentPhone && f.studentPhone.replace(/\D/g, "").length < 10) return setError("학생 연락처를 정확히 입력해 주세요.");
     if (!agree) return setError("개인정보 수집 및 이용에 동의해 주세요.");
 
     setSubmitting(true);
@@ -95,7 +96,7 @@ export default function ConsultForm() {
             <polyline points="20 6 9 17 4 12" />
           </svg>
         </div>
-        <h3 className="mt-4 text-lg font-extrabold text-ink">상담 신청이 접수되었습니다</h3>
+        <h3 className="mt-4 text-lg font-extrabold text-ink">접수가 완료되었습니다</h3>
         <p className="mt-2 text-sm text-muted">
           등록하신 연락처로 순차적으로 연락드리겠습니다.
           <br />
@@ -108,7 +109,7 @@ export default function ConsultForm() {
   return (
     <div className="overflow-hidden rounded-2xl border border-line bg-white">
       <div className="border-b border-line bg-brand-light/40 px-6 py-5">
-        <h3 className="text-base font-extrabold text-ink">상담 신청서</h3>
+        <h3 className="text-base font-extrabold text-ink">온라인 접수 신청서</h3>
         <p className="mt-1 text-[13px] text-muted">아래 정보를 남겨주시면 순차적으로 연락을 드리겠습니다.</p>
       </div>
 
@@ -124,12 +125,23 @@ export default function ConsultForm() {
         </div>
 
         <div className="mb-4">
-          <Label required>연락처</Label>
+          <Label required>학부모 연락처</Label>
           <input
             value={f.phone}
             onChange={(e) => set("phone", formatPhone(e.target.value))}
             inputMode="numeric"
             placeholder="010-0000-0000"
+            className={fieldCls}
+          />
+        </div>
+
+        <div className="mb-4">
+          <Label>학생 연락처</Label>
+          <input
+            value={f.studentPhone}
+            onChange={(e) => set("studentPhone", formatPhone(e.target.value))}
+            inputMode="numeric"
+            placeholder="010-0000-0000 (선택)"
             className={fieldCls}
           />
         </div>
@@ -176,12 +188,12 @@ export default function ConsultForm() {
         </div>
 
         <div className="mb-5">
-          <Label>상담 내용</Label>
+          <Label>추가 문의사항</Label>
           <textarea
             value={f.message}
             onChange={(e) => set("message", e.target.value)}
             rows={4}
-            placeholder="궁금하신 점이나 상담받고 싶은 내용을 자유롭게 남겨주세요. (선택)"
+            placeholder="추가로 궁금하신 점이나 문의사항을 자유롭게 남겨주세요. (선택)"
             className={fieldCls}
           />
         </div>
@@ -205,7 +217,7 @@ export default function ConsultForm() {
           disabled={submitting}
           className="w-full rounded-xl bg-brand py-4 text-[15px] font-bold text-white transition-colors hover:bg-brand-dark disabled:opacity-60"
         >
-          {submitting ? "접수 중…" : "상담 신청하기"}
+          {submitting ? "접수 중…" : "접수하기"}
         </button>
       </form>
     </div>

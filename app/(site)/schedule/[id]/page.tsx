@@ -61,6 +61,8 @@ export default async function CourseDetailPage({
       </div>
 
       <div className="mx-auto max-w-5xl px-5 py-8 lg:px-8">
+        {/* 상단: 선생님 단과 정보 (카드) */}
+        <div className="rounded-2xl border border-line bg-white p-5 sm:p-7">
         {/* ===== 모바일: 사진(왼쪽) + 제목(오른쪽) → 정보 아래 ===== */}
         <div className="sm:hidden">
           <div className="flex items-stretch gap-4">
@@ -149,13 +151,15 @@ export default async function CourseDetailPage({
             </dl>
           </div>
         </div>
+        </div>
 
-        <section className="mt-10">
+        {/* 하단: 강의계획서 (카드) */}
+        <section className="mt-6 rounded-2xl border border-line bg-white p-5 sm:p-7">
           <h2 className="mb-4 text-lg font-extrabold text-ink">강의 계획서</h2>
           {course.syllabus ? (
             <ZoomableImage src={course.syllabus} alt={`${course.title} 강의계획서`} label="강의 계획서" />
           ) : (
-            <p className="rounded-2xl border border-line py-16 text-center text-sm text-muted">
+            <p className="py-16 text-center text-sm text-muted">
               강의 계획서가 준비 중입니다.
             </p>
           )}
