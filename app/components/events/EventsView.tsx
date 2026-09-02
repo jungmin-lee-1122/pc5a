@@ -76,11 +76,16 @@ export default function EventsView({ events }: { events: EventItem[] }) {
         <ul className="space-y-4">
           {list.map((e) => {
             const closed = (e.status ?? "접수중") === "마감";
+            const isDb = /DB\s*제공/.test(e.title ?? "");
             return (
               <li key={e.id}>
                 <Link
                   href={`/events/${e.id}`}
-                  className="group block rounded-2xl border border-line bg-white p-5 transition-colors hover:border-brand/40 sm:p-6"
+                  className={
+                    isDb
+                      ? "group block rounded-2xl border border-brand/25 border-l-[5px] border-l-brand bg-brand-light/25 p-5 shadow-sm transition-colors hover:border-brand/50 sm:p-6"
+                      : "group block rounded-2xl border border-line bg-white p-5 transition-colors hover:border-brand/40 sm:p-6"
+                  }
                 >
                   <div className="mb-2.5 flex flex-wrap items-center gap-2">
                     <StatusBadge status={e.status} />

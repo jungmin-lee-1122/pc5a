@@ -353,12 +353,15 @@ function CourseRowsEditor({ value, onChange }: { value: unknown; onChange: (v: u
               </button>
             </div>
 
-            <input
-              value={r.title ?? ""}
-              onChange={(e) => setRow(i, { title: e.target.value })}
-              placeholder="강좌명 (예: [단과] 9월-고3 수학(토,4회) 확률과통계 -남상보T)"
-              className={input}
-            />
+            <div>
+              <span className="mb-1 block text-[11px] font-semibold text-gray-500">강좌명 (예: [단과] 9월-고3 수학(토,4회) 확률과통계 -남상보T)</span>
+              <input
+                value={r.title ?? ""}
+                onChange={(e) => setRow(i, { title: e.target.value })}
+                placeholder="강좌명을 입력하세요"
+                className={input}
+              />
+            </div>
 
             <div className="mt-2">
               <span className="mb-1 block text-[11px] font-semibold text-gray-500">모집대상 (복수 선택 · 단과시간표 탭)</span>
@@ -383,12 +386,30 @@ function CourseRowsEditor({ value, onChange }: { value: unknown; onChange: (v: u
             </div>
 
             <div className="mt-2 grid gap-2 sm:grid-cols-2">
-              <input value={Array.isArray(r.tags) ? r.tags.join(", ") : ""} onChange={(e) => setRow(i, { tags: e.target.value.split(",").map((s) => s.trim()).filter(Boolean) })} placeholder="태그 (예: 수학, 고3·N수)" className={input} />
-              <input value={r.startDate ?? ""} onChange={(e) => setRow(i, { startDate: e.target.value })} placeholder="개강일 (예: 8월 29일(토))" className={input} />
-              <input value={r.time ?? ""} onChange={(e) => setRow(i, { time: e.target.value })} placeholder="수업시간 (예: 토 09:00 ~ 12:00)" className={input} />
-              <input value={r.period ?? ""} onChange={(e) => setRow(i, { period: e.target.value })} placeholder="수업기간 (예: 8/29(토) ~ 9/19(토))" className={input} />
-              <input value={r.price ?? ""} onChange={(e) => setRow(i, { price: e.target.value })} placeholder="수강료 (예: 280,000원)" className={input} />
-              <input value={r.material ?? ""} onChange={(e) => setRow(i, { material: e.target.value })} placeholder="교재 (예: 자체 제작교재)" className={input} />
+              <div>
+                <span className="mb-1 block text-[11px] font-semibold text-gray-500">태그 (예: 수학, 고3·N수)</span>
+                <input value={Array.isArray(r.tags) ? r.tags.join(", ") : ""} onChange={(e) => setRow(i, { tags: e.target.value.split(",").map((s) => s.trim()).filter(Boolean) })} placeholder="쉼표로 구분" className={input} />
+              </div>
+              <div>
+                <span className="mb-1 block text-[11px] font-semibold text-gray-500">개강일 (예: 8월 29일(토))</span>
+                <input value={r.startDate ?? ""} onChange={(e) => setRow(i, { startDate: e.target.value })} className={input} />
+              </div>
+              <div>
+                <span className="mb-1 block text-[11px] font-semibold text-gray-500">수업시간 (예: 토 09:00 ~ 12:00)</span>
+                <input value={r.time ?? ""} onChange={(e) => setRow(i, { time: e.target.value })} className={input} />
+              </div>
+              <div>
+                <span className="mb-1 block text-[11px] font-semibold text-gray-500">수업기간 (예: 8/29(토) ~ 9/19(토))</span>
+                <input value={r.period ?? ""} onChange={(e) => setRow(i, { period: e.target.value })} className={input} />
+              </div>
+              <div>
+                <span className="mb-1 block text-[11px] font-semibold text-gray-500">수강료 (예: 280,000원)</span>
+                <input value={r.price ?? ""} onChange={(e) => setRow(i, { price: e.target.value })} className={input} />
+              </div>
+              <div>
+                <span className="mb-1 block text-[11px] font-semibold text-gray-500">교재 (예: 자체 제작교재)</span>
+                <input value={r.material ?? ""} onChange={(e) => setRow(i, { material: e.target.value })} className={input} />
+              </div>
             </div>
 
             <div className="mt-2">
