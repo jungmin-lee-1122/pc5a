@@ -58,7 +58,7 @@ function GradeSelect({ value, onChange }: { value: string; onChange: (v: string)
   const Item = ({ o }: { o: string }) => {
     const active = value === o;
     return (
-      <label className="flex cursor-pointer select-none items-center gap-2">
+      <label className="flex cursor-pointer select-none items-center gap-1.5">
         <input
           type="radio"
           name="grade"
@@ -67,13 +67,13 @@ function GradeSelect({ value, onChange }: { value: string; onChange: (v: string)
           onChange={() => onChange(o)}
           className="h-4 w-4 shrink-0 accent-[var(--color-brand)]"
         />
-        <span className={`text-[15px] ${active ? "font-semibold text-brand" : "text-gray-600"}`}>{o}</span>
+        <span className={`whitespace-nowrap text-[13px] ${active ? "font-semibold text-brand" : "text-gray-600"}`}>{o}</span>
       </label>
     );
   };
   return (
     <div className="rounded-xl border border-line bg-gray-50 p-4">
-      <div className="grid grid-cols-3 gap-x-3 gap-y-3.5 sm:grid-cols-4">
+      <div className="grid grid-cols-3 gap-x-1.5 gap-y-3.5 sm:grid-cols-4">
         {GRADE_MID.map((o) => (
           <Item key={o} o={o} />
         ))}
@@ -100,6 +100,7 @@ export default function EventForm({ event }: { event: EventItem }) {
     type: "학부모",
     name: "",
     phone: "",
+    studentPhone: "",
     school: "",
     grade: "",
     companions: "",
@@ -123,7 +124,8 @@ export default function EventForm({ event }: { event: EventItem }) {
     e.preventDefault();
     setError("");
     if (!f.name.trim()) return setError("학생 이름을 입력해 주세요.");
-    if (f.phone.replace(/\D/g, "").length < 10) return setError("휴대전화번호를 정확히 입력해 주세요.");
+    if (f.phone.replace(/\D/g, "").length < 10) return setError("학부모 연락처를 정확히 입력해 주세요.");
+    if (f.studentPhone && f.studentPhone.replace(/\D/g, "").length < 10) return setError("학생 연락처를 정확히 입력해 주세요.");
     if (!f.school.trim()) return setError("학교명을 입력해 주세요.");
     if (!f.grade) return setError("학년을 선택해 주세요.");
     if (!f.companions) return setError("동반인을 선택해 주세요.");
@@ -256,12 +258,23 @@ export default function EventForm({ event }: { event: EventItem }) {
           </div>
 
           <div className="mb-4">
-            <Label required>휴대전화번호</Label>
+            <Label required>학부모 연락처</Label>
             <input
               value={f.phone}
               onChange={(e) => set("phone", formatPhone(e.target.value))}
               inputMode="numeric"
               placeholder="010-0000-0000"
+              className={fieldCls}
+            />
+          </div>
+
+          <div className="mb-4">
+            <Label>학생 연락처</Label>
+            <input
+              value={f.studentPhone}
+              onChange={(e) => set("studentPhone", formatPhone(e.target.value))}
+              inputMode="numeric"
+              placeholder="010-0000-0000 (선택)"
               className={fieldCls}
             />
           </div>
