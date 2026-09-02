@@ -110,7 +110,7 @@ export default function ConsultForm() {
     <div className="overflow-hidden rounded-2xl border border-line bg-white">
       <div className="border-b border-line bg-brand-light/40 px-6 py-5">
         <h3 className="text-base font-extrabold text-ink">온라인 접수 신청서</h3>
-        <p className="mt-1 text-[13px] text-muted">아래 정보를 남겨주시면 순차적으로 연락을 드리겠습니다.</p>
+        <p className="mt-1 text-[13px] text-muted">아래 정보를 남겨주시면 접수를 도와드리겠습니다.</p>
       </div>
 
       <form onSubmit={submit} className="px-6 py-5">
@@ -182,7 +182,7 @@ export default function ConsultForm() {
             <Select value={f.grade} onChange={(v) => set("grade", v)} options={GRADE} />
           </div>
           <div>
-            <Label>상담 분야</Label>
+            <Label>접수 분야</Label>
             <Select value={f.field} onChange={(v) => set("field", v)} options={FIELD} />
           </div>
         </div>
@@ -206,7 +206,7 @@ export default function ConsultForm() {
             className="mt-0.5 h-4 w-4 accent-[var(--color-brand)]"
           />
           <span>
-            <span className="font-bold text-red-500">(필수)</span> 개인정보 수집 및 이용 동의 — 상담 접수·연락 목적으로 이름·연락처를 수집하며, 상담 완료 후 파기합니다.
+            <span className="font-bold text-red-500">(필수)</span> 개인정보 수집 및 이용 동의 — 상담 접수·연락 목적으로 이름·연락처를 수집하며, 수집기한 1년 경과 후 파기합니다.
           </span>
         </label>
 
