@@ -5,11 +5,11 @@ import AllcareHero from "@/app/components/admission/AllcareHero";
 
 // 세부 이동 탭 (대탭 바로 아래 sticky)
 const SECTIONS = [
+  { label: "올케어반이란?", target: "ac-about" },
   { label: "관리 방식", target: "ac-manage" },
   { label: "맞춤 시간표", target: "ac-habit" },
-  { label: "재원생 후기", target: "ac-review" },
-  { label: "올케어반이란?", target: "ac-about" },
   { label: "선정 기준", target: "ac-criteria" },
+  { label: "재원생 후기", target: "ac-review" },
 ];
 
 // 히어로 아래 섹션 이미지 (풀블리드)
