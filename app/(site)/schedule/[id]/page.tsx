@@ -155,7 +155,13 @@ export default async function CourseDetailPage({
 
         {/* 하단: 강의계획서 (카드) */}
         <section className="mt-6 rounded-2xl border border-line bg-white p-5 sm:p-7">
-          <h2 className="mb-4 text-lg font-extrabold text-ink">강의 계획서</h2>
+          <h2 className="mb-4 flex items-center gap-2 text-lg font-extrabold text-ink">
+            <svg className="shrink-0 text-brand" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" />
+              <path d="M10 8l4 4-4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+            강의 계획서
+          </h2>
           {course.syllabus ? (
             <ZoomableImage src={course.syllabus} alt={`${course.title} 강의계획서`} label="강의 계획서" />
           ) : (
