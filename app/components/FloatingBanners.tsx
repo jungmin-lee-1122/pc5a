@@ -20,7 +20,7 @@ export default function FloatingBanners() {
         aria-label="바로가기"
         aria-hidden={hidden}
         className={
-          "fixed left-10 top-24 z-40 hidden origin-top flex-col items-center gap-2.5 transition-all duration-500 ease-out min-[1400px]:flex " +
+          "fixed left-16 top-24 z-40 hidden origin-top flex-col items-center gap-2.5 transition-all duration-500 ease-out min-[1400px]:flex " +
           (hidden ? "pointer-events-none -translate-y-[140%] opacity-0" : "translate-y-0 opacity-100")
         }
       >
