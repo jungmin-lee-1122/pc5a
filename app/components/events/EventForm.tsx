@@ -180,9 +180,13 @@ export default function EventForm({ event }: { event: EventItem }) {
   }
 
   return (
-    <div className="overflow-hidden rounded-2xl border border-line bg-white">
+    <div
+      className={`overflow-hidden rounded-2xl border ${
+        isDbConsent ? "border-brand/30 bg-brand-light shadow-sm shadow-brand/5" : "border-line bg-white"
+      }`}
+    >
       {/* 폼 헤더 */}
-      <div className="border-b border-line bg-brand-light/40 px-6 py-5">
+      <div className={`border-b px-6 py-5 ${isDbConsent ? "border-brand/20 bg-brand/10" : "border-line bg-brand-light/40"}`}>
         <div className="flex items-start justify-between gap-3">
           <h3 className="text-base font-extrabold text-ink">{isDbConsent ? "정보 제공 동의서" : "예약 신청서"}</h3>
           {!isDbConsent && (

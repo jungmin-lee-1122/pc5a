@@ -7,7 +7,7 @@ import { useState } from "react";
 const ITEMS = [
   { img: "/floating-winter.png", alt: "2027 윈터스쿨 모집안내 바로가기", href: "/admission/winter" },
   { img: "/floating-schedule.png", alt: "고등부 단과 시간표 바로보기", href: "/schedule" },
-  { img: "/floating-sms.png", alt: "모집 및 설명회 문자알리미 신청", href: "/events" },
+  { img: "/floating-sms.png", alt: "모집 및 설명회 문자알리미 신청", href: "/events/mtjy2wbjydlix5" },
 ];
 
 export default function FloatingBanners() {

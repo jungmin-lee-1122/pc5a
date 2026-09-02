@@ -22,7 +22,7 @@ export const SLIDES: Slide[] = [
 export const POSTER: Poster = {
   id: "p1",
   image: "/poster.png",
-  href: "#",
+  href: "/admission/winter",
   alt: "2027 윈터스쿨 포스터",
   order: 1,
   active: true,
