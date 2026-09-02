@@ -165,9 +165,13 @@ export default function EventForm({ event }: { event: EventItem }) {
             <polyline points="20 6 9 17 4 12" />
           </svg>
         </div>
-        <h3 className="mt-4 text-lg font-extrabold text-ink">예약이 접수되었습니다</h3>
+        <h3 className="mt-4 text-lg font-extrabold text-ink">
+          {isDbConsent ? "제출이 완료되었습니다" : "예약이 접수되었습니다"}
+        </h3>
         <p className="mt-2 text-sm text-muted">
-          등록하신 연락처로 설명회 안내를 보내드립니다.
+          {isDbConsent
+            ? "제공해 주신 연락처로 모집 및 설명회 안내를 드리겠습니다."
+            : "등록하신 연락처로 설명회 안내를 보내드립니다."}
           <br />
           문의: {PHONE}
         </p>
@@ -180,14 +184,16 @@ export default function EventForm({ event }: { event: EventItem }) {
       {/* 폼 헤더 */}
       <div className="border-b border-line bg-brand-light/40 px-6 py-5">
         <div className="flex items-start justify-between gap-3">
-          <h3 className="text-base font-extrabold text-ink">예약 신청서</h3>
-          <span
-            className={`shrink-0 rounded-full px-2.5 py-1 text-xs font-bold ${
-              closed ? "bg-gray-100 text-gray-400" : "bg-brand text-white"
-            }`}
-          >
-            {closed ? "접수마감" : "선착순"}
-          </span>
+          <h3 className="text-base font-extrabold text-ink">{isDbConsent ? "정보 제공 동의서" : "예약 신청서"}</h3>
+          {!isDbConsent && (
+            <span
+              className={`shrink-0 rounded-full px-2.5 py-1 text-xs font-bold ${
+                closed ? "bg-gray-100 text-gray-400" : "bg-brand text-white"
+              }`}
+            >
+              {closed ? "접수마감" : "선착순"}
+            </span>
+          )}
         </div>
         <p className="mt-3 text-[15px] font-bold text-ink">{event.title}</p>
         <dl className="mt-2 space-y-1 text-[13px] text-gray-500">
@@ -223,9 +229,19 @@ export default function EventForm({ event }: { event: EventItem }) {
         <form onSubmit={submit} className="px-6 py-5">
           {/* 안내 문구 */}
           <ul className="mb-5 space-y-1 text-[12px] leading-relaxed text-gray-400">
-            <li>· 예약은 선착순으로 진행되며, 예약 상황에 따라 조기 마감될 수 있습니다.</li>
-            <li>· 등록하신 연락처로 설명회 안내 문자를 보내드리니 정확하게 입력해 주세요.</li>
-            <li>· 예약 취소·변경은 대표번호({PHONE})로 연락해 주세요.</li>
+            {isDbConsent ? (
+              <>
+                <li>· 제공해 주신 연락처는 모집 및 설명회 안내 목적으로만 사용됩니다.</li>
+                <li>· 등록하신 연락처로 안내 문자를 보내드리니 정확하게 입력해 주세요.</li>
+                <li>· 문의는 대표번호({PHONE})로 연락해 주세요.</li>
+              </>
+            ) : (
+              <>
+                <li>· 예약은 선착순으로 진행되며, 예약 상황에 따라 조기 마감될 수 있습니다.</li>
+                <li>· 등록하신 연락처로 설명회 안내 문자를 보내드리니 정확하게 입력해 주세요.</li>
+                <li>· 예약 취소·변경은 대표번호({PHONE})로 연락해 주세요.</li>
+              </>
+            )}
           </ul>
 
           {/* 예약자 구분 */}
