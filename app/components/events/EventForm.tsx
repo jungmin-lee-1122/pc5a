@@ -4,7 +4,9 @@ import { useState } from "react";
 import type { EventItem } from "@/lib/types";
 import { targetLabel } from "@/lib/types";
 
-const GRADE = ["중3", "고1", "고2", "고3", "N수"];
+const GRADE_MID = ["중1", "중2", "중3"];
+const GRADE_HIGH = ["고1", "고2", "고3", "재수/N수"];
+const GRADE = [...GRADE_MID, ...GRADE_HIGH];
 const COMPANIONS = ["1명", "2명", "3명", "4명"];
 const SOURCE = ["지인 추천", "학원 안내 문자", "인터넷 검색", "SNS", "현수막/전단", "기타"];
 const PHONE = "031-347-5151";
@@ -48,6 +50,39 @@ function Select({
         </option>
       ))}
     </select>
+  );
+}
+
+// 학년 선택 (체크/라디오 형식) — 우리 디자인 유지
+function GradeSelect({ value, onChange }: { value: string; onChange: (v: string) => void }) {
+  const Item = ({ o }: { o: string }) => {
+    const active = value === o;
+    return (
+      <label className="flex cursor-pointer select-none items-center gap-2">
+        <input
+          type="radio"
+          name="grade"
+          value={o}
+          checked={active}
+          onChange={() => onChange(o)}
+          className="h-4 w-4 shrink-0 accent-[var(--color-brand)]"
+        />
+        <span className={`text-[15px] ${active ? "font-semibold text-brand" : "text-gray-600"}`}>{o}</span>
+      </label>
+    );
+  };
+  return (
+    <div className="rounded-xl border border-line bg-gray-50 p-4">
+      <div className="grid grid-cols-3 gap-x-3 gap-y-3.5 sm:grid-cols-4">
+        {GRADE_MID.map((o) => (
+          <Item key={o} o={o} />
+        ))}
+        <span className="hidden sm:block" />
+        {GRADE_HIGH.map((o) => (
+          <Item key={o} o={o} />
+        ))}
+      </div>
+    </div>
   );
 }
 
@@ -243,7 +278,8 @@ export default function EventForm({ event }: { event: EventItem }) {
 
           <div className="mb-4">
             <Label required>학년</Label>
-            <Select value={f.grade} onChange={(v) => set("grade", v)} options={GRADE} />
+            <GradeSelect value={f.grade} onChange={(v) => set("grade", v)} />
+            <p className="mt-2 text-xs text-gray-400">{"* 예시) 현재 예비 고3의 경우 '고2' 체크"}</p>
           </div>
 
           <div className="mb-4">
