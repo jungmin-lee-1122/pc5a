@@ -20,7 +20,7 @@ export default async function Home() {
   ]);
 
   return (
-    <main className="flex-1 pb-4">
+    <main className="flex-1 pb-12">
       <FloatingBanners />
       <Hero slides={SLIDES.filter((s) => s.active)} poster={POSTER} />
       <Banner banner={BANNER} />
