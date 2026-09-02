@@ -113,6 +113,8 @@ export default function EventForm({ event }: { event: EventItem }) {
   const [done, setDone] = useState(false);
 
   const set = (k: keyof typeof f, v: string) => setF((s) => ({ ...s, [k]: v }));
+  // [DB제공 동의] 이벤트에서는 동반인·유입경로 필드를 숨김
+  const isDbConsent = /DB\s*제공/.test(event.title ?? "");
   const allAgreed = agreeRequired && agreeMarketing;
   function toggleAll() {
     const next = !allAgreed;
@@ -128,8 +130,8 @@ export default function EventForm({ event }: { event: EventItem }) {
     if (f.studentPhone && f.studentPhone.replace(/\D/g, "").length < 10) return setError("학생 연락처를 정확히 입력해 주세요.");
     if (!f.school.trim()) return setError("학교명을 입력해 주세요.");
     if (!f.grade) return setError("학년을 선택해 주세요.");
-    if (!f.companions) return setError("동반인을 선택해 주세요.");
-    if (!f.source) return setError("유입경로를 선택해 주세요.");
+    if (!isDbConsent && !f.companions) return setError("동반인을 선택해 주세요.");
+    if (!isDbConsent && !f.source) return setError("유입경로를 선택해 주세요.");
     if (!agreeRequired) return setError("개인정보 수집 및 이용에 동의해 주세요.");
 
     setSubmitting(true);
@@ -295,16 +297,20 @@ export default function EventForm({ event }: { event: EventItem }) {
             <p className="mt-2 text-xs text-gray-400">{"* 예시) 현재 예비 고3의 경우 '고2' 체크"}</p>
           </div>
 
-          <div className="mb-4">
-            <Label required>동반인</Label>
-            <Select value={f.companions} onChange={(v) => set("companions", v)} options={COMPANIONS} />
-            <p className="mt-1 text-xs text-muted">본인을 포함한 인원으로 좌석을 배정합니다.</p>
-          </div>
+          {!isDbConsent && (
+            <>
+              <div className="mb-4">
+                <Label required>동반인</Label>
+                <Select value={f.companions} onChange={(v) => set("companions", v)} options={COMPANIONS} />
+                <p className="mt-1 text-xs text-muted">본인을 포함한 인원으로 좌석을 배정합니다.</p>
+              </div>
 
-          <div className="mb-5">
-            <Label required>유입경로</Label>
-            <Select value={f.source} onChange={(v) => set("source", v)} options={SOURCE} />
-          </div>
+              <div className="mb-5">
+                <Label required>유입경로</Label>
+                <Select value={f.source} onChange={(v) => set("source", v)} options={SOURCE} />
+              </div>
+            </>
+          )}
 
           {/* 개인정보 동의 */}
           <div className="mb-5 rounded-xl border border-line p-4">
