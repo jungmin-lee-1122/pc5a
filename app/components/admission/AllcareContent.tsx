@@ -14,11 +14,11 @@ const SECTIONS = [
 
 // 히어로 아래 섹션 이미지 (풀블리드)
 const IMG_SECTIONS = [
+  { id: "ac-about", src: "/allcare-s4.png", bg: "#EFEFEF", alt: "Q. 고등부 올케어반이란?" },
   { id: "ac-manage", src: "/allcare-s1.png", bg: "#A6D4FE", alt: "학습·생활·입시 관리가 필요한 학생을 위한 PREMIUM ALL-CARE — 학습관리·생활관리·자습관리" },
   { id: "ac-habit", src: "/allcare-s2.png", bg: "#EFEFEF", alt: "혼자서는 잡기 어려운 공부습관, 철저한 관리로 올케어반과 함께 — 나만의 맞춤 시간표" },
-  { id: "ac-review", src: "/allcare-s3.png", bg: "#1050FF", alt: "실제 올케어반 재원생 후기" },
-  { id: "ac-about", src: "/allcare-s4.png", bg: "#EFEFEF", alt: "Q. 고등부 올케어반이란?" },
   { id: "ac-criteria", src: "/allcare-s5.png", bg: "#C4EAE7", alt: "학년별 맞춤 선정 기준 안내 — 올케어반 선정기준" },
+  { id: "ac-review", src: "/allcare-s3.png", bg: "#1050FF", alt: "실제 올케어반 재원생 후기" },
 ];
 
 export default function AllcareContent() {
