@@ -12,7 +12,7 @@ export default function Footer({ site }: { site: SiteSettings }) {
   ];
 
   return (
-    <footer className="mt-20 border-t border-line">
+    <footer className="border-t border-line">
       {/* 상단: 정책 링크 + 소셜 */}
       <div className="mx-auto flex max-w-6xl flex-col items-center gap-4 px-5 py-5 text-[13px] text-gray-400 sm:flex-row sm:justify-between lg:px-8">
         <nav className="flex items-center gap-3">
