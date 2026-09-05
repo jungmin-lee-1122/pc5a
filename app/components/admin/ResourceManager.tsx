@@ -333,7 +333,10 @@ function CourseRowsEditor({ value, onChange }: { value: unknown; onChange: (v: u
       ...rows,
       { id: newCourseId(), target: [], title: "", tags: [], startDate: "", period: "", time: "", price: "", material: "자체 제작교재", syllabus: "" },
     ]);
-  const remove = (i: number) => onChange(rows.filter((_, idx) => idx !== i));
+  const remove = (i: number) => {
+    if (!confirm("정말 삭제하시겠습니까?")) return;
+    onChange(rows.filter((_, idx) => idx !== i));
+  };
 
   return (
     <div className="space-y-4">

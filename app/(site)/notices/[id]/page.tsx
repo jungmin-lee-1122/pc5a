@@ -66,7 +66,7 @@ export default async function NoticeDetailPage({
 
       {/* 본문 */}
       <div className="mx-auto max-w-3xl px-5 py-9 lg:px-8">
-        {notice.content ? (
+        {notice.content && (
           <div className="space-y-4 text-[15px] leading-relaxed text-gray-700">
             {notice.content.split("\n").map((line, i) =>
               line.trim() === "" ? (
@@ -76,7 +76,16 @@ export default async function NoticeDetailPage({
               ),
             )}
           </div>
-        ) : (
+        )}
+
+        {notice.image && (
+          <div className={notice.content ? "mt-6" : ""}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={notice.image} alt={notice.title} className="w-full rounded-2xl border border-line" />
+          </div>
+        )}
+
+        {!notice.content && !notice.image && (
           <p className="py-10 text-center text-sm text-muted">본문 내용이 없습니다.</p>
         )}
 

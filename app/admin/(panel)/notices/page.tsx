@@ -20,6 +20,12 @@ export default function Page() {
           help: "상세 페이지에 표시되는 본문입니다.",
         },
         {
+          key: "image",
+          label: "이미지(선택)",
+          type: "image",
+          help: "공지 상세 페이지에 표시할 이미지입니다. (포스터 등)",
+        },
+        {
           key: "href",
           label: "외부 링크(선택)",
           type: "text",
@@ -27,7 +33,7 @@ export default function Page() {
           help: "외부 페이지로 바로 연결하고 싶을 때만 입력하세요. 보통은 비워둡니다.",
         },
       ]}
-      defaults={{ title: "", date: "", category: "공지사항", badge: "", content: "", href: "" }}
+      defaults={{ title: "", date: "", category: "공지사항", badge: "", content: "", image: "", href: "" }}
       summary={(item) => (
         <span>
           <span className="text-muted">

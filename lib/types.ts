@@ -67,6 +67,7 @@ export interface Notice {
   order: number;
   category?: string;  // 선택: 분류 (예: 공지사항 / 모집 / 학사)
   content?: string;   // 선택: 상세 페이지 본문 (줄바꿈으로 문단 구분)
+  image?: string;     // 선택: 상세 페이지 이미지 (포스터 등)
 }
 
 /** 설명회 참석 신청 상태 */
