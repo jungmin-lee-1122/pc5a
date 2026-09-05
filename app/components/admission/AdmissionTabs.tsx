@@ -16,14 +16,21 @@ export default function AdmissionTabs({ contained = false }: { contained?: boole
         <nav className="no-scrollbar flex items-center gap-6 overflow-x-auto sm:gap-9">
           {items.map((it) => {
             const active = pathname === it.href;
+            const noLink = !it.href || it.href === "#";
+            const base = "relative shrink-0 whitespace-nowrap py-4 text-[15px] font-bold tracking-tight sm:text-base";
+            if (noLink) {
+              return (
+                <span key={it.label} className={`${base} cursor-default text-ink`}>
+                  {it.label}
+                </span>
+              );
+            }
             return (
               <Link
                 key={it.href}
                 href={it.href}
                 aria-current={active ? "page" : undefined}
-                className={`relative shrink-0 whitespace-nowrap py-4 text-[15px] font-bold tracking-tight transition-colors sm:text-base ${
-                  active ? "text-brand" : "text-ink hover:text-brand"
-                }`}
+                className={`${base} transition-colors ${active ? "text-brand" : "text-ink hover:text-brand"}`}
               >
                 {it.label}
                 {active && (

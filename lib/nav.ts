@@ -43,6 +43,7 @@ export const NAV_MENUS: NavMenu[] = [
           { label: "2027 윈터스쿨", href: "/admission/winter" },
           { label: "고등 올케어반", href: "/admission/allcare" },
           { label: "2027 고등단과", href: "/schedule" },
+          { label: "2028 수능대비 스타트업반", href: "#" },
         ],
       },
     ],

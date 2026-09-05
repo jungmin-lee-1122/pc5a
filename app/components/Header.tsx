@@ -138,7 +138,15 @@ function SingleDropdown({ menu, onNavigate }: { menu: NavMenu; onNavigate: () =>
                 ) : (
                   <p className="mx-5 mb-1 mt-2.5 border-b border-line pb-2 text-[15px] font-extrabold text-ink">{group.heading}</p>
                 ))}
-              {group.items.map((item) => (
+              {group.items.map((item) =>
+                !item.href || item.href === "#" ? (
+                  <span
+                    key={item.href + item.label}
+                    className="block cursor-default px-5 py-2 text-[14px] font-semibold text-gray-800"
+                  >
+                    {item.label}
+                  </span>
+                ) : (
                 <Link
                   key={item.href + item.label}
                   href={item.href}
@@ -149,7 +157,8 @@ function SingleDropdown({ menu, onNavigate }: { menu: NavMenu; onNavigate: () =>
                 >
                   {item.label}
                 </Link>
-              ))}
+                )
+              )}
             </li>
           ))}
         </ul>
@@ -211,6 +220,11 @@ function MegaMenu({ onClose }: { onClose: () => void }) {
                       <ul className="space-y-1.5">
                         {group.items.map((item) => (
                           <li key={item.href + item.label}>
+                            {!item.href || item.href === "#" ? (
+                              <span className="cursor-default text-[14px] font-medium text-gray-700">
+                                {group.heading ? `· ${item.label}` : item.label}
+                              </span>
+                            ) : (
                             <Link
                               href={item.href}
                               onClick={onClose}
@@ -220,6 +234,7 @@ function MegaMenu({ onClose }: { onClose: () => void }) {
                             >
                               {group.heading ? `· ${item.label}` : item.label}
                             </Link>
+                            )}
                           </li>
                         ))}
                       </ul>
@@ -303,6 +318,12 @@ function MobileMenu({ phone, onClose }: { phone: string; onClose: () => void }) 
                       <ul>
                         {g.items.map((it) => (
                           <li key={it.href + it.label}>
+                            {!it.href || it.href === "#" ? (
+                              <span className="flex cursor-default items-center gap-2 py-2.5 text-[15px] font-semibold text-gray-700">
+                                <span className="text-[9px] text-brand">●</span>
+                                {it.label}
+                              </span>
+                            ) : (
                             <Link
                               href={it.href}
                               onClick={onClose}
@@ -313,6 +334,7 @@ function MobileMenu({ phone, onClose }: { phone: string; onClose: () => void }) 
                               <span className="text-[9px] text-brand">●</span>
                               {it.label}
                             </Link>
+                            )}
                           </li>
                         ))}
                       </ul>
