@@ -59,45 +59,43 @@ export default function AllcareContent() {
       ))}
 
       {/* ===== CTA ===== */}
-      <section className="bg-white">
-        <div className="mx-auto max-w-6xl px-5 py-14 lg:px-8">
-          <div className="relative isolate overflow-hidden rounded-3xl bg-gradient-to-br from-brand-dark via-[#243377] to-brand px-8 py-12 text-center shadow-lg shadow-brand/20 sm:px-12 sm:py-14">
-            {/* 장식 원 */}
-            <span aria-hidden className="pointer-events-none absolute -right-12 -top-12 h-44 w-44 rounded-full bg-white/10" />
-            <span aria-hidden className="pointer-events-none absolute -bottom-14 -left-10 h-40 w-40 rounded-full bg-white/[0.06]" />
+      <section className="relative isolate w-full overflow-hidden bg-gradient-to-br from-brand to-[#4a5fd0]">
+        {/* 장식 원 */}
+        <span aria-hidden className="pointer-events-none absolute -right-16 -top-20 h-64 w-64 rounded-full bg-white/10" />
+        <span aria-hidden className="pointer-events-none absolute -bottom-24 -left-16 h-72 w-72 rounded-full bg-white/[0.07]" />
 
-            {/* 아이콘 뱃지 */}
-            <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-white/15 ring-1 ring-white/25 backdrop-blur-sm">
-              <svg width="30" height="30" viewBox="0 0 24 24" fill="#fff" aria-hidden="true">
-                <path d="M12 3 1 8l11 5 9-4.09V15h2V8L12 3zM5 13.18v3.5L12 20l7-3.32v-3.5L12 16l-7-2.82z" />
+        <div className="mx-auto max-w-6xl px-5 py-16 text-center sm:py-20 lg:px-8">
+          {/* 아이콘 뱃지 */}
+          <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-white/15 ring-1 ring-white/25 backdrop-blur-sm">
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="#fff" aria-hidden="true">
+              <path d="M12 3 1 8l11 5 9-4.09V15h2V8L12 3zM5 13.18v3.5L12 20l7-3.32v-3.5L12 16l-7-2.82z" />
+            </svg>
+          </div>
+
+          <p className="text-sm font-bold tracking-wide text-blue-100">5A 아카데미 · 고등 올케어반</p>
+          <h2 className="mt-2 text-2xl font-extrabold leading-snug text-white sm:text-[32px]">
+            지금, 올케어반 접수하세요
+          </h2>
+          <p className="mt-3 text-sm text-blue-50/90 sm:text-base">
+            모집대상 : <b className="font-bold text-white">고1 · 고2 · 고3</b> 재학생
+          </p>
+
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+            <Link
+              href="/life/counsel"
+              className="inline-flex items-center gap-1.5 rounded-xl bg-white px-7 py-3.5 text-sm font-bold text-brand shadow-md shadow-brand-dark/20 transition hover:bg-blue-50"
+            >
+              올케어반 접수하기
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M5 12h14M13 6l6 6-6 6" />
               </svg>
-            </div>
-
-            <p className="text-sm font-bold tracking-wide text-blue-200">5A 아카데미 · 고등 올케어반</p>
-            <h2 className="mt-2 text-2xl font-extrabold leading-snug text-white sm:text-3xl">
-              지금, 올케어반 접수하세요
-            </h2>
-            <p className="mt-2.5 text-sm text-blue-100/90 sm:text-base">
-              모집대상 : <b className="font-bold text-white">고1 · 고2 · 고3</b> 재학생
-            </p>
-
-            <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
-              <Link
-                href="/life/counsel"
-                className="inline-flex items-center gap-1.5 rounded-xl bg-white px-7 py-3.5 text-sm font-bold text-brand shadow-sm transition hover:bg-blue-50"
-              >
-                올케어반 접수하기
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M5 12h14M13 6l6 6-6 6" />
-                </svg>
-              </Link>
-              <Link
-                href="/schedule"
-                className="rounded-xl border border-white/40 px-7 py-3.5 text-sm font-bold text-white transition hover:bg-white/10"
-              >
-                학년별 단과 시간표 보기
-              </Link>
-            </div>
+            </Link>
+            <Link
+              href="/schedule"
+              className="rounded-xl border border-white/50 px-7 py-3.5 text-sm font-bold text-white transition hover:bg-white/10"
+            >
+              학년별 단과 시간표 보기
+            </Link>
           </div>
         </div>
       </section>
