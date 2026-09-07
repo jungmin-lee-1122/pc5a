@@ -62,13 +62,13 @@ export default function AllcareContent() {
       <section className="border-t border-line bg-white">
         <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-6 px-5 py-12 lg:flex-row lg:items-center lg:px-8">
           <p className="text-xl font-extrabold leading-snug text-ink sm:text-2xl">
-            지금, 5A 아카데미 올케어반에서
+            고등부 올케어반 접수하기
             <br />
-            당신의 성적과 습관을 완성하세요.
+            모집대상 : 고1, 고2, 고3 재학생
           </p>
           <div className="flex flex-wrap gap-3">
             <Link href="/life/counsel" className="rounded-xl bg-brand px-6 py-3.5 text-sm font-bold text-white transition hover:bg-brand-dark">
-              올케어반 상담 예약하기
+              올케어반 접수하기
             </Link>
             <Link href="/schedule" className="rounded-xl border border-brand px-6 py-3.5 text-sm font-bold text-brand transition hover:bg-brand-light">
               학년별 단과 시간표 보기
