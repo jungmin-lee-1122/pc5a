@@ -65,15 +65,7 @@ export default function AllcareContent() {
         <span aria-hidden className="pointer-events-none absolute -bottom-24 -left-16 h-72 w-72 rounded-full bg-white/[0.07]" />
 
         <div className="mx-auto max-w-6xl px-5 py-16 text-center sm:py-20 lg:px-8">
-          {/* 아이콘 뱃지 */}
-          <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-white/15 ring-1 ring-white/25 backdrop-blur-sm">
-            <svg width="34" height="34" viewBox="0 0 24 24" fill="#fff" aria-hidden="true">
-              <path d="M12 3 1 8l11 5 9-4.09V15h2V8L12 3zM5 13.18v3.5L12 20l7-3.32v-3.5L12 16l-7-2.82z" />
-            </svg>
-          </div>
-
-          <p className="text-sm font-bold tracking-wide text-blue-100">5A 아카데미 · 고등 올케어반</p>
-          <h2 className="mt-2 text-2xl font-extrabold leading-snug text-white sm:text-[32px]">
+          <h2 className="text-2xl font-extrabold leading-snug text-white sm:text-[32px]">
             지금, 올케어반 접수하세요
           </h2>
           <p className="mt-3 text-sm text-blue-50/90 sm:text-base">
