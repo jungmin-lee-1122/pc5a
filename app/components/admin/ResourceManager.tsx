@@ -357,7 +357,7 @@ function CourseRowsEditor({ value, onChange }: { value: unknown; onChange: (v: u
             </div>
 
             <div>
-              <span className="mb-1 block text-[11px] font-semibold text-gray-500">강좌명 (예: [고3] 국어(일,4회) 2027 수능 국어 예언100서)</span>
+              <span className="mb-1 block text-[11px] font-semibold text-gray-500">강좌명 (예: [고3] 국어(일,4회) 2027 수능 국어 예언100서 - 최원용T)</span>
               <input
                 value={r.title ?? ""}
                 onChange={(e) => setRow(i, { title: e.target.value })}
