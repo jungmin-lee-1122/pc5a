@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import AboutHero from "@/app/components/about/AboutHero";
 
 export const metadata: Metadata = {
   title: "학원소개 | 5A 아카데미",
@@ -55,32 +56,8 @@ function Section({
 export default function AboutPage() {
   return (
     <main className="flex-1 pb-8">
-      {/* 헤더 */}
-      <div className="relative isolate overflow-hidden border-b border-line bg-brand-light">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/logo-white.png"
-          alt=""
-          aria-hidden="true"
-          className="pointer-events-none absolute right-0 top-1/2 -z-10 h-[190%] -translate-y-1/2 select-none opacity-[0.7] sm:right-6"
-        />
-        <div className="mx-auto max-w-6xl px-5 py-10 lg:px-8">
-          <p className="text-sm font-bold text-brand">학원소개</p>
-          <h1 className="mt-1.5 text-2xl font-extrabold text-ink sm:text-3xl">5A 아카데미</h1>
-          <p className="mt-2 text-sm text-muted">입시를 제대로 아는 곳, 학습을 제대로 시키는 곳.</p>
-        </div>
-      </div>
-
-      {/* 슬로건 */}
-      <section className="mx-auto max-w-6xl px-5 py-14 text-center lg:px-8 lg:py-20">
-        <p className="text-xl font-extrabold leading-relaxed text-ink sm:text-3xl sm:leading-[1.5]">
-          입시를 <span className="text-brand">제대로 아는</span> 곳
-          <br />
-          학습을 <span className="text-brand">제대로 시키는</span> 곳
-          <br />
-          목표대학에 <span className="text-brand">합격시키는</span> 곳
-        </p>
-      </section>
+      {/* 히어로 (레퍼런스 재현: 배경사진 + 프레임 + 순차 페이드인) */}
+      <AboutHero />
 
       {/* 핵심 성과 */}
       <div className="bg-brand-light/50">
