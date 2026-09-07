@@ -357,7 +357,7 @@ function CourseRowsEditor({ value, onChange }: { value: unknown; onChange: (v: u
             </div>
 
             <div>
-              <span className="mb-1 block text-[11px] font-semibold text-gray-500">강좌명 (예: [단과] 9월-고3 수학(토,4회) 확률과통계 -남상보T)</span>
+              <span className="mb-1 block text-[11px] font-semibold text-gray-500">강좌명 (예: [고3] 국어(일,4회) 2027 수능 국어 예언100서)</span>
               <input
                 value={r.title ?? ""}
                 onChange={(e) => setRow(i, { title: e.target.value })}
@@ -394,11 +394,11 @@ function CourseRowsEditor({ value, onChange }: { value: unknown; onChange: (v: u
                 <input value={Array.isArray(r.tags) ? r.tags.join(", ") : ""} onChange={(e) => setRow(i, { tags: e.target.value.split(",").map((s) => s.trim()).filter(Boolean) })} placeholder="쉼표로 구분" className={input} />
               </div>
               <div>
-                <span className="mb-1 block text-[11px] font-semibold text-gray-500">개강일 (예: 8월 29일(토))</span>
+                <span className="mb-1 block text-[11px] font-semibold text-gray-500">개강일 (예: 8/29(토))</span>
                 <input value={r.startDate ?? ""} onChange={(e) => setRow(i, { startDate: e.target.value })} className={input} />
               </div>
               <div>
-                <span className="mb-1 block text-[11px] font-semibold text-gray-500">수업시간 (예: 토 09:00 ~ 12:00)</span>
+                <span className="mb-1 block text-[11px] font-semibold text-gray-500">수업시간 (예: [토] 09:00 ~ 12:00)</span>
                 <input value={r.time ?? ""} onChange={(e) => setRow(i, { time: e.target.value })} className={input} />
               </div>
               <div>
