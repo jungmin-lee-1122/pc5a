@@ -52,7 +52,7 @@ export default function AboutResults() {
           }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/about-hero.jpg" alt="5A 아카데미 입시설명회 현장" className="aspect-[4/3] w-full object-cover" />
+          <img src="/about-results.jpg" alt="5A 아카데미 입시설명회 현장" className="aspect-[4/3] w-full object-cover" />
         </div>
 
         {/* 텍스트 */}
