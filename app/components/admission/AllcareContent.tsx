@@ -66,7 +66,7 @@ export default function AllcareContent() {
 
         <div className="mx-auto max-w-6xl px-5 py-16 text-center sm:py-20 lg:px-8">
           <h2 className="text-2xl font-extrabold leading-snug text-white sm:text-[32px]">
-            지금, 올케어반 접수하세요
+            고등부 올케어반 접수 바로가기 ⇣
           </h2>
           <p className="mt-3 text-sm text-blue-50/90 sm:text-base">
             모집대상 : <b className="font-bold text-white">고1 · 고2 · 고3</b> 재학생
