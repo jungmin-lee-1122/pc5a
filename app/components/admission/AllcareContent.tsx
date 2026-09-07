@@ -59,20 +59,45 @@ export default function AllcareContent() {
       ))}
 
       {/* ===== CTA ===== */}
-      <section className="border-t border-line bg-white">
-        <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-6 px-5 py-12 lg:flex-row lg:items-center lg:px-8">
-          <p className="text-xl font-extrabold leading-snug text-ink sm:text-2xl">
-            고등부 올케어반 접수하기
-            <br />
-            모집대상 : 고1, 고2, 고3 재학생
-          </p>
-          <div className="flex flex-wrap gap-3">
-            <Link href="/life/counsel" className="rounded-xl bg-brand px-6 py-3.5 text-sm font-bold text-white transition hover:bg-brand-dark">
-              올케어반 접수하기
-            </Link>
-            <Link href="/schedule" className="rounded-xl border border-brand px-6 py-3.5 text-sm font-bold text-brand transition hover:bg-brand-light">
-              학년별 단과 시간표 보기
-            </Link>
+      <section className="bg-white">
+        <div className="mx-auto max-w-6xl px-5 py-14 lg:px-8">
+          <div className="relative isolate overflow-hidden rounded-3xl bg-gradient-to-br from-brand-dark via-[#243377] to-brand px-8 py-12 text-center shadow-lg shadow-brand/20 sm:px-12 sm:py-14">
+            {/* 장식 원 */}
+            <span aria-hidden className="pointer-events-none absolute -right-12 -top-12 h-44 w-44 rounded-full bg-white/10" />
+            <span aria-hidden className="pointer-events-none absolute -bottom-14 -left-10 h-40 w-40 rounded-full bg-white/[0.06]" />
+
+            {/* 아이콘 뱃지 */}
+            <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-white/15 ring-1 ring-white/25 backdrop-blur-sm">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="#fff" aria-hidden="true">
+                <path d="M12 3 1 8l11 5 9-4.09V15h2V8L12 3zM5 13.18v3.5L12 20l7-3.32v-3.5L12 16l-7-2.82z" />
+              </svg>
+            </div>
+
+            <p className="text-sm font-bold tracking-wide text-blue-200">5A 아카데미 · 고등 올케어반</p>
+            <h2 className="mt-2 text-2xl font-extrabold leading-snug text-white sm:text-3xl">
+              지금, 올케어반 접수하세요
+            </h2>
+            <p className="mt-2.5 text-sm text-blue-100/90 sm:text-base">
+              모집대상 : <b className="font-bold text-white">고1 · 고2 · 고3</b> 재학생
+            </p>
+
+            <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
+              <Link
+                href="/life/counsel"
+                className="inline-flex items-center gap-1.5 rounded-xl bg-white px-7 py-3.5 text-sm font-bold text-brand shadow-sm transition hover:bg-blue-50"
+              >
+                올케어반 접수하기
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg>
+              </Link>
+              <Link
+                href="/schedule"
+                className="rounded-xl border border-white/40 px-7 py-3.5 text-sm font-bold text-white transition hover:bg-white/10"
+              >
+                학년별 단과 시간표 보기
+              </Link>
+            </div>
           </div>
         </div>
       </section>

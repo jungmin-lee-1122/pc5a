@@ -29,15 +29,18 @@ export default function FloatingButtons({ phone, kakao }: { phone: string; kakao
       >
         <PhoneIcon />
       </a>
-      <a
-        href={kakao || "#"}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="flex h-12 w-12 items-center justify-center rounded-full bg-[#FEE500] text-[#3c1e1e] shadow-lg transition hover:brightness-95"
-        aria-label="카카오톡 상담"
-      >
-        <KakaoIcon />
-      </a>
+      {/* 카카오톡 버튼 임시 숨김 (복구하려면 false -> true) */}
+      {false && (
+        <a
+          href={kakao || "#"}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex h-12 w-12 items-center justify-center rounded-full bg-[#FEE500] text-[#3c1e1e] shadow-lg transition hover:brightness-95"
+          aria-label="카카오톡 상담"
+        >
+          <KakaoIcon />
+        </a>
+      )}
       {showTop && (
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
