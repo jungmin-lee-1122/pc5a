@@ -402,7 +402,7 @@ function CourseRowsEditor({ value, onChange }: { value: unknown; onChange: (v: u
                 <input value={r.time ?? ""} onChange={(e) => setRow(i, { time: e.target.value })} className={input} />
               </div>
               <div>
-                <span className="mb-1 block text-[11px] font-semibold text-gray-500">수업기간 (예: 8/29(토) ~ 9/19(토))</span>
+                <span className="mb-1 block text-[11px] font-semibold text-gray-500">회차 (3.5T X 주1회)</span>
                 <input value={r.period ?? ""} onChange={(e) => setRow(i, { period: e.target.value })} className={input} />
               </div>
               <div>
