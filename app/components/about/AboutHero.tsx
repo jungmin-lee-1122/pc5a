@@ -35,11 +35,11 @@ export default function AboutHero() {
           className="w-full max-w-2xl border border-white/35 px-6 py-16 text-center transition-all duration-[900ms] ease-out sm:px-10 sm:py-20"
           style={{ fontFamily: "'KoPubWorld Batang', serif", opacity: on ? 1 : 0, transform: on ? "scale(1)" : "scale(0.97)" }}
         >
-          <div className="space-y-2 sm:space-y-2.5">
+          <div className="space-y-1.5">
             {LINES.map((line, i) => (
               <p
                 key={line}
-                className="text-[17px] font-medium leading-relaxed text-white/90 transition-all duration-[700ms] ease-out sm:text-xl"
+                className="text-base font-normal leading-relaxed text-white/90 transition-all duration-[700ms] ease-out sm:text-lg"
                 style={{
                   opacity: on ? 1 : 0,
                   transform: on ? "translateY(0)" : "translateY(14px)",
@@ -52,7 +52,7 @@ export default function AboutHero() {
           </div>
 
           <p
-            className="mt-10 text-4xl leading-tight text-white transition-all duration-[900ms] ease-out sm:mt-12 sm:text-5xl"
+            className="mt-8 text-[26px] font-medium leading-snug tracking-normal text-white transition-all duration-[900ms] ease-out sm:mt-9 sm:text-[34px]"
             style={{
               fontFamily: "'KoPubWorld Batang', serif",
               opacity: on ? 1 : 0,
