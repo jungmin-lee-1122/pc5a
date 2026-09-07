@@ -1,25 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import AboutHero from "@/app/components/about/AboutHero";
+import AboutResults from "@/app/components/about/AboutResults";
 
 export const metadata: Metadata = {
   title: "학원소개 | 5A 아카데미",
   description: "입시를 제대로 아는 곳, 학습을 제대로 시키는 곳, 목표대학에 합격시키는 곳 — 5A 아카데미",
 };
-
-const STATS = [
-  { value: "35%", label: "Medical 합격자 중 5A 출신" },
-  { value: "23%", label: "서울대 합격자 중 5A 학생" },
-  { value: "20%", label: "연고대 합격자 중 5A 출신" },
-  { value: "1.5%", label: "고양·파주 지역 고3 중 단 1.5%의 성과" },
-];
-
-const REASONS = [
-  { title: "개별 맞춤 학습 분석", desc: "학생별 데이터 분석으로 철저하게 관리합니다." },
-  { title: "최고의 입시 전문가 그룹", desc: "입시 전문가 그룹이 직접 지도합니다." },
-  { title: "상위권 최적화 학습 환경", desc: "상위권 학생을 위한 최적화된 환경을 제공합니다." },
-  { title: "1:1 멘토링 + 전문 교육", desc: "멘토진의 1:1 상담과 강사진의 전문 교육으로 지원합니다." },
-];
 
 const TEACHERS = [
   { name: "박하나", subject: "수학" },
@@ -34,6 +21,40 @@ const SERVICES = [
 ];
 
 const FACILITIES = ["상담실", "강의실", "자습실"];
+
+// 5A PROGRAM (T·A·R·G·E·T 등에서 A만 강조)
+const PROGRAM = [
+  {
+    pre: "T",
+    post: "RGET",
+    a: "A",
+    desc: "입학을 하면 상담을 통해 학생의 꿈을 실현시킬 목표대학, 희망학과를 설정합니다.",
+  },
+  {
+    pre: "RO",
+    post: "DMAP",
+    a: "A",
+    desc: "목표대학, 희망학과가 결정되면 현재 성적과 학생부 상태를 파악하고, 목표대학 합격을 위한 학생부종합·학생부교과·논술·특기자전형 또는 수능 등 개개인에게 적합한 학습프로그램을 제시합니다.",
+  },
+  {
+    pre: "",
+    post: "CTION",
+    a: "A",
+    desc: "학생의 성적 향상과 학생부 최적화를 위해 중간·기말고사 전 기출 및 예상문제 제공과 서울대 멘토진의 1:1 클리닉을 진행하고, 교내 활동을 체계적으로 운영하며, 필요 시 서울대 멘토와의 상담 및 5A입시연구소 컨설팅을 통해 개별 맞춤 지원을 제공합니다.",
+  },
+  {
+    pre: "",
+    post: "DJUST",
+    a: "A",
+    desc: "학습기록장과 4주 단위 계획표로 학습 상태를 점검하고, 격주 검사를 통해 보완합니다. 모의고사 성적 분석 후 과목별 맞춤 학습법을 제안하며, 필요한 과제도 제시·검사합니다. 학교 활동까지 포함해 전반적인 학습을 관리하며, 학원 ROADMAP에 맞춰 밀착 지도합니다.",
+  },
+  {
+    pre: "P",
+    post: "SS",
+    a: "A",
+    desc: "Action과 Adjust를 반복적으로 진행하다 보면 학원에서 제시한 Roadmap에 가장 적합한 활동으로 만들어지며, 결국 학생과 학부모님이 꿈꾸는 대학 희망학과에 합격을 할 수 있게 됩니다.",
+  },
+];
 
 function Section({
   eyebrow,
@@ -59,38 +80,52 @@ export default function AboutPage() {
       {/* 히어로 (레퍼런스 재현: 배경사진 + 프레임 + 순차 페이드인) */}
       <AboutHero />
 
-      {/* 핵심 성과 */}
-      <div className="bg-brand-light/50">
-        <div className="mx-auto max-w-6xl px-5 py-12 lg:px-8 lg:py-16">
-          <p className="text-center text-sm font-bold text-brand">합격 실적</p>
-          <h2 className="mt-1.5 text-center text-2xl font-extrabold text-ink sm:text-3xl">숫자로 보는 5A</h2>
-          <div className="mt-9 grid grid-cols-2 gap-4 sm:grid-cols-4">
-            {STATS.map((s) => (
-              <div key={s.label} className="rounded-2xl border border-line bg-white px-4 py-7 text-center">
-                <p className="text-3xl font-extrabold text-brand sm:text-4xl">{s.value}</p>
-                <p className="mt-2 text-[13px] leading-relaxed text-gray-500">{s.label}</p>
-              </div>
-            ))}
+      {/* 5A PROGRAM */}
+      <section className="bg-white">
+        <div className="mx-auto max-w-6xl px-5 py-14 lg:px-8 lg:py-20">
+          <h2 className="text-2xl font-extrabold tracking-tight text-brand-dark sm:text-[28px]">5A PROGRAM</h2>
+
+          <div className="relative mt-10">
+            {/* 가로 그라데이션 라인 (PC) */}
+            <div
+              aria-hidden
+              className="absolute inset-x-0 top-[86px] hidden h-[3px] rounded-full lg:block"
+              style={{ background: "linear-gradient(to right, #2f47b8 0%, #2f47b8 55%, #22d3ee 100%)" }}
+            />
+
+            <div className="grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-5">
+              {PROGRAM.map((p) => (
+                <div key={p.a === p.a ? p.pre + p.post : ""} className="relative">
+                  {/* 집 아이콘 */}
+                  <svg
+                    viewBox="0 0 120 96"
+                    className="mx-auto block h-[86px] w-auto text-[#d6ddef]"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    strokeLinejoin="round"
+                    aria-hidden
+                  >
+                    <path d="M60 6 L112 42 L112 94 L8 94 L8 42 Z" />
+                  </svg>
+
+                  <h3 className="mt-6 text-center text-xl font-extrabold tracking-tight text-ink sm:text-left">
+                    {p.pre}
+                    <span className="text-red-600">A</span>
+                    {p.post}
+                  </h3>
+                  <p className="mt-3 text-center text-[13.5px] leading-relaxed text-gray-500 sm:text-left">
+                    {p.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* 선택 이유 */}
-      <Section eyebrow="WHY 5A" title="5A아카데미를 선택하는 이유">
-        <div className="grid gap-4 sm:grid-cols-2">
-          {REASONS.map((r, i) => (
-            <div key={r.title} className="flex gap-4 rounded-2xl border border-line bg-white p-6">
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-light text-sm font-extrabold text-brand">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <div>
-                <p className="text-base font-bold text-ink">{r.title}</p>
-                <p className="mt-1 text-sm leading-relaxed text-muted">{r.desc}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </Section>
+      {/* 최고의 입시 결과 증명 (사진 + 텍스트, 스크롤 애니메이션) */}
+      <AboutResults />
 
       {/* 전문 강사진 */}
       <div className="bg-brand-light/40">

@@ -13,11 +13,8 @@ export default function AboutHero() {
 
   return (
     <section className="relative isolate w-full overflow-hidden bg-[#0d0f1a]">
-      {/* 손글씨 폰트 */}
-      <link
-        href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap"
-        rel="stylesheet"
-      />
+      {/* KoPub Batang 폰트 */}
+      <link href="https://cdn.jsdelivr.net/gh/webfontworld/kopub/KoPubWorldBatang.css" rel="stylesheet" />
 
       {/* 배경 사진 (천천히 확대) */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -36,7 +33,7 @@ export default function AboutHero() {
         {/* 프레임 */}
         <div
           className="w-full max-w-2xl border border-white/35 px-6 py-16 text-center transition-all duration-[900ms] ease-out sm:px-10 sm:py-20"
-          style={{ opacity: on ? 1 : 0, transform: on ? "scale(1)" : "scale(0.97)" }}
+          style={{ fontFamily: "'KoPubWorld Batang', serif", opacity: on ? 1 : 0, transform: on ? "scale(1)" : "scale(0.97)" }}
         >
           <div className="space-y-2 sm:space-y-2.5">
             {LINES.map((line, i) => (
@@ -57,7 +54,7 @@ export default function AboutHero() {
           <p
             className="mt-10 text-4xl leading-tight text-white transition-all duration-[900ms] ease-out sm:mt-12 sm:text-5xl"
             style={{
-              fontFamily: "'Nanum Pen Script', system-ui, sans-serif",
+              fontFamily: "'KoPubWorld Batang', serif",
               opacity: on ? 1 : 0,
               transform: on ? "translateY(0)" : "translateY(18px)",
               transitionDelay: `${on ? 1050 : 0}ms`,
