@@ -103,7 +103,6 @@ export default async function CourseDetailPage({
             <Row label="수업기간" value={course.period} />
             <Row label="수업시간" value={course.time} />
             <Row label="수강료" value={course.price} />
-            <Row label="교재" value={course.material} />
           </dl>
         </div>
 
@@ -147,8 +146,7 @@ export default async function CourseDetailPage({
               <Row label="수업기간" value={course.period} />
               <Row label="수업시간" value={course.time} />
               <Row label="수강료" value={course.price} />
-              <Row label="교재" value={course.material} />
-            </dl>
+              </dl>
           </div>
         </div>
         </div>

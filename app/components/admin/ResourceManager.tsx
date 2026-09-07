@@ -409,10 +409,6 @@ function CourseRowsEditor({ value, onChange }: { value: unknown; onChange: (v: u
                 <span className="mb-1 block text-[11px] font-semibold text-gray-500">수강료 (예: 280,000원)</span>
                 <input value={r.price ?? ""} onChange={(e) => setRow(i, { price: e.target.value })} className={input} />
               </div>
-              <div>
-                <span className="mb-1 block text-[11px] font-semibold text-gray-500">교재 (예: 자체 제작교재)</span>
-                <input value={r.material ?? ""} onChange={(e) => setRow(i, { material: e.target.value })} className={input} />
-              </div>
             </div>
 
             <div className="mt-2">

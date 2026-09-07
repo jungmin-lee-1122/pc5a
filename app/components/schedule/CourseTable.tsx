@@ -30,7 +30,7 @@ export default function CourseTable({ courses }: { courses: CourseWithTeacher[] 
               <th className="px-4 py-3 text-center font-semibold">강사</th>
               <th className="px-4 py-3 text-left font-semibold">강좌명</th>
               <th className="px-4 py-3 text-center font-semibold">개강일</th>
-              <th className="px-4 py-3 text-center font-semibold">회차</th>
+              <th className="whitespace-nowrap px-4 py-3 text-center font-semibold">회차</th>
               <th className="px-4 py-3 text-center font-semibold">수업시간</th>
             </tr>
           </thead>
@@ -59,7 +59,7 @@ export default function CourseTable({ courses }: { courses: CourseWithTeacher[] 
                   <p className="mt-1.5 font-semibold text-ink">{c.title}</p>
                 </td>
                 <td className="px-4 py-4 text-center text-gray-600">{c.startDate || "-"}</td>
-                <td className="px-4 py-4 text-center text-gray-600">{c.period || "-"}</td>
+                <td className="whitespace-nowrap px-4 py-4 text-center text-gray-600">{c.period || "-"}</td>
                 <td className="px-4 py-4 text-center text-gray-600">{c.time || "-"}</td>
               </tr>
             ))}
