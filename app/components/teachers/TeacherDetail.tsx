@@ -296,9 +296,9 @@ function CoursesTable({ teacher, courses }: { teacher: Teacher; courses: Teacher
                   </div>
                   <p className="mt-1.5 font-semibold text-ink">{c.title}</p>
                 </td>
-                <td className="px-4 py-4 text-center text-gray-600">{c.startDate || "-"}</td>
-                <td className="px-4 py-4 text-center text-gray-600">{c.period || "-"}</td>
-                <td className="px-4 py-4 text-center text-gray-600">{c.time || "-"}</td>
+                <td className="whitespace-nowrap px-4 py-4 text-center text-gray-600">{c.startDate || "-"}</td>
+                <td className="whitespace-nowrap px-4 py-4 text-center text-gray-600">{c.period || "-"}</td>
+                <td className="whitespace-nowrap px-4 py-4 text-center text-gray-600">{c.time || "-"}</td>
               </tr>
             ))}
           </tbody>

@@ -29,7 +29,14 @@ export default async function TeacherViewPage({
   const current = teachers.find((t) => t.id === id);
   if (!current) notFound();
 
-  const courses = current.courses ?? [];
+  // 본인 강좌 + 다른 선생님 강좌 중 이 선생님이 "공동 강사"로 지정된 강좌
+  const normName = (x?: string) => (x ?? "").replace(/\s+/g, "").replace(/T$/, "");
+  const me = normName(current.name);
+  const coTaught = teachers
+    .filter((t) => t.id !== current.id)
+    .flatMap((t) => (t.courses ?? []).filter((c) => me !== "" && normName(c.coTeacherName) === me));
+  const ownIds = new Set((current.courses ?? []).map((c) => c.id));
+  const courses = [...(current.courses ?? []), ...coTaught.filter((c) => !ownIds.has(c.id))];
 
   const activeSubject =
     subject && (subject === "전체" || SITE.subjects.includes(subject)) ? subject : current.subject;
