@@ -106,7 +106,7 @@ export const NAV_MENUS: NavMenu[] = [
         items: [
           { label: "주간식단표", href: "/menu" },
           { label: "재원생 후기", href: "/life/review" },
-          { label: "온라인 상담", href: "/life/counsel" },
+          { label: "온라인 접수", href: "/life/counsel" },
           { label: "2026 모의고사 일정", href: "/life/mock" },
         ],
       },
