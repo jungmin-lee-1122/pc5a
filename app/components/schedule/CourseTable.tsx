@@ -43,11 +43,19 @@ export default function CourseTable({ courses }: { courses: CourseWithTeacher[] 
               >
                 <td className="px-4 py-4">
                   <div className="flex flex-col items-center gap-1.5">
-                    <span className="h-11 w-11 overflow-hidden rounded-lg border border-line bg-gray-50">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={c.teacherPhoto} alt={c.teacherName} className="h-full w-full object-cover object-top" />
-                    </span>
-                    <span className="text-[13px] text-gray-600">{c.teacherName}</span>
+                    <div className="flex items-center">
+                      <span className="h-11 w-11 overflow-hidden rounded-lg border border-line bg-gray-50">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src={c.teacherPhoto} alt={c.teacherName} className="h-full w-full object-cover object-top" />
+                      </span>
+                      {c.coTeacherName && (
+                        <span className="-ml-2 h-11 w-11 overflow-hidden rounded-lg border-2 border-white bg-gray-50 ring-1 ring-line">
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img src={c.coTeacherPhoto || "/placeholders/teacher.svg"} alt={c.coTeacherName} className="h-full w-full object-cover object-top" />
+                        </span>
+                      )}
+                    </div>
+                    <span className="whitespace-nowrap text-[13px] text-gray-600">{c.teacherName}{c.coTeacherName ? ` · ${c.coTeacherName}` : ""}</span>
                   </div>
                 </td>
                 <td className="px-4 py-4">
@@ -73,11 +81,19 @@ export default function CourseTable({ courses }: { courses: CourseWithTeacher[] 
           <li key={c.id}>
             <Link href={`/schedule/${c.id}`} className="block rounded-2xl border border-line p-4">
               <div className="flex items-center gap-2">
-                <span className="h-9 w-9 shrink-0 overflow-hidden rounded-lg border border-line bg-gray-50">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={c.teacherPhoto} alt={c.teacherName} className="h-full w-full object-cover object-top" />
-                </span>
-                <span className="text-[13px] text-gray-600">{c.teacherName}</span>
+                <div className="flex shrink-0 items-center">
+                  <span className="h-9 w-9 overflow-hidden rounded-lg border border-line bg-gray-50">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={c.teacherPhoto} alt={c.teacherName} className="h-full w-full object-cover object-top" />
+                  </span>
+                  {c.coTeacherName && (
+                    <span className="-ml-1.5 h-9 w-9 overflow-hidden rounded-lg border-2 border-white bg-gray-50 ring-1 ring-line">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={c.coTeacherPhoto || "/placeholders/teacher.svg"} alt={c.coTeacherName} className="h-full w-full object-cover object-top" />
+                    </span>
+                  )}
+                </div>
+                <span className="text-[13px] text-gray-600">{c.teacherName}{c.coTeacherName ? ` · ${c.coTeacherName}` : ""}</span>
                 <div className="ml-auto flex flex-wrap justify-end gap-1">
                   {chips(c).map((t) => (
                     <span key={t} className="rounded bg-brand-light px-1.5 py-0.5 text-[11px] font-semibold text-brand">{t}</span>

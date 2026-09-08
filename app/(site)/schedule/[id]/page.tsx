@@ -97,7 +97,7 @@ export default async function CourseDetailPage({
             </div>
           </div>
           <dl className="mt-7 grid gap-x-8">
-            <Row label="선생님" value={course.teacherName} />
+            <Row label="선생님" value={course.teacherName + (course.coTeacherName ? ` · ${course.coTeacherName}` : "")} />
             <Row label="모집대상" value={(course.target ?? []).join(", ")} />
             <Row label="개강일" value={course.startDate} />
             <Row label="수업기간" value={course.period} />
@@ -132,7 +132,7 @@ export default async function CourseDetailPage({
               <div className="flex items-center gap-3 border-b border-line py-3.5">
                 <dt className="w-20 shrink-0 text-sm font-semibold text-gray-400">선생님</dt>
                 <dd className="flex flex-wrap items-center gap-2 text-sm font-medium text-ink">
-                  {course.teacherName}
+                  {course.teacherName}{course.coTeacherName ? ` · ${course.coTeacherName}` : ""}
                   <Link
                     href={`/teachers/${course.teacherId}`}
                     className="rounded-lg border border-line px-2.5 py-1 text-xs font-semibold text-gray-500 transition hover:border-brand hover:text-brand"

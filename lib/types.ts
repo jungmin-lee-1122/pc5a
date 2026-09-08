@@ -163,6 +163,8 @@ export interface TeacherCourse {
   price?: string;      // 수강료
   material?: string;   // 교재
   syllabus?: string;   // 강의계획서 (A4 이미지)
+  coTeacherName?: string;  // 공동 강사 이름(선택)
+  coTeacherPhoto?: string; // 공동 강사 사진(선택)
 }
 
 /** 우측 하단 홍보 사각배너 (단일 설정) */

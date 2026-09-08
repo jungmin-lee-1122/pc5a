@@ -318,6 +318,8 @@ type CourseDraft = {
   price?: string;
   material?: string;
   syllabus?: string;
+  coTeacherName?: string;
+  coTeacherPhoto?: string;
 };
 
 function newCourseId() {
@@ -408,6 +410,17 @@ function CourseRowsEditor({ value, onChange }: { value: unknown; onChange: (v: u
               <div>
                 <span className="mb-1 block text-[11px] font-semibold text-gray-500">수강료 (예: 280,000원)</span>
                 <input value={r.price ?? ""} onChange={(e) => setRow(i, { price: e.target.value })} className={input} />
+              </div>
+            </div>
+
+            <div className="mt-2 grid gap-2 sm:grid-cols-2">
+              <div>
+                <span className="mb-1 block text-[11px] font-semibold text-gray-500">공동 강사 이름 (선택)</span>
+                <input value={r.coTeacherName ?? ""} onChange={(e) => setRow(i, { coTeacherName: e.target.value })} placeholder="예: 박하나" className={input} />
+              </div>
+              <div>
+                <span className="mb-1 block text-[11px] font-semibold text-gray-500">공동 강사 사진 (선택)</span>
+                <ImageInput value={r.coTeacherPhoto ?? ""} onChange={(v) => setRow(i, { coTeacherPhoto: v })} />
               </div>
             </div>
 
