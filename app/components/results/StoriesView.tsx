@@ -63,9 +63,10 @@ export default function StoriesView({
           aria-hidden="true"
           className="pointer-events-none absolute right-0 top-1/2 -z-10 h-[190%] -translate-y-1/2 select-none opacity-[0.7] sm:right-6"
         />
-        <div className="mx-auto max-w-6xl px-5 py-10 text-center lg:px-8">
+        <div className="mx-auto max-w-6xl px-5 py-10 lg:px-8">
           <p className="text-sm font-bold text-brand">대입결과</p>
           <h1 className="mt-1.5 text-2xl font-extrabold text-ink sm:text-3xl">대입 성공 스토리</h1>
+          <p className="mt-2 text-sm text-muted">합격생들의 생생한 합격 수기와 인터뷰 영상을 만나보세요.</p>
         </div>
       </div>
 
