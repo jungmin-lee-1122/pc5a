@@ -42,6 +42,12 @@ export default function Page() {
           help: "이 선생님의 단과 강좌를 추가하세요. 모집대상에 따라 단과시간표 탭에 자동 노출됩니다.",
         },
         { key: "active", label: "노출 여부", type: "checkbox" },
+        {
+          key: "hidden",
+          label: "강사진 목록에서 숨기기 (강사 미정 강좌 전용)",
+          type: "checkbox",
+          help: "체크하면 강사진 소개에는 카드가 뜨지 않고, 개설 강좌만 단과시간표에 노출됩니다. 강사가 정해지지 않은 강좌를 이 카드(예: 이름 '미정')에 모아 입력하세요.",
+        },
       ]}
       defaults={{
         name: "",
@@ -54,6 +60,7 @@ export default function Page() {
         introPoster: "",
         courses: [],
         active: true,
+        hidden: false,
       }}
       summary={(item) => (
         <span>

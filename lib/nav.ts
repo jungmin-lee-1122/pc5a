@@ -10,6 +10,7 @@ export interface NavItem {
 export interface NavGroup {
   heading?: string;
   href?: string; // 대제목 자체가 링크일 때
+  divider?: boolean; // 이 그룹 위에 구분선 표시
   items: NavItem[];
 }
 
@@ -30,6 +31,9 @@ export const NAV_MENUS: NavMenu[] = [
           { label: "시설안내", href: "/about/facility" },
           { label: "오시는 길", href: "/about/location" },
           { label: "공지사항", href: "/notices" },
+          { label: "주간식단표", href: "/menu" },
+          { label: "재원생 후기", href: "/life/review" },
+          { label: "2026 모의고사 일정", href: "/life/mock" },
         ],
       },
     ],
@@ -43,7 +47,12 @@ export const NAV_MENUS: NavMenu[] = [
           { label: "2027 윈터스쿨", href: "/admission/winter" },
           { label: "고등 올케어반", href: "/admission/allcare" },
           { label: "2027 고등단과", href: "/schedule" },
-          { label: "2028 수능대비 스타트업반", href: "#" },
+        ],
+      },
+      {
+        divider: true,
+        items: [
+          { label: "온라인 접수", href: "/life/counsel" },
         ],
       },
     ],
@@ -81,33 +90,31 @@ export const NAV_MENUS: NavMenu[] = [
     ],
   },
   {
-    label: "설명회/이벤트",
+    label: "설명회/입시",
     href: "/events",
     groups: [
       {
-        heading: "설명회 신청",
-        href: "/events",
+        heading: "설명회",
         items: [
-          { label: "입시설명회 신청", href: "/events" },
+          { label: "설명회 신청", href: "/events" },
         ],
       },
       {
-        heading: "설명회 현장",
-        href: "/gallery",
+        heading: "입시",
         items: [],
       },
     ],
   },
   {
-    label: "학원생활",
-    href: "/life",
+    label: "대입결과",
+    href: "#",
     groups: [
       {
         items: [
-          { label: "주간식단표", href: "/menu" },
-          { label: "재원생 후기", href: "/life/review" },
-          { label: "온라인 접수", href: "/life/counsel" },
-          { label: "2026 모의고사 일정", href: "/life/mock" },
+          { label: "대입합격현황", href: "#" },
+          { label: "대입성공수기", href: "#" },
+          { label: "대입성공영상", href: "#" },
+          { label: "성적향상사례", href: "#" },
         ],
       },
     ],

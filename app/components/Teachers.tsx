@@ -22,7 +22,7 @@ export default function Teachers({
   const resumeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const filtered = useMemo(() => {
-    const base = teachers.filter((t) => t.active).sort((a, b) => a.order - b.order);
+    const base = teachers.filter((t) => t.active && !t.hidden).sort((a, b) => a.order - b.order);
     return active === "전체" ? base : base.filter((t) => t.subject === active);
   }, [teachers, active]);
 

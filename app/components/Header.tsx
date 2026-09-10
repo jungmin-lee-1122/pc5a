@@ -7,7 +7,7 @@ import Dday from "./Dday";
 import { NAV_MENUS, type NavMenu } from "@/lib/nav";
 
 // 상단 라벨 클릭(직접 이동) 비활성 — 드롭다운/하위메뉴만 이동
-const NO_TOP_LINK = new Set<string>(["모집안내", "학원생활"]);
+const NO_TOP_LINK = new Set<string>(["모집안내", "대입결과"]);
 
 export default function Header({ brand, phone }: { brand: string; phone: string }) {
   // 호버 중인 상위 메뉴 인덱스 (단일 드롭다운)
@@ -117,6 +117,7 @@ function SingleDropdown({ menu, onNavigate }: { menu: NavMenu; onNavigate: () =>
         <ul className="py-2">
           {menu.groups.map((group, gi) => (
             <li key={gi}>
+              {group.divider && <div className="mx-5 my-2 border-t border-line" />}
               {group.heading &&
                 (group.items.length === 0 && group.href ? (
                   // 하위 항목 없는 헤딩 → 일반 세부항목과 동일한 굵기 · 구분선 없음
@@ -196,6 +197,7 @@ function MegaMenu({ onClose }: { onClose: () => void }) {
                 <div className="space-y-3">
                   {menu.groups.map((group, gi) => (
                     <div key={gi}>
+                      {group.divider && <div className="mb-3 border-t border-line" />}
                       {group.heading &&
                         (group.items.length === 0 && group.href ? (
                           // 하위 항목 없는 헤딩 → 일반 항목과 동일한 굵기 · 구분선 없음

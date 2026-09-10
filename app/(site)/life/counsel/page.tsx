@@ -20,7 +20,7 @@ export default function CounselPage() {
           className="pointer-events-none absolute right-0 top-1/2 -z-10 h-[190%] -translate-y-1/2 select-none opacity-[0.7] sm:right-6"
         />
         <div className="mx-auto max-w-3xl px-5 py-10 lg:px-8">
-          <p className="text-sm font-bold text-brand">학원생활</p>
+          <p className="text-sm font-bold text-brand">학원소개</p>
           <h1 className="mt-1.5 text-2xl font-extrabold text-ink sm:text-3xl">온라인 접수</h1>
           <p className="mt-2 text-sm text-muted">
             입학·수강·학습에 관해 궁금하신 점을 남겨주시면 담당 선생님이 연락드립니다.

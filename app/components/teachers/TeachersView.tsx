@@ -21,7 +21,7 @@ export default function TeachersView({
 
   const list = useMemo(() => {
     const base = teachers
-      .filter((t) => t.active)
+      .filter((t) => t.active && !t.hidden)
       .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
     return active === "전체" ? base : base.filter((t) => t.subject === active);
   }, [teachers, active]);

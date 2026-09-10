@@ -55,6 +55,7 @@ export interface Teacher {
   videoUrl?: string;  // 선생님 소개 영상 링크 (유튜브 등, 선택)
   introPoster?: string; // 강사 소개 A4 포스터 이미지 (하단 '강사 소개' 탭)
   courses?: TeacherCourse[]; // 개설 강좌 (선생님별 입력, 단과시간표 노출)
+  hidden?: boolean;   // true면 강사진 소개 목록에서 숨김 (강사 미정 강좌 전용). 강좌는 단과시간표에 계속 노출
 }
 
 /** 공지사항 항목 */

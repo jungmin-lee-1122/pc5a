@@ -139,8 +139,8 @@ export default function ResourceManager({
           </h2>
           <div className="grid gap-4 sm:grid-cols-2">
             {fields.map((f) => (
-              <div key={f.key} className={f.type === "textarea" || f.type === "image" || f.type === "courses" ? "sm:col-span-2" : ""}>
-                <label className={label}>{f.label}</label>
+              <div key={f.key} className={f.type === "textarea" || f.type === "image" || f.type === "courses" || f.type === "checkbox" ? "sm:col-span-2" : ""}>
+                {f.type !== "checkbox" && <label className={label}>{f.label}</label>}
                 {renderField(f, draft, set)}
                 {f.help && <p className="mt-1 text-xs text-muted">{f.help}</p>}
               </div>
@@ -255,7 +255,7 @@ function renderField(f: Field, draft: Draft, set: (k: string, v: unknown) => voi
             onChange={(e) => set(f.key, e.target.checked)}
             className="h-4 w-4 accent-[var(--color-brand)]"
           />
-          노출
+          {f.label}
         </label>
       );
     case "image":
