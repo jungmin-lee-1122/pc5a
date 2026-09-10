@@ -58,8 +58,7 @@ export default async function SchedulePage({
                 </svg>
               </span>
               <div className="mr-1 leading-tight">
-                <p className="text-[13px] font-bold text-ink">2026 9월 단과 브로셔</p>
-                <p className="text-[11px] text-muted">단과 강좌 안내 PDF</p>
+                <p className="text-[13px] font-bold text-ink">9월 단과 안내 PDF</p>
               </div>
               <div className="flex gap-1.5">
                 <a
