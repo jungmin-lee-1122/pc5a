@@ -1,0 +1,9 @@
+[
+  { "id": "g1", "label": "의치한약수", "count": 312, "order": 1 },
+  { "id": "g2", "label": "SKY/카이스트", "count": 428, "order": 2 },
+  { "id": "g3", "label": "경찰대/사관/교대", "count": 176, "order": 3 },
+  { "id": "g4", "label": "서성한이", "count": 645, "order": 4 },
+  { "id": "g5", "label": "중경외시", "count": 812, "order": 5 },
+  { "id": "g6", "label": "건동홍숙", "count": 934, "order": 6 },
+  { "id": "g7", "label": "기타 주요대", "count": 1580, "order": 7 }
+]

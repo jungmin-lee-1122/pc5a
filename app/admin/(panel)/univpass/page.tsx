@@ -1,5 +1,6 @@
 "use client";
 import ResourceManager from "@/app/components/admin/ResourceManager";
+import { UNIV_GROUPS } from "@/lib/univ";
 
 export default function Page() {
   return (
@@ -13,6 +14,7 @@ export default function Page() {
         { key: "name", label: "이름", type: "text", placeholder: "예: 김O민", help: "개인정보 보호를 위해 가운데 글자를 O 등으로 가리는 것을 권장합니다." },
         { key: "school", label: "출신고교", type: "text", placeholder: "예: 평촌고" },
         { key: "year", label: "학년도", type: "text", placeholder: "예: 2026" },
+        { key: "group", label: "대학 그룹", type: "select", options: [...UNIV_GROUPS], help: "히어로 탭 분류에 사용됩니다." },
       ]}
       defaults={{
         university: "",
@@ -20,6 +22,7 @@ export default function Page() {
         name: "",
         school: "",
         year: "2026",
+        group: UNIV_GROUPS[0],
       }}
       summary={(item) => (
         <span>

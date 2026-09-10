@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getUnivPass } from "@/lib/content";
+import { getUnivPass, getUnivGroups } from "@/lib/content";
 import UnivPassView from "@/app/components/results/UnivPassView";
 
 export const dynamic = "force-dynamic";
@@ -10,10 +10,10 @@ export const metadata: Metadata = {
 };
 
 export default async function UnivPassPage() {
-  const results = await getUnivPass();
+  const [results, groups] = await Promise.all([getUnivPass(), getUnivGroups()]);
   return (
-    <main className="flex-1 pb-16">
-      <UnivPassView results={results} />
+    <main className="flex-1">
+      <UnivPassView results={results} groups={groups} />
     </main>
   );
 }

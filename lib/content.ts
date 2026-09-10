@@ -2,7 +2,7 @@
 // (슬라이드/포스터/배너/사이트정보는 config/homepage.ts 에서 직접 수정)
 import { listCollection } from "./store";
 import { SEEDS } from "./seeds";
-import type { Teacher, Notice, EventItem, VideoItem, MealMenu, GalleryItem, ReviewItem, TeacherCourse, AdmissionResult } from "./types";
+import type { Teacher, Notice, EventItem, VideoItem, MealMenu, GalleryItem, ReviewItem, TeacherCourse, AdmissionResult, UnivGroup } from "./types";
 
 export async function getTeachers(): Promise<Teacher[]> {
   const teachers = await listCollection<Teacher>("teachers", SEEDS.teachers as Teacher[]);
@@ -19,6 +19,7 @@ export const getMenus = () => listCollection<MealMenu>("menus", SEEDS.menus as M
 export const getGallery = () => listCollection<GalleryItem>("gallery", SEEDS.gallery as GalleryItem[]);
 export const getReviews = () => listCollection<ReviewItem>("reviews", SEEDS.reviews as ReviewItem[]);
 export const getUnivPass = () => listCollection<AdmissionResult>("univpass", SEEDS.univpass as AdmissionResult[]);
+export const getUnivGroups = () => listCollection<UnivGroup>("univgroups", SEEDS.univgroups as UnivGroup[]);
 /** 강좌 + 소속 선생님 정보 (단과시간표/강좌 상세용) */
 export interface CourseWithTeacher extends TeacherCourse {
   teacherId: string;

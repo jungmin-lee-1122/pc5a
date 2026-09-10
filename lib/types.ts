@@ -66,6 +66,15 @@ export interface AdmissionResult {
   name: string;       // 이름
   school: string;     // 출신고교
   year: string;       // 학년도 (예: 2026)
+  group: string;      // 대학 그룹 (히어로 탭 분류, UNIV_GROUPS 중 하나)
+  order: number;
+}
+
+/** 대입합격현황 — 대학 그룹별 누적 합격자수 (히어로 카운터) */
+export interface UnivGroup {
+  id: ID;
+  label: string; // 그룹명 (UNIV_GROUPS 와 일치)
+  count: number; // 누적 합격자수
   order: number;
 }
 

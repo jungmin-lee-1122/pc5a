@@ -1,10 +1,82 @@
 [
-  { "id": "up1", "university": "서울대학교", "major": "경영대학", "name": "김O민", "school": "평촌고", "year": "2026", "order": 1 },
-  { "id": "up2", "university": "연세대학교", "major": "의예과", "name": "이O윤", "school": "안양외고", "year": "2026", "order": 2 },
-  { "id": "up3", "university": "고려대학교", "major": "전기전자공학부", "name": "박O준", "school": "부흥고", "year": "2026", "order": 3 },
-  { "id": "up4", "university": "성균관대학교", "major": "글로벌경제학과", "name": "최O서", "school": "평촌고", "year": "2026", "order": 4 },
-  { "id": "up5", "university": "한양대학교", "major": "정책학과", "name": "정O우", "school": "인덕원고", "year": "2026", "order": 5 },
-  { "id": "up6", "university": "서강대학교", "major": "컴퓨터공학과", "name": "강O현", "school": "백영고", "year": "2026", "order": 6 },
-  { "id": "up7", "university": "중앙대학교", "major": "약학부", "name": "윤O아", "school": "안양고", "year": "2026", "order": 7 },
-  { "id": "up8", "university": "경희대학교", "major": "한의예과", "name": "임O호", "school": "평촌고", "year": "2026", "order": 8 }
+  {
+    "id": "up1",
+    "university": "서울대학교",
+    "major": "경영대학",
+    "name": "김O민",
+    "school": "평촌고",
+    "year": "2026",
+    "order": 1,
+    "group": "SKY/카이스트"
+  },
+  {
+    "id": "up2",
+    "university": "연세대학교",
+    "major": "의예과",
+    "name": "이O윤",
+    "school": "안양외고",
+    "year": "2026",
+    "order": 2,
+    "group": "의치한약수"
+  },
+  {
+    "id": "up3",
+    "university": "고려대학교",
+    "major": "전기전자공학부",
+    "name": "박O준",
+    "school": "부흥고",
+    "year": "2026",
+    "order": 3,
+    "group": "SKY/카이스트"
+  },
+  {
+    "id": "up4",
+    "university": "성균관대학교",
+    "major": "글로벌경제학과",
+    "name": "최O서",
+    "school": "평촌고",
+    "year": "2026",
+    "order": 4,
+    "group": "서성한이"
+  },
+  {
+    "id": "up5",
+    "university": "한양대학교",
+    "major": "정책학과",
+    "name": "정O우",
+    "school": "인덕원고",
+    "year": "2026",
+    "order": 5,
+    "group": "중경외시"
+  },
+  {
+    "id": "up6",
+    "university": "서강대학교",
+    "major": "컴퓨터공학과",
+    "name": "강O현",
+    "school": "백영고",
+    "year": "2026",
+    "order": 6,
+    "group": "중경외시"
+  },
+  {
+    "id": "up7",
+    "university": "중앙대학교",
+    "major": "약학부",
+    "name": "윤O아",
+    "school": "안양고",
+    "year": "2026",
+    "order": 7,
+    "group": "의치한약수"
+  },
+  {
+    "id": "up8",
+    "university": "경희대학교",
+    "major": "한의예과",
+    "name": "임O호",
+    "school": "평촌고",
+    "year": "2026",
+    "order": 8,
+    "group": "의치한약수"
+  }
 ]

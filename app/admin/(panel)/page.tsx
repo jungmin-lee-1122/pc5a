@@ -9,6 +9,7 @@ const CARDS = [
   { href: "/admin/menus", label: "주간식단표", desc: "식단표 사진" },
   { href: "/admin/reviews", label: "재원생 후기", desc: "합격·수강 후기" },
   { href: "/admin/univpass", label: "대입합격현황", desc: "대입 합격자 명단" },
+  { href: "/admin/univgroups", label: "대입결과 카운트", desc: "그룹별 누적 합격자수" },
 ];
 
 export default function Dashboard() {

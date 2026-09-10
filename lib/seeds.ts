@@ -8,5 +8,6 @@ import menus from "@/data/menus.json";
 import gallery from "@/data/gallery.json";
 import reviews from "@/data/reviews.json";
 import univpass from "@/data/univpass.json";
+import univgroups from "@/data/univgroups.json";
 
-export const SEEDS: Record<string, unknown[]> = { teachers, notices, events, videos, menus, gallery, reviews, univpass };
+export const SEEDS: Record<string, unknown[]> = { teachers, notices, events, videos, menus, gallery, reviews, univpass, univgroups };
