@@ -88,6 +88,19 @@ export default function UnivPassView({
         <div className="pointer-events-none absolute -left-24 top-1/3 h-96 w-96 rounded-full bg-[#8b90f5]/20 blur-3xl" />
         <div className="pointer-events-none absolute right-1/3 -top-20 h-80 w-80 rounded-full bg-brand/30 blur-3xl" />
 
+        {/* 오른쪽 트로피 영상 */}
+        <div className="pointer-events-none absolute right-[3%] top-1/2 hidden h-[88%] max-h-[470px] -translate-y-1/2 lg:block">
+          {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+          <video
+            src="/univ-trophy.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="h-full w-auto object-contain"
+          />
+        </div>
+
         <div className="relative mx-auto max-w-6xl px-5 py-14 lg:px-8 lg:py-16">
           <p className="text-sm font-semibold text-white/45">합격을 진심으로 축하합니다!</p>
           <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-[#8b90f5] sm:text-4xl lg:text-5xl">
