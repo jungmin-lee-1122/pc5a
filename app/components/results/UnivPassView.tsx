@@ -1,4 +1,5 @@
 "use client";
+// deploy test: 2026-09-10
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { AdmissionResult, UnivGroup } from "@/lib/types";
