@@ -7,7 +7,7 @@
     "school": "평촌고",
     "year": "2026",
     "order": 1,
-    "group": "SKY/카이스트"
+    "group": "서울대"
   },
   {
     "id": "up2",
@@ -17,7 +17,7 @@
     "school": "안양외고",
     "year": "2026",
     "order": 2,
-    "group": "의치한약수"
+    "group": "의예과"
   },
   {
     "id": "up3",
@@ -27,7 +27,7 @@
     "school": "부흥고",
     "year": "2026",
     "order": 3,
-    "group": "SKY/카이스트"
+    "group": "고려대"
   },
   {
     "id": "up4",
@@ -37,7 +37,7 @@
     "school": "평촌고",
     "year": "2026",
     "order": 4,
-    "group": "서성한이"
+    "group": "연세대"
   },
   {
     "id": "up5",
@@ -47,7 +47,7 @@
     "school": "인덕원고",
     "year": "2026",
     "order": 5,
-    "group": "중경외시"
+    "group": "서울대"
   },
   {
     "id": "up6",
@@ -57,7 +57,7 @@
     "school": "백영고",
     "year": "2026",
     "order": 6,
-    "group": "중경외시"
+    "group": "고려대"
   },
   {
     "id": "up7",
@@ -67,7 +67,7 @@
     "school": "안양고",
     "year": "2026",
     "order": 7,
-    "group": "의치한약수"
+    "group": "의학계열"
   },
   {
     "id": "up8",
@@ -77,6 +77,6 @@
     "school": "평촌고",
     "year": "2026",
     "order": 8,
-    "group": "의치한약수"
+    "group": "의학계열"
   }
 ]
