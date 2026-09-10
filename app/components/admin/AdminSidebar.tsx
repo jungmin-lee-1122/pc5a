@@ -14,6 +14,7 @@ const LINKS = [
   { href: "/admin/reviews", label: "재원생 후기" },
   { href: "/admin/univpass", label: "대입합격현황" },
   { href: "/admin/univgroups", label: "대입결과 카운트" },
+  { href: "/admin/stories", label: "대입 성공 스토리" },
 ];
 
 export default function AdminSidebar() {

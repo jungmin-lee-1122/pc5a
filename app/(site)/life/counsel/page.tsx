@@ -23,7 +23,8 @@ export default function CounselPage() {
           <p className="text-sm font-bold text-brand">학원소개</p>
           <h1 className="mt-1.5 text-2xl font-extrabold text-ink sm:text-3xl">온라인 접수</h1>
           <p className="mt-2 text-sm text-muted">
-            입학·수강·학습에 관해 궁금하신 점을 남겨주시면 담당 선생님이 연락드립니다.
+            하단에 신청 정보를 입력해 주세요. <br />
+            접수 내용 확인 후 필요한 안내를 드립니다. <br />
             빠른 상담을 원하시면 전화({tel})로 문의해 주세요.
           </p>
         </div>

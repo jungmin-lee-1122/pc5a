@@ -10,6 +10,7 @@ const CARDS = [
   { href: "/admin/reviews", label: "재원생 후기", desc: "합격·수강 후기" },
   { href: "/admin/univpass", label: "대입합격현황", desc: "대입 합격자 명단" },
   { href: "/admin/univgroups", label: "대입결과 카운트", desc: "그룹별 누적 합격자수" },
+  { href: "/admin/stories", label: "대입 성공 스토리", desc: "성공수기·성공영상" },
 ];
 
 export default function Dashboard() {

@@ -115,8 +115,8 @@ export const NAV_MENUS: NavMenu[] = [
       {
         items: [
           { label: "대입합격현황", href: "/results/univpass" },
-          { label: "대입성공수기", href: "#" },
-          { label: "대입성공영상", href: "#" },
+          { label: "대입성공수기", href: "/results/stories" },
+          { label: "대입성공영상", href: "/results/stories?tab=video" },
           { label: "성적향상사례", href: "#" },
         ],
       },

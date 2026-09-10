@@ -58,6 +58,19 @@ export interface Teacher {
   hidden?: boolean;   // true면 강사진 소개 목록에서 숨김 (강사 미정 강좌 전용). 강좌는 단과시간표에 계속 노출
 }
 
+/** 대입 성공 스토리 (성공수기 / 성공영상) — 관리자 입력 */
+export interface SuccessStory {
+  id: ID;
+  kind: "수기" | "영상"; // 탭 구분
+  group: string;      // 합격 대학 그룹 (배지/필터)
+  title: string;      // 제목
+  date: string;       // 등록일 (예: 2026.01.07)
+  videoUrl?: string;  // 유튜브 링크 (영상 탭 권장, 수기 선택)
+  image?: string;     // 본문/포스터 이미지 (선택)
+  content?: string;   // 본문 텍스트 (줄바꿈 문단, 선택)
+  order: number;
+}
+
 /** 대입 합격현황 항목 (관리자 입력, 대입합격현황 페이지 표) */
 export interface AdmissionResult {
   id: ID;
