@@ -52,7 +52,7 @@ export const NAV_MENUS: NavMenu[] = [
       {
         divider: true,
         items: [
-          { label: "온라인 접수", href: "/life/counsel" },
+          { label: "온라인 접수", href: "/life/counsel", strong: true },
         ],
       },
     ],
@@ -101,7 +101,10 @@ export const NAV_MENUS: NavMenu[] = [
       },
       {
         heading: "입시",
-        items: [],
+        items: [
+          { label: "입시자료", href: "#" },
+          { label: "컨설팅 신청", href: "#" },
+        ],
       },
     ],
   },

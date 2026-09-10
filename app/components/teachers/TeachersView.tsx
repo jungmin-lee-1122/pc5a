@@ -98,7 +98,7 @@ function TeacherCard({ teacher, active }: { teacher: Teacher; active: string }) 
         className="pointer-events-none absolute bottom-0 right-0 h-[78%] w-auto max-w-[85%] object-contain object-bottom transition duration-300 group-hover:scale-105"
       />
       {careerLines.length > 0 && (
-        <div className="pointer-events-none absolute inset-0 z-20 flex flex-col justify-end bg-gradient-to-t from-ink/95 via-ink/75 to-ink/10 p-5 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+        <div className="pointer-events-none absolute inset-0 z-20 flex flex-col justify-end bg-gradient-to-t from-brand-dark/95 via-brand-dark/80 to-brand-dark/10 p-5 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
           <p className="mb-1.5 text-[11px] font-bold uppercase tracking-wider text-brand-light">약력</p>
           <ul className="space-y-1">
             {careerLines.map((line, i) => (

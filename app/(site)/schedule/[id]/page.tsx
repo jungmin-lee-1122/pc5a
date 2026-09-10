@@ -77,7 +77,7 @@ export default async function CourseDetailPage({
                 className="absolute inset-0 h-full w-full object-cover object-top"
               />
               {careerLines.length > 0 && (
-                <div className="pointer-events-none absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-ink/95 via-ink/70 to-transparent p-3 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                <div className="pointer-events-none absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-brand-dark/95 via-brand-dark/75 to-transparent p-3 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                   <p className="mb-1 text-[10px] font-bold uppercase tracking-wider text-brand-light">약력</p>
                   <ul className="space-y-0.5">
                     {careerLines.map((line, i) => (
@@ -129,7 +129,7 @@ export default async function CourseDetailPage({
               className="absolute inset-0 h-full w-full object-cover object-top"
             />
             {careerLines.length > 0 && (
-              <div className="pointer-events-none absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-ink/95 via-ink/70 to-transparent p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+              <div className="pointer-events-none absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-brand-dark/95 via-brand-dark/75 to-transparent p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                 <p className="mb-1.5 text-[11px] font-bold uppercase tracking-wider text-brand-light">약력</p>
                 <ul className="space-y-1">
                   {careerLines.map((line, i) => (
