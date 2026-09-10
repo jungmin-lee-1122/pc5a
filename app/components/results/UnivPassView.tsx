@@ -87,7 +87,11 @@ export default function UnivPassView({
   return (
     <>
       {/* ===== 히어로 (다크) ===== */}
-      <section className="relative isolate overflow-hidden bg-[#050505] text-white">
+      <section className="relative isolate overflow-hidden bg-gradient-to-b from-[#1e2a63] via-[#1a2456] to-[#131b42] text-white">
+        {/* 브랜드 글로우 */}
+        <div className="pointer-events-none absolute -left-24 top-1/3 h-96 w-96 rounded-full bg-[#8b90f5]/20 blur-3xl" />
+        <div className="pointer-events-none absolute right-1/3 -top-20 h-80 w-80 rounded-full bg-brand/30 blur-3xl" />
+
         {/* 오른쪽 트로피 */}
         <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-[46%] max-w-[720px] lg:block">
           <div className="absolute right-[6%] top-1/2 h-[78%] -translate-y-1/2">
@@ -104,8 +108,8 @@ export default function UnivPassView({
             ) : (
               <div className="flex h-full items-center justify-center">
                 <div className="relative">
-                  <div className="absolute inset-0 -z-10 animate-pulse rounded-full bg-[#37e0e6]/25 blur-3xl" />
-                  <span className="block text-[220px] leading-none drop-shadow-[0_0_50px_rgba(55,224,230,0.5)] animate-[trophyFloat_4s_ease-in-out_infinite]">
+                  <div className="absolute inset-0 -z-10 animate-pulse rounded-full bg-[#8b90f5]/25 blur-3xl" />
+                  <span className="block text-[220px] leading-none drop-shadow-[0_0_50px_rgba(139,144,245,0.5)] animate-[trophyFloat_4s_ease-in-out_infinite]">
                     🏆
                   </span>
                 </div>
@@ -116,7 +120,7 @@ export default function UnivPassView({
 
         <div className="relative mx-auto max-w-6xl px-5 py-14 lg:px-8 lg:py-16">
           <p className="text-sm font-semibold text-white/45">합격을 진심으로 축하합니다!</p>
-          <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-[#37e0e6] sm:text-4xl lg:text-5xl">
+          <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-[#8b90f5] sm:text-4xl lg:text-5xl">
             5A 아카데미 대입결과
           </h1>
 
@@ -137,7 +141,7 @@ export default function UnivPassView({
                     className={
                       "whitespace-nowrap rounded-full px-4 py-2 text-[13px] font-bold transition-colors sm:px-5 sm:text-sm " +
                       (on
-                        ? "bg-[#37e0e6] text-[#062a2b] shadow-[0_0_20px_rgba(55,224,230,0.45)]"
+                        ? "bg-[#8b90f5] text-[#1e2a63] shadow-[0_0_20px_rgba(139,144,245,0.45)]"
                         : "text-white/65 hover:text-white")
                     }
                   >
