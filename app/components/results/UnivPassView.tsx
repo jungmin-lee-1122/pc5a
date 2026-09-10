@@ -5,10 +5,6 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import type { AdmissionResult, UnivGroup } from "@/lib/types";
 import { UNIV_GROUPS } from "@/lib/univ";
 
-/** 오른쪽 회전 트로피 영상 — public 폴더에 파일을 넣고 경로를 지정하면 자동 재생됩니다.
- *  예: "/univ-trophy.webm" 또는 "/univ-trophy.mp4" (비우면 애니메이션 플레이스홀더 표시) */
-const TROPHY_VIDEO = "";
-
 const ALL = "전체 대학합격자";
 const NOTES = [
   "2016~2026학년도 5A 아카데미 합격자수 총합",
@@ -92,32 +88,6 @@ export default function UnivPassView({
         <div className="pointer-events-none absolute -left-24 top-1/3 h-96 w-96 rounded-full bg-[#8b90f5]/20 blur-3xl" />
         <div className="pointer-events-none absolute right-1/3 -top-20 h-80 w-80 rounded-full bg-brand/30 blur-3xl" />
 
-        {/* 오른쪽 트로피 */}
-        <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-[46%] max-w-[720px] lg:block">
-          <div className="absolute right-[6%] top-1/2 h-[78%] -translate-y-1/2">
-            {TROPHY_VIDEO ? (
-              // eslint-disable-next-line jsx-a11y/media-has-caption
-              <video
-                src={TROPHY_VIDEO}
-                autoPlay
-                muted
-                loop
-                playsInline
-                className="h-full w-auto object-contain"
-              />
-            ) : (
-              <div className="flex h-full items-center justify-center">
-                <div className="relative">
-                  <div className="absolute inset-0 -z-10 animate-pulse rounded-full bg-[#8b90f5]/25 blur-3xl" />
-                  <span className="block text-[220px] leading-none drop-shadow-[0_0_50px_rgba(139,144,245,0.5)] animate-[trophyFloat_4s_ease-in-out_infinite]">
-                    🏆
-                  </span>
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-
         <div className="relative mx-auto max-w-6xl px-5 py-14 lg:px-8 lg:py-16">
           <p className="text-sm font-semibold text-white/45">합격을 진심으로 축하합니다!</p>
           <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-[#8b90f5] sm:text-4xl lg:text-5xl">
@@ -191,7 +161,6 @@ export default function UnivPassView({
           <table className="w-full text-sm">
             <thead>
               <tr className="bg-brand-dark text-white">
-                <th className="w-16 px-4 py-3.5 text-center font-semibold">No.</th>
                 <th className="px-4 py-3.5 text-left font-semibold">대학</th>
                 <th className="px-4 py-3.5 text-left font-semibold">학과</th>
                 <th className="px-4 py-3.5 text-center font-semibold">이름</th>
@@ -200,9 +169,8 @@ export default function UnivPassView({
               </tr>
             </thead>
             <tbody>
-              {shown.map((r, i) => (
+              {shown.map((r) => (
                 <tr key={r.id} className="border-t border-line transition-colors hover:bg-brand-light/40">
-                  <td className="px-4 py-3.5 text-center text-gray-400">{i + 1}</td>
                   <td className="px-4 py-3.5 font-bold text-ink">{r.university}</td>
                   <td className="px-4 py-3.5 text-gray-700">{r.major}</td>
                   <td className="px-4 py-3.5 text-center font-medium text-gray-800">{r.name}</td>
@@ -211,7 +179,7 @@ export default function UnivPassView({
                 </tr>
               ))}
               {shown.length === 0 && (
-                <tr><td colSpan={6} className="px-4 py-16 text-center text-sm text-muted">명단이 없습니다.</td></tr>
+                <tr><td colSpan={5} className="px-4 py-16 text-center text-sm text-muted">명단이 없습니다.</td></tr>
               )}
             </tbody>
           </table>
