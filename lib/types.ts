@@ -58,6 +58,17 @@ export interface Teacher {
   hidden?: boolean;   // true면 강사진 소개 목록에서 숨김 (강사 미정 강좌 전용). 강좌는 단과시간표에 계속 노출
 }
 
+/** 대입 합격현황 항목 (관리자 입력, 대입합격현황 페이지 표) */
+export interface AdmissionResult {
+  id: ID;
+  university: string; // 대학
+  major: string;      // 학과 (모집단위)
+  name: string;       // 이름
+  school: string;     // 출신고교
+  year: string;       // 학년도 (예: 2026)
+  order: number;
+}
+
 /** 공지사항 항목 */
 export interface Notice {
   id: ID;
