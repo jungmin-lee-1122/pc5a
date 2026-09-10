@@ -50,15 +50,8 @@ export default async function SchedulePage({
 
             {/* 9월 단과 브로셔 — 바로보기 · 다운로드 */}
             <div className="flex items-center gap-3 rounded-2xl border border-brand/15 bg-white/70 p-2.5 pl-4 shadow-[0_4px_16px_rgba(30,42,99,0.08)] backdrop-blur">
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-light text-brand">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M14 3v4a1 1 0 0 0 1 1h4" />
-                  <path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2z" />
-                  <path d="M9 13h6M9 17h4" />
-                </svg>
-              </span>
               <div className="mr-1 leading-tight">
-                <p className="text-[13px] font-bold text-ink">9월 단과 안내 PDF</p>
+                <p className="text-[16px] font-bold text-ink sm:text-[17px]">9월 단과 안내 PDF</p>
               </div>
               <div className="flex gap-1.5">
                 <a

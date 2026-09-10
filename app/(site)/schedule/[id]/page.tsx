@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getAllCourses } from "@/lib/content";
+import { getAllCourses, getTeachers } from "@/lib/content";
 import { SCHEDULE_TABS } from "@/lib/types";
 import CategoryTabs from "@/app/components/schedule/CategoryTabs";
 import ZoomableImage from "@/app/components/schedule/ZoomableImage";
@@ -42,6 +42,9 @@ export default async function CourseDetailPage({
   const course = await findCourse(id);
   if (!course) notFound();
 
+  const teacher = (await getTeachers()).find((t) => t.id === course.teacherId);
+  const careerLines = (teacher?.career ?? "").split("\n").map((l) => l.trim()).filter(Boolean);
+
   const activeTab =
     SCHEDULE_TABS.find((t) => (course.target ?? []).some((x) => t.targets.includes(x)))?.label ??
     SCHEDULE_TABS[0].label;
@@ -66,13 +69,23 @@ export default async function CourseDetailPage({
         {/* ===== 모바일: 사진(왼쪽) + 제목(오른쪽) → 정보 아래 ===== */}
         <div className="sm:hidden">
           <div className="flex items-stretch gap-4">
-            <div className="relative w-32 shrink-0 overflow-hidden rounded-2xl border border-line bg-brand-light/30">
+            <div className="group relative w-32 shrink-0 overflow-hidden rounded-2xl border border-line bg-brand-light/30">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={course.teacherPhoto || "/placeholders/teacher.svg"}
                 alt={`${course.teacherName} 선생님`}
                 className="absolute inset-0 h-full w-full object-cover object-top"
               />
+              {careerLines.length > 0 && (
+                <div className="pointer-events-none absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-ink/95 via-ink/70 to-transparent p-3 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                  <p className="mb-1 text-[10px] font-bold uppercase tracking-wider text-brand-light">약력</p>
+                  <ul className="space-y-0.5">
+                    {careerLines.map((line, i) => (
+                      <li key={i} className="text-[11px] font-medium leading-snug text-white/90">{line}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </div>
             <div className="min-w-0 flex-1">
               <div className="flex flex-wrap gap-1.5">
@@ -108,13 +121,23 @@ export default async function CourseDetailPage({
 
         {/* ===== PC: 원래 레이아웃 (사진 좌 / 우측 태그·제목·정보) ===== */}
         <div className="hidden gap-7 sm:grid sm:grid-cols-[220px_1fr]">
-          <div className="relative aspect-[3/4] overflow-hidden rounded-2xl border border-line bg-brand-light/30">
+          <div className="group relative aspect-[3/4] overflow-hidden rounded-2xl border border-line bg-brand-light/30">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={course.teacherPhoto || "/placeholders/teacher.svg"}
               alt={`${course.teacherName} 선생님`}
               className="absolute inset-0 h-full w-full object-cover object-top"
             />
+            {careerLines.length > 0 && (
+              <div className="pointer-events-none absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-ink/95 via-ink/70 to-transparent p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                <p className="mb-1.5 text-[11px] font-bold uppercase tracking-wider text-brand-light">약력</p>
+                <ul className="space-y-1">
+                  {careerLines.map((line, i) => (
+                    <li key={i} className="text-[12.5px] font-medium leading-snug text-white/90">{line}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
 
           <div className="min-w-0">
