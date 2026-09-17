@@ -5,7 +5,7 @@ import { BRANCHES } from "@/config/branches";
 /** PC 전용 상단 지점 바 — 라이트 그레이 단색 톱바 (높이 36px) */
 export default function BranchTopBar({ onOpenAll }: { onOpenAll: () => void }) {
   return (
-    <div className="hidden border-b border-[#D2D9F0] bg-[#DFE5FA] lg:block">
+    <div className="hidden border-b border-[#E5E9F5] bg-[#F2F4FC] lg:block">
       <div className="mx-auto flex h-9 max-w-6xl items-center justify-between px-5 lg:px-8">
         {/* 지점 목록 */}
         <div className="flex items-center gap-2.5 text-[13px]">
