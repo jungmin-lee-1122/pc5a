@@ -5,14 +5,14 @@ import { BRANCHES } from "@/config/branches";
 /** PC 전용 상단 지점 바 — 브랜드 네이비로 채운 고급형 톱바 (높이 36px) */
 export default function BranchTopBar({ onOpenAll }: { onOpenAll: () => void }) {
   return (
-    <div className="hidden bg-brand-dark text-white lg:block">
+    <div className="hidden bg-gradient-to-r from-brand-dark via-[#2c2e7a] to-[#5a4fa3] text-white lg:block">
       <div className="mx-auto flex h-9 max-w-6xl items-center justify-between px-5 lg:px-8">
         {/* 지점 목록 */}
         <div className="flex items-center gap-2.5 text-[13px]">
           <svg
             width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
             strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-            className="text-white/45"
+            className="text-[#c3c6f7]"
             aria-hidden="true"
           >
             <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z" />
@@ -25,7 +25,7 @@ export default function BranchTopBar({ onOpenAll }: { onOpenAll: () => void }) {
                 <a
                   key={b.id}
                   href={b.href || "/"}
-                  className="rounded-full bg-white/15 px-2.5 py-0.5 font-semibold text-white ring-1 ring-inset ring-white/25 transition-colors hover:bg-white/25"
+                  className="rounded-full bg-[#8b90f5]/30 px-2.5 py-0.5 font-semibold text-white ring-1 ring-inset ring-[#b9bdf7]/50 transition-colors hover:bg-[#8b90f5]/45"
                 >
                   {b.name}
                 </a>
@@ -49,7 +49,7 @@ export default function BranchTopBar({ onOpenAll }: { onOpenAll: () => void }) {
           className="group flex items-center gap-1.5 text-[13px] font-medium text-white/70 transition-colors hover:text-white"
         >
           전체 지점 보기
-          <span className="flex h-[18px] w-[18px] items-center justify-center rounded-full bg-white/15 text-[12px] leading-none text-white transition-colors group-hover:bg-white/30">
+          <span className="flex h-[18px] w-[18px] items-center justify-center rounded-full bg-[#8b90f5]/40 text-[12px] leading-none text-white transition-colors group-hover:bg-[#8b90f5]/60">
             +
           </span>
         </button>
