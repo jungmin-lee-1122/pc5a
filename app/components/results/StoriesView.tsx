@@ -70,26 +70,28 @@ export default function StoriesView({
         </div>
       </div>
 
-      {/* 탭 */}
-      <div className="border-b border-line">
-        <div className="mx-auto flex max-w-3xl">
-          {(["수기", "영상"] as Kind[]).map((k) => {
-            const on = tab === k;
-            return (
-              <button
-                key={k}
-                onClick={() => pickTab(k)}
-                className={
-                  "flex-1 border-b-2 py-4 text-center text-[15px] font-bold transition-colors sm:text-base " +
-                  (on ? "border-brand text-brand" : "border-transparent text-gray-400 hover:text-gray-600")
-                }
-              >
-                {k === "수기" ? "성공수기" : "성공영상"}
-              </button>
-            );
-          })}
+      {/* 탭 (성공수기/성공영상) — 우선 숨김 */}
+      {false && (
+        <div className="border-b border-line">
+          <div className="mx-auto flex max-w-3xl">
+            {(["수기", "영상"] as Kind[]).map((k) => {
+              const on = tab === k;
+              return (
+                <button
+                  key={k}
+                  onClick={() => pickTab(k)}
+                  className={
+                    "flex-1 border-b-2 py-4 text-center text-[15px] font-bold transition-colors sm:text-base " +
+                    (on ? "border-brand text-brand" : "border-transparent text-gray-400 hover:text-gray-600")
+                  }
+                >
+                  {k === "수기" ? "성공수기" : "성공영상"}
+                </button>
+              );
+            })}
+          </div>
         </div>
-      </div>
+      )}
 
       <div className="mx-auto max-w-6xl px-5 py-8 lg:px-8">
         {/* 총 건수 + 필터 + 검색 */}
