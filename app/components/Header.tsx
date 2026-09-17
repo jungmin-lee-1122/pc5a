@@ -45,7 +45,7 @@ export default function Header({ brand, phone }: { brand: string; phone: string 
             <Logo brand={brand} />
           </Link>
           {/* PC: 현재 지점 라벨 */}
-          <span className="hidden text-[13px] font-bold text-brand lg:inline">{CURRENT_BRANCH.label}</span>
+          <span className="hidden text-[13px] font-bold text-[#3451D1] lg:inline">{CURRENT_BRANCH.label}</span>
           {/* PC: 수능 D-day */}
           <div className="hidden lg:block">
             <Dday />

@@ -24,7 +24,7 @@ export default function Dday() {
   return (
     <span className="inline-flex items-center gap-1.5 rounded-full border border-line px-3 py-1.5 text-[12px] font-medium text-gray-600 sm:px-3.5 sm:text-[13px]">
       수능일까지
-      <span className="font-bold text-brand">{label}</span>
+      <span className="font-bold text-[#3451D1]">{label}</span>
     </span>
   );
 }
