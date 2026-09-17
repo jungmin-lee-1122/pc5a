@@ -32,7 +32,15 @@ export default function AboutPage() {
 
       {/* 고등부 수강 안내 (단과 / 올케어반) */}
       <section className="mx-auto max-w-6xl px-5 py-12 lg:px-8 lg:py-16">
-        <h2 className="text-2xl font-extrabold text-ink sm:text-3xl">5A 고등부 수강 안내</h2>
+        <div className="flex items-center gap-2.5">
+          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand sm:h-9 sm:w-9" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" className="text-white">
+              <circle cx="12" cy="7.3" r="1.4" fill="currentColor" />
+              <rect x="10.7" y="10.5" width="2.6" height="7.2" rx="1.3" fill="currentColor" />
+            </svg>
+          </span>
+          <h2 className="text-2xl font-extrabold text-ink sm:text-3xl">5A 고등부 수강 안내</h2>
+        </div>
         <p className="mt-2 text-[15px] text-muted">과목별 수업부터 종합관리까지</p>
 
         <div className="mt-8 grid gap-5 md:grid-cols-2">
@@ -66,8 +74,9 @@ export default function AboutPage() {
           <div className="relative flex min-h-[360px] flex-col overflow-hidden rounded-3xl bg-[#E5F4EF] p-8 sm:p-10">
             <p className="text-sm font-bold text-[#127A5E]">고등 종합반</p>
             <h3 className="mt-2 text-[34px] font-extrabold leading-tight text-ink sm:text-[40px]">올케어반</h3>
-            <p className="mt-4 max-w-[62%] text-[15px] font-medium leading-relaxed text-gray-600 sm:text-base">
-              수업과 학습태도를 함께 관리하고, 입시 주요 시기에 맞춰 컨설팅을 제공합니다.
+            <p className="mt-4 text-[15px] font-medium leading-relaxed text-gray-600 sm:text-base">
+              수업과 학습태도를 함께 관리하고,<br />
+              입시 주요 시기에 맞춰 컨설팅을 제공합니다.
             </p>
             <Link
               href="/admission/allcare"
