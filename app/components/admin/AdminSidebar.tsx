@@ -15,6 +15,7 @@ const LINKS = [
   { href: "/admin/univpass", label: "대입합격현황" },
   { href: "/admin/univgroups", label: "대입결과 카운트" },
   { href: "/admin/stories", label: "대입 성공 스토리" },
+  { href: "/admin/scorecases", label: "성적향상사례" },
 ];
 
 export default function AdminSidebar() {

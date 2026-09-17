@@ -1,0 +1,20 @@
+[
+  {
+    "id": "sc1", "year": "2026학년도", "name": "김O민", "school": "평촌고",
+    "metric": "국수탐 백분위", "beforeLabel": "2025 수능", "afterLabel": "2026 수능",
+    "beforeScore": 255, "afterScore": 291,
+    "beforeTitle": "재수 시작 전 2025 수능 성적", "afterTitle": "재수 시작 후 2026 수능 성적",
+    "beforeRows": "언어와매체,120,80,3\n미적분,128,94,2\n영어,,,3\n화학I,60,80,3\n지구과학I,61,83,3",
+    "afterRows": "언어와매체,135,97,1\n미적분,133,99,1\n영어,,,2\n화학I,66,95,1\n지구과학I,68,99,1",
+    "order": 1
+  },
+  {
+    "id": "sc2", "year": "2026학년도", "name": "이O윤", "school": "안양고",
+    "metric": "국수탐 백분위", "beforeLabel": "2025 수능", "afterLabel": "2026 수능",
+    "beforeScore": 240, "afterScore": 283,
+    "beforeTitle": "재수 시작 전 2025 수능 성적", "afterTitle": "재수 시작 후 2026 수능 성적",
+    "beforeRows": "화법과작문,124,90,2\n확률과통계,120,85,3\n영어,,,3\n생활과윤리,52,55,5\n사회문화,50,45,5",
+    "afterRows": "화법과작문,132,95,1\n확률과통계,130,97,1\n영어,,,2\n생활과윤리,64,92,2\n사회문화,66,97,1",
+    "order": 2
+  }
+]

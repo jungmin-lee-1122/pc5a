@@ -58,6 +58,24 @@ export interface Teacher {
   hidden?: boolean;   // true면 강사진 소개 목록에서 숨김 (강사 미정 강좌 전용). 강좌는 단과시간표에 계속 노출
 }
 
+/** 성적향상사례 (재수 전/후 성적 비교 카드) — 관리자 입력 */
+export interface ScoreCase {
+  id: ID;
+  year: string;        // 학년도 배지 (예: 2026학년도)
+  name: string;        // 이름
+  school: string;      // 출신고교
+  metric: string;      // 지표명 (예: 국수탐 백분위)
+  beforeLabel: string; // 이전 라벨 (예: 2025 수능)
+  afterLabel: string;  // 이후 라벨 (예: 2026 수능)
+  beforeScore: number; // 이전 지표값
+  afterScore: number;  // 이후 지표값
+  beforeTitle: string; // 이전 표 제목
+  afterTitle: string;  // 이후 표 제목
+  beforeRows: string;  // "과목,표준점수,백분위,등급" 줄단위
+  afterRows: string;   // "과목,표준점수,백분위,등급" 줄단위
+  order: number;
+}
+
 /** 대입 성공 스토리 (성공수기 / 성공영상) — 관리자 입력 */
 export interface SuccessStory {
   id: ID;

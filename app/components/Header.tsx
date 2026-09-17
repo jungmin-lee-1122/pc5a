@@ -5,6 +5,10 @@ import Link from "next/link";
 import Logo from "./Logo";
 import Dday from "./Dday";
 import { NAV_MENUS, type NavMenu } from "@/lib/nav";
+import BranchTopBar from "./branch/BranchTopBar";
+import BranchDropdown from "./branch/BranchDropdown";
+import AllBranchesModal from "./branch/AllBranchesModal";
+import { CURRENT_BRANCH } from "@/config/branches";
 
 // 상단 라벨 클릭(직접 이동) 비활성 — 드롭다운/하위메뉴만 이동
 const NO_TOP_LINK = new Set<string>(["모집안내", "대입결과"]);
@@ -14,6 +18,8 @@ export default function Header({ brand, phone }: { brand: string; phone: string 
   const [hovered, setHovered] = useState<number | null>(null);
   // 전체 메가메뉴 열림 여부 (햄버거 클릭)
   const [megaOpen, setMegaOpen] = useState(false);
+  // 전체 지점 안내창 열림
+  const [branchModalOpen, setBranchModalOpen] = useState(false);
 
   // 메가메뉴 열렸을 때 ESC 로 닫기 + 바디 스크롤 잠금
   useEffect(() => {
@@ -29,13 +35,23 @@ export default function Header({ brand, phone }: { brand: string; phone: string 
 
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-line">
+      {/* PC 상단 지점 바 */}
+      <BranchTopBar onOpenAll={() => setBranchModalOpen(true)} />
+
       <div className="mx-auto flex h-20 max-w-6xl items-center justify-between px-5 lg:px-8">
         {/* 로고 + 수능 D-day */}
-        <div className="flex items-center gap-3" onMouseEnter={() => setHovered(null)}>
+        <div className="flex items-center gap-2 sm:gap-3" onMouseEnter={() => setHovered(null)}>
           <Link href="/" className="flex items-center text-ink">
             <Logo brand={brand} />
           </Link>
-          <Dday />
+          {/* PC: 현재 지점 라벨 */}
+          <span className="hidden text-[13px] font-bold text-brand lg:inline">{CURRENT_BRANCH.label}</span>
+          {/* PC: 수능 D-day */}
+          <div className="hidden lg:block">
+            <Dday />
+          </div>
+          {/* 모바일: 지점 선택 드롭다운 */}
+          <BranchDropdown />
         </div>
 
         {/* 데스크톱 네비게이션 */}
@@ -99,9 +115,19 @@ export default function Header({ brand, phone }: { brand: string; phone: string 
           <div className="hidden lg:block">
             <MegaMenu onClose={() => setMegaOpen(false)} />
           </div>
-          <MobileMenu phone={phone} onClose={() => setMegaOpen(false)} />
+          <MobileMenu
+            phone={phone}
+            onClose={() => setMegaOpen(false)}
+            onOpenAll={() => {
+              setMegaOpen(false);
+              setBranchModalOpen(true);
+            }}
+          />
         </>
       )}
+
+      {/* 전체 지점 안내창 (PC 상단바 · 모바일 전체메뉴 공용) */}
+      <AllBranchesModal open={branchModalOpen} onClose={() => setBranchModalOpen(false)} />
     </header>
   );
 }
@@ -175,7 +201,7 @@ function MegaMenu({ onClose }: { onClose: () => void }) {
   return (
     <>
       {/* 바깥 클릭 시 닫힘 */}
-      <div className="fixed inset-0 top-20 z-40 bg-black/20" onClick={onClose} aria-hidden="true" />
+      <div className="fixed inset-0 top-[116px] z-40 bg-black/20" onClick={onClose} aria-hidden="true" />
       <div className="absolute inset-x-0 top-full z-50 border-t-2 border-brand-dark bg-white shadow-xl">
         <div className="mx-auto max-w-6xl px-5 py-8 lg:px-8">
           <div className="grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-3 lg:grid-cols-6">
@@ -255,7 +281,7 @@ function MegaMenu({ onClose }: { onClose: () => void }) {
 /* ------------------------------------------------------------------ */
 /* 모바일 아코디언 메뉴                                                  */
 /* ------------------------------------------------------------------ */
-function MobileMenu({ phone, onClose }: { phone: string; onClose: () => void }) {
+function MobileMenu({ phone, onClose, onOpenAll }: { phone: string; onClose: () => void; onOpenAll: () => void }) {
   const [openIdx, setOpenIdx] = useState<number | null>(0);
   return (
     <div className="fixed inset-0 z-50 flex flex-col bg-white lg:hidden">
@@ -275,6 +301,19 @@ function MobileMenu({ phone, onClose }: { phone: string; onClose: () => void }) 
             </svg>
           </button>
         </div>
+      </div>
+
+      {/* 수능 D-day + 전체 지점 보기 */}
+      <div className="flex shrink-0 items-center justify-between border-b border-line px-5 py-3">
+        <Dday />
+        <button
+          type="button"
+          onClick={onOpenAll}
+          className="flex items-center gap-1 text-[13px] font-bold text-brand"
+        >
+          전체 지점 보기
+          <span className="text-[15px] leading-none">+</span>
+        </button>
       </div>
 
       {/* 아코디언 목록 */}

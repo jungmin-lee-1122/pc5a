@@ -10,5 +10,6 @@ import reviews from "@/data/reviews.json";
 import univpass from "@/data/univpass.json";
 import univgroups from "@/data/univgroups.json";
 import stories from "@/data/stories.json";
+import scorecases from "@/data/scorecases.json";
 
-export const SEEDS: Record<string, unknown[]> = { teachers, notices, events, videos, menus, gallery, reviews, univpass, univgroups, stories };
+export const SEEDS: Record<string, unknown[]> = { teachers, notices, events, videos, menus, gallery, reviews, univpass, univgroups, stories, scorecases };

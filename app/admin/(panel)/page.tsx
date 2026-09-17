@@ -11,6 +11,7 @@ const CARDS = [
   { href: "/admin/univpass", label: "대입합격현황", desc: "대입 합격자 명단" },
   { href: "/admin/univgroups", label: "대입결과 카운트", desc: "그룹별 누적 합격자수" },
   { href: "/admin/stories", label: "대입 성공 스토리", desc: "성공수기·성공영상" },
+  { href: "/admin/scorecases", label: "성적향상사례", desc: "재수 전/후 성적 비교" },
 ];
 
 export default function Dashboard() {
