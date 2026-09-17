@@ -113,7 +113,7 @@ export default async function CourseDetailPage({
             <Row label="선생님" value={course.teacherName + (course.coTeacherName ? ` · ${course.coTeacherName}` : "")} />
             <Row label="모집대상" value={(course.target ?? []).join(", ")} />
             <Row label="개강일" value={course.startDate} />
-            <Row label="수업기간" value={course.period} />
+            <Row label="회차" value={course.period} />
             <Row label="수업시간" value={course.time} />
             <Row label="수강료" value={course.price} />
           </dl>
@@ -166,7 +166,7 @@ export default async function CourseDetailPage({
               </div>
               <Row label="모집대상" value={(course.target ?? []).join(", ")} />
               <Row label="개강일" value={course.startDate} />
-              <Row label="수업기간" value={course.period} />
+              <Row label="회차" value={course.period} />
               <Row label="수업시간" value={course.time} />
               <Row label="수강료" value={course.price} />
               </dl>
@@ -183,7 +183,7 @@ export default async function CourseDetailPage({
             </svg>
             강의 계획서
           </h2>
-          {course.syllabus ? (
+          {course.syllabus && !course.syllabus.includes("/placeholders/") ? (
             <ZoomableImage src={course.syllabus} alt={`${course.title} 강의계획서`} label="강의 계획서" />
           ) : (
             <p className="py-16 text-center text-sm text-muted">

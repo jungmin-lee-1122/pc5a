@@ -155,7 +155,7 @@ export default function TeacherDetail({
       {/* 프로필 블록 */}
       <div className="relative mt-8 overflow-hidden rounded-2xl border border-line bg-gradient-to-br from-brand-light/70 to-brand-light/15">
         {/* 배경 장식 (선생님 뒤 요소) */}
-        <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div aria-hidden className="pointer-events-none absolute inset-0 hidden overflow-hidden lg:block">
           <span className="absolute right-[14%] top-7 h-36 w-36 rounded-full bg-brand/[0.08] sm:h-52 sm:w-52 lg:right-[19%] lg:h-64 lg:w-64" />
           <span className="absolute right-[7%] top-5 h-7 w-7 rounded-full border-2 border-brand/30 sm:h-9 sm:w-9 lg:right-[11%]" />
           <span className="absolute bottom-12 right-[6%] hidden h-2.5 w-2.5 rounded-full bg-brand/50 lg:block" />
@@ -190,19 +190,38 @@ export default function TeacherDetail({
           </div>
         </div>
 
-        {/* ===== 모바일: 정보+사진 / 약력 / 영상 ===== */}
+        {/* ===== 모바일: 슬로건 · 이름 · 약력(좌) / 큰 사진(우) ===== */}
         <div className="relative lg:hidden">
-          <div className="relative min-h-[220px] p-6 pr-[43%]">
+          <div className="relative min-h-[300px] p-6 pr-[47%]">
+            {/* 큰 사진 (우측 풀블리드) */}
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={current.photo}
               alt={`${current.name} 선생님`}
-              className="pointer-events-none absolute bottom-0 right-0 top-0 w-[46%] object-contain object-bottom object-right"
+              className="pointer-events-none absolute bottom-0 right-0 top-0 w-[46%] object-contain object-bottom object-right drop-shadow-[0_10px_20px_rgba(30,42,99,0.12)]"
             />
-            {head}
+
+            {/* 슬로건 (강조 + 밑줄) */}
+            {current.slogan && (
+              <div className="mb-4 border-b-2 border-brand/40 pb-3">
+                <p className="text-[18px] font-extrabold leading-snug text-brand">{current.slogan}</p>
+              </div>
+            )}
+
+            <p className="text-[13px] font-semibold text-gray-500">{current.subject}</p>
+            <p className="mt-0.5 text-[22px] font-extrabold leading-tight text-ink">
+              {current.name} <span className="text-base font-bold text-gray-400">선생님</span>
+            </p>
+
+            {careerLines.length > 0 && (
+              <ul className="mt-4 space-y-1 text-[13px] leading-relaxed text-gray-500">
+                {careerLines.map((line, i) => (
+                  <li key={i}>{line}</li>
+                ))}
+              </ul>
+            )}
           </div>
-          {careerList && <div className="px-6 pb-1">{careerList}</div>}
-          {current.videoUrl && <div className="p-6 pt-4">{videoBlock("w-full")}</div>}
+          {current.videoUrl && <div className="px-6 pb-6">{videoBlock("w-full")}</div>}
         </div>
       </div>
 
@@ -268,7 +287,7 @@ function CoursesTable({ teacher, courses }: { teacher: Teacher; courses: Teacher
               <th className="px-4 py-3 text-center font-semibold">강사</th>
               <th className="px-4 py-3 text-left font-semibold">강좌명</th>
               <th className="px-4 py-3 text-center font-semibold">개강일</th>
-              <th className="px-4 py-3 text-center font-semibold">수업기간</th>
+              <th className="px-4 py-3 text-center font-semibold">회차</th>
               <th className="px-4 py-3 text-center font-semibold">수업시간</th>
             </tr>
           </thead>
@@ -323,12 +342,12 @@ function CoursesTable({ teacher, courses }: { teacher: Teacher; courses: Teacher
                 </div>
               </div>
               <p className="mt-2 font-semibold text-ink">{c.title}</p>
-              <dl className="mt-2 space-y-1 text-[13px] text-gray-500">
+              <dl className="mt-3 space-y-1.5 rounded-xl bg-gray-50 p-4 text-[13px] text-gray-500">
                 {c.startDate && (
                   <div className="flex gap-2"><dt className="w-14 shrink-0 text-gray-400">개강일</dt><dd>{c.startDate}</dd></div>
                 )}
                 {c.period && (
-                  <div className="flex gap-2"><dt className="w-14 shrink-0 text-gray-400">수업기간</dt><dd>{c.period}</dd></div>
+                  <div className="flex gap-2"><dt className="w-14 shrink-0 text-gray-400">회차</dt><dd>{c.period}</dd></div>
                 )}
                 {c.time && (
                   <div className="flex gap-2"><dt className="w-14 shrink-0 text-gray-400">수업시간</dt><dd>{c.time}</dd></div>

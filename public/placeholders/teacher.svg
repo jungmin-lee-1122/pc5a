@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="320" height="360" viewBox="0 0 320 360" role="img" aria-label="강사 사진">
-  <rect width="320" height="360" fill="#eef1f6"/>
-  <circle cx="160" cy="140" r="66" fill="#c8d0dd"/>
-  <path d="M40 360 C40 268 120 232 160 232 C200 232 280 268 280 360 Z" fill="#c8d0dd"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#eef2ff"/>
+  <circle cx="100" cy="78" r="38" fill="#c7cdf0"/>
+  <path d="M30 190c0-40 32-64 70-64s70 24 70 64z" fill="#c7cdf0"/>
 </svg>
