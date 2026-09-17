@@ -6,7 +6,6 @@ import Logo from "./Logo";
 import Dday from "./Dday";
 import { NAV_MENUS, type NavMenu } from "@/lib/nav";
 import BranchTopBar from "./branch/BranchTopBar";
-import BranchDropdown from "./branch/BranchDropdown";
 import AllBranchesModal from "./branch/AllBranchesModal";
 import { CURRENT_BRANCH } from "@/config/branches";
 
@@ -44,14 +43,12 @@ export default function Header({ brand, phone }: { brand: string; phone: string 
           <Link href="/" className="flex items-center text-ink">
             <Logo brand={brand} />
           </Link>
-          {/* PC: 현재 지점 라벨 */}
-          <span className="hidden text-[13px] font-bold text-[#3451D1] lg:inline">{CURRENT_BRANCH.label}</span>
+          {/* 현재 지점 라벨 */}
+          <span className="text-[13px] font-bold text-[#3451D1]">{CURRENT_BRANCH.label}</span>
           {/* PC: 수능 D-day */}
           <div className="hidden lg:block">
             <Dday />
           </div>
-          {/* 모바일: 지점 선택 드롭다운 */}
-          <BranchDropdown />
         </div>
 
         {/* 데스크톱 네비게이션 */}
