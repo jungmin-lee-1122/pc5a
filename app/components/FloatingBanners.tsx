@@ -20,7 +20,7 @@ export default function FloatingBanners() {
         aria-label="바로가기"
         aria-hidden={hidden}
         className={
-          "fixed left-16 top-24 z-40 hidden origin-top flex-col items-center gap-2.5 transition-all duration-500 ease-out min-[1400px]:flex " +
+          "fixed left-16 top-36 z-40 hidden origin-top flex-col items-center gap-2.5 transition-all duration-500 ease-out min-[1400px]:flex " +
           (hidden ? "pointer-events-none -translate-y-[140%] opacity-0" : "translate-y-0 opacity-100")
         }
       >
@@ -55,7 +55,7 @@ export default function FloatingBanners() {
         aria-hidden={!hidden}
         tabIndex={hidden ? 0 : -1}
         className={
-          "fixed left-10 top-24 z-40 hidden items-center gap-1 rounded-full bg-ink/70 px-3.5 py-1.5 text-xs font-semibold text-white shadow-[0_5px_16px_rgba(30,42,99,0.18)] transition-all duration-300 ease-out hover:bg-ink min-[1400px]:flex " +
+          "fixed left-10 top-36 z-40 hidden items-center gap-1 rounded-full bg-ink/70 px-3.5 py-1.5 text-xs font-semibold text-white shadow-[0_5px_16px_rgba(30,42,99,0.18)] transition-all duration-300 ease-out hover:bg-ink min-[1400px]:flex " +
           (hidden ? "translate-y-0 opacity-100 delay-200" : "pointer-events-none -translate-y-2 opacity-0")
         }
       >
