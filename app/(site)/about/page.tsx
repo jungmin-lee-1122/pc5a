@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Reveal from "@/app/components/Reveal";
 import AboutHero from "@/app/components/about/AboutHero";
 import AboutResults from "@/app/components/about/AboutResults";
 
@@ -45,7 +46,7 @@ export default function AboutPage() {
 
         <div className="mt-8 grid gap-5 md:grid-cols-2">
           {/* 고등 단과 */}
-          <div className="relative flex min-h-[360px] flex-col overflow-hidden rounded-3xl bg-[#E7ECFD] p-8 sm:p-10">
+          <Reveal className="relative flex min-h-[360px] flex-col overflow-hidden rounded-3xl bg-[#E7ECFD] p-8 sm:p-10">
             <p className="text-sm font-bold text-[#334AB1]">내신 · 수능 대비</p>
             <h3 className="mt-2 text-[34px] font-extrabold leading-tight text-ink sm:text-[40px]">고등 단과</h3>
             <p className="mt-4 max-w-[62%] text-[15px] font-medium leading-relaxed text-gray-600 sm:text-base">
@@ -68,10 +69,10 @@ export default function AboutPage() {
               className="pointer-events-none absolute bottom-5 right-5 w-40 select-none sm:w-52"
               draggable={false}
             />
-          </div>
+          </Reveal>
 
           {/* 올케어반 */}
-          <div className="relative flex min-h-[360px] flex-col overflow-hidden rounded-3xl bg-[#E5F4EF] p-8 sm:p-10">
+          <Reveal delay={140} className="relative flex min-h-[360px] flex-col overflow-hidden rounded-3xl bg-[#E5F4EF] p-8 sm:p-10">
             <p className="text-sm font-bold text-[#127A5E]">고등 종합반</p>
             <h3 className="mt-2 text-[34px] font-extrabold leading-tight text-ink sm:text-[40px]">올케어반</h3>
             <p className="mt-4 text-[15px] font-medium leading-relaxed text-gray-600 sm:text-base">
@@ -95,7 +96,7 @@ export default function AboutPage() {
               className="pointer-events-none absolute bottom-5 right-5 w-40 select-none sm:w-52"
               draggable={false}
             />
-          </div>
+          </Reveal>
         </div>
       </section>
 
