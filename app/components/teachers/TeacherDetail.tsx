@@ -192,14 +192,16 @@ export default function TeacherDetail({
 
         {/* ===== 모바일: 슬로건 · 이름 · 약력(좌) / 큰 사진(우) ===== */}
         <div className="relative lg:hidden">
-          <div className="relative min-h-[300px] p-6 pr-[47%]">
-            {/* 큰 사진 (우측 풀블리드) */}
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={current.photo}
-              alt={`${current.name} 선생님`}
-              className="pointer-events-none absolute bottom-0 right-0 top-0 w-[46%] object-contain object-bottom object-right drop-shadow-[0_10px_20px_rgba(30,42,99,0.12)]"
-            />
+          <div className="relative min-h-[300px] p-6 pr-[46%]">
+            {/* 강사 사진 — 우측 하단 코너에 꽉 차게 (하단 여백 크롭) */}
+            <div className="pointer-events-none absolute bottom-0 right-0 w-[52%] aspect-square overflow-hidden">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={current.photo}
+                alt={`${current.name} 선생님`}
+                className="h-full w-full object-cover object-top"
+              />
+            </div>
 
             {/* 슬로건 (강조 + 밑줄) */}
             {current.slogan && (
