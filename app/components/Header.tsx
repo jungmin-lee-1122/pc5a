@@ -37,7 +37,7 @@ export default function Header({ brand, phone }: { brand: string; phone: string 
       {/* PC 상단 지점 바 */}
       <BranchTopBar onOpenAll={() => setBranchModalOpen(true)} />
 
-      <div className="mx-auto flex h-20 max-w-6xl items-center justify-between px-5 lg:px-8">
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 lg:h-20 lg:px-8">
         {/* 로고 + 수능 D-day */}
         <div className="flex items-center gap-2 sm:gap-3" onMouseEnter={() => setHovered(null)}>
           <Link href="/" className="flex items-center text-ink">
