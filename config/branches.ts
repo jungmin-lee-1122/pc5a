@@ -43,10 +43,11 @@ export const BRANCHES: Branch[] = [
     name: "수원",
     label: "수원점",
     full: "5A 아카데미 수원점",
-    href: "",                  // ← 수원 홈페이지 주소 확정 시 여기에 입력
+    href: "https://sw5a.vercel.app/",   // 수원점 홈페이지
     current: false,
-    status: "준비중",
-    // 주소·전화번호는 확정 전까지 비워둡니다. (임의로 채우지 마세요)
+    status: "운영중",
+    address: "경기 수원시 장안구 정자천로173번길 11-6 (정자동, 세경프라자) 3층",
+    region: "경기 수원 정자동",
   },
 ];
 

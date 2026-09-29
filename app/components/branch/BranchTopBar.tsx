@@ -33,7 +33,7 @@ export default function BranchTopBar({ onOpenAll }: { onOpenAll: () => void }) {
                 <a
                   key={b.id}
                   href={b.href || "/"}
-                  className="rounded-full px-2 py-0.5 font-medium text-[#46527A] transition-colors hover:text-[#3D50C8]"
+                  className="rounded-full px-2.5 py-0.5 font-medium text-[#46527A] transition-colors hover:bg-[#3D50C8]/10 hover:text-[#3D50C8]"
                 >
                   {b.name}
                 </a>
