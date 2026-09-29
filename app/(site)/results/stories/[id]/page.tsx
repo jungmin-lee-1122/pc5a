@@ -67,7 +67,7 @@ export default async function StoryDetailPage({
 
         {story.image && (
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={story.image} alt={story.title} className="mb-8 w-full rounded-2xl border border-line" />
+          <img src={story.image} alt={story.title} className="mb-8 w-44 rounded-2xl border border-line object-cover sm:w-52" />
         )}
 
         {paragraphs.length > 0 && (
