@@ -68,7 +68,7 @@ function BranchCard({ b, onNavigate }: { b: Branch; onNavigate: () => void }) {
   return (
     <div className="flex flex-col rounded-xl border border-line bg-white p-5">
       <div className="flex flex-wrap items-center gap-2">
-        <p className="text-base font-extrabold text-ink">{b.full}</p>
+        <p className="text-lg font-extrabold text-ink sm:text-xl">{b.full}</p>
         {b.current ? (
           <span className="rounded-full bg-brand-light px-2 py-0.5 text-[11px] font-bold text-brand">현재 지점</span>
         ) : b.status === "준비중" ? (
@@ -77,24 +77,24 @@ function BranchCard({ b, onNavigate }: { b: Branch; onNavigate: () => void }) {
       </div>
 
       {/* 확인된 위치 정보만 표시 */}
-      {b.region || b.address ? (
-        <p className="mt-2 text-sm text-gray-600">{b.region || b.address}</p>
+      {b.address ? (
+        <p className="mt-2 text-[13px] leading-relaxed text-gray-500">{b.address}</p>
       ) : (
-        <p className="mt-2 text-sm text-gray-400">위치 정보 준비 중</p>
+        <p className="mt-2 text-[13px] text-gray-400">위치 정보 준비 중</p>
       )}
-      {b.address && b.region && <p className="text-[13px] text-gray-400">{b.address}</p>}
-      {b.tel && <p className="mt-0.5 text-[13px] text-gray-400">{b.tel}</p>}
+      {b.tel && <p className="text-[13px] text-gray-500">{b.tel}</p>}
 
-      <div className="mt-4">
+      {/* 버튼은 항상 카드 맨 아래 — 두 카드의 버튼 끝선이 맞도록 */}
+      <div className="mt-auto pt-4">
         {b.current ? (
-          <span className="inline-flex w-full cursor-default items-center justify-center rounded-lg border border-brand/20 bg-brand-light px-4 py-2.5 text-sm font-bold text-brand">
+          <span className="inline-flex h-11 w-full cursor-default items-center justify-center rounded-lg border border-brand/20 bg-brand-light px-4 text-sm font-bold text-brand">
             현재 보고 계신 지점
           </span>
         ) : canGo ? (
           <a
             href={b.href || "/"}
             onClick={onNavigate}
-            className="inline-flex w-full items-center justify-center gap-1.5 rounded-lg bg-brand px-4 py-2.5 text-sm font-bold text-white transition hover:bg-brand-dark"
+            className="inline-flex h-11 w-full items-center justify-center gap-1.5 rounded-lg border border-brand bg-brand px-4 text-sm font-bold text-white transition hover:bg-brand-dark"
           >
             홈페이지 이동
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
@@ -102,7 +102,7 @@ function BranchCard({ b, onNavigate }: { b: Branch; onNavigate: () => void }) {
             </svg>
           </a>
         ) : (
-          <span className="inline-flex w-full cursor-default items-center justify-center rounded-lg border border-line bg-gray-50 px-4 py-2.5 text-sm font-semibold text-gray-400">
+          <span className="inline-flex h-11 w-full cursor-default items-center justify-center rounded-lg border border-line bg-gray-50 px-4 text-sm font-semibold text-gray-400">
             준비 중
           </span>
         )}
