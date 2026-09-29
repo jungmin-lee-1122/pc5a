@@ -6,7 +6,7 @@ export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "대입 성공 스토리 | 5A 아카데미",
-  description: "5A 아카데미 대입 성공수기·성공영상 — 합격생들의 생생한 이야기",
+  description: "5A 아카데미 대입 성공수기 — 합격생들의 생생한 이야기",
 };
 
 export default async function StoriesPage({

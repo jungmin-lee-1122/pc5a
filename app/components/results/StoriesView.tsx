@@ -29,10 +29,6 @@ export default function StoriesView({
   const [page, setPage] = useState(1);
 
   const inTab = useMemo(() => stories.filter((s) => s.kind === tab), [stories, tab]);
-  const groups = useMemo(
-    () => ["전체", ...Array.from(new Set(inTab.map((s) => s.group.trim()).filter(Boolean)))],
-    [inTab],
-  );
 
   const filtered = useMemo(() => {
     let list = group === "전체" ? inTab : inTab.filter((s) => s.group === group);
@@ -66,7 +62,7 @@ export default function StoriesView({
         <div className="mx-auto max-w-6xl px-5 py-10 lg:px-8">
           <p className="text-sm font-bold text-brand">대입결과</p>
           <h1 className="mt-1.5 text-2xl font-extrabold text-ink sm:text-3xl">대입 성공 스토리</h1>
-          <p className="mt-2 text-sm text-muted">합격생들의 생생한 합격 수기와 인터뷰 영상을 만나보세요.</p>
+          <p className="mt-2 text-sm text-muted">합격생들의 생생한 합격 수기를 만나보세요.</p>
         </div>
       </div>
 
@@ -94,46 +90,10 @@ export default function StoriesView({
       )}
 
       <div className="mx-auto max-w-6xl px-5 py-8 lg:px-8">
-        {/* 총 건수 + 필터 + 검색 */}
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-sm text-gray-500">
-            총 <span className="font-bold text-brand">{filtered.length}</span>건
-          </p>
-          <div className="flex flex-wrap items-center gap-2">
-            <select
-              value={group}
-              onChange={(e) => {
-                setGroup(e.target.value);
-                setPage(1);
-              }}
-              className="rounded-lg border border-line bg-white px-3 py-2 text-sm text-ink outline-none focus:border-brand"
-            >
-              {groups.map((g) => (
-                <option key={g} value={g}>
-                  {g === "전체" ? "합격 대학" : g}
-                </option>
-              ))}
-            </select>
-            <div className="relative">
-              <svg
-                width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-                className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
-              >
-                <circle cx="11" cy="11" r="8" /><path d="M21 21l-4.3-4.3" />
-              </svg>
-              <input
-                value={q}
-                onChange={(e) => {
-                  setQ(e.target.value);
-                  setPage(1);
-                }}
-                placeholder="검색어를 입력하세요"
-                className="w-56 rounded-lg border border-line bg-white py-2 pl-9 pr-3 text-sm text-ink outline-none focus:border-brand"
-              />
-            </div>
-          </div>
-        </div>
+        {/* 총 건수 */}
+        <p className="text-sm text-gray-500">
+          총 <span className="font-bold text-brand">{filtered.length}</span>건
+        </p>
 
         {/* 목록 */}
         {shown.length === 0 ? (
