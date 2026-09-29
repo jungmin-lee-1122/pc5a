@@ -63,7 +63,7 @@ export default function AllBranchesModal({ open, onClose }: { open: boolean; onC
 
 function BranchCard({ b, onNavigate }: { b: Branch; onNavigate: () => void }) {
   const ready = isBranchLinkReady(b);
-  const canGo = b.current || ready; // 현재 지점(홈) 또는 이동 준비된 지점
+  const canGo = !b.current && ready; // 다른 지점 중 이동 준비된 곳만 버튼 활성화
 
   return (
     <div className="flex flex-col rounded-xl border border-line bg-white p-5">
@@ -86,7 +86,11 @@ function BranchCard({ b, onNavigate }: { b: Branch; onNavigate: () => void }) {
       {b.tel && <p className="mt-0.5 text-[13px] text-gray-400">{b.tel}</p>}
 
       <div className="mt-4">
-        {canGo ? (
+        {b.current ? (
+          <span className="inline-flex w-full cursor-default items-center justify-center rounded-lg border border-brand/20 bg-brand-light px-4 py-2.5 text-sm font-bold text-brand">
+            현재 보고 계신 지점
+          </span>
+        ) : canGo ? (
           <a
             href={b.href || "/"}
             onClick={onNavigate}
