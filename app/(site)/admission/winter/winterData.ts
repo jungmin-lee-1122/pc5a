@@ -1384,7 +1384,7 @@ export const WINTER_HTML = `<!-- ================= HERO (배너 이미지) =====
             <article class="benefit">
               <div class="benefit-top">
                 <span class="num">04</span>
-                <p><span class="b-hl">사전등록 방법</span><br>사전예약금 50만원 납부<br><small>(납부 시 등록 확정)</small></p>
+                <p><span class="b-hl">사전등록 방법</span><br>사전예약금 30만원 납부<br><small>(납부 시 등록 확정)</small></p>
               </div>
               <svg class="art" viewBox="0 0 120 90" aria-hidden="true">
                 <ellipse cx="52" cy="24" rx="30" ry="10" fill="#dfe9fb"/>

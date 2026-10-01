@@ -144,21 +144,31 @@ export default function Teachers({
             {canScroll && (
               <>
                 <button
-                  onClick={() => scrollByDir(1)}
-                  aria-label="다음 강사"
-                  className="absolute -right-2 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-line bg-white/95 text-gray-600 shadow-md backdrop-blur transition hover:text-brand lg:-right-3"
+                  type="button"
+                  onClick={() => {
+                    pause();
+                    scheduleResume();
+                    scrollByDir(-1);
+                  }}
+                  aria-label="이전 강사"
+                  className="absolute left-0 top-1/2 z-20 flex h-12 w-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-xl border border-gray-200 bg-gray-50/90 text-gray-500 shadow-sm backdrop-blur transition hover:border-brand hover:bg-white hover:text-brand"
                 >
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M9 6l6 6-6 6" />
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M15 6l-6 6 6 6" />
                   </svg>
                 </button>
                 <button
-                  onClick={() => scrollByDir(-1)}
-                  aria-label="이전 강사"
-                  className="absolute -left-2 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-line bg-white/95 text-gray-600 shadow-md backdrop-blur transition hover:text-brand lg:-left-3"
+                  type="button"
+                  onClick={() => {
+                    pause();
+                    scheduleResume();
+                    scrollByDir(1);
+                  }}
+                  aria-label="다음 강사"
+                  className="absolute right-0 top-1/2 z-20 flex h-12 w-10 -translate-y-1/2 translate-x-1/2 items-center justify-center rounded-xl border border-gray-200 bg-gray-50/90 text-gray-500 shadow-sm backdrop-blur transition hover:border-brand hover:bg-white hover:text-brand"
                 >
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M15 6l-6 6 6 6" />
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M9 6l6 6-6 6" />
                   </svg>
                 </button>
               </>
