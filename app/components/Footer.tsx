@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { SiteSettings } from "@/lib/types";
 import TermsModal from "./TermsModal";
+import PrivacyModal from "./PrivacyModal";
 
 export default function Footer({ site }: { site: SiteSettings }) {
   const { footer, social } = site;
@@ -16,10 +17,10 @@ export default function Footer({ site }: { site: SiteSettings }) {
     <footer className="border-t border-line">
       {/* 상단: 정책 링크 + 소셜 */}
       <div className="mx-auto flex max-w-6xl flex-col items-center gap-4 px-5 py-5 text-[13px] text-gray-400 sm:flex-row sm:justify-between lg:px-8">
-        <nav className="flex items-center gap-3">
+        <nav className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1.5">
           <TermsModal />
           <span className="text-line">|</span>
-          <span className="cursor-default font-medium text-gray-500">개인정보 취급(처리)방침</span>
+          <PrivacyModal />
           <span className="text-line">|</span>
           <Link href="/about/location" className="hover:text-ink">찾아오시는 길</Link>
         </nav>
