@@ -141,6 +141,7 @@ export default function Teachers({
               ))}
             </div>
 
+            {/* 좌·우 이동 버튼 — 캐러셀 양 끝 안쪽, 세로 가운데 (z-20: 카드 글자층(z-10) 위) */}
             {canScroll && (
               <>
                 <button
@@ -151,9 +152,9 @@ export default function Teachers({
                     scrollByDir(-1);
                   }}
                   aria-label="이전 강사"
-                  className="absolute left-0 top-1/2 z-20 flex h-12 w-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-xl border border-gray-200 bg-gray-50/90 text-gray-500 shadow-sm backdrop-blur transition hover:border-brand hover:bg-white hover:text-brand"
+                  className="absolute left-0 top-1/2 z-20 flex h-[52px] w-[30px] -translate-y-1/2 items-center justify-center rounded-[3px] bg-gray-200/90 text-white transition-colors hover:bg-gray-300"
                 >
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M15 6l-6 6 6 6" />
                   </svg>
                 </button>
@@ -165,9 +166,9 @@ export default function Teachers({
                     scrollByDir(1);
                   }}
                   aria-label="다음 강사"
-                  className="absolute right-0 top-1/2 z-20 flex h-12 w-10 -translate-y-1/2 translate-x-1/2 items-center justify-center rounded-xl border border-gray-200 bg-gray-50/90 text-gray-500 shadow-sm backdrop-blur transition hover:border-brand hover:bg-white hover:text-brand"
+                  className="absolute right-0 top-1/2 z-20 flex h-[52px] w-[30px] -translate-y-1/2 items-center justify-center rounded-[3px] bg-gray-200/90 text-white transition-colors hover:bg-gray-300"
                 >
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M9 6l6 6-6 6" />
                   </svg>
                 </button>
