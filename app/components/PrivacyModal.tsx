@@ -354,7 +354,7 @@ function PrivacyBody() {
           및 피해 구제를 위하여 아래와 같이 개인정보 보호책임자를 지정하고 있습니다.
         </p>
         <div className="mt-2 rounded-xl border border-line bg-gray-50 px-4 py-3 text-gray-600">
-          <p>· 개인정보 보호책임자 : 엄다희</p>
+          <p>· 개인정보 보호책임자 : 엄다희 과장</p>
           <p>· 연락처 : 031-347-5151</p>
           <p>· 이메일 : 5aacademy@naver.com</p>
           <p>· 주소 : 경기도 안양시 평촌대로 112</p>
