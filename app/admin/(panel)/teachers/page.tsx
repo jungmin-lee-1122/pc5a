@@ -10,7 +10,7 @@ export default function Page() {
       thumbKey="photo"
       fields={[
         { key: "name", label: "이름", type: "text", placeholder: "예: 김연호" },
-        { key: "subject", label: "과목", type: "text", placeholder: "예: 국어" },
+        { key: "subject", label: "과목", type: "text", placeholder: "국어 / 수학 / 영어 / 사회탐구 / 과학탐구 / 인문논술 / 수리논술" },
         { key: "tags", label: "태그", type: "tags", placeholder: "고3, N수", help: "쉼표로 구분" },
         { key: "photo", label: "사진", type: "image" },
         {
