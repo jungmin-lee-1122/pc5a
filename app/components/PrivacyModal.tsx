@@ -266,6 +266,9 @@ function PrivacyBody() {
           수탁자가 개인정보를 안전하게 처리하도록 관리·감독합니다. 위탁 업무의 내용이나 수탁자가 변경될
           경우에는 지체 없이 본 처리방침을 통하여 공개합니다.
         </p>
+        <div className="mt-2 rounded-xl border border-line bg-gray-50 px-4 py-3 text-gray-600">
+          <p>· 수탁자(외부 위탁업체) : (주)세계로 시스템</p>
+        </div>
       </Section>
 
       <Section no={7} title="개인정보의 파기 절차 및 방법">
@@ -351,8 +354,9 @@ function PrivacyBody() {
           및 피해 구제를 위하여 아래와 같이 개인정보 보호책임자를 지정하고 있습니다.
         </p>
         <div className="mt-2 rounded-xl border border-line bg-gray-50 px-4 py-3 text-gray-600">
-          <p>· 개인정보 보호책임자 : 5A 아카데미 평촌점 (원장)</p>
+          <p>· 개인정보 보호책임자 : 엄다희</p>
           <p>· 연락처 : 031-347-5151</p>
+          <p>· 이메일 : 5aacademy@naver.com</p>
           <p>· 주소 : 경기도 안양시 평촌대로 112</p>
         </div>
       </Section>
