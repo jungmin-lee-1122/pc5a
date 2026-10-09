@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import type { Teacher, TeacherCourse } from "@/lib/types";
@@ -192,7 +192,7 @@ export default function TeacherDetail({
 
         {/* ===== 모바일: 슬로건 · 이름 · 약력(좌) / 큰 사진(우) ===== */}
         <div className="relative lg:hidden">
-          <div className="relative min-h-[300px] p-6 pr-[46%]">
+          <div className="relative min-h-[300px]">
             {/* 강사 사진 — 우측 하단 코너에 꽉 차게 (하단 여백 크롭) */}
             <div className="pointer-events-none absolute bottom-0 right-0 w-[52%] aspect-square overflow-hidden">
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -203,13 +203,21 @@ export default function TeacherDetail({
               />
             </div>
 
-            {/* 슬로건 (강조 + 밑줄) */}
+            {/* 슬로건 (강조 + 밑줄) — 박스 전체 너비, 길이에 맞춰 글자 크기 자동 조절해 항상 한 줄 */}
             {current.slogan && (
-              <div className="mb-4 border-b-2 border-brand/40 pb-3">
-                <p className="text-[18px] font-extrabold leading-snug text-brand">{current.slogan}</p>
+              <div className="relative z-10 px-6 pt-6">
+                <div className="border-b-2 border-brand/40 pb-3">
+                  <FitOneLine
+                    text={current.slogan}
+                    max={20}
+                    min={11}
+                    className="font-extrabold leading-snug text-brand"
+                  />
+                </div>
               </div>
             )}
 
+            <div className={"relative p-6 pr-[46%] " + (current.slogan ? "pt-4" : "")}>
             <p className="text-[13px] font-semibold text-gray-500">{current.subject}</p>
             <p className="mt-0.5 text-[22px] font-extrabold leading-tight text-ink">
               {current.name} <span className="text-base font-bold text-gray-400">선생님</span>
@@ -222,6 +230,7 @@ export default function TeacherDetail({
                 ))}
               </ul>
             )}
+            </div>
           </div>
           {current.videoUrl && <div className="px-6 pb-6">{videoBlock("w-full")}</div>}
         </div>
@@ -360,5 +369,35 @@ function CoursesTable({ teacher, courses }: { teacher: Teacher; courses: Teacher
         ))}
       </ul>
     </div>
+  );
+}
+
+/** 주어진 너비 안에 한 줄로 들어가도록 글자 크기를 자동으로 줄이는 텍스트 (max → min px) */
+function FitOneLine({ text, max, min, className = "" }: { text: string; max: number; min: number; className?: string }) {
+  const ref = useRef<HTMLParagraphElement>(null);
+  const [size, setSize] = useState(max);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const fit = () => {
+      let s = max;
+      el.style.fontSize = s + "px";
+      while (s > min && el.scrollWidth > el.clientWidth) {
+        s -= 0.5;
+        el.style.fontSize = s + "px";
+      }
+      setSize(s);
+    };
+    fit();
+    const ro = new ResizeObserver(fit);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [text, max, min]);
+
+  return (
+    <p ref={ref} className={"overflow-hidden whitespace-nowrap " + className} style={{ fontSize: size }}>
+      {text}
+    </p>
   );
 }
