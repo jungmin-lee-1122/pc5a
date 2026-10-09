@@ -61,13 +61,13 @@ export default function MobileQuickNav() {
               "flex flex-col items-center justify-center gap-1.5 rounded-2xl border py-3 transition active:scale-[0.97] " +
               (it.strong
                 ? "border-brand bg-brand text-white shadow-[0_4px_14px_rgba(47,71,184,0.28)]"
-                : "border-line bg-white text-ink shadow-[0_2px_10px_rgba(30,42,99,0.06)]")
+                : "border-brand/10 bg-gradient-to-b from-brand-light to-[#f7f9ff] text-ink shadow-[0_2px_10px_rgba(30,42,99,0.06)]")
             }
           >
             <span
               className={
                 "flex h-9 w-9 items-center justify-center rounded-xl " +
-                (it.strong ? "bg-white/20 text-white" : "bg-brand-light text-brand")
+                (it.strong ? "bg-white/20 text-white" : "bg-white text-brand shadow-[0_1px_4px_rgba(47,71,184,0.12)]")
               }
             >
               {it.icon}
