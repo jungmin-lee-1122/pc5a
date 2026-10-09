@@ -98,10 +98,11 @@ export default function Videos({
         <div className="min-w-0 lg:col-span-4">
           <a
             href={promo?.href || "#"}
-            className="relative block h-44 overflow-hidden rounded-2xl border border-line bg-white lg:h-full"
+            className="relative block aspect-[1170/807] overflow-hidden rounded-2xl border border-line bg-[#141210] lg:aspect-auto lg:h-full"
           >
+            {/* 모바일: 이미지 원본 비율 그대로(잘림 없음) / PC: 영상 박스 높이에 맞춰 가운데 기준 채움 */}
             {promo ? (
-              <img src={promo.image} alt={promo.alt} className="absolute inset-0 h-full w-full object-cover" />
+              <img src={promo.image} alt={promo.alt} className="absolute inset-0 h-full w-full object-cover object-center" />
             ) : (
               <div className="flex h-full items-center justify-center text-muted">홍보 배너</div>
             )}
