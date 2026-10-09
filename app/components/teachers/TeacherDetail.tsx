@@ -192,17 +192,7 @@ export default function TeacherDetail({
 
         {/* ===== 모바일: 슬로건 · 이름 · 약력(좌) / 큰 사진(우) ===== */}
         <div className="relative lg:hidden">
-          <div className="relative min-h-[300px]">
-            {/* 강사 사진 — 우측 하단 코너에 꽉 차게 (하단 여백 크롭) */}
-            <div className="pointer-events-none absolute bottom-0 right-0 w-[52%] aspect-square overflow-hidden">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={current.photo}
-                alt={`${current.name} 선생님`}
-                className="h-full w-full object-cover object-top"
-              />
-            </div>
-
+          <div className="relative flex min-h-[300px] flex-col">
             {/* 슬로건 (강조 + 밑줄) — 박스 전체 너비, 길이에 맞춰 글자 크기 자동 조절해 항상 한 줄 */}
             {current.slogan && (
               <div className="relative z-10 px-6 pt-6">
@@ -217,7 +207,17 @@ export default function TeacherDetail({
               </div>
             )}
 
-            <div className={"relative p-6 pr-[46%] " + (current.slogan ? "pt-4" : "")}>
+            <div className={"relative flex-1 p-6 pr-[46%] " + (current.slogan ? "pt-4" : "")}>
+            {/* 강사 사진 — 슬로건 밑줄 아래 영역의 우측에만 (밑줄과 겹치지 않게) */}
+            <div className="pointer-events-none absolute bottom-0 right-0 top-0 w-[48%] overflow-hidden">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={current.photo}
+                alt={`${current.name} 선생님`}
+                className="h-full w-full object-cover object-top"
+              />
+            </div>
+            <div className="relative">
             <p className="text-[13px] font-semibold text-gray-500">{current.subject}</p>
             <p className="mt-0.5 text-[22px] font-extrabold leading-tight text-ink">
               {current.name} <span className="text-base font-bold text-gray-400">선생님</span>
@@ -230,6 +230,7 @@ export default function TeacherDetail({
                 ))}
               </ul>
             )}
+            </div>
             </div>
           </div>
           {current.videoUrl && <div className="px-6 pb-6">{videoBlock("w-full")}</div>}
