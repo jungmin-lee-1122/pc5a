@@ -43,7 +43,7 @@ export const BRANCHES: Branch[] = [
     name: "수원",
     label: "수원점",
     full: "5A 아카데미 수원점",
-    href: "https://sw5a.vercel.app", // 수원점 홈페이지
+    href: "https://www.sw5aacademy.com", // 수원점 홈페이지
     current: false,
     status: "운영중",
     address: "경기도 수원시 장안구 대평로90번길 16, 7층",
