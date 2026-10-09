@@ -42,7 +42,7 @@ export const PROMO: Promo = {
 export const SITE: SiteSettings = {
   brandName: "아카데미",
   sectionTitle: "5A아카데미 선생님 클립영상",
-  subjects: ["국어", "수학", "영어", "사회탐구", "과학탐구", "인문논술", "수리논술"], // 논술 → 인문·수리 분리
+  subjects: ["국어", "수학", "영어", "사회탐구", "과학탐구", "논술"],
   footer: {
     company: "",
     address: "경기도 안양시 평촌대로 112",

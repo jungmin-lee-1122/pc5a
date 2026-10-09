@@ -5,6 +5,10 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import type { Teacher } from "@/lib/types";
 
+
+// 모바일 탭에서 쓰는 짧은 이름
+const SHORT_TAB: Record<string, string> = { 사회탐구: "사탐", 과학탐구: "과탐" };
+
 export default function TeachersView({
   teachers,
   subjects,
@@ -29,7 +33,8 @@ export default function TeachersView({
   return (
     <div>
       {/* 과목 탭 (URL을 바꾸는 링크) */}
-      <div className="mb-7 flex flex-wrap gap-2">
+      {/* 모바일: 한 줄로 균등 배치(짧은 이름) / PC: 기존 알약 버튼 */}
+      <div className="no-scrollbar mb-7 flex gap-1 overflow-x-auto sm:flex-wrap sm:gap-2 sm:overflow-visible">
         {TABS.map((tab) => {
           const on = active === tab;
           const href =
@@ -41,12 +46,14 @@ export default function TeachersView({
               scroll={false}
               aria-current={on ? "page" : undefined}
               className={
-                on
-                  ? "rounded-full bg-ink px-4 py-2 text-sm font-bold text-white"
-                  : "rounded-full border border-line bg-white px-4 py-2 text-sm font-medium text-gray-600 hover:border-gray-300"
+                "min-w-0 flex-1 basis-0 whitespace-nowrap rounded-full py-2 text-center text-[13px] sm:flex-none sm:basis-auto sm:px-4 sm:text-sm " +
+                (on
+                  ? "bg-ink font-bold text-white"
+                  : "border border-line bg-white font-medium text-gray-600 hover:border-gray-300")
               }
             >
-              {tab}
+              <span className="sm:hidden">{SHORT_TAB[tab] ?? tab}</span>
+              <span className="hidden sm:inline">{tab}</span>
             </Link>
           );
         })}

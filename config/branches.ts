@@ -47,8 +47,8 @@ export const BRANCHES: Branch[] = [
     href: "",                  // 준비중 — 현재는 이동 안 함
     current: false,
     status: "준비중",
-    address: "경기 수원시 장안구 정자천로173번길 11-6 (정자동, 세경프라자) 3층",
-    region: "경기 수원 정자동",
+    address: "경기도 수원시 장안구 대평로90번길 16, 7층",
+    region: "경기 수원 장안구",
   },
 ];
 
