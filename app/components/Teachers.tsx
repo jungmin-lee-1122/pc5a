@@ -30,7 +30,8 @@ export default function Teachers({
   const step = useCallback(() => {
     const el = scroller.current;
     const first = el?.firstElementChild as HTMLElement | null;
-    return first ? first.offsetWidth + 16 : 282;
+    const gap = el ? parseFloat(getComputedStyle(el).columnGap) || 16 : 16;
+    return first ? first.offsetWidth + gap : 282;
   }, []);
 
   const scrollByDir = useCallback(
@@ -134,7 +135,7 @@ export default function Teachers({
               onMouseLeave={scheduleResume}
               onPointerDown={pause}
               onTouchEnd={scheduleResume}
-              className="no-scrollbar flex gap-4 overflow-x-auto scroll-smooth pb-2"
+              className="no-scrollbar flex gap-2.5 overflow-x-auto scroll-smooth pb-2 sm:gap-4"
             >
               {filtered.map((teacher) => (
                 <TeacherCard key={teacher.id} teacher={teacher} />
@@ -185,29 +186,29 @@ function TeacherCard({ teacher }: { teacher: Teacher }) {
   return (
     <Link
       href={`/teachers/${teacher.id}?subject=${encodeURIComponent(teacher.subject)}`}
-      className="group relative h-[276px] w-[266px] shrink-0 overflow-hidden rounded-2xl border border-line bg-white transition"
+      className="group relative h-[172px] w-[140px] shrink-0 overflow-hidden rounded-xl border border-line bg-white transition sm:h-[276px] sm:w-[266px] sm:rounded-2xl"
     >
-      {/* 텍스트 (위) */}
-      <div className="relative z-10 p-6">
-        <div className="flex gap-1.5">
+      {/* 텍스트 (위) — 모바일은 작게 */}
+      <div className="relative z-10 p-3 sm:p-6">
+        <div className="flex flex-wrap gap-1 sm:gap-1.5">
           {teacher.tags.map((tag) => (
             <span
               key={tag}
-              className="rounded border border-line bg-gray-50 px-1.5 py-0.5 text-[11px] font-semibold text-gray-500"
+              className="rounded border border-line bg-gray-50 px-1 py-px text-[10px] font-semibold text-gray-500 sm:px-1.5 sm:py-0.5 sm:text-[11px]"
             >
               {tag}
             </span>
           ))}
         </div>
-        <p className="mt-5 text-[14px] font-semibold text-brand">{teacher.subject}</p>
-        <p className="text-[26px] font-extrabold leading-tight text-ink">{teacher.name}</p>
+        <p className="mt-2 text-[11px] font-semibold text-brand sm:mt-5 sm:text-[14px]">{teacher.subject}</p>
+        <p className="text-[17px] font-extrabold leading-tight text-ink sm:text-[26px]">{teacher.name}</p>
       </div>
 
       {/* 사진 (오른쪽 아래를 크게 채움) */}
       <img
         src={teacher.photo}
         alt={`${teacher.name} 선생님`}
-        className="pointer-events-none absolute bottom-0 right-0 h-[80%] w-auto max-w-[80%] object-contain object-bottom transition duration-300 group-hover:scale-105"
+        className="pointer-events-none absolute bottom-0 right-0 h-[62%] w-auto max-w-[72%] object-contain sm:h-[80%] sm:max-w-[80%] object-bottom transition duration-300 group-hover:scale-105"
       />
     </Link>
   );
