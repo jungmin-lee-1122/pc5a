@@ -68,10 +68,9 @@ export async function POST(req: Request) {
   }
 
   // 2) 구글시트(Apps Script Web App)로 전송
-  //    [DB제공 동의] 이벤트는 별도 시트(SHEET_WEBHOOK_URL_DB)로 전송, 그 외는 기본 시트
-  const isDbConsent = /DB\s*제공/.test(str(body.eventTitle));
-  const webhook =
-    (isDbConsent && process.env.SHEET_WEBHOOK_URL_DB) || process.env.SHEET_WEBHOOK_URL;
+  //    모든 설명회(DB제공 포함)를 평촌점 공통 시트 하나로 보냅니다.
+  //    시트 안에서는 Apps Script 가 설명회 제목별로 탭을 자동 생성합니다.
+  const webhook = process.env.SHEET_WEBHOOK_URL;
   if (webhook) {
     try {
       const res = await fetch(webhook, {
