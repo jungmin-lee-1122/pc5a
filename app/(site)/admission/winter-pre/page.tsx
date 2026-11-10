@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { PRE_CSS, PRE_HTML, PRE_JS } from "./winterPreData";
 import AdmissionTabs from "@/app/components/admission/AdmissionTabs";
+import { ENHANCE_CSS, PRE_ENHANCE_CSS, enhancePre } from "../winter/winterEnhance";
 
 const REVEAL_CSS = `
 .rv{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
@@ -116,7 +117,7 @@ export default function WinterPrePage() {
       .replace(/(^|[^\w-])body\s*\{/g, "$1:host{")
       .replace(/(^|[^\w-])html\s*\{/g, "$1:host{");
 
-    shadow.innerHTML = `<style>${css}\n${REVEAL_CSS}\n${MOBILE_CSS}</style>${PRE_HTML}`;
+    shadow.innerHTML = `<style>${css}\n${REVEAL_CSS}\n${MOBILE_CSS}\n${ENHANCE_CSS}\n${PRE_ENHANCE_CSS}</style>${PRE_HTML}`;
 
     if (PRE_JS.trim()) {
       const js = PRE_JS
@@ -131,6 +132,7 @@ export default function WinterPrePage() {
     }
 
     setupReveal(shadow);
+    const disposeEnhance = enhancePre(shadow);
 
     const onNavClick = (e: Event) => {
       const a = e
@@ -149,7 +151,10 @@ export default function WinterPrePage() {
       }
     };
     shadow.addEventListener("click", onNavClick);
-    return () => shadow?.removeEventListener("click", onNavClick);
+    return () => {
+      shadow?.removeEventListener("click", onNavClick);
+      disposeEnhance();
+    };
   }, []);
 
   return (
