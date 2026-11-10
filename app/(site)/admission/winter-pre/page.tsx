@@ -9,6 +9,14 @@ const REVEAL_CSS = `
 .rv.in{opacity:1;transform:none}
 `;
 
+const MOBILE_CSS = `
+@media (max-width: 640px){
+  [style*="minmax(150px, 1fr)"]{display:flex !important;grid-template-columns:none !important;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;gap:10px !important;margin:0 -4px;padding:2px 4px 10px;scrollbar-width:none}
+  [style*="minmax(150px, 1fr)"]::-webkit-scrollbar{display:none}
+  [style*="minmax(150px, 1fr)"] > *{flex:0 0 44% !important;scroll-snap-align:start}
+}
+`;
+
 function setupReveal(root: ShadowRoot) {
   const reduce = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
   if (reduce || !("IntersectionObserver" in window)) return;
@@ -47,6 +55,34 @@ function setupReveal(root: ShadowRoot) {
     { threshold: 0.12, rootMargin: "0px 0px -8% 0px" },
   );
   root.querySelectorAll(".rv").forEach((el) => io.observe(el));
+
+  // 실적 그래프 바 — 묶음 컨테이너가 보이면 0 → 목표 너비로 순차(주루룩) 차오름
+  const bars = Array.from(
+    root.querySelectorAll<HTMLElement>('[style*="overflow: hidden"][style*="#eef0f5"] > div'),
+  ).filter((b) => b.style.width.includes("%"));
+  if (bars.length) {
+    bars.forEach((bar, i) => {
+      bar.dataset.tw = bar.style.width;
+      bar.style.width = "0%";
+      bar.style.transition = "width 1s cubic-bezier(.16,1,.3,1)";
+      bar.style.transitionDelay = `${(i % 6) * 170}ms`;
+    });
+    let container: HTMLElement = bars[0];
+    const last = bars[bars.length - 1];
+    while (container.parentElement && !container.contains(last)) container = container.parentElement;
+    const barIO = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((en) => en.isIntersecting)) {
+          bars.forEach((b) => {
+            b.style.width = b.dataset.tw || "0%";
+          });
+          barIO.disconnect();
+        }
+      },
+      { threshold: 0.2, rootMargin: "0px 0px -8% 0px" },
+    );
+    barIO.observe(container);
+  }
 }
 
 export default function WinterPrePage() {
@@ -70,7 +106,7 @@ export default function WinterPrePage() {
       .replace(/(^|[^\w-])body\s*\{/g, "$1:host{")
       .replace(/(^|[^\w-])html\s*\{/g, "$1:host{");
 
-    shadow.innerHTML = `<style>${css}\n${REVEAL_CSS}</style>${PRE_HTML}`;
+    shadow.innerHTML = `<style>${css}\n${REVEAL_CSS}\n${MOBILE_CSS}</style>${PRE_HTML}`;
 
     if (PRE_JS.trim()) {
       const js = PRE_JS
