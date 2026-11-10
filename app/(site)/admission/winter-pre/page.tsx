@@ -7,6 +7,7 @@ import AdmissionTabs from "@/app/components/admission/AdmissionTabs";
 const REVEAL_CSS = `
 .rv{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
 .rv.in{opacity:1;transform:none}
+.stat-hint{display:none}
 `;
 
 const MOBILE_CSS = `
@@ -14,6 +15,7 @@ const MOBILE_CSS = `
   [style*="minmax(150px, 1fr)"]{display:flex !important;grid-template-columns:none !important;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;gap:10px !important;margin:0 -4px;padding:2px 4px 10px;scrollbar-width:none}
   [style*="minmax(150px, 1fr)"]::-webkit-scrollbar{display:none}
   [style*="minmax(150px, 1fr)"] > *{flex:0 0 44% !important;scroll-snap-align:start}
+  .stat-hint{display:block !important;margin:10px 2px 0;font-size:12px;color:#c9d0e0;text-align:center;letter-spacing:.01em}
 }
 `;
 
@@ -82,6 +84,14 @@ function setupReveal(root: ShadowRoot) {
       { threshold: 0.2, rootMargin: "0px 0px -8% 0px" },
     );
     barIO.observe(container);
+  }
+
+  const statGrid = root.querySelector('[style*="minmax(150px, 1fr)"]');
+  if (statGrid && !(statGrid.nextElementSibling as HTMLElement | null)?.classList.contains("stat-hint")) {
+    const hint = document.createElement("p");
+    hint.className = "stat-hint";
+    hint.textContent = "← 좌우로 스크롤하면 자세한 실적을 확인할 수 있어요 →";
+    statGrid.after(hint);
   }
 }
 
