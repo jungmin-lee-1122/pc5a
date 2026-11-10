@@ -4,20 +4,57 @@ import { useEffect, useRef } from "react";
 import { WINTER_CSS, WINTER_HTML, WINTER_JS } from "./winterData";
 import AdmissionTabs from "@/app/components/admission/AdmissionTabs";
 
-// 페이지 내 섹션으로 스크롤 이동하는 탭
-const TABS: { label: string; target: string }[] = [
-  { label: "2027 윈터스쿨", target: "top" },
-  { label: "모집안내", target: "#detail" },
-  // { label: "수업안내", target: ".section-white" }, // 임시 숨김 (추후 다른 콘텐츠 예정)
-  { label: "접수안내", target: ".cta" },
-];
+const REVEAL_CSS = `
+.rv{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+.rv.in{opacity:1;transform:none}
+`;
+
+function setupReveal(root: ShadowRoot) {
+  const reduce = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+  if (reduce || !("IntersectionObserver" in window)) return;
+
+  const grids = Array.from(root.querySelectorAll<HTMLElement>('[style*="grid-template-columns"]'));
+  const staggerSections = new Set<Element>();
+  grids.forEach((g) => {
+    const sec = g.closest("section");
+    if (sec) staggerSections.add(sec);
+    const kids = Array.from(g.children).filter((c): c is HTMLElement => c instanceof HTMLElement);
+    if (kids.length < 2) return;
+    kids.forEach((c, i) => {
+      c.classList.add("rv");
+      c.style.transitionDelay = `${Math.min(i, 6) * 70}ms`;
+    });
+  });
+
+  root.querySelectorAll("section").forEach((sec) => {
+    if (staggerSections.has(sec)) {
+      const h = sec.querySelector("h2, h3");
+      if (h) h.classList.add("rv");
+    } else {
+      sec.classList.add("rv");
+    }
+  });
+
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((en) => {
+        if (en.isIntersecting) {
+          en.target.classList.add("in");
+          io.unobserve(en.target);
+        }
+      });
+    },
+    { threshold: 0.12, rootMargin: "0px 0px -8% 0px" },
+  );
+  root.querySelectorAll(".rv").forEach((el) => io.observe(el));
+}
 
 export default function WinterPage() {
   const hostRef = useRef<HTMLDivElement>(null);
   const shadowRef = useRef<ShadowRoot | null>(null);
 
   useEffect(() => {
-    document.title = "2027 윈터스쿨 | 5A 아카데미";
+    document.title = "2027 윈터스쿨 | 5A 아카데미 평촌점";
     const host = hostRef.current;
     if (!host) return;
 
@@ -27,54 +64,56 @@ export default function WinterPage() {
       shadowRef.current = shadow;
     }
 
-    // Shadow DOM 격리를 위해 전역 셀렉터를 :host 로 치환 (변수/바디 스타일이 셰도우에 적용되도록)
     const css = WINTER_CSS
       .replace(/:root\s*\{/g, ":host{")
       .replace(/html\s*,\s*body\s*\{/g, ":host{")
       .replace(/(^|[^\w-])body\s*\{/g, "$1:host{")
       .replace(/(^|[^\w-])html\s*\{/g, "$1:host{");
 
-    shadow.innerHTML = `<style>${css}</style>${WINTER_HTML}`;
+    shadow.innerHTML = `<style>${css}\n${REVEAL_CSS}</style>${WINTER_HTML}`;
 
-    // 원본 스크립트: document 질의를 셰도우 루트로 치환 (createElement 는 유지)
     const js = WINTER_JS
       .replace(/document\.querySelectorAll/g, "root.querySelectorAll")
-      .replace(/document\.querySelector/g, "root.querySelector");
+      .replace(/document\.querySelector/g, "root.querySelector")
+      .replace(/document\.addEventListener/g, "root.addEventListener");
     try {
       new Function("root", js)(shadow);
     } catch (e) {
       console.error("[winter] script error", e);
     }
-  }, []);
 
-  const goTo = (target: string) => {
-    if (target === "top") {
-      const y = (hostRef.current?.getBoundingClientRect().top ?? 0) + window.scrollY - 136;
-      window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
-      return;
-    }
-    const el = shadowRef.current?.querySelector(target) as HTMLElement | null;
-    if (el) {
-      const y = el.getBoundingClientRect().top + window.scrollY - 136;
-      window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
-    }
-  };
+    setupReveal(shadow);
+
+    const onNavClick = (e: Event) => {
+      const a = e
+        .composedPath()
+        .find(
+          (n) => n instanceof HTMLAnchorElement && n.getAttribute("href")?.startsWith("#"),
+        ) as HTMLAnchorElement | undefined;
+      if (!a) return;
+      const id = a.getAttribute("href")!.slice(1);
+      if (!id) return;
+      const t = shadow!.querySelector("#" + CSS.escape(id)) as HTMLElement | null;
+      if (t) {
+        e.preventDefault();
+        const y = t.getBoundingClientRect().top + window.scrollY - 140;
+        window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
+      }
+    };
+    shadow.addEventListener("click", onNavClick);
+    return () => shadow?.removeEventListener("click", onNavClick);
+  }, []);
 
   return (
     <main className="flex-1">
-      {/* 폰트 (원본과 동일) */}
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
       <link
-        href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@400;500;700;900&display=swap"
-        rel="stylesheet"
-      />
-      <link
-        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Poppins:wght@600;700;800&display=swap"
         rel="stylesheet"
       />
 
-      {/* 헤더밴드 (다른 페이지와 동일 크기) */}
+      {/* 헤더밴드 — 표준(다른 상세페이지와 동일). PDF 박스 제거 */}
       <div className="relative isolate overflow-hidden border-b border-line bg-brand-light">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
@@ -84,65 +123,14 @@ export default function WinterPage() {
           className="pointer-events-none absolute right-0 top-1/2 -z-10 h-[190%] -translate-y-1/2 select-none opacity-[0.7] sm:right-6"
         />
         <div className="mx-auto max-w-6xl px-5 py-10 lg:px-8">
-          <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <p className="text-sm font-bold text-brand">모집안내</p>
-              <h1 className="mt-1.5 text-2xl font-extrabold text-ink sm:text-3xl">2027 윈터스쿨</h1>
-              <p className="mt-2 text-sm text-muted">2028 대입 개편, 준비는 이번 겨울부터.</p>
-            </div>
-
-            {/* 2027 윈터스쿨 브로셔 — 바로보기 · 다운로드 */}
-            <div className="flex items-center gap-3 rounded-2xl border border-brand/15 bg-white/70 p-2.5 pl-4 shadow-[0_4px_16px_rgba(30,42,99,0.08)] backdrop-blur">
-              <div className="mr-1 leading-tight">
-                <p className="text-[16px] font-bold text-ink sm:text-[17px]">윈터스쿨 안내 PDF</p>
-              </div>
-              <div className="flex gap-1.5">
-                <a
-                  href="/2027-winter-brochure.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rounded-lg bg-brand px-3.5 py-2 text-[13px] font-bold text-white transition-colors hover:bg-brand-dark"
-                >
-                  바로보기
-                </a>
-                <a
-                  href="/2027-winter-brochure.pdf"
-                  download
-                  className="inline-flex items-center gap-1 rounded-lg border border-line bg-white px-3 py-2 text-[13px] font-semibold text-gray-700 transition-colors hover:border-brand/40 hover:text-brand"
-                >
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M12 3v12m0 0l-4-4m4 4l4-4" />
-                    <path d="M5 21h14" />
-                  </svg>
-                  다운로드
-                </a>
-              </div>
-            </div>
-          </div>
+          <p className="text-sm font-bold text-brand">모집안내</p>
+          <h1 className="mt-1.5 text-2xl font-extrabold text-ink sm:text-3xl">2027 윈터스쿨</h1>
+          <p className="mt-2 text-sm text-muted">2028 대입 개편, 준비는 이번 겨울부터.</p>
         </div>
       </div>
 
-      {/* 모집안내 대탭 */}
       <AdmissionTabs contained />
 
-      {/* 섹션 이동 탭 */}
-      <div className="sticky top-20 z-30 border-b border-line bg-white/95 backdrop-blur">
-        <div className="mx-auto max-w-6xl px-5 lg:px-8">
-          <div className="no-scrollbar flex items-center gap-1 overflow-x-auto sm:gap-2">
-            {TABS.map((t) => (
-              <button
-                key={t.label}
-                onClick={() => goTo(t.target)}
-                className="shrink-0 whitespace-nowrap px-3 py-4 text-sm font-semibold text-gray-500 transition-colors hover:text-brand sm:px-4"
-              >
-                {t.label}
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* 윈터스쿨 콘텐츠 (Shadow DOM 격리) — 전체 폭 꽉 채움 */}
       <div ref={hostRef} className="w-full" />
     </main>
   );

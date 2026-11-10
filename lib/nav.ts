@@ -44,6 +44,7 @@ export const NAV_MENUS: NavMenu[] = [
     groups: [
       {
         items: [
+          { label: "2027 PRE 윈터스쿨", href: "/admission/winter-pre" },
           { label: "2027 윈터스쿨", href: "/admission/winter" },
           { label: "고등 올케어반", href: "/admission/allcare" },
           { label: "2027 고등단과", href: "/schedule" },
