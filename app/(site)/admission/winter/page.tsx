@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { WINTER_CSS, WINTER_HTML, WINTER_JS } from "./winterData";
 import AdmissionTabs from "@/app/components/admission/AdmissionTabs";
+import { ENHANCE_CSS, enhanceWinter } from "./winterEnhance";
 
 const REVEAL_CSS = `
 .rv{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
@@ -116,7 +117,7 @@ export default function WinterPage() {
       .replace(/(^|[^\w-])body\s*\{/g, "$1:host{")
       .replace(/(^|[^\w-])html\s*\{/g, "$1:host{");
 
-    shadow.innerHTML = `<style>${css}\n${REVEAL_CSS}\n${MOBILE_CSS}</style>${WINTER_HTML}`;
+    shadow.innerHTML = `<style>${css}\n${REVEAL_CSS}\n${MOBILE_CSS}\n${ENHANCE_CSS}</style>${WINTER_HTML}`;
 
     const js = WINTER_JS
       .replace(/document\.querySelectorAll/g, "root.querySelectorAll")
@@ -129,6 +130,7 @@ export default function WinterPage() {
     }
 
     setupReveal(shadow);
+    const disposeEnhance = enhanceWinter(shadow);
 
     const onNavClick = (e: Event) => {
       const a = e
@@ -147,7 +149,10 @@ export default function WinterPage() {
       }
     };
     shadow.addEventListener("click", onNavClick);
-    return () => shadow?.removeEventListener("click", onNavClick);
+    return () => {
+      shadow?.removeEventListener("click", onNavClick);
+      disposeEnhance();
+    };
   }, []);
 
   return (
