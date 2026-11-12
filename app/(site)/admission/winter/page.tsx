@@ -1,101 +1,11 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { WINTER_CSS, WINTER_HTML, WINTER_JS } from "./winterData";
 import AdmissionTabs from "@/app/components/admission/AdmissionTabs";
-import { ENHANCE_CSS, enhanceWinter } from "./winterEnhance";
+import { W27_CSS, initWinter27 } from "./winter27";
+import { W27_HTML } from "./winter27Html";
 
-const REVEAL_CSS = `
-.rv{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
-.rv.in{opacity:1;transform:none}
-.stat-hint{display:none}
-`;
-
-const MOBILE_CSS = `
-@media (max-width: 640px){
-  [style*="minmax(150px, 1fr)"]{display:flex !important;grid-template-columns:none !important;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;gap:10px !important;margin:0 -4px;padding:2px 4px 10px;scrollbar-width:none}
-  [style*="minmax(150px, 1fr)"]::-webkit-scrollbar{display:none}
-  [style*="minmax(150px, 1fr)"] > *{flex:0 0 44% !important;scroll-snap-align:start}
-  .stat-hint{display:block !important;margin:10px 2px 0;font-size:12px;color:#c9d0e0;text-align:center;letter-spacing:.01em}
-}
-`;
-
-function setupReveal(root: ShadowRoot) {
-  const reduce = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
-  if (reduce || !("IntersectionObserver" in window)) return;
-
-  const grids = Array.from(root.querySelectorAll<HTMLElement>('[style*="grid-template-columns"]'));
-  const staggerSections = new Set<Element>();
-  grids.forEach((g) => {
-    const sec = g.closest("section");
-    if (sec) staggerSections.add(sec);
-    const kids = Array.from(g.children).filter((c): c is HTMLElement => c instanceof HTMLElement);
-    if (kids.length < 2) return;
-    kids.forEach((c, i) => {
-      c.classList.add("rv");
-      c.style.transitionDelay = `${Math.min(i, 6) * 70}ms`;
-    });
-  });
-
-  root.querySelectorAll("section").forEach((sec) => {
-    if (staggerSections.has(sec)) {
-      const h = sec.querySelector("h2, h3");
-      if (h) h.classList.add("rv");
-    } else {
-      sec.classList.add("rv");
-    }
-  });
-
-  const io = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((en) => {
-        if (en.isIntersecting) {
-          en.target.classList.add("in");
-          io.unobserve(en.target);
-        }
-      });
-    },
-    { threshold: 0.12, rootMargin: "0px 0px -8% 0px" },
-  );
-  root.querySelectorAll(".rv").forEach((el) => io.observe(el));
-
-  // 실적 그래프 바 — 묶음 컨테이너가 보이면 0 → 목표 너비로 순차(주루룩) 차오름
-  const bars = Array.from(
-    root.querySelectorAll<HTMLElement>('[style*="overflow: hidden"][style*="#eef0f5"] > div'),
-  ).filter((b) => b.style.width.includes("%"));
-  if (bars.length) {
-    bars.forEach((bar, i) => {
-      bar.dataset.tw = bar.style.width;
-      bar.style.width = "0%";
-      bar.style.transition = "width 1s cubic-bezier(.16,1,.3,1)";
-      bar.style.transitionDelay = `${(i % 6) * 170}ms`;
-    });
-    let container: HTMLElement = bars[0];
-    const last = bars[bars.length - 1];
-    while (container.parentElement && !container.contains(last)) container = container.parentElement;
-    const barIO = new IntersectionObserver(
-      (entries) => {
-        if (entries.some((en) => en.isIntersecting)) {
-          bars.forEach((b) => {
-            b.style.width = b.dataset.tw || "0%";
-          });
-          barIO.disconnect();
-        }
-      },
-      { threshold: 0.2, rootMargin: "0px 0px -8% 0px" },
-    );
-    barIO.observe(container);
-  }
-
-  const statGrid = root.querySelector('[style*="minmax(150px, 1fr)"]');
-  if (statGrid && !(statGrid.nextElementSibling as HTMLElement | null)?.classList.contains("stat-hint")) {
-    const hint = document.createElement("p");
-    hint.className = "stat-hint";
-    hint.textContent = "← 좌우로 스크롤하면 자세한 실적을 확인할 수 있어요 →";
-    statGrid.after(hint);
-  }
-}
-
+// 본문은 pcjongro winter27 레퍼런스와 같은 UI·애니메이션(.jr-winter27)을 섀도 DOM 안에 그대로 렌더링
 export default function WinterPage() {
   const hostRef = useRef<HTMLDivElement>(null);
   const shadowRef = useRef<ShadowRoot | null>(null);
@@ -110,49 +20,9 @@ export default function WinterPage() {
       shadow = host.attachShadow({ mode: "open" });
       shadowRef.current = shadow;
     }
-
-    const css = WINTER_CSS
-      .replace(/:root\s*\{/g, ":host{")
-      .replace(/html\s*,\s*body\s*\{/g, ":host{")
-      .replace(/(^|[^\w-])body\s*\{/g, "$1:host{")
-      .replace(/(^|[^\w-])html\s*\{/g, "$1:host{");
-
-    shadow.innerHTML = `<style>${css}\n${REVEAL_CSS}\n${MOBILE_CSS}\n${ENHANCE_CSS}</style>${WINTER_HTML}`;
-
-    const js = WINTER_JS
-      .replace(/document\.querySelectorAll/g, "root.querySelectorAll")
-      .replace(/document\.querySelector/g, "root.querySelector")
-      .replace(/document\.addEventListener/g, "root.addEventListener");
-    try {
-      new Function("root", js)(shadow);
-    } catch (e) {
-      console.error("[winter] script error", e);
-    }
-
-    setupReveal(shadow);
-    const disposeEnhance = enhanceWinter(shadow);
-
-    const onNavClick = (e: Event) => {
-      const a = e
-        .composedPath()
-        .find(
-          (n) => n instanceof HTMLAnchorElement && n.getAttribute("href")?.startsWith("#"),
-        ) as HTMLAnchorElement | undefined;
-      if (!a) return;
-      const id = a.getAttribute("href")!.slice(1);
-      if (!id) return;
-      const t = shadow!.querySelector("#" + CSS.escape(id)) as HTMLElement | null;
-      if (t) {
-        e.preventDefault();
-        const y = t.getBoundingClientRect().top + window.scrollY - 140;
-        window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
-      }
-    };
-    shadow.addEventListener("click", onNavClick);
-    return () => {
-      shadow?.removeEventListener("click", onNavClick);
-      disposeEnhance();
-    };
+    shadow.innerHTML = `<style>${W27_CSS}</style>${W27_HTML}`;
+    const dispose = initWinter27(shadow);
+    return () => dispose();
   }, []);
 
   return (
@@ -164,7 +34,6 @@ export default function WinterPage() {
         rel="stylesheet"
       />
 
-      {/* 헤더밴드 — 표준(다른 상세페이지와 동일). PDF 박스 제거 */}
       <div className="relative isolate overflow-hidden border-b border-line bg-brand-light">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
