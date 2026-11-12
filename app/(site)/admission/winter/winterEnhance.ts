@@ -66,11 +66,8 @@ export const ENHANCE_CSS = `
 #rules [style*="minmax(250px"] > div{border:1px solid #e9ecf3;transition:transform .25s ease,box-shadow .25s ease}
 #rules [style*="minmax(250px"] > div:hover{transform:translateY(-3px);box-shadow:0 12px 26px rgba(16,32,65,.08)}
 
-/* 특화 프로그램: 숫자·흐름 강조 + 체크 목록 */
+/* 특화 프로그램: 체크 목록 */
 .hl{color:#c4501a;font-weight:800}
-#program [style*="minmax(340px"] > div:first-child .hl{color:#102041;background:rgba(255,255,255,.38);border-radius:5px;padding:0 4px}
-.arw{font-style:normal;font-weight:900;margin:0 3px;color:#c4501a}
-#program [style*="minmax(340px"] > div:first-child .arw{color:#fff}
 #program [style*="minmax(300px"] > div{border-top:4px solid #ec6926}
 #program [style*="minmax(300px"] ul{list-style:none !important;padding-left:0 !important}
 #program [style*="minmax(300px"] li{position:relative;padding-left:26px}
@@ -294,26 +291,7 @@ export function enhanceWinter(root: ShadowRoot): () => void {
       `<ul class="rl-list">${lines.map((l) => `<li>${mark(l)}</li>`).join("")}</ul>`;
   });
 
-  // 특화 프로그램: 문단 속 숫자·흐름 강조 (기존 강조 태그 유지하며 텍스트 노드만 처리)
-  const markText = (el: Element) => {
-    const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
-    const nodes: Text[] = [];
-    while (walker.nextNode()) nodes.push(walker.currentNode as Text);
-    const re = /(\d+~\d+명|\d+명|매주\s?\d+회\s?이상|\d+회\s?이상|1:1\s?맞춤\s?코칭|→)/g;
-    nodes.forEach((tn) => {
-      const t = tn.nodeValue || "";
-      if (!re.test(t)) return;
-      re.lastIndex = 0;
-      const span = document.createElement("span");
-      span.innerHTML = escT(t).replace(re, (x) => (x === "→" ? '<i class="arw">→</i>' : `<b class="hl">${x}</b>`));
-      tn.replaceWith(...Array.from(span.childNodes));
-    });
-  };
-  root.querySelectorAll('#program [style*="minmax(340px"] > div > p').forEach((p) => {
-    if ((p as HTMLElement).dataset.hl) return;
-    (p as HTMLElement).dataset.hl = "1";
-    markText(p);
-  });
+  // 특화 프로그램 하단 목록: 콜론 앞 키워드 굵게
   root.querySelectorAll<HTMLLIElement>('#program [style*="minmax(300px"] li').forEach((li) => {
     if (li.children.length || li.dataset.hl) return;
     const t = li.textContent || "";
